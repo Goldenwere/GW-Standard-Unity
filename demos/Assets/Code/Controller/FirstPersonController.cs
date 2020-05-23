@@ -161,7 +161,7 @@ namespace Goldenwere.Unity.Controller
             [Header("Exposed Camera Settings")]
 
             [Tooltip            ("The base FOV setting to apply to attached cameras before adding/subtracting the controller's difference settings " +
-                "(this is the FOV used for idle; use the Difference settings for all other movement states)")]
+                                "(this is the FOV used for idle; use the Difference settings for all other movement states)")]
             /**************/    public  float   cameraFOV;
             [Tooltip            ("Multiplier for camera sensitivity")]
             /**************/    public  float   cameraSensitivity;

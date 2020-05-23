@@ -238,12 +238,12 @@ MonoBehaviour:
     smoothLook: 1
     smoothSpeed: 20
   settingsMovement:
-    forceFrictionAir: 0.1
+    forceFrictionAir: 0.01
     forceFrictionMotion: 1
     forceFrictionStationary: 5
-    forceJump: 6
+    forceJump: 8
     forceStickToGround: 0.05
-    forceGravityMultiplier: 2
+    forceGravityMultiplier: 3
     settingCanJumpWhileCrouched: 0
     settingControlAirMovement: 1
     settingControllerMass: 5

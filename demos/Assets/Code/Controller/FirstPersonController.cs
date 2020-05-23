@@ -134,15 +134,34 @@ namespace Goldenwere.Unity.Controller
 
             [Tooltip            ("The attached camera joints that the controller can use for rotation (cameras or animated joints should be be children of these joints)")]
             [SerializeField]    private GameObject[]    attachedCameraJoints;
+            [Tooltip            ("The attached cameras that the controller can animate FOV")]
+            [SerializeField]    private Camera[]        attachedCameras;
             [Tooltip            ("The minimum (x) and maximum (y) rotation in degrees that the camera can rotate vertically (ideally a range within -90 and 90 degrees)")]
             [SerializeField]    private Vector2         cameraClampVertical;
+            [Tooltip            ("The animation curve to use for camera FOV transitioning")]
+            [SerializeField]    private AnimationCurve  cameraFOVCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+            [Tooltip            ("The FOV difference to apply to attached cameras while crouched")]
+            [SerializeField]    private float           cameraFOVDifferenceCrouched;
+            [Tooltip            ("The FOV difference to apply to attached cameras while falling")]
+            [SerializeField]    private float           cameraFOVDifferenceFalling;
+            [Tooltip            ("The FOV difference to apply to attached cameras when moving with fast speed")]
+            [SerializeField]    private float           cameraFOVDifferenceFast;
+            [Tooltip            ("The FOV difference to apply to attached cameras when moving with norm speed")]
+            [SerializeField]    private float           cameraFOVDifferenceNorm;
+            [Tooltip            ("The FOV difference to apply to attached cameras when moving with slow speed")]
+            [SerializeField]    private float           cameraFOVDifferenceSlow;
+            [Tooltip            ("The length in seconds that the FOV transition occurs")]
+            [SerializeField]    private float           cameraFOVTransitionDuration;
             [Tooltip            ("The camera will always be positioned this amount from the topmost vertex of the CapsuleCollider (ideally set around 0.2f)")]
             [SerializeField]    private float           settingCameraHeightOffset;
             #endregion
 
             #region Exposed  camera settings
-            [Header             ("Exposed Camera Settings")]
+            [Header("Exposed Camera Settings")]
 
+            [Tooltip            ("The base FOV setting to apply to attached cameras before adding/subtracting the controller's difference settings " +
+                "(this is the FOV used for idle; use the Difference settings for all other movement states)")]
+            /**************/    public  float   cameraFOV;
             [Tooltip            ("Multiplier for camera sensitivity")]
             /**************/    public  float   cameraSensitivity;
             [Tooltip            ("Whether to use smoothing with camera movement")]
@@ -152,9 +171,17 @@ namespace Goldenwere.Unity.Controller
             #endregion
 
             #region Properties
-            public GameObject[] AttachedCameraJoints        { get { return attachedCameraJoints; } }
-            public Vector2      CameraClampVertical         { get { return cameraClampVertical; } }
-            public float        SettingCameraHeightOffset   { get { return settingCameraHeightOffset; } }
+            public GameObject[]     AttachedCameraJoints        { get { return attachedCameraJoints; } }
+            public Camera[]         AttachedCameras             { get { return attachedCameras; } }
+            public Vector2          CameraClampVertical         { get { return cameraClampVertical; } }
+            public AnimationCurve   CameraFOVCurve              { get { return cameraFOVCurve; } }
+            public float            CameraFOVDifferenceCrouched { get { return cameraFOVDifferenceCrouched; } }
+            public float            CameraFOVDifferenceFalling  { get { return cameraFOVDifferenceFalling; } }
+            public float            CameraFOVDifferenceFast     { get { return cameraFOVDifferenceFast; } }
+            public float            CameraFOVDifferenceNorm     { get { return cameraFOVDifferenceNorm; } }
+            public float            CameraFOVDifferenceSlow     { get { return cameraFOVDifferenceSlow; } }
+            public float            CameraFOVTransitionDuration { get { return cameraFOVTransitionDuration; } }
+            public float            SettingCameraHeightOffset   { get { return settingCameraHeightOffset; } }
             #endregion
         }
 
@@ -167,6 +194,8 @@ namespace Goldenwere.Unity.Controller
         /**************/    private bool                workingControlActionDoRotation;
         /**************/    private bool                workingControlActionModifierMoveFast;
         /**************/    private bool                workingControlActionModifierMoveSlow;
+        /**************/    private Coroutine           workingFOVCoroutine;
+        /**************/    private bool                workingFOVCoroutineRunning;
         /**************/    private bool                workingJumpDesired;
         /**************/    private bool                workingJumpIsJumping;
         /**************/    private bool                workingJumpIsJumpingCoroutineRunning;
@@ -205,6 +234,9 @@ namespace Goldenwere.Unity.Controller
             attachedRigidbody.drag = 0;
             attachedRigidbody.angularDrag = 0;
             attachedRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
+            foreach (Camera c in settingsCamera.AttachedCameras)
+                c.fieldOfView = settingsCamera.cameraFOV;
         }
 
         private void FixedUpdate()
@@ -305,7 +337,15 @@ namespace Goldenwere.Unity.Controller
         private void DetermineMovementState()
         {
             if (workingJumpDesired || workingJumpIsJumping)
+            {
                 UpdateMovementState?.Invoke(MovementState.jumping);
+                if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)
+                {
+                    if (workingFOVCoroutineRunning)
+                        StopCoroutine(workingFOVCoroutine);
+                    workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling));
+                }
+            }
 
             else if (!workingGroundstateCurrent)
             {
@@ -321,7 +361,15 @@ namespace Goldenwere.Unity.Controller
                 if (MovementIsCrouched)
                 {
                     if (!workingControlActionDoMovement)
+                    {
                         UpdateMovementState?.Invoke(MovementState.idle_crouched);
+                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV)
+                        {
+                            if (workingFOVCoroutineRunning)
+                                StopCoroutine(workingFOVCoroutine);
+                            workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV));
+                        }
+                    }
 
                     else
                     {
@@ -331,22 +379,61 @@ namespace Goldenwere.Unity.Controller
                             UpdateMovementState?.Invoke(MovementState.fast_crouched);
                         else
                             UpdateMovementState?.Invoke(MovementState.norm_crouched);
+
+                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceCrouched)
+                        {
+                            if (workingFOVCoroutineRunning)
+                                StopCoroutine(workingFOVCoroutine);
+                            workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceCrouched));
+                        }
                     }
                 }
 
                 else
                 {
                     if (!workingControlActionDoMovement)
+                    {
                         UpdateMovementState?.Invoke(MovementState.idle);
+                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV)
+                        {
+                            if (workingFOVCoroutineRunning)
+                                StopCoroutine(workingFOVCoroutine);
+                            workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV));
+                        }
+                    }
 
                     else
                     {
                         if (MovementIsMovingSlow)
+                        {
                             UpdateMovementState?.Invoke(MovementState.slow);
+                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceSlow)
+                            {
+                                if (workingFOVCoroutineRunning)
+                                    StopCoroutine(workingFOVCoroutine);
+                                workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceSlow));
+                            }
+                        }
                         else if (MovementIsMovingFast)
+                        {
                             UpdateMovementState?.Invoke(MovementState.fast);
+                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFast)
+                            {
+                                if (workingFOVCoroutineRunning)
+                                    StopCoroutine(workingFOVCoroutine);
+                                workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFast));
+                            }
+                        }
                         else
+                        {
                             UpdateMovementState?.Invoke(MovementState.norm);
+                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceNorm)
+                            {
+                                if (workingFOVCoroutineRunning)
+                                    StopCoroutine(workingFOVCoroutine);
+                                workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceNorm));
+                            }
+                        }
                     }
                 }
             }
@@ -542,13 +629,43 @@ namespace Goldenwere.Unity.Controller
         }
 
         /// <summary>
+        /// Transitions the FOV of each attached camera from their old values to the new value
+        /// </summary>
+        /// <param name="newFOV">The new FOV each camera should have at the end of the transition</param>
+        private IEnumerator TransitionFOV(float newFOV)
+        {
+            workingFOVCoroutineRunning = true;
+            float oldFOV = settingsCamera.AttachedCameras[0].fieldOfView;
+            float t = 0;
+            while (t <= settingsCamera.CameraFOVTransitionDuration)
+            {
+                foreach (Camera c in settingsCamera.AttachedCameras)
+                    c.fieldOfView = Mathf.Lerp(oldFOV, newFOV, settingsCamera.CameraFOVCurve.Evaluate(t / settingsCamera.CameraFOVTransitionDuration));
+                t += Time.deltaTime;
+                yield return null;
+            }
+            // Ensure each FOV is exact by the end of the transition
+            foreach (Camera c in settingsCamera.AttachedCameras)
+                c.fieldOfView = newFOV;
+        workingFOVCoroutineRunning = false;
+        }
+
+        /// <summary>
         /// To prevent false "falling" detection, such as for stairs or certain slopes while with a higher stick-to-ground,
         /// </summary>
         private IEnumerator WaitBeforeCallingFall()
         {
             yield return new WaitForSeconds(settingsMovement.SettingWaitBeforeFallTime);
             if (!workingGroundstateCurrent && !workingJumpDesired && !workingJumpIsJumping)
+            {
                 UpdateMovementState?.Invoke(MovementState.falling);
+                if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)
+                {
+                    if (workingFOVCoroutineRunning)
+                        StopCoroutine(workingFOVCoroutine);
+                    workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling));
+                }
+            }
         }
 
         /// <summary>

@@ -12,8 +12,6 @@ namespace Goldenwere.Unity.Controller
         [SerializeField]    private Animator[]              animatorsToCall;
         /**************/    private FirstPersonController   attachedController;
 
-        [SerializeField] private TextMeshProUGUI TEST;
-
         private void Awake()
         {
             attachedController = GetComponent<FirstPersonController>();
@@ -31,9 +29,6 @@ namespace Goldenwere.Unity.Controller
 
         private void OnUpdateMovementState(MovementState state)
         {
-            TEST.text = state.ToString();
-            print(state);
-
             foreach(Animator a in animatorsToCall)
             {
                 // Determine grounded

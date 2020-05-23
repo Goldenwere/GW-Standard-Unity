@@ -10,8 +10,10 @@ namespace Goldenwere.Unity.UI
     public class SliderTextLoadExtension : MonoBehaviour
     {
         #region Fields & Properties
+#pragma warning disable 0649
         [SerializeField]    private Slider             associatedSlider;
         [SerializeField]    private TextMeshProUGUI    associatedText;
+#pragma warning restore 0649
 
         /// <summary>
         /// Exposes the slider to allow direct manipulation without having to have a reference to both this class and the slider class

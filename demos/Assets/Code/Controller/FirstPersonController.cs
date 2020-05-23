@@ -28,6 +28,7 @@ namespace Goldenwere.Unity.Controller
     [RequireComponent(typeof(Rigidbody))]
     public class FirstPersonController : MonoBehaviour
     {
+#pragma warning disable 0649
         /// <summary>
         /// Variables related to physical/directional movement 
         /// </summary>
@@ -216,6 +217,7 @@ namespace Goldenwere.Unity.Controller
         public  bool                MovementIsMovingSlowCrouch  { get { return workingIsCrouched && workingControlActionModifierMoveSlow; } }
         public  CameraSettings      SettingsCamera              { get { return settingsCamera; } }
         public  MovementSettings    SettingsMovement            { get { return settingsMovement; } }
+#pragma warning restore 0649
 
         private void Awake()
         {

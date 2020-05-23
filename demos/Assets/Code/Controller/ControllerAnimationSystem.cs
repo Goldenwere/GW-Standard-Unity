@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
+﻿using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 {
     [RequireComponent(typeof(FirstPersonController))]
     public class ControllerAnimationSystem : MonoBehaviour
     {
+#pragma warning disable 0649
         [Tooltip("Attach all animators you plan on calling animations on. Ensure that you use the same strings as those defined in here.")]
         [SerializeField]    private Animator[]              animatorsToCall;
         /**************/    private FirstPersonController   attachedController;
+#pragma warning restore 0649
 
         private void Awake()
         {

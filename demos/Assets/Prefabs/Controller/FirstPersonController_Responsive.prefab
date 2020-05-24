@@ -543,7 +543,15 @@ MonoBehaviour:
   clipDefaultMovement: {fileID: 0}
   clipsMaterials: []
   clipsTerrain: []
+  settingPitchWhileCrouched: 0.5
+  settingPitchWhileNotCrouched: 1
+  settingVolumeWhileCrouched: 0.5
+  settingVolumeWhileNotCrouched: 1
   tagObjects: []
+  timeBetweenStepsCrouch: 1
+  timeBetweenStepsFast: 0.3333
+  timeBetweenStepsNorm: 0.5
+  timeBetweenStepsSlow: 1
 --- !u!1 &624721237770966292
 GameObject:
   m_ObjectHideFlags: 0

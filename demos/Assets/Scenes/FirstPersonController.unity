@@ -7509,6 +7509,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsMaterials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsMaterials.Array.data[0].associatedMaterials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsTerrain.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsMaterials.Array.data[0].associatedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8181d034b0dff0a42aebb9816bc16f04, type: 3}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsMaterials.Array.data[0].associatedMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97a47178b6a72cc47b7bbc32ccad741c, type: 2}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipDefaultMovement
+      value: 
+      objectReference: {fileID: 8300000, guid: a61a2b742aef20449b029cc356751631, type: 3}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsTerrain.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1aa48221f5598264ca1b8b076144ec16, type: 3}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsTerrain.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1524f3369f43dc340bbf5d98c47851f9, type: 3}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsTerrain.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a7abb036d54b9843945737762a1edf0, type: 3}
+    - target: {fileID: 3416822751285102163, guid: 7137623a34c35834187d92b11a07bee0,
+        type: 3}
+      propertyPath: clipsTerrain.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c5114e55bf97064a814d4b8b57a9d76, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7137623a34c35834187d92b11a07bee0, type: 3}
 --- !u!43 &1660009605

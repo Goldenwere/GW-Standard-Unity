@@ -42,6 +42,8 @@ namespace Goldenwere.Unity.Controller
 
         private void Awake()
         {
+            workingMaterials = new Dictionary<Material, AudioClip>();
+
             foreach(MaterialCollection mc in clipsMaterials)
                 foreach (Material m in mc.AssociatedMaterials)
                     if (!workingMaterials.ContainsKey(m))

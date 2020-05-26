@@ -71,37 +71,49 @@ namespace Goldenwere.Unity.Controller
 
         private void Update()
         {
+            workingTimeSinceLastPlayed += Time.deltaTime;
             if (workingCurrentMovementState != MovementState.idle && workingCurrentMovementState != MovementState.idle_crouched &&
                 workingCurrentMovementState != MovementState.jumping && workingCurrentMovementState != MovementState.falling)
             {
                 if (workingTimeSinceLastPlayed >= workingCurrentStepTime)
                 {
-
+                    workingSource.PlayOneShot(DetermineAudioClip());
+                    workingTimeSinceLastPlayed = 0;
                 }
             }
         }
 
+        private AudioClip DetermineAudioClip()
+        {
+            return clipDefaultMovement;
+        }
+
         private void OnUpdateMovementState(MovementState state)
         {
+            workingCurrentMovementState = state;
             switch (state)
             {
                 case MovementState.fast:
                     workingCurrentStepTime = timeBetweenStepsFast;
                     workingSource.pitch = settingPitchWhileNotCrouched;
+                    workingSource.volume = settingVolumeWhileNotCrouched;
                     break;
                 case MovementState.slow:
                     workingCurrentStepTime = timeBetweenStepsSlow;
                     workingSource.pitch = settingPitchWhileNotCrouched;
+                    workingSource.volume = settingVolumeWhileNotCrouched;
                     break;
                 case MovementState.fast_crouched:
                 case MovementState.norm_crouched:
                 case MovementState.slow_crouched:
                     workingCurrentStepTime = timeBetweenStepsCrouched;
                     workingSource.pitch = settingPitchWhileCrouched;
+                    workingSource.volume = settingVolumeWhileCrouched;
                     break;
                 case MovementState.norm:
                     workingCurrentStepTime = timeBetweenStepsNorm;
                     workingSource.pitch = settingPitchWhileNotCrouched;
+                    workingSource.volume = settingVolumeWhileNotCrouched;
                     break;
                 default:
                     // Do nothing for the other states - sound doesn't play

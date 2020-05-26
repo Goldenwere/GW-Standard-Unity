@@ -24,9 +24,6 @@ namespace Goldenwere.Unity.Controller
         [SerializeField]    private float                           settingVolumeWhileCrouched = 0.5f;
         [Tooltip            ("The volume to use while not crouched (ideally 1)")]
         [SerializeField]    private float                           settingVolumeWhileNotCrouched = 1f;
-        [Tooltip            ("Any GameObject with the tags defined here will play audio. " +
-                            "Do not tag terrain with a tag that is listed here, or else the default audio will play (due to terrain-checking using a different method)")]
-        [SerializeField]    private string[]                        tagObjects;
         [Tooltip            ("The time between playing footsteps while moving crouched")]
         [SerializeField]    private float                           timeBetweenStepsCrouched = 1f;
         [Tooltip            ("The time between playing footsteps while moving fast")]
@@ -39,7 +36,7 @@ namespace Goldenwere.Unity.Controller
         /**************/    private FirstPersonController           attachedController;
         /**************/    private MovementState                   workingCurrentMovementState;
         /**************/    private float                           workingCurrentStepTime;
-        /**************/    private Dictionary<Material, AudioClip> workingMaterials;
+        /**************/    private Dictionary<string, AudioClip>   workingMaterials;
         /**************/    private AudioSource                     workingSource;
         /**************/    private float                           workingTimeSinceLastPlayed;
 #pragma warning restore 0649
@@ -47,12 +44,12 @@ namespace Goldenwere.Unity.Controller
 
         private void Awake()
         {
-            workingMaterials = new Dictionary<Material, AudioClip>();
+            workingMaterials = new Dictionary<string, AudioClip>();
 
             foreach(MaterialCollection mc in clipsMaterials)
                 foreach (Material m in mc.AssociatedMaterials)
-                    if (!workingMaterials.ContainsKey(m))
-                        workingMaterials.Add(m, mc.AssociatedClip);
+                    if (!workingMaterials.ContainsKey(m.name))
+                        workingMaterials.Add(m.name, mc.AssociatedClip);
 
             workingSource = GetComponent<AudioSource>();
             attachedController = GetComponent<FirstPersonController>();
@@ -85,6 +82,29 @@ namespace Goldenwere.Unity.Controller
 
         private AudioClip DetermineAudioClip()
         {
+            if (Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit, attachedController.SettingsMovement.SettingNormalHeight + 0.1f, Physics.AllLayers)) 
+            {
+                if (hit.collider is TerrainCollider)
+                {
+                    Terrain t = hit.collider.gameObject.GetComponent<Terrain>();
+                }
+
+                else
+                {
+                    MeshRenderer mr = hit.collider.gameObject.GetComponent<MeshRenderer>();
+                    if (mr != null)
+                    {
+                        Material mat = mr.material;
+                        if (mat != null)
+                        {
+                            string sanitizedName = mat.name.Replace(" (Instance)", "");
+                            if (workingMaterials.ContainsKey(sanitizedName))
+                                return workingMaterials[sanitizedName];
+                        }
+                    }
+                }
+            }
+
             return clipDefaultMovement;
         }
 
@@ -120,7 +140,7 @@ namespace Goldenwere.Unity.Controller
                     break;
             }
         }
-}
+    }
 
     [Serializable]
     public struct MaterialCollection

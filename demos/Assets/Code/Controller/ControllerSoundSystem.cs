@@ -42,6 +42,10 @@ namespace Goldenwere.Unity.Controller
 #pragma warning restore 0649
         #endregion
 
+        #region Methods
+        /// <summary>
+        /// Associates attached components and sets up a working dictionary of materials to check against for objects
+        /// </summary>
         private void Awake()
         {
             workingMaterials = new Dictionary<string, AudioClip>();
@@ -56,16 +60,25 @@ namespace Goldenwere.Unity.Controller
             workingCurrentStepTime = timeBetweenStepsNorm;
         }
 
+        /// <summary>
+        /// Subscribe to the UpdateMovementState event of the controller on Monobehaviour.OnEnable()
+        /// </summary>
         private void OnEnable()
         {
             attachedController.UpdateMovementState += OnUpdateMovementState;
         }
 
+        /// <summary>
+        /// Unsubscribe from the UpdateMovementState event of the controller on Monobehaviour.OnDisable()
+        /// </summary>
         private void OnDisable()
         {
             attachedController.UpdateMovementState -= OnUpdateMovementState;
         }
 
+        /// <summary>
+        /// Handles checking groundstate and playing audio at specific intervals on Monobehaviour.Update()
+        /// </summary>
         private void Update()
         {
             workingTimeSinceLastPlayed += Time.deltaTime;
@@ -80,6 +93,12 @@ namespace Goldenwere.Unity.Controller
             }
         }
 
+        /// <summary>
+        /// Converts a world-space position (the controller's) to a position on the alphamap of a designated terrain
+        /// </summary>
+        /// <param name="worldPos">The position to check in worldspace</param>
+        /// <param name="t">The terrain being checked</param>
+        /// <returns>The strength values of each texture at the world position provided</returns>
         private float[] ConvertPositionToTerrain(Vector3 worldPos, Terrain t)
         {
             Vector3 terrainPos = worldPos - t.transform.position;
@@ -92,6 +111,10 @@ namespace Goldenwere.Unity.Controller
             return layers;
         }
 
+        /// <summary>
+        /// Handler for the UpdateMovementState event which determines which speed to play audio and at what pitch/volume
+        /// </summary>
+        /// <param name="state">The current MovementState</param>
         private void OnUpdateMovementState(MovementState state)
         {
             workingCurrentMovementState = state;
@@ -125,6 +148,9 @@ namespace Goldenwere.Unity.Controller
             }
         }
 
+        /// <summary>
+        /// Determines which audio to play based on what is underneath the controller
+        /// </summary>
         private void PlayAudio()
         {
             if (Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit, attachedController.SettingsMovement.SettingNormalHeight + 0.1f, Physics.AllLayers))
@@ -165,8 +191,12 @@ namespace Goldenwere.Unity.Controller
                 }
             }
         }
+        #endregion
     }
 
+    /// <summary>
+    /// A structure for associating audio clips with materials
+    /// </summary>
     [Serializable]
     public struct MaterialCollection
     {

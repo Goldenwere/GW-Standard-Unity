@@ -28,6 +28,7 @@ namespace Goldenwere.Unity.Controller
     [RequireComponent(typeof(Rigidbody))]
     public class FirstPersonController : MonoBehaviour
     {
+        #region Fields & Properties
 #pragma warning disable 0649
         /// <summary>
         /// Variables related to physical/directional movement 
@@ -218,7 +219,12 @@ namespace Goldenwere.Unity.Controller
         public  CameraSettings      SettingsCamera              { get { return settingsCamera; } }
         public  MovementSettings    SettingsMovement            { get { return settingsMovement; } }
 #pragma warning restore 0649
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Associates attached components and sets up said components on Monobehaviour.Awake()
+        /// </summary>
         private void Awake()
         {
             attachedCollider = gameObject.GetComponent<CapsuleCollider>();
@@ -241,6 +247,9 @@ namespace Goldenwere.Unity.Controller
                 c.fieldOfView = settingsCamera.cameraFOV;
         }
 
+        /// <summary>
+        /// Handles controller movement and physics on Monobehaviour.FixedUpdate()
+        /// </summary>
         private void FixedUpdate()
         {
             if (settingsMovement.canMove)
@@ -683,5 +692,6 @@ namespace Goldenwere.Unity.Controller
             }
             workingJumpIsJumpingCoroutineRunning = false;
         }
+        #endregion
     }
 }

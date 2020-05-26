@@ -11,21 +11,34 @@ namespace Goldenwere.Unity.Controller
         /**************/    private FirstPersonController   attachedController;
 #pragma warning restore 0649
 
+        /// <summary>
+        /// Reference the controller on Monobehaviour.Awake()
+        /// </summary>
         private void Awake()
         {
             attachedController = GetComponent<FirstPersonController>();
         }
 
+        /// <summary>
+        /// Subscribe to the UpdateMovementState event of the controller on Monobehaviour.OnEnable()
+        /// </summary>
         private void OnEnable()
         {
             attachedController.UpdateMovementState += OnUpdateMovementState;
         }
 
+        /// <summary>
+        /// Unsubscribe from the UpdateMovementState event of the controller on Monobehaviour.OnDisable()
+        /// </summary>
         private void OnDisable()
         {
             attachedController.UpdateMovementState -= OnUpdateMovementState;
         }
 
+        /// <summary>
+        /// Handler for the UpdateMovementState event which sets animator parameters for the animators to determine which animation to play
+        /// </summary>
+        /// <param name="state">The current MovementState</param>
         private void OnUpdateMovementState(MovementState state)
         {
             foreach(Animator a in animatorsToCall)

@@ -74,38 +74,22 @@ namespace Goldenwere.Unity.Controller
             {
                 if (workingTimeSinceLastPlayed >= workingCurrentStepTime)
                 {
-                    workingSource.PlayOneShot(DetermineAudioClip());
+                    PlayAudio();
                     workingTimeSinceLastPlayed = 0;
                 }
             }
         }
 
-        private AudioClip DetermineAudioClip()
+        private float[] ConvertPositionToTerrain(Vector3 worldPos, Terrain t)
         {
-            if (Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit, attachedController.SettingsMovement.SettingNormalHeight + 0.1f, Physics.AllLayers)) 
-            {
-                if (hit.collider is TerrainCollider)
-                {
-                    Terrain t = hit.collider.gameObject.GetComponent<Terrain>();
-                }
-
-                else
-                {
-                    MeshRenderer mr = hit.collider.gameObject.GetComponent<MeshRenderer>();
-                    if (mr != null)
-                    {
-                        Material mat = mr.material;
-                        if (mat != null)
-                        {
-                            string sanitizedName = mat.name.Replace(" (Instance)", "");
-                            if (workingMaterials.ContainsKey(sanitizedName))
-                                return workingMaterials[sanitizedName];
-                        }
-                    }
-                }
-            }
-
-            return clipDefaultMovement;
+            Vector3 terrainPos = worldPos - t.transform.position;
+            Vector3 mapPos = new Vector3(terrainPos.x / t.terrainData.size.x, 0, terrainPos.z / t.terrainData.size.z);
+            Vector3 scaledPos = new Vector3(mapPos.x * t.terrainData.alphamapWidth, 0, mapPos.z * t.terrainData.alphamapHeight);
+            float[] layers = new float[t.terrainData.alphamapLayers];
+            float[,,] aMap = t.terrainData.GetAlphamaps((int)scaledPos.x, (int)scaledPos.z, 1, 1);
+            for (int i = 0; i < layers.Length; i++)
+                layers[i] = aMap[0, 0, i];
+            return layers;
         }
 
         private void OnUpdateMovementState(MovementState state)
@@ -138,6 +122,47 @@ namespace Goldenwere.Unity.Controller
                 default:
                     // Do nothing for the other states - sound doesn't play
                     break;
+            }
+        }
+
+        private void PlayAudio()
+        {
+            if (Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit, attachedController.SettingsMovement.SettingNormalHeight + 0.1f, Physics.AllLayers))
+            {
+                if (hit.collider is TerrainCollider)
+                {
+                    Terrain t = hit.collider.gameObject.GetComponent<Terrain>();
+                    float[] currentLayerValues = ConvertPositionToTerrain(transform.position, t);
+                    for (int i = 0; i < currentLayerValues.Length; i++)
+                    {
+                        if (currentLayerValues[i] > 0 && i < clipsTerrain.Length)
+                        {
+                            float textureVol = workingSource.volume * currentLayerValues[i];
+                            workingSource.PlayOneShot(clipsTerrain[i], textureVol);
+                        }
+                    }
+                }
+
+                else
+                {
+                    MeshRenderer mr = hit.collider.gameObject.GetComponent<MeshRenderer>();
+                    if (mr != null)
+                    {
+                        Material mat = mr.material;
+                        if (mat != null)
+                        {
+                            string sanitizedName = mat.name.Replace(" (Instance)", "");
+                            if (workingMaterials.ContainsKey(sanitizedName))
+                                workingSource.PlayOneShot(workingMaterials[sanitizedName]);
+
+                            else
+                                workingSource.PlayOneShot(clipDefaultMovement);
+                        }
+                    }
+
+                    else
+                        workingSource.PlayOneShot(clipDefaultMovement);
+                }
             }
         }
     }

@@ -28,6 +28,8 @@ namespace Goldenwere.Unity.Controller
     [RequireComponent(typeof(Rigidbody))]
     public class FirstPersonController : MonoBehaviour
     {
+        #region Fields & Properties
+#pragma warning disable 0649
         /// <summary>
         /// Variables related to physical/directional movement 
         /// </summary>
@@ -37,38 +39,38 @@ namespace Goldenwere.Unity.Controller
             [Header("Force Settings")]
 
             [Tooltip            ("The magnitude of the force applied to air movement (the opposite of current velocity)")]
-            [SerializeField]    private float           forceFrictionAir;
+            [SerializeField]    private float           forceFrictionAir = 0.1f;
             [Tooltip            ("The magnitude of the force applied to ground movement while moving (the opposite of current velocity)")]
-            [SerializeField]    private float           forceFrictionMotion;
+            [SerializeField]    private float           forceFrictionMotion = 1;
             [Tooltip            ("The magnitude of the force applied to ground movement while receiving no input and while grounded (the opposite of current velocity)")]
-            [SerializeField]    private float           forceFrictionStationary;
+            [SerializeField]    private float           forceFrictionStationary = 5;
             [Tooltip            ("The force magnitude to apply for jumping")]
-            [SerializeField]    private float           forceJump;
-            [Tooltip            ("Tendency to stick to ground (typically below 1, ideally around 0.1 or 0.05 for higher, more 'realistic' masses)")]
-            [SerializeField]    private float           forceStickToGround;
+            [SerializeField]    private float           forceJump = 8;
+            [Tooltip            ("Tendency to stick to ground (typically below 1, ideally around 0.05-0.1)")]
+            [SerializeField]    private float           forceStickToGround = 0.05f;
             [Tooltip            ("Multiplier for gravity")]
-            [SerializeField]    private float           forceGravityMultiplier;
+            [SerializeField]    private float           forceGravityMultiplier = 3;
             #endregion
 
             #region Generic settings
             [Header("Generic Settings")]
 
             [Tooltip            ("Whether the player can jump while crouched")]
-            [SerializeField]    private bool            settingCanJumpWhileCrouched;
+            [SerializeField]    private bool            settingCanJumpWhileCrouched = false;
             [Tooltip            ("Whether the player can control movement while not grounded")]
-            [SerializeField]    private bool            settingControlAirMovement;
+            [SerializeField]    private bool            settingControlAirMovement = true;
             [Tooltip            ("Mass to set the rigidbody to")]
-            [SerializeField]    private float           settingControllerMass;
+            [SerializeField]    private float           settingControllerMass = 5;
             [Tooltip            ("The height to set the controller to while crouched")]
-            [SerializeField]    private float           settingCrouchHeight;
+            [SerializeField]    private float           settingCrouchHeight = 0.9f;
             [Tooltip            ("The height to set the controller to while not crouched (will override whatever is already defined in attached CapsuleCollider)")]
-            [SerializeField]    private float           settingNormalHeight;
-            [Tooltip            ("Reduces radius by one minus this value to avoid getting stuck in a wall (ideally set around 0.1f)")]
-            [SerializeField]    private float           settingShellOffset;
+            [SerializeField]    private float           settingNormalHeight = 1.8f;
+            [Tooltip            ("Reduces radius by one minus this value to avoid getting stuck in a wall (ideally set around 0.05-0.1)")]
+            [SerializeField]    private float           settingShellOffset = 0.05f;
             [Tooltip            ("Modifies speed on slopes")]
             [SerializeField]    private AnimationCurve  settingSlopeModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
-            [Tooltip            ("The time in seconds to wait before considering the controller as \"falling\". (ideally set around 0.75-1f seconds)")]
-            [SerializeField]    private float           settingWaitBeforeFallTime;
+            [Tooltip            ("The time in seconds to wait before considering the controller as \"falling\". (ideally set around 0.75-1 seconds)")]
+            [SerializeField]    private float           settingWaitBeforeFallTime = 0.75f;
             #endregion
 
             #region Speed settings
@@ -76,30 +78,30 @@ namespace Goldenwere.Unity.Controller
             /* VVV NOTE THAT SPEEDS ARE AFFECTED BY MASS AND FRICTION - ADJUSTING THOSE AFFECTS THE RESULTING SPEED VVV */
 
             [Tooltip            ("Multiplier to speed based on whether crouched or not (ideally between 0-1 non-inclusive)")]
-            [SerializeField]    private float           speedCrouchMultiplier;
+            [SerializeField]    private float           speedCrouchMultiplier = 0.2f;
             [Tooltip            ("Speed when a fast modifier is used (example: sprinting)")]
-            [SerializeField]    private float           speedFast;
+            [SerializeField]    private float           speedFast = 10;
             [Tooltip            ("Speed when no modifier is used (example: jogging pace for action games, walking pace for scenic games)")]
-            [SerializeField]    private float           speedNorm;
+            [SerializeField]    private float           speedNorm = 5;
             [Tooltip            ("Speed when a slow modifier is used (example: crouching/sneaking, walking pace for action games)")]
-            [SerializeField]    private float           speedSlow;
+            [SerializeField]    private float           speedSlow = 2;
             #endregion
 
             #region Exposed settings
             [Header("Exposed Settings / Utility")]
 
             [Tooltip            ("Whether modifiers (fast, slow/crouch) are toggled or held")]
-            /**************/    public  bool            areModifiersToggled;
+            /**************/    public  bool            areModifiersToggled = false;
             [Tooltip            ("Whether the player can crouch")]
-            /**************/    public  bool            canCrouch;
+            /**************/    public  bool            canCrouch = true;
             [Tooltip            ("Whether the player can move at all (best used for pausing)")]
-            /**************/    public  bool            canMove;
+            /**************/    public  bool            canMove = true;
             [Tooltip            ("Whether the player can use fast movement (example: when stamina runs out)")]
-            /**************/    public  bool            canMoveFast;
+            /**************/    public  bool            canMoveFast = true;
             [Tooltip            ("Whether the player can use slow movement (example: when cannot crouch/sneak)")]
-            /**************/    public  bool            canMoveSlow;
+            /**************/    public  bool            canMoveSlow = true;
             [Tooltip            ("An exposed speed multipler (typically leave this at 1; example use: status effect that slows the player down")]
-            /**************/    public  float           speedMultiplier;
+            /**************/    public  float           speedMultiplier = 1;
             #endregion
 
             #region Properties
@@ -134,27 +136,54 @@ namespace Goldenwere.Unity.Controller
 
             [Tooltip            ("The attached camera joints that the controller can use for rotation (cameras or animated joints should be be children of these joints)")]
             [SerializeField]    private GameObject[]    attachedCameraJoints;
+            [Tooltip            ("The attached cameras that the controller can animate FOV")]
+            [SerializeField]    private Camera[]        attachedCameras;
             [Tooltip            ("The minimum (x) and maximum (y) rotation in degrees that the camera can rotate vertically (ideally a range within -90 and 90 degrees)")]
             [SerializeField]    private Vector2         cameraClampVertical;
+            [Tooltip            ("The animation curve to use for camera FOV transitioning")]
+            [SerializeField]    private AnimationCurve  cameraFOVCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+            [Tooltip            ("The FOV difference to apply to attached cameras while crouched")]
+            [SerializeField]    private float           cameraFOVDifferenceCrouched = 0;
+            [Tooltip            ("The FOV difference to apply to attached cameras while falling")]
+            [SerializeField]    private float           cameraFOVDifferenceFalling = 10;
+            [Tooltip            ("The FOV difference to apply to attached cameras when moving with fast speed")]
+            [SerializeField]    private float           cameraFOVDifferenceFast = 10;
+            [Tooltip            ("The FOV difference to apply to attached cameras when moving with norm speed")]
+            [SerializeField]    private float           cameraFOVDifferenceNorm = 5;
+            [Tooltip            ("The FOV difference to apply to attached cameras when moving with slow speed")]
+            [SerializeField]    private float           cameraFOVDifferenceSlow = 0;
+            [Tooltip            ("The length in seconds that the FOV transition occurs")]
+            [SerializeField]    private float           cameraFOVTransitionDuration = 1;
             [Tooltip            ("The camera will always be positioned this amount from the topmost vertex of the CapsuleCollider (ideally set around 0.2f)")]
-            [SerializeField]    private float           settingCameraHeightOffset;
+            [SerializeField]    private float           settingCameraHeightOffset = 0.2f;
             #endregion
 
             #region Exposed  camera settings
-            [Header             ("Exposed Camera Settings")]
+            [Header("Exposed Camera Settings")]
 
+            [Tooltip            ("The base FOV setting to apply to attached cameras before adding/subtracting the controller's difference settings " +
+                                "(this is the FOV used for idle; use the Difference settings for all other movement states)")]
+            /**************/    public  float   cameraFOV = 80;
             [Tooltip            ("Multiplier for camera sensitivity")]
-            /**************/    public  float   cameraSensitivity;
+            /**************/    public  float   cameraSensitivity = 3;
             [Tooltip            ("Whether to use smoothing with camera movement")]
-            /**************/    public  bool    smoothLook;
+            /**************/    public  bool    smoothLook = true;
             [Tooltip            ("The speed at which camera smoothing is applied (the higher the number, the less time that the camera takes to rotate)")]
-            /**************/    public  float   smoothSpeed;
+            /**************/    public  float   smoothSpeed = 20;
             #endregion
 
             #region Properties
-            public GameObject[] AttachedCameraJoints        { get { return attachedCameraJoints; } }
-            public Vector2      CameraClampVertical         { get { return cameraClampVertical; } }
-            public float        SettingCameraHeightOffset   { get { return settingCameraHeightOffset; } }
+            public GameObject[]     AttachedCameraJoints        { get { return attachedCameraJoints; } }
+            public Camera[]         AttachedCameras             { get { return attachedCameras; } }
+            public Vector2          CameraClampVertical         { get { return cameraClampVertical; } }
+            public AnimationCurve   CameraFOVCurve              { get { return cameraFOVCurve; } }
+            public float            CameraFOVDifferenceCrouched { get { return cameraFOVDifferenceCrouched; } }
+            public float            CameraFOVDifferenceFalling  { get { return cameraFOVDifferenceFalling; } }
+            public float            CameraFOVDifferenceFast     { get { return cameraFOVDifferenceFast; } }
+            public float            CameraFOVDifferenceNorm     { get { return cameraFOVDifferenceNorm; } }
+            public float            CameraFOVDifferenceSlow     { get { return cameraFOVDifferenceSlow; } }
+            public float            CameraFOVTransitionDuration { get { return cameraFOVTransitionDuration; } }
+            public float            SettingCameraHeightOffset   { get { return settingCameraHeightOffset; } }
             #endregion
         }
 
@@ -167,6 +196,8 @@ namespace Goldenwere.Unity.Controller
         /**************/    private bool                workingControlActionDoRotation;
         /**************/    private bool                workingControlActionModifierMoveFast;
         /**************/    private bool                workingControlActionModifierMoveSlow;
+        /**************/    private Coroutine           workingFOVCoroutine;
+        /**************/    private bool                workingFOVCoroutineRunning;
         /**************/    private bool                workingJumpDesired;
         /**************/    private bool                workingJumpIsJumping;
         /**************/    private bool                workingJumpIsJumpingCoroutineRunning;
@@ -187,7 +218,13 @@ namespace Goldenwere.Unity.Controller
         public  bool                MovementIsMovingSlowCrouch  { get { return workingIsCrouched && workingControlActionModifierMoveSlow; } }
         public  CameraSettings      SettingsCamera              { get { return settingsCamera; } }
         public  MovementSettings    SettingsMovement            { get { return settingsMovement; } }
+#pragma warning restore 0649
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Associates attached components and sets up said components on Monobehaviour.Awake()
+        /// </summary>
         private void Awake()
         {
             attachedCollider = gameObject.GetComponent<CapsuleCollider>();
@@ -205,8 +242,14 @@ namespace Goldenwere.Unity.Controller
             attachedRigidbody.drag = 0;
             attachedRigidbody.angularDrag = 0;
             attachedRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
+            foreach (Camera c in settingsCamera.AttachedCameras)
+                c.fieldOfView = settingsCamera.cameraFOV;
         }
 
+        /// <summary>
+        /// Handles controller movement and physics on Monobehaviour.FixedUpdate()
+        /// </summary>
         private void FixedUpdate()
         {
             if (settingsMovement.canMove)
@@ -305,7 +348,15 @@ namespace Goldenwere.Unity.Controller
         private void DetermineMovementState()
         {
             if (workingJumpDesired || workingJumpIsJumping)
+            {
                 UpdateMovementState?.Invoke(MovementState.jumping);
+                if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)
+                {
+                    if (workingFOVCoroutineRunning)
+                        StopCoroutine(workingFOVCoroutine);
+                    workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling));
+                }
+            }
 
             else if (!workingGroundstateCurrent)
             {
@@ -321,7 +372,15 @@ namespace Goldenwere.Unity.Controller
                 if (MovementIsCrouched)
                 {
                     if (!workingControlActionDoMovement)
+                    {
                         UpdateMovementState?.Invoke(MovementState.idle_crouched);
+                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV)
+                        {
+                            if (workingFOVCoroutineRunning)
+                                StopCoroutine(workingFOVCoroutine);
+                            workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV));
+                        }
+                    }
 
                     else
                     {
@@ -331,22 +390,61 @@ namespace Goldenwere.Unity.Controller
                             UpdateMovementState?.Invoke(MovementState.fast_crouched);
                         else
                             UpdateMovementState?.Invoke(MovementState.norm_crouched);
+
+                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceCrouched)
+                        {
+                            if (workingFOVCoroutineRunning)
+                                StopCoroutine(workingFOVCoroutine);
+                            workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceCrouched));
+                        }
                     }
                 }
 
                 else
                 {
                     if (!workingControlActionDoMovement)
+                    {
                         UpdateMovementState?.Invoke(MovementState.idle);
+                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV)
+                        {
+                            if (workingFOVCoroutineRunning)
+                                StopCoroutine(workingFOVCoroutine);
+                            workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV));
+                        }
+                    }
 
                     else
                     {
                         if (MovementIsMovingSlow)
+                        {
                             UpdateMovementState?.Invoke(MovementState.slow);
+                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceSlow)
+                            {
+                                if (workingFOVCoroutineRunning)
+                                    StopCoroutine(workingFOVCoroutine);
+                                workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceSlow));
+                            }
+                        }
                         else if (MovementIsMovingFast)
+                        {
                             UpdateMovementState?.Invoke(MovementState.fast);
+                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFast)
+                            {
+                                if (workingFOVCoroutineRunning)
+                                    StopCoroutine(workingFOVCoroutine);
+                                workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFast));
+                            }
+                        }
                         else
+                        {
                             UpdateMovementState?.Invoke(MovementState.norm);
+                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceNorm)
+                            {
+                                if (workingFOVCoroutineRunning)
+                                    StopCoroutine(workingFOVCoroutine);
+                                workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceNorm));
+                            }
+                        }
                     }
                 }
             }
@@ -542,13 +640,43 @@ namespace Goldenwere.Unity.Controller
         }
 
         /// <summary>
+        /// Transitions the FOV of each attached camera from their old values to the new value
+        /// </summary>
+        /// <param name="newFOV">The new FOV each camera should have at the end of the transition</param>
+        private IEnumerator TransitionFOV(float newFOV)
+        {
+            workingFOVCoroutineRunning = true;
+            float oldFOV = settingsCamera.AttachedCameras[0].fieldOfView;
+            float t = 0;
+            while (t <= settingsCamera.CameraFOVTransitionDuration)
+            {
+                foreach (Camera c in settingsCamera.AttachedCameras)
+                    c.fieldOfView = Mathf.Lerp(oldFOV, newFOV, settingsCamera.CameraFOVCurve.Evaluate(t / settingsCamera.CameraFOVTransitionDuration));
+                t += Time.deltaTime;
+                yield return null;
+            }
+            // Ensure each FOV is exact by the end of the transition
+            foreach (Camera c in settingsCamera.AttachedCameras)
+                c.fieldOfView = newFOV;
+        workingFOVCoroutineRunning = false;
+        }
+
+        /// <summary>
         /// To prevent false "falling" detection, such as for stairs or certain slopes while with a higher stick-to-ground,
         /// </summary>
         private IEnumerator WaitBeforeCallingFall()
         {
             yield return new WaitForSeconds(settingsMovement.SettingWaitBeforeFallTime);
             if (!workingGroundstateCurrent && !workingJumpDesired && !workingJumpIsJumping)
+            {
                 UpdateMovementState?.Invoke(MovementState.falling);
+                if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)
+                {
+                    if (workingFOVCoroutineRunning)
+                        StopCoroutine(workingFOVCoroutine);
+                    workingFOVCoroutine = StartCoroutine(TransitionFOV(settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling));
+                }
+            }
         }
 
         /// <summary>
@@ -564,5 +692,6 @@ namespace Goldenwere.Unity.Controller
             }
             workingJumpIsJumpingCoroutineRunning = false;
         }
+        #endregion
     }
 }

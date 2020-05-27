@@ -1,39 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
+﻿using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 {
     [RequireComponent(typeof(FirstPersonController))]
     public class ControllerAnimationSystem : MonoBehaviour
     {
+#pragma warning disable 0649
         [Tooltip("Attach all animators you plan on calling animations on. Ensure that you use the same strings as those defined in here.")]
         [SerializeField]    private Animator[]              animatorsToCall;
         /**************/    private FirstPersonController   attachedController;
+#pragma warning restore 0649
 
-        [SerializeField] private TextMeshProUGUI TEST;
-
+        /// <summary>
+        /// Reference the controller on Monobehaviour.Awake()
+        /// </summary>
         private void Awake()
         {
             attachedController = GetComponent<FirstPersonController>();
         }
 
+        /// <summary>
+        /// Subscribe to the UpdateMovementState event of the controller on Monobehaviour.OnEnable()
+        /// </summary>
         private void OnEnable()
         {
             attachedController.UpdateMovementState += OnUpdateMovementState;
         }
 
+        /// <summary>
+        /// Unsubscribe from the UpdateMovementState event of the controller on Monobehaviour.OnDisable()
+        /// </summary>
         private void OnDisable()
         {
             attachedController.UpdateMovementState -= OnUpdateMovementState;
         }
 
+        /// <summary>
+        /// Handler for the UpdateMovementState event which sets animator parameters for the animators to determine which animation to play
+        /// </summary>
+        /// <param name="state">The current MovementState</param>
         private void OnUpdateMovementState(MovementState state)
         {
-            TEST.text = state.ToString();
-            print(state);
-
             foreach(Animator a in animatorsToCall)
             {
                 // Determine grounded

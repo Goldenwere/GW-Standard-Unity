@@ -296,6 +296,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Mouse",
+                    "id": "de435a09-1a47-47f8-a34e-80e7ec66fcc8",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vertical",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "9566063f-7d06-4b83-862f-5883b46a2a19",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vertical",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "f69b3a3d-c3f7-4e83-bad0-6afcc81a1742",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vertical",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "f6e9a586-a6ed-4a8d-87b4-a2fcf6261f27",
                     "path": "<Mouse>/delta",

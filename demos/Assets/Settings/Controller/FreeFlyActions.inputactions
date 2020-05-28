@@ -14,10 +14,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Vertical",
-                    "type": "Value",
-                    "id": "45153964-2814-4903-ae18-78a72a9fa32d",
-                    "expectedControlType": "Axis",
+                    "name": "Lock",
+                    "type": "Button",
+                    "id": "e2947a79-3063-4d1c-9ede-7c751542ede5",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -26,6 +26,14 @@
                     "type": "PassThrough",
                     "id": "7ded03fb-f068-4793-a869-1880a8b64a3a",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Vertical",
+                    "type": "Value",
+                    "id": "45153964-2814-4903-ae18-78a72a9fa32d",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 }
@@ -330,12 +338,45 @@
                 },
                 {
                     "name": "",
-                    "id": "f6e9a586-a6ed-4a8d-87b4-a2fcf6261f27",
-                    "path": "<Mouse>/delta",
+                    "id": "1ec48d2d-5c32-4128-9e16-9c50a919deb7",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "processors": "",
                     "groups": "",
-                    "action": "Rotation",
+                    "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2f8ece9-ef73-4f61-87ed-d7b404ac2d27",
+                    "path": "<Keyboard>/numpad5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94876306-9948-4372-b357-4651d27c3a1c",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6aa2cd0b-aa23-40f7-b515-7b3eb1211d2c",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -503,6 +544,17 @@
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f6e9a586-a6ed-4a8d-87b4-a2fcf6261f27",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

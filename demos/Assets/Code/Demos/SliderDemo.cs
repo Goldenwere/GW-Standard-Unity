@@ -27,7 +27,7 @@ namespace Goldenwere.Unity.Demos
             textLoadDemoSliders[1].AssociatedSlider.SetValueWithoutNotify(0);
             transitionExtensions = new Dictionary<Slider, SliderTransitionExtension>();
             foreach (Slider s in transitionDemoSliders)
-                transitionExtensions.Add(s, new SliderTransitionExtension(this, s, Random.Range(0.1f, 0.5f), 0.75f/*, transitionDemoCurves[Random.Range(0, transitionDemoCurves.Length)]*/));
+                transitionExtensions.Add(s, new SliderTransitionExtension(this, s, Random.Range(0.2f, 1f), 1f, transitionDemoCurves[Random.Range(0, transitionDemoCurves.Length)]));
             transitionDemoIsRunning = new Dictionary<Slider, bool>();
             foreach (Slider s in transitionDemoSliders)
                 transitionDemoIsRunning.Add(s, false);

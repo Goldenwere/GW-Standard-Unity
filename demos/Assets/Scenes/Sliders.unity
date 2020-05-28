@@ -786,6 +786,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7ded03fb-f068-4793-a869-1880a8b64a3a
     m_ActionName: FreeFlyCam/Rotation[/Mouse/delta,/Keyboard/i,/Keyboard/k,/Keyboard/j,/Keyboard/l,/Keyboard/numpad8,/Keyboard/numpad2,/Keyboard/numpad4,/Keyboard/numpad6]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 79286820}
+        m_MethodName: OnLock
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e2947a79-3063-4d1c-9ede-7c751542ede5
+    m_ActionName: FreeFlyCam/Lock[/Keyboard/tab,/Keyboard/numpad5,/Mouse/middleButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FreeFlyCam
@@ -2264,7 +2279,99 @@ MonoBehaviour:
   - {fileID: 293663814}
   - {fileID: 1845959786}
   - {fileID: 1182059501}
-  transitionDemoCurves: []
+  transitionDemoCurves:
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.142857
+      outSlope: 2.142857
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.11666667
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.7169793
+      outSlope: 2.7169793
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.041666687
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!4 &393955768
 Transform:
   m_ObjectHideFlags: 0

@@ -15,41 +15,44 @@ namespace Goldenwere.Unity.Controller
         /**************/    private bool        workingDoHorizontal;
         /**************/    private bool        workingDoRotation;
         /**************/    private bool        workingDoVertical;
-
-        private void Start()
-        {
-            workingDoHorizontal = false;
-            workingDoRotation = false;
-            workingDoVertical = false;
-        }
+        /**************/    private bool        workingIsLocked;
 
         private void Update()
         {
-            if (workingDoHorizontal)
+            if (!workingIsLocked)
             {
-                Vector2 value = attachedControls.actions["Horizontal"].ReadValue<Vector2>().normalized;
-                Vector3 dir = pointCamera.transform.forward * value.y + pointCamera.transform.right * value.x;
-                transform.Translate(dir * Time.deltaTime * settingMoveSpeed);
-            }
+                if (workingDoHorizontal)
+                {
+                    Vector2 value = attachedControls.actions["Horizontal"].ReadValue<Vector2>().normalized;
+                    Vector3 dir = pointCamera.transform.forward * value.y + pointCamera.transform.right * value.x;
+                    transform.Translate(dir * Time.deltaTime * settingMoveSpeed);
+                }
 
-            if (workingDoRotation)
-            {
-                Vector2 value = attachedControls.actions["Rotation"].ReadValue<Vector2>();
-                pointCamera.transform.localRotation *= Quaternion.Euler(-value.y * Time.deltaTime * settingRotationSensitivity, 0, 0);
-                pointPivot.transform.localRotation *= Quaternion.Euler(0, value.x * Time.deltaTime * settingRotationSensitivity, 0);
-            }
+                if (workingDoRotation)
+                {
+                    Vector2 value = attachedControls.actions["Rotation"].ReadValue<Vector2>();
+                    pointCamera.transform.localRotation *= Quaternion.Euler(-value.y * Time.deltaTime * settingRotationSensitivity, 0, 0);
+                    pointPivot.transform.localRotation *= Quaternion.Euler(0, value.x * Time.deltaTime * settingRotationSensitivity, 0);
+                }
 
-            if (workingDoVertical)
-            {
-                float value = attachedControls.actions["Vertical"].ReadValue<float>();
-                Vector3 dir = pointCamera.transform.up * value;
-                transform.Translate(dir * Time.deltaTime * settingMoveSpeed);
+                if (workingDoVertical)
+                {
+                    float value = attachedControls.actions["Vertical"].ReadValue<float>();
+                    Vector3 dir = pointCamera.transform.up * value;
+                    transform.Translate(dir * Time.deltaTime * settingMoveSpeed);
+                }
             }
         }
 
         public void OnHorizontal(InputAction.CallbackContext context)
         {
             workingDoHorizontal = context.performed;
+        }
+
+        public void OnLock(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                workingIsLocked = !workingIsLocked;
         }
 
         public void OnRotation(InputAction.CallbackContext context)

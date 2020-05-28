@@ -13,6 +13,9 @@ namespace Goldenwere.Unity.Demos
         /**************/    private bool                                            transitionCoroutineIsRunning;
         /**************/    private Dictionary<Slider, SliderTransitionExtension>   transitionExtensions;
 
+        /// <summary>
+        /// Initializes sliders on Monobehaviour.Start()
+        /// </summary>
         private void Start()
         {
             textLoadDemoSlider.UpdateText(3f);
@@ -23,6 +26,9 @@ namespace Goldenwere.Unity.Demos
             };
         }
 
+        /// <summary>
+        /// Determines whether to update the transitioned slider value and calls Update on transitioned sliders on Monobehaviour.Update()
+        /// </summary>
         private void Update()
         {
             if (!transitionCoroutineIsRunning)
@@ -32,6 +38,10 @@ namespace Goldenwere.Unity.Demos
                 s.Update();
         }
 
+        /// <summary>
+        /// This is used to demonstrate the sliders by randomly assigning values to the slider at random times 
+        /// <para>(with a range lower than the slider's transition times to show off the stale mechanic that prevents playing transitions too soon)</para>
+        /// </summary>
         private IEnumerator PeriodicallyUpdateSlider()
         {
             transitionCoroutineIsRunning = true;

@@ -161,7 +161,7 @@ namespace Goldenwere.Unity.Controller
             [SerializeField]    private float           settingCameraHeightOffset = 0.2f;
             #endregion
 
-            #region Exposed  camera settings
+            #region Exposed Camera settings
             [Header("Exposed Camera Settings")]
 
             [Tooltip            ("The base FOV setting to apply to attached cameras before adding/subtracting the controller's difference settings " +

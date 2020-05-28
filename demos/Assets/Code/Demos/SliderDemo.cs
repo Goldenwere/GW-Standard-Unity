@@ -10,6 +10,7 @@ namespace Goldenwere.Unity.Demos
     {
         [SerializeField]    private SliderTextLoadExtension[]                       textLoadDemoSliders;
         [SerializeField]    private Slider[]                                        transitionDemoSliders;
+        [SerializeField]    private AnimationCurve[]                                transitionDemoCurves;
         // this dictionary is only for the demo; 
         // normally one does not need to keep track of any coroutines, one would just set the slider whenever an associated value is updated
         /**************/    private Dictionary<Slider, bool>                        transitionDemoIsRunning;
@@ -26,7 +27,7 @@ namespace Goldenwere.Unity.Demos
             textLoadDemoSliders[1].AssociatedSlider.SetValueWithoutNotify(0);
             transitionExtensions = new Dictionary<Slider, SliderTransitionExtension>();
             foreach (Slider s in transitionDemoSliders)
-                transitionExtensions.Add(s, new SliderTransitionExtension(this, s, Random.Range(0.1f, 0.5f), 0.75f));
+                transitionExtensions.Add(s, new SliderTransitionExtension(this, s, Random.Range(0.1f, 0.5f), 0.75f/*, transitionDemoCurves[Random.Range(0, transitionDemoCurves.Length)]*/));
             transitionDemoIsRunning = new Dictionary<Slider, bool>();
             foreach (Slider s in transitionDemoSliders)
                 transitionDemoIsRunning.Add(s, false);

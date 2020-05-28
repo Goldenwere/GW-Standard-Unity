@@ -8,7 +8,7 @@ namespace Goldenwere.Unity.Demos
 {
     public class SliderDemo : MonoBehaviour
     {
-        [SerializeField]    private SliderTextLoadExtension                         textLoadDemoSlider;
+        [SerializeField]    private SliderTextLoadExtension[]                       textLoadDemoSlider;
         [SerializeField]    private Slider                                          transitionDemoSlider;
         /**************/    private bool                                            transitionCoroutineIsRunning;
         /**************/    private Dictionary<Slider, SliderTransitionExtension>   transitionExtensions;
@@ -18,8 +18,10 @@ namespace Goldenwere.Unity.Demos
         /// </summary>
         private void Start()
         {
-            textLoadDemoSlider.UpdateText(3f);
-            textLoadDemoSlider.AssociatedSlider.SetValueWithoutNotify(3f);
+            textLoadDemoSlider[0].UpdateText(3f);
+            textLoadDemoSlider[0].AssociatedSlider.SetValueWithoutNotify(3f);
+            textLoadDemoSlider[1].UpdateText("Off");
+            textLoadDemoSlider[1].AssociatedSlider.SetValueWithoutNotify(0);
             transitionExtensions = new Dictionary<Slider, SliderTransitionExtension>()
             {
                 { transitionDemoSlider, new SliderTransitionExtension(this, transitionDemoSlider, 0.5f, 0.75f) }
@@ -36,6 +38,27 @@ namespace Goldenwere.Unity.Demos
 
             foreach (SliderTransitionExtension s in transitionExtensions.Values)
                 s.Update();
+        }
+
+        /// <summary>
+        /// Handler for the OnValueChanged event on the second demo slider
+        /// </summary>
+        /// <param name="val">The new slider value, translated into an example antialiasing setting</param>
+        public void OnUpdateDemoSliderTwo(float val)
+        {
+            switch((int)val)
+            {
+                case 2:
+                    textLoadDemoSlider[1].UpdateText("SMAA");
+                    break;
+                case 1:
+                    textLoadDemoSlider[1].UpdateText("FXAA");
+                    break;
+                case 0:
+                default:
+                    textLoadDemoSlider[1].UpdateText("Off");
+                    break;
+            }
         }
 
         /// <summary>

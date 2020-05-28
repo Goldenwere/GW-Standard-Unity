@@ -466,7 +466,7 @@ namespace Goldenwere.Unity.Controller
                     Physics.AllLayers, QueryTriggerInteraction.Ignore))
             {
                 if (Mathf.Abs(Vector3.Angle(stickHit.normal, Vector3.up)) < 85f)
-                    attachedRigidbody.velocity = Vector3.ProjectOnPlane(attachedRigidbody.velocity, workingGroundContactNormal);
+                    attachedRigidbody.velocity = Vector3.ProjectOnPlane(attachedRigidbody.velocity, stickHit.normal);
             }
 
             workingGroundstateCurrent = Physics.SphereCast(transform.position,
@@ -602,7 +602,8 @@ namespace Goldenwere.Unity.Controller
                 Vector3 force = dir * desiredSpeed;
                 force = Vector3.ProjectOnPlane(force, workingGroundContactNormal);
 
-                if (attachedRigidbody.velocity.sqrMagnitude < Mathf.Pow(desiredSpeed, 2))
+                Vector3 horizontalVelocity = new Vector3(attachedRigidbody.velocity.x, 0, attachedRigidbody.velocity.z);
+                if (horizontalVelocity.sqrMagnitude < Mathf.Pow(desiredSpeed, 2))
                     attachedRigidbody.AddForce(force, ForceMode.Impulse);
             }
 
@@ -682,7 +683,7 @@ namespace Goldenwere.Unity.Controller
         private IEnumerator WaitBeforeCallingFall()
         {
             yield return new WaitForSeconds(settingsMovement.SettingWaitBeforeFallTime);
-            if (!workingGroundstateCurrent && !workingJumpDesired && !workingJumpIsJumping && Physics.Raycast(new Ray(transform.position, Vector3.down), settingsMovement.SettingGroundCheckDistance))
+            if (!workingGroundstateCurrent && !workingJumpDesired && !workingJumpIsJumping)
             {
                 UpdateMovementState?.Invoke(MovementState.falling);
                 if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)

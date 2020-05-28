@@ -244,14 +244,15 @@ MonoBehaviour:
     forceFrictionMotion: 1
     forceFrictionStationary: 5
     forceJump: 8
-    forceStickToGround: 0.05
+    forceStickToGround: 0.1
     forceGravityMultiplier: 3
     settingCanJumpWhileCrouched: 0
     settingControlAirMovement: 1
     settingControllerMass: 5
     settingCrouchHeight: 0.9
+    settingGroundCheckDistance: 0.1
     settingNormalHeight: 1.8
-    settingShellOffset: 0.05
+    settingShellOffset: 0.1
     settingSlopeModifier:
       serializedVersion: 2
       m_Curve:
@@ -265,7 +266,7 @@ MonoBehaviour:
         inWeight: 0.4359236
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0
+        time: 45
         value: 1
         inSlope: 0
         outSlope: 0
@@ -274,7 +275,7 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 90
+        time: 80
         value: 0
         inSlope: 0
         outSlope: 0
@@ -285,7 +286,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    settingWaitBeforeFallTime: 1
+    settingWaitBeforeFallTime: 0.2
     speedCrouchMultiplier: 0.2
     speedFast: 10
     speedNorm: 5
@@ -540,15 +541,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb0272a8ef07f84ab534253b6720c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipDefaultMovement: {fileID: 0}
-  clipsMaterials: []
-  clipsTerrain: []
+  clipDefaultMovement: {fileID: 8300000, guid: a61a2b742aef20449b029cc356751631, type: 3}
+  clipsMaterials:
+  - associatedClip: {fileID: 8300000, guid: 8181d034b0dff0a42aebb9816bc16f04, type: 3}
+    associatedMaterials:
+    - {fileID: 2100000, guid: 97a47178b6a72cc47b7bbc32ccad741c, type: 2}
+  clipsTerrain:
+  - {fileID: 8300000, guid: 1aa48221f5598264ca1b8b076144ec16, type: 3}
+  - {fileID: 8300000, guid: 1524f3369f43dc340bbf5d98c47851f9, type: 3}
+  - {fileID: 8300000, guid: 5a7abb036d54b9843945737762a1edf0, type: 3}
+  - {fileID: 8300000, guid: 1c5114e55bf97064a814d4b8b57a9d76, type: 3}
   settingPitchWhileCrouched: 0.5
   settingPitchWhileNotCrouched: 1
   settingVolumeWhileCrouched: 0.5
   settingVolumeWhileNotCrouched: 1
-  tagObjects: []
-  timeBetweenStepsCrouch: 1
+  timeBetweenStepsCrouched: 1
   timeBetweenStepsFast: 0.3333
   timeBetweenStepsNorm: 0.5
   timeBetweenStepsSlow: 1

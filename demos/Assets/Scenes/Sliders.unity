@@ -1039,6 +1039,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedControls: {fileID: 648505458}
+  settingMoveSpeed: 2
+  settingRotationSensitivity: 3
 --- !u!1 &656094767
 GameObject:
   m_ObjectHideFlags: 0

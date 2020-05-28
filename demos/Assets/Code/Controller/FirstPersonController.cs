@@ -63,6 +63,8 @@ namespace Goldenwere.Unity.Controller
             [SerializeField]    private float           settingControllerMass = 5;
             [Tooltip            ("The height to set the controller to while crouched")]
             [SerializeField]    private float           settingCrouchHeight = 0.9f;
+            [Tooltip            ("The distance to check for ground distance (ideally set around 0.1")]
+            [SerializeField]    private float           settingGroundCheckDistance = 0.1f;
             [Tooltip            ("The height to set the controller to while not crouched (will override whatever is already defined in attached CapsuleCollider)")]
             [SerializeField]    private float           settingNormalHeight = 1.8f;
             [Tooltip            ("Reduces radius by one minus this value to avoid getting stuck in a wall (ideally set around 0.05-0.1)")]
@@ -115,6 +117,7 @@ namespace Goldenwere.Unity.Controller
             public bool             SettingControlAirMovement   { get { return settingControlAirMovement; } }
             public float            SettingControllerMass       { get { return settingControllerMass; } }
             public float            SettingCrouchHeight         { get { return settingCrouchHeight; } }
+            public float            SettingGroundCheckDistance  { get { return settingGroundCheckDistance; } }
             public float            SettingNormalHeight         { get { return settingNormalHeight; } }
             public float            SettingShellOffset          { get { return settingShellOffset; } }
             public AnimationCurve   SettingSlopeModifier        { get { return settingSlopeModifier; } }
@@ -455,16 +458,28 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void DetermineGroundstate()
         {
-            workingGroundstateCurrent = Physics.SphereCast(transform.position,
+            if (Physics.SphereCast(transform.position,
                     attachedCollider.radius * (1.0f - settingsMovement.SettingShellOffset),
                     Vector3.down,
-                    out RaycastHit hit,
+                    out RaycastHit stickHit,
                     ((attachedCollider.height / 2f) - attachedCollider.radius) + settingsMovement.ForceStickToGround,
-                    Physics.AllLayers, QueryTriggerInteraction.Ignore);
+                    Physics.AllLayers, QueryTriggerInteraction.Ignore))
+            {
+                if (Mathf.Abs(Vector3.Angle(stickHit.normal, Vector3.up)) < 85f)
+                    attachedRigidbody.velocity = Vector3.ProjectOnPlane(attachedRigidbody.velocity, workingGroundContactNormal);
+            }
+
+            workingGroundstateCurrent = Physics.SphereCast(transform.position,
+                attachedCollider.radius * (1.0f - settingsMovement.SettingShellOffset),
+                Vector3.down,
+                out RaycastHit hit,
+                ((attachedCollider.height / 2f) - attachedCollider.radius) + settingsMovement.SettingGroundCheckDistance,
+                Physics.AllLayers, QueryTriggerInteraction.Ignore);
 
             if (workingGroundstateCurrent)
             {
                 workingGroundContactNormal = hit.normal;
+
                 if (workingJumpIsJumping && !workingJumpIsJumpingCoroutineRunning)
                 {
                     StartCoroutine(WaitBeforeEndingIsJumping());
@@ -667,7 +682,7 @@ namespace Goldenwere.Unity.Controller
         private IEnumerator WaitBeforeCallingFall()
         {
             yield return new WaitForSeconds(settingsMovement.SettingWaitBeforeFallTime);
-            if (!workingGroundstateCurrent && !workingJumpDesired && !workingJumpIsJumping)
+            if (!workingGroundstateCurrent && !workingJumpDesired && !workingJumpIsJumping && Physics.Raycast(new Ray(transform.position, Vector3.down), settingsMovement.SettingGroundCheckDistance))
             {
                 UpdateMovementState?.Invoke(MovementState.falling);
                 if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)

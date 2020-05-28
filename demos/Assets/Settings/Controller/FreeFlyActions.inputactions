@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "Rotation",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "7ded03fb-f068-4793-a869-1880a8b64a3a",
                     "expectedControlType": "Vector2",
                     "processors": "",

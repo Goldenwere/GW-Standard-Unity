@@ -8,6 +8,8 @@ namespace Goldenwere.Unity.Controller
     public class FreeFlyCamera : MonoBehaviour
     {
         [SerializeField]    private PlayerInput attachedControls;
+        [SerializeField]    private GameObject  pointCamera;
+        [SerializeField]    private GameObject  pointPivot;
         [SerializeField]    private float       settingMoveSpeed = 2f;
         /**************/    public  float       settingRotationSensitivity = 3f;
         /**************/    private bool        workingDoHorizontal;
@@ -26,19 +28,21 @@ namespace Goldenwere.Unity.Controller
             if (workingDoHorizontal)
             {
                 Vector2 value = attachedControls.actions["Horizontal"].ReadValue<Vector2>().normalized;
-                Vector3 dir = transform.forward * value.y + transform.right * value.x;
+                Vector3 dir = pointCamera.transform.forward * value.y + pointCamera.transform.right * value.x;
                 transform.Translate(dir * Time.deltaTime * settingMoveSpeed);
             }
 
             if (workingDoRotation)
             {
-
+                Vector2 value = attachedControls.actions["Rotation"].ReadValue<Vector2>();
+                pointCamera.transform.localRotation *= Quaternion.Euler(-value.y * Time.deltaTime * settingRotationSensitivity, 0, 0);
+                pointPivot.transform.localRotation *= Quaternion.Euler(0, value.x * Time.deltaTime * settingRotationSensitivity, 0);
             }
 
             if (workingDoVertical)
             {
                 float value = attachedControls.actions["Vertical"].ReadValue<float>();
-                Vector3 dir = transform.up * value;
+                Vector3 dir = pointCamera.transform.up * value;
                 transform.Translate(dir * Time.deltaTime * settingMoveSpeed);
             }
         }

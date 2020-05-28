@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 1134881502}
   - component: {fileID: 1134881501}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Text Extended Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1481,6 +1481,7 @@ GameObject:
   - component: {fileID: 1813012092}
   - component: {fileID: 1813012091}
   - component: {fileID: 1813012090}
+  - component: {fileID: 1813012094}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1569,6 +1570,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1813012094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813012089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a58bf73ccc48d44ad9e063edcc7368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textLoadDemoSlider: {fileID: 1134881502}
+  transitionDemoSlider: {fileID: 1927173292}
 --- !u!1 &1927173290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,7 +1595,7 @@ GameObject:
   - component: {fileID: 1927173291}
   - component: {fileID: 1927173292}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Transitioned Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

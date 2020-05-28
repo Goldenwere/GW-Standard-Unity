@@ -81,10 +81,10 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void Update()
         {
-            workingTimeSinceLastPlayed += Time.deltaTime;
             if (workingCurrentMovementState != MovementState.idle && workingCurrentMovementState != MovementState.idle_crouched &&
                 workingCurrentMovementState != MovementState.jumping && workingCurrentMovementState != MovementState.falling)
             {
+                workingTimeSinceLastPlayed += Time.deltaTime;
                 if (workingTimeSinceLastPlayed >= workingCurrentStepTime)
                 {
                     PlayAudio();

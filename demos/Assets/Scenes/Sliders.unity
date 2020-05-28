@@ -319,7 +319,7 @@ MonoBehaviour:
   pointCamera: {fileID: 648505454}
   pointPivot: {fileID: 1063231164}
   settingMoveSpeed: 2
-  settingRotationSensitivity: 3
+  settingRotationSensitivity: 30
 --- !u!1 &388956643
 GameObject:
   m_ObjectHideFlags: 0

@@ -300,7 +300,7 @@
                     "id": "f6e9a586-a6ed-4a8d-87b4-a2fcf6261f27",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
                     "groups": "",
                     "action": "Rotation",
                     "isComposite": false,

@@ -1123,9 +1123,9 @@ MonoBehaviour:
     and associate it with a new slider as well as an always-active Monobehaviour
     (so that it can run coroutines even while the slider is disabled). This is done
     through the constructor. To use the extension, one simply calls UpdateValue(float)
-    on the extension whenever the value it represents gets updated. \nNote: In the
-    always-active Monobehaviour that was passed through, make sure you call Update()
-    on all extensions. This is critical for the slider to actually function.\nYou
+    on the extension whenever the value it represents gets updated. \n\nNote: In
+    the always-active Monobehaviour that was passed through, make sure you call Update()
+    on all extensions. This is critical for the slider to actually function.\n\nYou
     can optionally pass an animation curve (should have keyframes where time is between
     0 and 1) to manipulate the transition itself."
   m_isRightToLeft: 0
@@ -1196,12 +1196,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 221410956}
-    characterCount: 756
+    characterCount: 758
     spriteCount: 0
-    spaceCount: 120
+    spaceCount: 122
     wordCount: 121
     linkCount: 0
-    lineCount: 20
+    lineCount: 22
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

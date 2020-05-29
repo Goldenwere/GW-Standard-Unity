@@ -19,6 +19,7 @@ namespace Goldenwere.Unity.UI
         public float            SliderLengthBetweenTransitions  { get; private set; }
         public float            SliderStaleValue                { get; private set; }
         public float            SliderTransitionLength          { get; private set; }
+        public AnimationCurve   SliderTransitionCurve           { get; private set; }
 
         /// <summary>
         /// Creates a new slider with defined parameters; these parameters are to be treated as though they are constant
@@ -34,6 +35,28 @@ namespace Goldenwere.Unity.UI
             AssociatedSlider = slider;
             SliderLengthBetweenTransitions = lengthBetweenTransitions;
             SliderTransitionLength = transitionLength;
+            SliderTransitionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
+
+            SliderIsStale = false;
+            sliderWaitTimer = 1;
+        }
+
+        /// <summary>
+        /// Creates a new slider with defined parameters; these parameters are to be treated as though they are constant
+        /// </summary>
+        /// <param name="controller">A parent MonoBehaviour that can be used to start/end Coroutines on
+        /// <para>This MonoBehaviour must never be disabled, or else exceptions will be thrown and values won't transition properly</para></param>
+        /// <param name="slider">The slider that transitions are being added to</param>
+        /// <param name="transitionLength">The duration that transitions last</param>
+        /// <param name="lengthBetweenTransitions">How often transitions occur</param>
+        /// <param name="curve">The animation curve to apply to the transition</param>
+        public SliderTransitionExtension(MonoBehaviour controller, Slider slider, float transitionLength, float lengthBetweenTransitions, AnimationCurve curve)
+        {
+            AssociatedController = controller;
+            AssociatedSlider = slider;
+            SliderLengthBetweenTransitions = lengthBetweenTransitions;
+            SliderTransitionLength = transitionLength;
+            SliderTransitionCurve = curve;
 
             SliderIsStale = false;
             sliderWaitTimer = 1;
@@ -49,10 +72,10 @@ namespace Goldenwere.Unity.UI
         public IEnumerator TransitionSlider(Slider controlled, float oldVal, float newVal, float length)
         {
             float t = 0;
-            while (t <= 1)
+            while (t <= length)
             {
-                controlled.value = Mathf.Lerp(oldVal, newVal, Mathf.SmoothStep(0f, 1f, Mathf.SmoothStep(0f, 1f, t)));
-                t += Time.deltaTime / length;
+                controlled.value = Mathf.Lerp(oldVal, newVal, SliderTransitionCurve.Evaluate(t / length));
+                t += Time.deltaTime;
                 yield return null;
             }
         }

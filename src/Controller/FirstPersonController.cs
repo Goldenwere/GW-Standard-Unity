@@ -22,6 +22,16 @@ namespace Goldenwere.Unity.Controller
         jumping
     }
 
+    /// <summary>
+    /// Defines movement types that must be disabled in a safe manner to prevent bugs
+    /// </summary>
+    public enum MovementType
+    {
+        fast,
+        slow,
+        crouched
+    }
+
     public delegate void MovementStateHandler(MovementState state);
 
     [RequireComponent(typeof(CapsuleCollider))]
@@ -217,10 +227,10 @@ namespace Goldenwere.Unity.Controller
 
         public  bool                MovementIsCrouched          { get { return workingIsCrouched; } }
         public  bool                MovementIsGrounded          { get { return workingGroundstateCurrent; } }
-        public  bool                MovementIsMovingFast        { get { return !workingIsCrouched && workingControlActionModifierMoveFast; } }
-        public  bool                MovementIsMovingFastCrouch  { get { return workingIsCrouched && workingControlActionModifierMoveFast; } }
-        public  bool                MovementIsMovingSlow        { get { return !workingIsCrouched && workingControlActionModifierMoveSlow; } }
-        public  bool                MovementIsMovingSlowCrouch  { get { return workingIsCrouched && workingControlActionModifierMoveSlow; } }
+        public  bool                MovementIsMovingFast        { get { return !workingIsCrouched && workingControlActionModifierMoveFast && workingControlActionDoMovement; } }
+        public  bool                MovementIsMovingFastCrouch  { get { return workingIsCrouched && workingControlActionModifierMoveFast && workingControlActionDoMovement; } }
+        public  bool                MovementIsMovingSlow        { get { return !workingIsCrouched && workingControlActionModifierMoveSlow && workingControlActionDoMovement; } }
+        public  bool                MovementIsMovingSlowCrouch  { get { return workingIsCrouched && workingControlActionModifierMoveSlow && workingControlActionDoMovement; } }
         public  CameraSettings      SettingsCamera              { get { return settingsCamera; } }
         public  MovementSettings    SettingsMovement            { get { return settingsMovement; } }
 #pragma warning restore 0649
@@ -263,6 +273,31 @@ namespace Goldenwere.Unity.Controller
                 HandleMovement();
                 HandleGravity();
             }
+        }
+
+        /// <summary>
+        /// A safe way to disable movement; directly manipulating certain types of movement will produce bugs if in the middle of said movement
+        /// </summary>
+        /// <param name="type">The type of movement to disable</param>
+        public void DisableMovementSafely(MovementType type)
+        {
+            switch (type)
+            {
+                case MovementType.crouched:
+                    settingsMovement.canCrouch = false;
+                    workingIsCrouched = false;
+                    break;
+                case MovementType.slow:
+                    settingsMovement.canMoveSlow = false;
+                    workingControlActionModifierMoveSlow = false;
+                    break;
+                case MovementType.fast:
+                default:
+                    settingsMovement.canMoveFast = false;
+                    workingControlActionModifierMoveFast = false;
+                    break;
+            }
+            DetermineMovementState();
         }
 
         /// <summary>

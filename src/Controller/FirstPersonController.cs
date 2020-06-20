@@ -167,6 +167,8 @@ namespace Goldenwere.Unity.Controller
             [Tooltip            ("The base FOV setting to apply to attached cameras before adding/subtracting the controller's difference settings " +
                                 "(this is the FOV used for idle; use the Difference settings for all other movement states)")]
             /**************/    public  float   cameraFOV = 80;
+            [Tooltip            ("Toggle for enabling/disabling FOV shifting")]
+            /**************/    public  bool    cameraFOVShiftingEnabled = true;
             [Tooltip            ("Multiplier for camera sensitivity")]
             /**************/    public  float   cameraSensitivity = 3;
             [Tooltip            ("Whether to use smoothing with camera movement")]
@@ -353,7 +355,7 @@ namespace Goldenwere.Unity.Controller
             if (workingJumpDesired || workingJumpIsJumping)
             {
                 UpdateMovementState?.Invoke(MovementState.jumping);
-                if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)
+                if (settingsCamera.cameraFOVShiftingEnabled && settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)
                 {
                     if (workingFOVCoroutineRunning)
                         StopCoroutine(workingFOVCoroutine);
@@ -377,7 +379,7 @@ namespace Goldenwere.Unity.Controller
                     if (!workingControlActionDoMovement)
                     {
                         UpdateMovementState?.Invoke(MovementState.idle_crouched);
-                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV)
+                        if (settingsCamera.cameraFOVShiftingEnabled && settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV)
                         {
                             if (workingFOVCoroutineRunning)
                                 StopCoroutine(workingFOVCoroutine);
@@ -394,7 +396,7 @@ namespace Goldenwere.Unity.Controller
                         else
                             UpdateMovementState?.Invoke(MovementState.norm_crouched);
 
-                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceCrouched)
+                        if (settingsCamera.cameraFOVShiftingEnabled && settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceCrouched)
                         {
                             if (workingFOVCoroutineRunning)
                                 StopCoroutine(workingFOVCoroutine);
@@ -408,7 +410,7 @@ namespace Goldenwere.Unity.Controller
                     if (!workingControlActionDoMovement)
                     {
                         UpdateMovementState?.Invoke(MovementState.idle);
-                        if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV)
+                        if (settingsCamera.cameraFOVShiftingEnabled && settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV)
                         {
                             if (workingFOVCoroutineRunning)
                                 StopCoroutine(workingFOVCoroutine);
@@ -421,7 +423,7 @@ namespace Goldenwere.Unity.Controller
                         if (MovementIsMovingSlow)
                         {
                             UpdateMovementState?.Invoke(MovementState.slow);
-                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceSlow)
+                            if (settingsCamera.cameraFOVShiftingEnabled && settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceSlow)
                             {
                                 if (workingFOVCoroutineRunning)
                                     StopCoroutine(workingFOVCoroutine);
@@ -431,7 +433,7 @@ namespace Goldenwere.Unity.Controller
                         else if (MovementIsMovingFast)
                         {
                             UpdateMovementState?.Invoke(MovementState.fast);
-                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFast)
+                            if (settingsCamera.cameraFOVShiftingEnabled && settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFast)
                             {
                                 if (workingFOVCoroutineRunning)
                                     StopCoroutine(workingFOVCoroutine);
@@ -441,7 +443,7 @@ namespace Goldenwere.Unity.Controller
                         else
                         {
                             UpdateMovementState?.Invoke(MovementState.norm);
-                            if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceNorm)
+                            if (settingsCamera.cameraFOVShiftingEnabled && settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceNorm)
                             {
                                 if (workingFOVCoroutineRunning)
                                     StopCoroutine(workingFOVCoroutine);
@@ -674,7 +676,7 @@ namespace Goldenwere.Unity.Controller
             // Ensure each FOV is exact by the end of the transition
             foreach (Camera c in settingsCamera.AttachedCameras)
                 c.fieldOfView = newFOV;
-        workingFOVCoroutineRunning = false;
+            workingFOVCoroutineRunning = false;
         }
 
         /// <summary>
@@ -686,7 +688,7 @@ namespace Goldenwere.Unity.Controller
             if (!workingGroundstateCurrent && !workingJumpDesired && !workingJumpIsJumping)
             {
                 UpdateMovementState?.Invoke(MovementState.falling);
-                if (settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)
+                if (settingsCamera.cameraFOVShiftingEnabled && settingsCamera.AttachedCameras[0].fieldOfView != settingsCamera.cameraFOV + settingsCamera.CameraFOVDifferenceFalling)
                 {
                     if (workingFOVCoroutineRunning)
                         StopCoroutine(workingFOVCoroutine);

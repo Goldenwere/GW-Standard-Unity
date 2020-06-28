@@ -179,6 +179,12 @@ namespace Goldenwere.Unity.Controller
             /**************/    public  float   cameraFOV = 80;
             [Tooltip            ("Toggle for enabling/disabling FOV shifting")]
             /**************/    public  bool    cameraFOVShiftingEnabled = true;
+            [Tooltip            ("Toggle to enable inverted look for mouse only (useful if allowing separate bindings/settings for gamepad")]
+            /**************/    public  bool    cameraLookInvertedMouseOnly = false;
+            [Tooltip            ("Toggle for inverting camera look horizontally")]
+            /**************/    public  bool    cameraLookInvertedHorizontal = false;
+            [Tooltip            ("Toggle for inverting camera look vertically")]
+            /**************/    public  bool    cameraLookInvertedVertical = false;
             [Tooltip            ("Multiplier for camera sensitivity")]
             /**************/    public  float   cameraSensitivity = 3;
             [Tooltip            ("Whether to use smoothing with camera movement")]
@@ -222,11 +228,14 @@ namespace Goldenwere.Unity.Controller
         /**************/    private bool                workingIsCrouched;
         /**************/    private Quaternion[]        workingRotationCameraJoints;
         /**************/    private Quaternion          workingRotationController;
+        /**************/    private bool                workingRotationFromMouse;
 
         public  event MovementStateHandler              UpdateMovementState;
 
         public  bool                MovementIsCrouched          { get { return workingIsCrouched; } }
         public  bool                MovementIsGrounded          { get { return workingGroundstateCurrent; } }
+        public  bool                MovementIsMoving            { get { return workingControlActionDoMovement; } }
+        public  bool                MovementIsMovingCrouch      { get { return workingControlActionDoMovement && workingIsCrouched; } }
         public  bool                MovementIsMovingFast        { get { return !workingIsCrouched && workingControlActionModifierMoveFast && workingControlActionDoMovement; } }
         public  bool                MovementIsMovingFastCrouch  { get { return workingIsCrouched && workingControlActionModifierMoveFast && workingControlActionDoMovement; } }
         public  bool                MovementIsMovingSlow        { get { return !workingIsCrouched && workingControlActionModifierMoveSlow && workingControlActionDoMovement; } }
@@ -380,6 +389,7 @@ namespace Goldenwere.Unity.Controller
         public void OnRotation(InputAction.CallbackContext context)
         {
             workingControlActionDoRotation = context.performed;
+            workingRotationFromMouse = context.performed && context.control.device.path.Contains("Mouse");
         }
 
         /// <summary>
@@ -665,6 +675,12 @@ namespace Goldenwere.Unity.Controller
             if (workingControlActionDoRotation)
             {
                 Vector2 value = attachedControls.actions["Rotation"].ReadValue<Vector2>();
+                if (settingsCamera.cameraLookInvertedVertical)
+                    if (!settingsCamera.cameraLookInvertedMouseOnly || settingsCamera.cameraLookInvertedMouseOnly && workingRotationFromMouse)
+                        value.y *= -1;
+                if (settingsCamera.cameraLookInvertedHorizontal)
+                    if (!settingsCamera.cameraLookInvertedMouseOnly || settingsCamera.cameraLookInvertedMouseOnly && workingRotationFromMouse)
+                        value.x *= -1;
 
                 for (int i = 0; i < workingRotationCameraJoints.Length; i++)
                 {

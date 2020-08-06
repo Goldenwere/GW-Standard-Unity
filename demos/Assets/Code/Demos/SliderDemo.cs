@@ -6,16 +6,24 @@ using System.Collections;
 
 namespace Goldenwere.Unity.Demos
 {
+    /// <summary>
+    /// Class used in order to demonstrate sliders
+    /// </summary>
     public class SliderDemo : MonoBehaviour
     {
-        [SerializeField]    private SliderTextLoadExtension[]                       textLoadDemoSliders;
-        [SerializeField]    private Slider[]                                        transitionDemoSliders;
-        [SerializeField]    private AnimationCurve[]                                transitionDemoCurves;
+        #region Fields
+#pragma warning disable 0649
+        [SerializeField] private SliderTextLoadExtension[]                      textLoadDemoSliders;
+        [SerializeField] private Slider[]                                       transitionDemoSliders;
+        [SerializeField] private AnimationCurve[]                               transitionDemoCurves;
+#pragma warning restore 0649
         // this dictionary is only for the demo;
         // normally one does not need to keep track of any coroutines, one would just set the slider whenever an associated value is updated
-        /**************/    private Dictionary<Slider, bool>                        transitionDemoIsRunning;
-        /**************/    private Dictionary<Slider, SliderTransitionExtension>   transitionExtensions;
+        /**************/ private Dictionary<Slider, bool>                       transitionDemoIsRunning;
+        /**************/ private Dictionary<Slider, SliderTransitionExtension>  transitionExtensions;
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Initializes sliders on Monobehaviour.Start()
         /// </summary>
@@ -78,5 +86,6 @@ namespace Goldenwere.Unity.Demos
             yield return new WaitForSeconds(Random.Range(0.25f, 3f));
             transitionDemoIsRunning[s] = false;
         }
+        #endregion
     }
 }

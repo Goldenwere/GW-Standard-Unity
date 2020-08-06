@@ -173,7 +173,7 @@ namespace Goldenwere.Unity.UI
             tooltipSpawnedElement = Instantiate(tooltipPrefab, canvasToBeAttachedTo.transform);
             tooltipTextElement = tooltipSpawnedElement.GetComponentInChildren<TMP_Text>();
             tooltipSpawnedTransform = tooltipSpawnedElement.GetComponent<RectTransform>();
-            if ((tooltipCanvasGroup = tooltipSpawnedElement.GetComponent<CanvasGroup>()) == null) 
+            if ((tooltipCanvasGroup = tooltipSpawnedElement.GetComponent<CanvasGroup>()) == null)
                 tooltipCanvasGroup = tooltipSpawnedElement.AddComponent<CanvasGroup>();
             isActive = tooltipSpawnedElement.activeSelf;
             SetActive(false, TransitionMode.None);
@@ -303,7 +303,7 @@ namespace Goldenwere.Unity.UI
             else
                 tooltipTextElement.text = tooltipText.RepairSerializedEscaping();
 
-            tooltipSpawnedTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 
+            tooltipSpawnedTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
                 tooltipTextElement.preferredHeight + tooltipTextElement.rectTransform.offsetMin.y);
         }
         #endregion

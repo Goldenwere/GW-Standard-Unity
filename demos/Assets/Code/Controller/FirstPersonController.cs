@@ -44,7 +44,7 @@ namespace Goldenwere.Unity.Controller
         #region Fields & Properties
 #pragma warning disable 0649
         /// <summary>
-        /// Variables related to physical/directional movement 
+        /// Variables related to physical/directional movement
         /// </summary>
         [Serializable] public class MovementSettings
         {
@@ -601,8 +601,8 @@ namespace Goldenwere.Unity.Controller
             {
                 attachedCollider.height = settingsMovement.SettingCrouchHeight;
                 transform.position = new Vector3(
-                    transform.position.x, 
-                    transform.position.y - ((settingsMovement.SettingNormalHeight - settingsMovement.SettingCrouchHeight) / 2), 
+                    transform.position.x,
+                    transform.position.y - ((settingsMovement.SettingNormalHeight - settingsMovement.SettingCrouchHeight) / 2),
                     transform.position.z);
                 for (int i = 0; i < settingsCamera.AttachedCameraJoints.Length; i++)
                     settingsCamera.AttachedCameraJoints[i].transform.localPosition = new Vector3(0, (settingsMovement.SettingCrouchHeight / 2) - settingsCamera.SettingCameraHeightOffset, 0);
@@ -698,8 +698,8 @@ namespace Goldenwere.Unity.Controller
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, workingRotationController, settingsCamera.smoothSpeed * Time.deltaTime);
                 for (int i = 0; i < workingRotationCameraJoints.Length; i++)
                     settingsCamera.AttachedCameraJoints[i].transform.localRotation = Quaternion.Slerp(
-                        settingsCamera.AttachedCameraJoints[i].transform.localRotation, 
-                        workingRotationCameraJoints[i], 
+                        settingsCamera.AttachedCameraJoints[i].transform.localRotation,
+                        workingRotationCameraJoints[i],
                         settingsCamera.smoothSpeed * Time.deltaTime);
             }
 

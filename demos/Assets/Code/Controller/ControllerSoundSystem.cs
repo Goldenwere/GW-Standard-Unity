@@ -32,7 +32,7 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] private float                          timeBetweenStepsNorm = 0.5f;
         [Tooltip         ("The time between playing footsteps while moving slow")]
         [SerializeField] private float                          timeBetweenStepsSlow = 1f;
-        
+
         /**************/ private FirstPersonController          attachedController;
         /**************/ private MovementState                  workingCurrentMovementState;
         /**************/ private float                          workingCurrentStepTime;

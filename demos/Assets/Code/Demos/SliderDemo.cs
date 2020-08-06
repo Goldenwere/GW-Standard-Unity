@@ -11,7 +11,7 @@ namespace Goldenwere.Unity.Demos
         [SerializeField]    private SliderTextLoadExtension[]                       textLoadDemoSliders;
         [SerializeField]    private Slider[]                                        transitionDemoSliders;
         [SerializeField]    private AnimationCurve[]                                transitionDemoCurves;
-        // this dictionary is only for the demo; 
+        // this dictionary is only for the demo;
         // normally one does not need to keep track of any coroutines, one would just set the slider whenever an associated value is updated
         /**************/    private Dictionary<Slider, bool>                        transitionDemoIsRunning;
         /**************/    private Dictionary<Slider, SliderTransitionExtension>   transitionExtensions;
@@ -68,7 +68,7 @@ namespace Goldenwere.Unity.Demos
         }
 
         /// <summary>
-        /// This is used to demonstrate the sliders by randomly assigning values to the slider at random times 
+        /// This is used to demonstrate the sliders by randomly assigning values to the slider at random times
         /// <para>(with a range lower than the slider's transition times to show off the stale mechanic that prevents playing transitions too soon)</para>
         /// </summary>
         private IEnumerator PeriodicallyUpdateSlider(Slider s)

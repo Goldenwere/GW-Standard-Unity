@@ -32,8 +32,11 @@ namespace Goldenwere.Unity.Controller
         crouched
     }
 
-    public delegate void MovementStateHandler(MovementState state);
+    public delegate void MovementStateDelegate(MovementState state);
 
+    /// <summary>
+    /// The FirstPersonController is a generalized rigidbody-based/InputSystem-based controller for Unity
+    /// </summary>
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(Rigidbody))]
     public class FirstPersonController : MonoBehaviour
@@ -48,72 +51,72 @@ namespace Goldenwere.Unity.Controller
             #region Force settings
             [Header("Force Settings")]
 
-            [Tooltip            ("The magnitude of the force applied to air movement (the opposite of current velocity)")]
-            [SerializeField]    private float           forceFrictionAir = 0.1f;
-            [Tooltip            ("The magnitude of the force applied to ground movement while moving (the opposite of current velocity)")]
-            [SerializeField]    private float           forceFrictionMotion = 1;
-            [Tooltip            ("The magnitude of the force applied to ground movement while receiving no input and while grounded (the opposite of current velocity)")]
-            [SerializeField]    private float           forceFrictionStationary = 5;
-            [Tooltip            ("The force magnitude to apply for jumping")]
-            [SerializeField]    private float           forceJump = 8;
-            [Tooltip            ("Tendency to stick to ground (typically below 1, ideally around 0.05-0.1)")]
-            [SerializeField]    private float           forceStickToGround = 0.05f;
-            [Tooltip            ("Multiplier for gravity")]
-            [SerializeField]    private float           forceGravityMultiplier = 3;
+            [Tooltip         ("The magnitude of the force applied to air movement (the opposite of current velocity)")]
+            [SerializeField] private float           forceFrictionAir = 0.1f;
+            [Tooltip         ("The magnitude of the force applied to ground movement while moving (the opposite of current velocity)")]
+            [SerializeField] private float           forceFrictionMotion = 1;
+            [Tooltip         ("The magnitude of the force applied to ground movement while receiving no input and while grounded (the opposite of current velocity)")]
+            [SerializeField] private float           forceFrictionStationary = 5;
+            [Tooltip         ("The force magnitude to apply for jumping")]
+            [SerializeField] private float           forceJump = 8;
+            [Tooltip         ("Tendency to stick to ground (typically below 1, ideally around 0.05-0.1)")]
+            [SerializeField] private float           forceStickToGround = 0.05f;
+            [Tooltip         ("Multiplier for gravity")]
+            [SerializeField] private float           forceGravityMultiplier = 3;
             #endregion
 
             #region Generic settings
             [Header("Generic Settings")]
 
-            [Tooltip            ("Whether the player can jump while crouched")]
-            [SerializeField]    private bool            settingCanJumpWhileCrouched = false;
-            [Tooltip            ("Whether the player can control movement while not grounded")]
-            [SerializeField]    private bool            settingControlAirMovement = true;
-            [Tooltip            ("Mass to set the rigidbody to")]
-            [SerializeField]    private float           settingControllerMass = 5;
-            [Tooltip            ("The height to set the controller to while crouched")]
-            [SerializeField]    private float           settingCrouchHeight = 0.9f;
-            [Tooltip            ("The distance to check for ground distance (ideally set around 0.1")]
-            [SerializeField]    private float           settingGroundCheckDistance = 0.1f;
-            [Tooltip            ("The height to set the controller to while not crouched (will override whatever is already defined in attached CapsuleCollider)")]
-            [SerializeField]    private float           settingNormalHeight = 1.8f;
-            [Tooltip            ("Reduces radius by one minus this value to avoid getting stuck in a wall (ideally set around 0.05-0.1)")]
-            [SerializeField]    private float           settingShellOffset = 0.05f;
-            [Tooltip            ("Modifies speed on slopes")]
-            [SerializeField]    private AnimationCurve  settingSlopeModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
-            [Tooltip            ("The time in seconds to wait before considering the controller as \"falling\". (ideally set around 0.75-1 seconds)")]
-            [SerializeField]    private float           settingWaitBeforeFallTime = 0.75f;
+            [Tooltip         ("Whether the player can jump while crouched")]
+            [SerializeField] private bool           settingCanJumpWhileCrouched = false;
+            [Tooltip         ("Whether the player can control movement while not grounded")]
+            [SerializeField] private bool           settingControlAirMovement = true;
+            [Tooltip         ("Mass to set the rigidbody to")]
+            [SerializeField] private float          settingControllerMass = 5;
+            [Tooltip         ("The height to set the controller to while crouched")]
+            [SerializeField] private float          settingCrouchHeight = 0.9f;
+            [Tooltip         ("The distance to check for ground distance (ideally set around 0.1")]
+            [SerializeField] private float          settingGroundCheckDistance = 0.1f;
+            [Tooltip         ("The height to set the controller to while not crouched (will override whatever is already defined in attached CapsuleCollider)")]
+            [SerializeField] private float          settingNormalHeight = 1.8f;
+            [Tooltip         ("Reduces radius by one minus this value to avoid getting stuck in a wall (ideally set around 0.05-0.1)")]
+            [SerializeField] private float          settingShellOffset = 0.05f;
+            [Tooltip         ("Modifies speed on slopes")]
+            [SerializeField] private AnimationCurve settingSlopeModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
+            [Tooltip         ("The time in seconds to wait before considering the controller as \"falling\". (ideally set around 0.75-1 seconds)")]
+            [SerializeField] private float          settingWaitBeforeFallTime = 0.75f;
             #endregion
 
             #region Speed settings
             [Header("Speed Settings")]
             /* VVV NOTE THAT SPEEDS ARE AFFECTED BY MASS AND FRICTION - ADJUSTING THOSE AFFECTS THE RESULTING SPEED VVV */
 
-            [Tooltip            ("Multiplier to speed based on whether crouched or not (ideally between 0-1 non-inclusive)")]
-            [SerializeField]    private float           speedCrouchMultiplier = 0.2f;
-            [Tooltip            ("Speed when a fast modifier is used (example: sprinting)")]
-            [SerializeField]    private float           speedFast = 10;
-            [Tooltip            ("Speed when no modifier is used (example: jogging pace for action games, walking pace for scenic games)")]
-            [SerializeField]    private float           speedNorm = 5;
-            [Tooltip            ("Speed when a slow modifier is used (example: crouching/sneaking, walking pace for action games)")]
-            [SerializeField]    private float           speedSlow = 2;
+            [Tooltip         ("Multiplier to speed based on whether crouched or not (ideally between 0-1 non-inclusive)")]
+            [SerializeField] private float          speedCrouchMultiplier = 0.2f;
+            [Tooltip         ("Speed when a fast modifier is used (example: sprinting)")]
+            [SerializeField] private float          speedFast = 10;
+            [Tooltip         ("Speed when no modifier is used (example: jogging pace for action games, walking pace for scenic games)")]
+            [SerializeField] private float          speedNorm = 5;
+            [Tooltip         ("Speed when a slow modifier is used (example: crouching/sneaking, walking pace for action games)")]
+            [SerializeField] private float          speedSlow = 2;
             #endregion
 
             #region Exposed settings
             [Header("Exposed Settings / Utility")]
 
             [Tooltip            ("Whether modifiers (fast, slow/crouch) are toggled or held")]
-            /**************/    public  bool            areModifiersToggled = false;
-            [Tooltip            ("Whether the player can crouch")]
-            /**************/    public  bool            canCrouch = true;
-            [Tooltip            ("Whether the player can move at all (best used for pausing)")]
-            /**************/    public  bool            canMove = true;
-            [Tooltip            ("Whether the player can use fast movement (example: when stamina runs out)")]
-            /**************/    public  bool            canMoveFast = true;
-            [Tooltip            ("Whether the player can use slow movement (example: when cannot crouch/sneak)")]
-            /**************/    public  bool            canMoveSlow = true;
-            [Tooltip            ("An exposed speed multipler (typically leave this at 1; example use: status effect that slows the player down")]
-            /**************/    public  float           speedMultiplier = 1;
+            /**************/ public  bool           areModifiersToggled = false;
+            [Tooltip         ("Whether the player can crouch")]
+            /**************/ public  bool           canCrouch = true;
+            [Tooltip         ("Whether the player can move at all (best used for pausing)")]
+            /**************/ public  bool           canMove = true;
+            [Tooltip         ("Whether the player can use fast movement (example: when stamina runs out)")]
+            /**************/ public  bool           canMoveFast = true;
+            [Tooltip         ("Whether the player can use slow movement (example: when cannot crouch/sneak)")]
+            /**************/ public  bool           canMoveSlow = true;
+            [Tooltip         ("An exposed speed multipler (typically leave this at 1; example use: status effect that slows the player down")]
+            /**************/ public  float          speedMultiplier = 1;
             #endregion
 
             #region Properties
@@ -174,23 +177,23 @@ namespace Goldenwere.Unity.Controller
             #region Exposed Camera settings
             [Header("Exposed Camera Settings")]
 
-            [Tooltip            ("The base FOV setting to apply to attached cameras before adding/subtracting the controller's difference settings " +
-                                "(this is the FOV used for idle; use the Difference settings for all other movement states)")]
-            /**************/    public  float   cameraFOV = 80;
-            [Tooltip            ("Toggle for enabling/disabling FOV shifting")]
-            /**************/    public  bool    cameraFOVShiftingEnabled = true;
-            [Tooltip            ("Toggle to enable inverted look for mouse only (useful if allowing separate bindings/settings for gamepad")]
-            /**************/    public  bool    cameraLookInvertedMouseOnly = false;
-            [Tooltip            ("Toggle for inverting camera look horizontally")]
-            /**************/    public  bool    cameraLookInvertedHorizontal = false;
-            [Tooltip            ("Toggle for inverting camera look vertically")]
-            /**************/    public  bool    cameraLookInvertedVertical = false;
-            [Tooltip            ("Multiplier for camera sensitivity")]
-            /**************/    public  float   cameraSensitivity = 3;
-            [Tooltip            ("Whether to use smoothing with camera movement")]
-            /**************/    public  bool    smoothLook = true;
-            [Tooltip            ("The speed at which camera smoothing is applied (the higher the number, the less time that the camera takes to rotate)")]
-            /**************/    public  float   smoothSpeed = 20;
+            [Tooltip         ("The base FOV setting to apply to attached cameras before adding/subtracting the controller's difference settings " +
+                             "(this is the FOV used for idle; use the Difference settings for all other movement states)")]
+            /**************/ public  float  cameraFOV = 80;
+            [Tooltip         ("Toggle for enabling/disabling FOV shifting")]
+            /**************/ public  bool   cameraFOVShiftingEnabled = true;
+            [Tooltip         ("Toggle to enable inverted look for mouse only (useful if allowing separate bindings/settings for gamepad")]
+            /**************/ public  bool   cameraLookInvertedMouseOnly = false;
+            [Tooltip         ("Toggle for inverting camera look horizontally")]
+            /**************/ public  bool   cameraLookInvertedHorizontal = false;
+            [Tooltip         ("Toggle for inverting camera look vertically")]
+            /**************/ public  bool   cameraLookInvertedVertical = false;
+            [Tooltip         ("Multiplier for camera sensitivity")]
+            /**************/ public  float  cameraSensitivity = 3;
+            [Tooltip         ("Whether to use smoothing with camera movement")]
+            /**************/ public  bool   smoothLook = true;
+            [Tooltip         ("The speed at which camera smoothing is applied (the higher the number, the less time that the camera takes to rotate)")]
+            /**************/ public  float  smoothSpeed = 20;
             #endregion
 
             #region Properties
@@ -208,29 +211,29 @@ namespace Goldenwere.Unity.Controller
             #endregion
         }
 
-        [SerializeField]    private PlayerInput         attachedControls;
-        [SerializeField]    private CameraSettings      settingsCamera;
-        [SerializeField]    private MovementSettings    settingsMovement;
-        /**************/    private CapsuleCollider     attachedCollider;
-        /**************/    private Rigidbody           attachedRigidbody;
-        /**************/    private bool                workingControlActionDoMovement;
-        /**************/    private bool                workingControlActionDoRotation;
-        /**************/    private bool                workingControlActionModifierMoveFast;
-        /**************/    private bool                workingControlActionModifierMoveSlow;
-        /**************/    private Coroutine           workingFOVCoroutine;
-        /**************/    private bool                workingFOVCoroutineRunning;
-        /**************/    private bool                workingJumpDesired;
-        /**************/    private bool                workingJumpIsJumping;
-        /**************/    private bool                workingJumpIsJumpingCoroutineRunning;
-        /**************/    private Vector3             workingGroundContactNormal;
-        /**************/    private bool                workingGroundstateCurrent;
-        /**************/    private bool                workingGroundstatePrevious;
-        /**************/    private bool                workingIsCrouched;
-        /**************/    private Quaternion[]        workingRotationCameraJoints;
-        /**************/    private Quaternion          workingRotationController;
-        /**************/    private bool                workingRotationFromMouse;
+        [SerializeField] private PlayerInput        attachedControls;
+        [SerializeField] private CameraSettings     settingsCamera;
+        [SerializeField] private MovementSettings   settingsMovement;
+        /**************/ private CapsuleCollider    attachedCollider;
+        /**************/ private Rigidbody          attachedRigidbody;
+        /**************/ private bool               workingControlActionDoMovement;
+        /**************/ private bool               workingControlActionDoRotation;
+        /**************/ private bool               workingControlActionModifierMoveFast;
+        /**************/ private bool               workingControlActionModifierMoveSlow;
+        /**************/ private Coroutine          workingFOVCoroutine;
+        /**************/ private bool               workingFOVCoroutineRunning;
+        /**************/ private bool               workingJumpDesired;
+        /**************/ private bool               workingJumpIsJumping;
+        /**************/ private bool               workingJumpIsJumpingCoroutineRunning;
+        /**************/ private Vector3            workingGroundContactNormal;
+        /**************/ private bool               workingGroundstateCurrent;
+        /**************/ private bool               workingGroundstatePrevious;
+        /**************/ private bool               workingIsCrouched;
+        /**************/ private Quaternion[]       workingRotationCameraJoints;
+        /**************/ private Quaternion         workingRotationController;
+        /**************/ private bool               workingRotationFromMouse;
 
-        public  event MovementStateHandler              UpdateMovementState;
+        public  event MovementStateDelegate         UpdateMovementState;
 
         public  bool                MovementIsCrouched          { get { return workingIsCrouched; } }
         public  bool                MovementIsGrounded          { get { return workingGroundstateCurrent; } }

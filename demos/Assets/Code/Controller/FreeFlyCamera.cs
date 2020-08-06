@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Goldenwere.Unity.Controller
@@ -8,11 +6,14 @@ namespace Goldenwere.Unity.Controller
     public class FreeFlyCamera : MonoBehaviour
     {
         #region Fields
+#pragma warning disable 0649
         [SerializeField]    private PlayerInput attachedControls;
         [SerializeField]    private GameObject  pointCamera;
         [SerializeField]    private GameObject  pointPivot;
         [SerializeField]    private float       settingMoveSpeed = 2f;
-        /**************/    public  float       settingRotationSensitivity = 3f;
+#pragma warning restore 0649
+        /**************/
+        public  float       settingRotationSensitivity = 3f;
         /**************/    private bool        workingDoHorizontal;
         /**************/    private bool        workingDoRotation;
         /**************/    private bool        workingDoVertical;

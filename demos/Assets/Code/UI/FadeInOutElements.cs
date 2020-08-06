@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Goldenwere.Unity.UI
@@ -25,6 +24,7 @@ namespace Goldenwere.Unity.UI
     /// </summary>
     public class FadeInOutElements
     {
+        #region Fields & Properties
         private Coroutine       runningCoroutine;
 
         public  MonoBehaviour   AssociatedController    { get; private set; }
@@ -32,7 +32,9 @@ namespace Goldenwere.Unity.UI
         public  AnimationCurve  FadeCurve               { get; private set; }
         public  float           FadeInLength            { get; private set; }
         public  float           FadeOutLength           { get; private set; }
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Creates an instance of the fade in/out extension with a default animation curve
         /// </summary>
@@ -117,5 +119,6 @@ namespace Goldenwere.Unity.UI
                 AssociatedController.StopCoroutine(runningCoroutine);
             runningCoroutine = AssociatedController.StartCoroutine(Fade(FadeMethod.FadeOut));
         }
+        #endregion
     }
 }

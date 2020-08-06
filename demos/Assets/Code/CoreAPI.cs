@@ -70,7 +70,7 @@ namespace Goldenwere.Unity
             for (int i = 0; i < parent.transform.childCount; i++)
             {
                 GameObject child = parent.transform.GetChild(i).gameObject;
-                if (child.tag == tag)
+                if (child.CompareTag(tag))
                     return child;
             }
 
@@ -91,7 +91,7 @@ namespace Goldenwere.Unity
             for (int i = 0; i < parent.transform.childCount; i++)
             {
                 GameObject child = parent.transform.GetChild(i).gameObject;
-                if (child.tag == tag)
+                if (child.CompareTag(tag))
                     return child;
 
                 else if (child.transform.childCount > 0)
@@ -168,7 +168,10 @@ namespace Goldenwere.Unity
         /// </summary>
         /// <param name="self">The Vector3 being rounded</param>
         /// <param name="precision">The precision</param>
-        /// <returns></returns>
+        /// <param name="roundX">Whether to round the x value or not (if false, value is left untouched)</param>
+        /// <param name="roundY">Whether to round the y value or not (if false, value is left untouched)</param>
+        /// <param name="roundZ">Whether to round the z value or not (if false, value is left untouched)</param>
+        /// <returns>The Vector3 after rounding</returns>
         public static Vector3 ToPrecision(this Vector3 self, float precision, bool roundX = true, bool roundY = true, bool roundZ = true)
         {
             float x = self.x;

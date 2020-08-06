@@ -8,6 +8,31 @@ using UnityEngine.UI;
 namespace Goldenwere.Unity.UI
 {
     /// <summary>
+    /// Defines how the tooltip should be anchored
+    /// </summary>
+    public enum AnchorPosition
+    {
+        TopLeft,
+        TopMiddle,
+        TopRight,
+        CenterLeft,
+        CenterMiddle,
+        CenterRight,
+        BottomLeft,
+        BottomMiddle,
+        BottomRight
+    }
+
+    /// <summary>
+    /// Defines how the tooltip should be transitioned
+    /// </summary>
+    public enum TransitionMode
+    {
+        None,
+        Fade
+    }
+
+    /// <summary>
     /// Adds a tooltip to a UI element
     /// </summary>
     public class TooltipEnabledElement : MonoBehaviour
@@ -282,30 +307,5 @@ namespace Goldenwere.Unity.UI
                 tooltipTextElement.preferredHeight + tooltipTextElement.rectTransform.offsetMin.y);
         }
         #endregion
-    }
-
-    /// <summary>
-    /// Defines how the tooltip should be anchored
-    /// </summary>
-    public enum AnchorPosition
-    {
-        TopLeft,
-        TopMiddle,
-        TopRight,
-        CenterLeft,
-        CenterMiddle,
-        CenterRight,
-        BottomLeft,
-        BottomMiddle,
-        BottomRight
-    }
-
-    /// <summary>
-    /// Defines how the tooltip should be transitioned
-    /// </summary>
-    public enum TransitionMode
-    {
-        None,
-        Fade
     }
 }

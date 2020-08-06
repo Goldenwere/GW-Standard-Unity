@@ -10,8 +10,9 @@ namespace Goldenwere.Unity.UI
     /// </summary>
     public class SliderTransitionExtension
     {
-        private Coroutine       runningCoroutine;
-        private float           sliderWaitTimer;
+        #region Fields & Properties
+        private Coroutine   runningCoroutine;
+        private float       sliderWaitTimer;
 
         public MonoBehaviour    AssociatedController            { get; private set; }
         public Slider           AssociatedSlider                { get; private set; }
@@ -20,7 +21,9 @@ namespace Goldenwere.Unity.UI
         public float            SliderStaleValue                { get; private set; }
         public float            SliderTransitionLength          { get; private set; }
         public AnimationCurve   SliderTransitionCurve           { get; private set; }
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Creates a new slider with defined parameters; these parameters are to be treated as though they are constant
         /// </summary>
@@ -106,5 +109,6 @@ namespace Goldenwere.Unity.UI
             SliderStaleValue = newVal;
             SliderIsStale = true;
         }
+        #endregion
     }
 }

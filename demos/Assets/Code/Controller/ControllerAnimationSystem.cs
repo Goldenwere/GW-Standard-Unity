@@ -5,12 +5,15 @@ namespace Goldenwere.Unity.Controller
     [RequireComponent(typeof(FirstPersonController))]
     public class ControllerAnimationSystem : MonoBehaviour
     {
+        #region Fields
 #pragma warning disable 0649
         [Tooltip("Attach all animators you plan on calling animations on. Ensure that you use the same strings as those defined in here.")]
-        [SerializeField]    private Animator[]              animatorsToCall;
-        /**************/    private FirstPersonController   attachedController;
+        [SerializeField] private Animator[]             animatorsToCall;
+        /**************/ private FirstPersonController  attachedController;
 #pragma warning restore 0649
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Reference the controller on Monobehaviour.Awake()
         /// </summary>
@@ -88,5 +91,6 @@ namespace Goldenwere.Unity.Controller
                 }
             }
         }
+        #endregion
     }
 }

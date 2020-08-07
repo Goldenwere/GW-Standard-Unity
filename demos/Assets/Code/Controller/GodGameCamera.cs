@@ -23,6 +23,8 @@ namespace Goldenwere.Unity.Controller
 #pragma warning disable 0649
         [Tooltip                                ("Anchor used for rotating around when settingRotateAroundAnchor is enabled")]   
         [SerializeField] private Transform      anchorRotationPivot;
+        [Tooltip                                ("The actual camera itself; needed for raycasting")]
+        [SerializeField] private Camera         attachedCamera;
         [Tooltip                                ("Input values are read from here")]
         [SerializeField] private PlayerInput    attachedControls;
         [Tooltip                                ("This pivot is used for tilting up and down")]
@@ -293,7 +295,7 @@ namespace Goldenwere.Unity.Controller
             if (settingRotationMode == RotationMode.CursorRaycast)
             {
                 if (!workingInputMousePositionSet)
-                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 1000f))
+                    if (Physics.Raycast(attachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 1000f))
                         workingInputMousePositionOnRotate = hit.point;
                 workingInputMousePositionSet = workingModifierMouseRotation;
             }

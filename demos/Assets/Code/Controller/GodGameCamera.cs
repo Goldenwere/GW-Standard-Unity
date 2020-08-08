@@ -65,6 +65,8 @@ namespace Goldenwere.Unity.Controller
         /**************/ private bool           workingModifierMouseRotation;
         /**************/ private bool           workingModifierMouseZoom;
         #endregion
+        private float angle;
+        private Vector3 point;
         #endregion
         #region Properties
         /// <summary>
@@ -86,6 +88,12 @@ namespace Goldenwere.Unity.Controller
         }
         #endregion
         #region Methods
+        private void OnGUI()
+        {
+            GUI.Label(new Rect(new Vector2(10, 10), new Vector2(100, 100)), angle.ToString());
+            GUI.Label(new Rect(new Vector2(30, 30), new Vector2(100, 100)), point.ToString());
+        }
+
         /// <summary>
         /// Sets up the working variables on MonoBehaviour.Start()
         /// </summary>
@@ -298,26 +306,18 @@ namespace Goldenwere.Unity.Controller
             if (settingRotationMode == RotationMode.CursorRaycast)
             {
                 if (!workingInputMousePositionSet)
-                {
                     if (Physics.Raycast(attachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 1000f))
-                    {
                         workingInputMousePositionOnRotate = hit.point;
-                        print(hit.point);
-                    }
-                }
+
                 workingInputMousePositionSet = workingModifierMouseRotation;
             }
 
             else if (settingRotationMode == RotationMode.Raycast)
             {
                 if (!workingInputMousePositionSet)
-                {
                     if (Physics.Raycast(new Ray(pointCamera.transform.position, pointCamera.transform.forward), out RaycastHit hit, 1000f))
-                    {
                         workingInputMousePositionOnRotate = hit.point;
-                        print(hit.point);
-                    }
-                }
+
                 workingInputMousePositionSet = workingModifierMouseRotation;
             }
         }
@@ -345,7 +345,6 @@ namespace Goldenwere.Unity.Controller
 
             if (settingRotationMode != RotationMode.Freeform)
             {
-                Vector3 point;
                 if (settingRotationMode == RotationMode.Anchor)
                     point = anchorRotationPivot.position;
                 else if (settingRotationMode == RotationMode.Raycast)
@@ -353,20 +352,28 @@ namespace Goldenwere.Unity.Controller
                     if (workingInputMousePositionSet)
                         point = workingInputMousePositionOnRotate;
                     else
+                    {
                         point = pointCamera.transform.position + (pointCamera.transform.forward * pointCamera.transform.position.y);
+                        workingInputMousePositionOnRotate = point;
+                        workingInputMousePositionSet = true;
+                    }
                 }
                 else
                 {
                     if (workingInputMousePositionSet)
                         point = workingInputMousePositionOnRotate;
                     else
+                    {
                         point = pointCamera.transform.position + (pointCamera.transform.forward * pointCamera.transform.position.y);
+                        workingInputMousePositionOnRotate = point;
+                        workingInputMousePositionSet = true;
+                    }
                 }
-
                 Quaternion oldVertical = pointCamera.transform.localRotation;
                 Quaternion newVertical = Quaternion.Slerp(pointCamera.transform.localRotation, workingDesiredRotationVertical, Time.deltaTime * settingRotationSpeed);
+                angle = Quaternion.Angle(oldVertical, newVertical);
 
-                if (Quaternion.Angle(oldVertical, newVertical) >= float.Epsilon * settingRotationSpeed)
+                if (Mathf.Abs(Quaternion.Angle(oldVertical, newVertical)) >= 0)
                     workingDesiredPosition = workingDesiredPosition.RotateSelfAroundPoint(point, new Vector3(-input.y, input.x, 0));
                 else
                     workingDesiredPosition = workingDesiredPosition.RotateSelfAroundPoint(point, new Vector3(0, input.x, 0));

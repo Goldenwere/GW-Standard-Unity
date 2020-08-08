@@ -8,7 +8,9 @@ namespace Goldenwere.Unity.Demos
     /// </summary>
     public class GodGameCamDemo : MonoBehaviour
     {
+#pragma warning disable 0649
         [SerializeField] private GodGameCamera cam;
+#pragma warning restore 0649
 
         /// <summary>
         /// On Start, enable cam modifiers

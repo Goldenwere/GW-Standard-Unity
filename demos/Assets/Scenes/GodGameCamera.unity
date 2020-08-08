@@ -1119,9 +1119,9 @@ MonoBehaviour:
   pointPivot: {fileID: 623171855}
   settingCollisionPadding: 3
   settingMotionSpeed: 10
-  settingRotationMode: 0
+  settingRotationMode: 2
   settingRotationSpeed: 10
-  settingRotationVerticalClamp: {x: -50, y: 50}
+  settingRotationVerticalClamp: {x: -10, y: 50}
 --- !u!114 &389721474
 MonoBehaviour:
   m_ObjectHideFlags: 0

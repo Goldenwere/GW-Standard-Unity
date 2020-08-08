@@ -103,7 +103,7 @@ namespace Goldenwere.Unity.Controller
         {
             if (!cameraMotionIsFrozen)
             {
-                if (workingInputMovement || workingInputRotation || workingInputZoom)
+                if (workingInputMovement)
                     SetRotationPoint();
 
                 if (workingModifierMouseMovement && attachedControls.actions["MovementMouseModifier"].ReadValue<float>() == 0)
@@ -230,6 +230,9 @@ namespace Goldenwere.Unity.Controller
                         Cursor.lockState = cursorNormalLockModeState;
                         Cursor.visible = true;
                     }
+
+                    else
+                        workingInputMousePositionSet = false;
                 }
             }
         }
@@ -295,16 +298,26 @@ namespace Goldenwere.Unity.Controller
             if (settingRotationMode == RotationMode.CursorRaycast)
             {
                 if (!workingInputMousePositionSet)
+                {
                     if (Physics.Raycast(attachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 1000f))
+                    {
                         workingInputMousePositionOnRotate = hit.point;
+                        print(hit.point);
+                    }
+                }
                 workingInputMousePositionSet = workingModifierMouseRotation;
             }
 
             else if (settingRotationMode == RotationMode.Raycast)
             {
                 if (!workingInputMousePositionSet)
+                {
                     if (Physics.Raycast(new Ray(pointCamera.transform.position, pointCamera.transform.forward), out RaycastHit hit, 1000f))
+                    {
                         workingInputMousePositionOnRotate = hit.point;
+                        print(hit.point);
+                    }
+                }
                 workingInputMousePositionSet = workingModifierMouseRotation;
             }
         }
@@ -350,7 +363,13 @@ namespace Goldenwere.Unity.Controller
                         point = pointCamera.transform.position + (pointCamera.transform.forward * pointCamera.transform.position.y);
                 }
 
-                workingDesiredPosition = workingDesiredPosition.RotateSelfAroundPoint(point, new Vector3(0, input.x, 0));
+                Quaternion oldVertical = pointCamera.transform.localRotation;
+                Quaternion newVertical = Quaternion.Slerp(pointCamera.transform.localRotation, workingDesiredRotationVertical, Time.deltaTime * settingRotationSpeed);
+
+                if (Quaternion.Angle(oldVertical, newVertical) >= float.Epsilon * settingRotationSpeed)
+                    workingDesiredPosition = workingDesiredPosition.RotateSelfAroundPoint(point, new Vector3(-input.y, input.x, 0));
+                else
+                    workingDesiredPosition = workingDesiredPosition.RotateSelfAroundPoint(point, new Vector3(0, input.x, 0));
             }
         }
 

@@ -203,7 +203,7 @@ namespace Goldenwere.Unity.Controller
         /// <param name="input">The current input (modified to account for device sensitivity scaling)</param>
         protected void PerformMovement(Vector2 input)
         {
-            Vector3 add = (transform.forward * input.y * settingMovementSensitivity) + (transform.right * input.x * settingMovementSensitivity);
+            Vector3 add = (transformTilt.forward * input.y * settingMovementSensitivity) + (transformTilt.right * input.x * settingMovementSensitivity);
             if (!WillCollideAtNewPosition(workingDesiredPosition + add, add))
                 workingDesiredPosition += add;
         }

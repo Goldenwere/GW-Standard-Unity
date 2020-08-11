@@ -230,7 +230,7 @@
                     "id": "e772870d-c693-463a-b068-add3303bce14",
                     "path": "<Mouse>/scroll/y",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Clamp(min=-1,max=1)",
                     "groups": "",
                     "action": "MouseScroll",
                     "isComposite": false,

@@ -49,11 +49,9 @@ namespace Goldenwere.Unity.Controller
         /**************/ protected bool         workingInputActionMovement;
         /**************/ protected bool         workingInputActionRotation;
         /**************/ protected bool         workingInputActionZoom;
-        /**************/ protected Vector2      workingInputMouseDelta;
         /**************/ protected bool         workingInputMouseToggleMovement;
         /**************/ protected bool         workingInputMouseToggleRotation;
         /**************/ protected bool         workingInputMouseToggleZoom;
-        /**************/ protected float        workingInputMouseZoom;
         #endregion
         #endregion
 
@@ -134,7 +132,15 @@ namespace Goldenwere.Unity.Controller
         /// <param name="context">Holds Vector2 containing input value</param>
         public void OnInput_MouseDelta(InputAction.CallbackContext context)
         {
-            workingInputMouseDelta = context.ReadValue<Vector2>() * sensitivityScaleRotationMouse;
+            Vector2 workingInputMouseDelta = context.ReadValue<Vector2>();
+
+            if (controlMotionEnabled) 
+            {
+                if (workingInputMouseToggleMovement)
+                    PerformMovement(workingInputMouseDelta * sensitivityScaleMovementMouse);
+                if (workingInputMouseToggleRotation)
+                    PerformRotation(workingInputMouseDelta * sensitivityScaleRotationMouse);
+            }
         }
 
         /// <summary>
@@ -143,7 +149,13 @@ namespace Goldenwere.Unity.Controller
         /// <param name="context">Holds float containing input value</param>
         public void OnInput_MouseScroll(InputAction.CallbackContext context)
         {
-            workingInputMouseZoom = context.ReadValue<float>() * sensitivityScaleZoomMouse;
+            float workingInputMouseZoom = context.ReadValue<float>();
+
+            if (controlMotionEnabled)
+            {
+                if (workingInputMouseToggleZoom)
+                    PerformZoom(workingInputMouseZoom * sensitivityScaleZoomMouse);
+            }
         }
 
         /// <summary>

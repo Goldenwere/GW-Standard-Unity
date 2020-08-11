@@ -38,9 +38,9 @@ namespace Goldenwere.Unity.Controller
 
         #region Sensitivty Constants (these shouldn't need tweaked, as they are for ensuring that different inputs result in similar sensitivity at base; use other settings instead)
         /**************/ protected const float    sensitivityScaleMovement = 0.35f;
-        /**************/ protected const float    sensitivityScaleMovementMouse = 0.005f;
+        /**************/ protected const float    sensitivityScaleMovementMouse = 0.05f;
         /**************/ protected const float    sensitivityScaleRotation = 1f;
-        /**************/ protected const float    sensitivityScaleRotationMouse = 0.01f;
+        /**************/ protected const float    sensitivityScaleRotationMouse = 0.1f;
         /**************/ protected const float    sensitivityScaleZoom = 1f;
         /**************/ protected const float    sensitivityScaleZoomMouse = 3f;
         #endregion

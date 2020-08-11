@@ -219,7 +219,7 @@
                     "id": "c70badd0-a033-4e08-b25a-ae7de4847082",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": "",
                     "action": "MouseDelta",
                     "isComposite": false,

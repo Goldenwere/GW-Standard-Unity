@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 namespace Goldenwere.Unity.Controller
 {
+    public delegate void CameraMouseState(bool isMouseBeingUsed);
+
     /// <summary>
     /// Abstract class for the Goldenwere series of ManagementCamera, which each have different styles of motion
     /// </summary>
@@ -56,7 +58,9 @@ namespace Goldenwere.Unity.Controller
         /**************/ protected bool         workingInputMouseToggleZoom;
         #endregion
         #endregion
-
+        #region Events
+        public event    CameraMouseState        CameraMouseStateChanged;
+        #endregion
         #region Methods
         /// <summary>
         /// Sets working transform variables on Start
@@ -170,6 +174,11 @@ namespace Goldenwere.Unity.Controller
                 workingInputMouseToggleMovement = !workingInputMouseToggleMovement;
             else
                 workingInputMouseToggleMovement = context.performed;
+
+            if (workingInputMouseToggleMovement)
+                CameraMouseStateChanged?.Invoke(true);
+            else if (!workingInputMouseToggleRotation)
+                CameraMouseStateChanged?.Invoke(false);
         }
 
         /// <summary>
@@ -182,6 +191,11 @@ namespace Goldenwere.Unity.Controller
                 workingInputMouseToggleRotation = !workingInputMouseToggleRotation;
             else
                 workingInputMouseToggleRotation = context.performed;
+
+            if (workingInputMouseToggleRotation)
+                CameraMouseStateChanged?.Invoke(true);
+            else if (!workingInputMouseToggleMovement)
+                CameraMouseStateChanged?.Invoke(false);
         }
 
         /// <summary>

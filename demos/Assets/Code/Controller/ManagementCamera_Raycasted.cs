@@ -45,7 +45,8 @@ namespace Goldenwere.Unity.Controller
         /// <param name="input">The current input (modified to account for device sensitivity scaling)</param>
         protected override void PerformRotation(Vector2 input)
         {
-            Vector3 newPos = workingDesiredPosition.RotateSelfAroundPoint(rotationPoint, new Vector3(0, input.x, 0));
+            Vector3 eulerAngles = (transformTilt.right * -input.y) + (Vector3.up * input.x);
+            Vector3 newPos = workingDesiredPosition.RotateSelfAroundPoint(rotationPoint, eulerAngles);
 
             if (!WillCollideAtNewPosition(newPos, workingDesiredPosition - newPos))
             {

@@ -45,11 +45,16 @@ namespace Goldenwere.Unity.Controller
         /// <param name="input">The current input (modified to account for device sensitivity scaling)</param>
         protected override void PerformRotation(Vector2 input)
         {
-            workingDesiredRotationHorizontal *= Quaternion.Euler(0, input.x * settingRotationSensitivity, 0);
-            workingDesiredRotationVertical *= Quaternion.Euler(-input.y * settingRotationSensitivity, 0, 0);
-            workingDesiredRotationVertical = workingDesiredRotationVertical.VerticalClampEuler(verticalClamping.x, verticalClamping.y);
+            Vector3 newPos = workingDesiredPosition.RotateSelfAroundPoint(rotationPoint, new Vector3(0, input.x, 0));
 
-            workingDesiredPosition = workingDesiredPosition.RotateSelfAroundPoint(rotationPoint, new Vector3(0, input.x, 0));
+            if (!WillCollideAtNewPosition(newPos, workingDesiredPosition - newPos))
+            {
+                workingDesiredRotationHorizontal *= Quaternion.Euler(0, input.x * settingRotationSensitivity, 0);
+                workingDesiredRotationVertical *= Quaternion.Euler(-input.y * settingRotationSensitivity, 0, 0);
+                workingDesiredRotationVertical = workingDesiredRotationVertical.VerticalClampEuler(verticalClamping.x, verticalClamping.y);
+
+                workingDesiredPosition = newPos;
+            }
         }
 
         /// <summary>

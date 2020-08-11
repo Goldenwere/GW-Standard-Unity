@@ -3842,7 +3842,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277715473}
-  - component: {fileID: 1277715472}
   - component: {fileID: 1277715471}
   - component: {fileID: 1277715470}
   m_Layer: 0
@@ -3876,8 +3875,7 @@ MonoBehaviour:
   smoothMotionSpeed: 10
   useCameraSmoothing: 1
   verticalClamping: {x: -50, y: 50}
-  attachedCamera: {fileID: 1394519250}
-  defaultPointDistance: 20
+  defaultPointDistance: 100
   maxDistance: 100
 --- !u!114 &1277715471
 MonoBehaviour:
@@ -4030,14 +4028,6 @@ MonoBehaviour:
   m_DefaultActionMap: ManagementCameraMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!81 &1277715472
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277715469}
-  m_Enabled: 1
 --- !u!4 &1277715473
 Transform:
   m_ObjectHideFlags: 0
@@ -4342,6 +4332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1394519251}
   - component: {fileID: 1394519250}
+  - component: {fileID: 1394519252}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -4406,6 +4397,14 @@ Transform:
   m_Father: {fileID: 1696873528}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1394519252
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394519249}
+  m_Enabled: 1
 --- !u!1 &1396313517
 GameObject:
   m_ObjectHideFlags: 0

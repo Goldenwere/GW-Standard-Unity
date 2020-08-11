@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Goldenwere.Unity.Controller
 {
@@ -21,6 +20,9 @@ namespace Goldenwere.Unity.Controller
         /**************/ private bool       rotationPointSet;
         #endregion
         #region Methods
+        /// <summary>
+        /// Sets transform on Update
+        /// </summary>
         protected override void Update()
         {
             if (!rotationPointSet)
@@ -45,14 +47,23 @@ namespace Goldenwere.Unity.Controller
         /// <param name="input">The current input (modified to account for device sensitivity scaling)</param>
         protected override void PerformRotation(Vector2 input)
         {
-            Vector3 eulerAngles = (transformTilt.right * -input.y) + (Vector3.up * input.x);
+            Quaternion horizontal = workingDesiredRotationHorizontal * Quaternion.Euler(0, input.x * settingRotationSensitivity, 0);
+            Quaternion vertical = workingDesiredRotationVertical * Quaternion.Euler(-input.y * settingRotationSensitivity, 0, 0);
+            Quaternion verticalClamped = vertical.VerticalClampEuler(verticalClamping.x, verticalClamping.y);
+
+            Vector3 eulerAngles;
+            if (verticalClamped.eulerAngles.x >= verticalClamping.y - settingRotationSensitivity * Time.deltaTime || 
+                verticalClamped.eulerAngles.x <= verticalClamping.x + settingRotationSensitivity * Time.deltaTime)
+                eulerAngles = new Vector3(0, input.x, 0);
+            else
+                eulerAngles = (transformTilt.right * -input.y) + (Vector3.up * input.x);
+
             Vector3 newPos = workingDesiredPosition.RotateSelfAroundPoint(rotationPoint, eulerAngles);
 
             if (!WillCollideAtNewPosition(newPos, workingDesiredPosition - newPos))
             {
-                workingDesiredRotationHorizontal *= Quaternion.Euler(0, input.x * settingRotationSensitivity, 0);
-                workingDesiredRotationVertical *= Quaternion.Euler(-input.y * settingRotationSensitivity, 0, 0);
-                workingDesiredRotationVertical = workingDesiredRotationVertical.VerticalClampEuler(verticalClamping.x, verticalClamping.y);
+                workingDesiredRotationHorizontal = horizontal;
+                workingDesiredRotationVertical = verticalClamped;
 
                 workingDesiredPosition = newPos;
             }
@@ -66,7 +77,7 @@ namespace Goldenwere.Unity.Controller
             if (Physics.Raycast(new Ray(transformTilt.position, transformTilt.forward), out RaycastHit hit, maxDistance))
                 rotationPoint = hit.point;
             else
-                rotationPoint = transformTilt.forward * defaultPointDistance;
+                rotationPoint = transform.position + transformTilt.forward * defaultPointDistance;
 
             rotationPointSet = true;
         }

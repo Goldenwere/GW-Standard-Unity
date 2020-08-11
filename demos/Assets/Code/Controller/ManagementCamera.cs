@@ -71,10 +71,19 @@ namespace Goldenwere.Unity.Controller
         /// <summary>
         /// Sets transform on Update
         /// </summary>
-        protected virtual void Update()
+        protected void Update()
         {
             if (controlMotionEnabled)
             {
+                if (workingInputActionMovement)
+                    PerformMovement(attachedInput.actions["ActionMovement"].ReadValue<Vector2>().normalized * sensitivityScaleMovement);
+
+                if (workingInputActionRotation)
+                    PerformRotation(attachedInput.actions["ActionRotation"].ReadValue<Vector2>().normalized * sensitivityScaleRotation);
+
+                if (workingInputActionZoom)
+                    PerformZoom(attachedInput.actions["ActionZoom"].ReadValue<float>() * sensitivityScaleZoom);
+
                 if (useCameraSmoothing)
                 {
                     transform.position = Vector3.Lerp(transform.position, workingDesiredPosition, Time.deltaTime * smoothMotionSpeed);
@@ -171,7 +180,6 @@ namespace Goldenwere.Unity.Controller
                 workingInputMouseToggleZoom = !workingInputMouseToggleZoom;
             else
                 workingInputMouseToggleZoom = context.performed;
-
         }
         #endregion
 
@@ -196,7 +204,7 @@ namespace Goldenwere.Unity.Controller
         /// Performs camera zooming in/out to where camera is looking based on input
         /// </summary>
         /// <param name="input">The current input (modified to account for device sensitivity scaling)</param>
-        protected void PerformZoom(Vector2 input)
+        protected void PerformZoom(float input)
         {
             Vector3 add = transformTilt.forward * input * settingZoomSensitivity;
             if (!WillCollideAtNewPosition(workingDesiredPosition + add, add))

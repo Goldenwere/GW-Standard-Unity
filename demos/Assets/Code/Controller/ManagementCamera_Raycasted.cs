@@ -18,14 +18,6 @@ namespace Goldenwere.Unity.Controller
         #endregion
         #region Methods
         /// <summary>
-        /// Sets transform on Update
-        /// </summary>
-        protected override void Update()
-        {
-            base.Update();
-        }
-
-        /// <summary>
         /// Performs camera rotation based on input
         /// </summary>
         /// <remarks>This method performs rotation around a raycasted or default point</remarks>

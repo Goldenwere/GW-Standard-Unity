@@ -11,8 +11,6 @@ namespace Goldenwere.Unity.Controller
         #region Fields
         [Header("Raycasted Settings")]
 #pragma warning disable 0649
-        [Tooltip                            ("The camera to raycast from")]
-        [SerializeField] private Camera     attachedCamera;
         [Range(0.1f,100f)][Tooltip          ("When the raycast doesn't find a collider, an invisible point will be used instead defaultPointDistance units away from the camera")]
         [SerializeField] private float      defaultPointDistance;
         [Range(0.1f,1000f)][Tooltip         ("The maximum distance to raycast")]
@@ -25,11 +23,17 @@ namespace Goldenwere.Unity.Controller
         #region Methods
         protected override void Update()
         {
-            if (workingInputActionMovement && !rotationPointSet || workingInputActionRotation && !rotationPointSet)
-                SetRotationPoint();
+            if (!rotationPointSet)
+            {
+                if (workingInputActionMovement || workingInputActionRotation || workingInputMouseToggleMovement || workingInputMouseToggleRotation)
+                    SetRotationPoint();
+            }
 
-            else if (!workingInputActionMovement && !workingInputActionRotation && rotationPointSet)
-                rotationPointSet = false;
+            else
+            {
+                if (!workingInputActionMovement && !workingInputActionRotation && !workingInputMouseToggleMovement && !workingInputMouseToggleRotation)
+                    rotationPointSet = false;
+            }
 
             base.Update();
         }
@@ -44,6 +48,8 @@ namespace Goldenwere.Unity.Controller
             workingDesiredRotationHorizontal *= Quaternion.Euler(0, input.x * settingRotationSensitivity, 0);
             workingDesiredRotationVertical *= Quaternion.Euler(-input.y * settingRotationSensitivity, 0, 0);
             workingDesiredRotationVertical = workingDesiredRotationVertical.VerticalClampEuler(verticalClamping.x, verticalClamping.y);
+
+            workingDesiredPosition = workingDesiredPosition.RotateSelfAroundPoint(rotationPoint, new Vector3(0, input.x, 0));
         }
 
         /// <summary>
@@ -51,10 +57,10 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void SetRotationPoint()
         {
-            if (Physics.Raycast(attachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, maxDistance))
+            if (Physics.Raycast(new Ray(transformTilt.position, transformTilt.forward), out RaycastHit hit, maxDistance))
                 rotationPoint = hit.point;
             else
-                rotationPoint = attachedCamera.transform.forward * defaultPointDistance;
+                rotationPoint = transformTilt.forward * defaultPointDistance;
 
             rotationPointSet = true;
         }

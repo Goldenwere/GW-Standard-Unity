@@ -14,9 +14,9 @@ namespace Goldenwere.Unity.Controller
 
         [Header("UX Settings")]                 // expose these via a settings/controls menu if possible rather than set them in Inspector
         /**************/ public bool            settingMouseMotionIsToggled;
-        /**************/ public float           settingMovementSensitivity = 1f;
-        /**************/ public float           settingRotationSensitivity = 1f;
-        /**************/ public float           settingZoomSensitivity = 1f;
+        [Range(0.01f,5)] public float           settingMovementSensitivity = 1f;
+        [Range(0.01f,5)] public float           settingRotationSensitivity = 1f;
+        [Range(0.01f,5)] public float           settingZoomSensitivity = 1f;
 
         [Header("Core Components")]
         [Tooltip                                ("The attached PlayerInput class")]
@@ -73,7 +73,7 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         protected virtual void Update()
         {
-            if (!controlMotionEnabled)
+            if (controlMotionEnabled)
             {
                 if (useCameraSmoothing)
                 {

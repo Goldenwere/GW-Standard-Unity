@@ -1,14 +1,13 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using System.Collections;
-using UnityEngine.UI;
 
 namespace Goldenwere.Unity.UI
 {
     /// <summary>
-    /// 
+    /// Describes how the tooltip should be anchored in terms of attachment
     /// </summary>
     public enum AnchorMode
     {
@@ -16,6 +15,7 @@ namespace Goldenwere.Unity.UI
         /// Tooltip follows cursor
         /// </summary>
         AttachedToCursor,
+
         /// <summary>
         /// Tooltip stays fixed and positions based on element
         /// </summary>
@@ -23,7 +23,7 @@ namespace Goldenwere.Unity.UI
     }
 
     /// <summary>
-    /// Defines how the tooltip should be anchored
+    /// Defines how the tooltip should be anchored in terms of positioning (first half describes vertical positioning, second half describes horizontal positioning)
     /// </summary>
     public enum AnchorPosition
     {

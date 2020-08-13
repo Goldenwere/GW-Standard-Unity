@@ -104,7 +104,7 @@ namespace Goldenwere.Unity.UI
                 switch (tooltipAnchorPosition)
                 {
                     case AnchorPosition.TopLeft:
-                        newPos.x -= (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) / 2;
                         newPos.y += (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
@@ -127,7 +127,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.TopRight:
-                        newPos.x += (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) / 2;
                         newPos.y += (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
@@ -139,7 +139,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.CenterLeft:
-                        newPos.x -= (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) / 2;
 
                         if (tooltipSpawnedElement.ArrowEnabled)
                         {
@@ -150,7 +150,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.CenterRight:
-                        newPos.x += (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) / 2;
 
                         if (tooltipSpawnedElement.ArrowEnabled)
                         {
@@ -161,7 +161,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.BottomLeft:
-                        newPos.x -= (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) / 2;
                         newPos.y -= (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
@@ -184,7 +184,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.BottomRight:
-                        newPos.x += (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) / 2;
                         newPos.y -= (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
@@ -198,7 +198,6 @@ namespace Goldenwere.Unity.UI
 
                     case AnchorPosition.CenterMiddle:
                     default:
-
                         if (tooltipSpawnedElement.ArrowEnabled)
                         {
                             newPos.y += (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);

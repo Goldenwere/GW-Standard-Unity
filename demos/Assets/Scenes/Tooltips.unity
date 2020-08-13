@@ -394,7 +394,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2131279485}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.999997
+  m_Size: 0.99996626
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -469,7 +469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.006496714, y: 0.0019258683}
+  m_AnchoredPosition: {x: -0.004295222, y: 0.0011101966}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &931533395
@@ -878,7 +878,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1646672951}
   m_HandleRect: {fileID: 1646672950}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999967
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorPosition: 0
+  tooltipAnchorPosition: 8
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: This is a tooltip

@@ -142,6 +142,27 @@ namespace Goldenwere.Unity.UI
                     #endregion
 
                     tooltipSpawnedElement.RTransform.anchoredPosition = newPos;
+
+                    if (tooltipSpawnedElement.ArrowEnabled)
+                    {
+                        switch (tooltipAnchorPosition)
+                        {
+                            case AnchorPosition.TopLeft:
+                            case AnchorPosition.TopMiddle:
+                            case AnchorPosition.TopRight:
+                                tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(0, 
+                                    (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y / 2));
+                                tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
+                                break;
+                            case AnchorPosition.BottomLeft:
+                            case AnchorPosition.BottomMiddle:
+                            case AnchorPosition.BottomRight:
+                                tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(0, 
+                                    -((tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y / 2)));
+                                tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+                                break;
+                        }
+                    }
                 }
             }
         }

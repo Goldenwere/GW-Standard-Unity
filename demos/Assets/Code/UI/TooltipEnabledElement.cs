@@ -67,10 +67,7 @@ namespace Goldenwere.Unity.UI
 #pragma warning restore 0649
         /**************/ private bool           isActive;
         /**************/ private bool           isInitialized;
-        /**************/ private CanvasGroup    tooltipCanvasGroup;
-        /**************/ private GameObject     tooltipSpawnedElement;
-        /**************/ private RectTransform  tooltipSpawnedTransform;
-        /**************/ private TMP_Text       tooltipTextElement;
+        /**************/ private TooltipPrefab  tooltipSpawnedElement;
         #endregion
         #region Methods
         /// <summary>
@@ -98,32 +95,32 @@ namespace Goldenwere.Unity.UI
                     switch (tooltipAnchorPosition)
                     {
                         case AnchorPosition.TopLeft:
-                            newPos.x += tooltipSpawnedTransform.sizeDelta.x / 2;
-                            newPos.y -= tooltipSpawnedTransform.sizeDelta.y / 2;
+                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2;
+                            newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.TopMiddle:
-                            newPos.y -= tooltipSpawnedTransform.sizeDelta.y / 2;
+                            newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.TopRight:
-                            newPos.x -= tooltipSpawnedTransform.sizeDelta.x / 2;
-                            newPos.y -= tooltipSpawnedTransform.sizeDelta.y / 2;
+                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2;
+                            newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.CenterLeft:
-                            newPos.x += tooltipSpawnedTransform.sizeDelta.x / 2;
+                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2;
                             break;
                         case AnchorPosition.CenterRight:
-                            newPos.x -= tooltipSpawnedTransform.sizeDelta.x / 2;
+                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2;
                             break;
                         case AnchorPosition.BottomLeft:
-                            newPos.x += tooltipSpawnedTransform.sizeDelta.x / 2;
-                            newPos.y += tooltipSpawnedTransform.sizeDelta.y / 2;
+                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2;
+                            newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.BottomMiddle:
-                            newPos.y += tooltipSpawnedTransform.sizeDelta.y / 2;
+                            newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.BottomRight:
-                            newPos.x -= tooltipSpawnedTransform.sizeDelta.x / 2;
-                            newPos.y += tooltipSpawnedTransform.sizeDelta.y / 2;
+                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2;
+                            newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
 
                         case AnchorPosition.CenterMiddle:
@@ -134,17 +131,17 @@ namespace Goldenwere.Unity.UI
 
                     #region Position clamp-to-screen
                     Rect canvasRect = (canvasToBeAttachedTo.transform as RectTransform).rect;
-                    if (newPos.x < canvasRect.xMin + tooltipSpawnedTransform.sizeDelta.x / 2)
-                        newPos.x = canvasRect.xMin + tooltipSpawnedTransform.sizeDelta.x / 2;
-                    if (newPos.x + tooltipSpawnedTransform.sizeDelta.x / 2 > canvasRect.xMax)
-                        newPos.x = canvasRect.xMax - tooltipSpawnedTransform.sizeDelta.x / 2;
-                    if (newPos.y < canvasRect.yMin + tooltipSpawnedTransform.sizeDelta.y / 2)
-                        newPos.y = canvasRect.yMin + tooltipSpawnedTransform.sizeDelta.y / 2;
-                    if (newPos.y + tooltipSpawnedTransform.sizeDelta.y / 2 > canvasRect.yMax)
-                        newPos.y = canvasRect.yMax - tooltipSpawnedTransform.sizeDelta.y / 2;
+                    if (newPos.x < canvasRect.xMin + tooltipSpawnedElement.RTransform.sizeDelta.x / 2)
+                        newPos.x = canvasRect.xMin + tooltipSpawnedElement.RTransform.sizeDelta.x / 2;
+                    if (newPos.x + tooltipSpawnedElement.RTransform.sizeDelta.x / 2 > canvasRect.xMax)
+                        newPos.x = canvasRect.xMax - tooltipSpawnedElement.RTransform.sizeDelta.x / 2;
+                    if (newPos.y < canvasRect.yMin + tooltipSpawnedElement.RTransform.sizeDelta.y / 2)
+                        newPos.y = canvasRect.yMin + tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
+                    if (newPos.y + tooltipSpawnedElement.RTransform.sizeDelta.y / 2 > canvasRect.yMax)
+                        newPos.y = canvasRect.yMax - tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                     #endregion
 
-                    tooltipSpawnedTransform.anchoredPosition = newPos;
+                    tooltipSpawnedElement.RTransform.anchoredPosition = newPos;
                 }
             }
         }
@@ -170,12 +167,8 @@ namespace Goldenwere.Unity.UI
             if (canvasToBeAttachedTo == null)
                 canvasToBeAttachedTo = gameObject.GetComponentInParents<Canvas>();
 
-            tooltipSpawnedElement = Instantiate(tooltipPrefab, canvasToBeAttachedTo.transform);
-            tooltipTextElement = tooltipSpawnedElement.GetComponentInChildren<TMP_Text>();
-            tooltipSpawnedTransform = tooltipSpawnedElement.GetComponent<RectTransform>();
-            if ((tooltipCanvasGroup = tooltipSpawnedElement.GetComponent<CanvasGroup>()) == null)
-                tooltipCanvasGroup = tooltipSpawnedElement.AddComponent<CanvasGroup>();
-            isActive = tooltipSpawnedElement.activeSelf;
+            tooltipSpawnedElement = Instantiate(tooltipPrefab, canvasToBeAttachedTo.transform).GetComponent<TooltipPrefab>();
+            isActive = tooltipSpawnedElement.gameObject.activeSelf;
             SetActive(false, TransitionMode.None);
             isInitialized = true;
         }
@@ -240,18 +233,18 @@ namespace Goldenwere.Unity.UI
             while (t <= tooltipTransitionDuration)
             {
                 if (_isActive)
-                    tooltipCanvasGroup.alpha = tooltipTransitionCurveIn.Evaluate(t / tooltipTransitionDuration);
+                    tooltipSpawnedElement.CGroup.alpha = tooltipTransitionCurveIn.Evaluate(t / tooltipTransitionDuration);
                 else
-                    tooltipCanvasGroup.alpha = tooltipTransitionCurveOut.Evaluate(t / tooltipTransitionDuration);
+                    tooltipSpawnedElement.CGroup.alpha = tooltipTransitionCurveOut.Evaluate(t / tooltipTransitionDuration);
 
                 yield return null;
                 t += Time.deltaTime;
             }
 
             if (_isActive)
-                tooltipCanvasGroup.alpha = 1;
+                tooltipSpawnedElement.CGroup.alpha = 1;
             else
-                tooltipCanvasGroup.alpha = 0;
+                tooltipSpawnedElement.CGroup.alpha = 0;
         }
 
         /// <summary>
@@ -277,14 +270,14 @@ namespace Goldenwere.Unity.UI
                 switch (mode)
                 {
                     case TransitionMode.Fade:
-                        if (!tooltipSpawnedElement.activeSelf)
-                            tooltipSpawnedElement.SetActive(true);
-                        if (!isActive && tooltipCanvasGroup.alpha > 0 || isActive)
+                        if (!tooltipSpawnedElement.gameObject.activeSelf)
+                            tooltipSpawnedElement.gameObject.SetActive(true);
+                        if (!isActive && tooltipSpawnedElement.CGroup.alpha > 0 || isActive)
                             StartCoroutine(TransitionFade(isActive));
                         break;
                     case TransitionMode.None:
                     default:
-                        tooltipSpawnedElement.SetActive(isActive);
+                        tooltipSpawnedElement.gameObject.SetActive(isActive);
                         break;
                 }
             }
@@ -299,12 +292,12 @@ namespace Goldenwere.Unity.UI
                 Initialize();
 
             if (tooltipValues != null && tooltipValues.Length > 0)
-                tooltipTextElement.text = string.Format(tooltipText, tooltipValues).RepairSerializedEscaping();
+                tooltipSpawnedElement.Text.text = string.Format(tooltipText, tooltipValues).RepairSerializedEscaping();
             else
-                tooltipTextElement.text = tooltipText.RepairSerializedEscaping();
+                tooltipSpawnedElement.Text.text = tooltipText.RepairSerializedEscaping();
 
-            tooltipSpawnedTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
-                tooltipTextElement.preferredHeight + tooltipTextElement.rectTransform.offsetMin.y);
+            tooltipSpawnedElement.RTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
+                tooltipSpawnedElement.Text.preferredHeight + tooltipSpawnedElement.Text.rectTransform.offsetMin.y);
         }
         #endregion
     }

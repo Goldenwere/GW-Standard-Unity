@@ -35,7 +35,7 @@ namespace Goldenwere.Unity.UI
     /// <summary>
     /// Adds a tooltip to a UI element
     /// </summary>
-    public class TooltipEnabledElement : MonoBehaviour
+    public class TooltipEnabledElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         #region Fields
 #pragma warning disable 0649
@@ -183,7 +183,7 @@ namespace Goldenwere.Unity.UI
         /// <summary>
         /// OnPointerEnter, enable the tooltip
         /// </summary>
-        public void OnPointerEnter()
+        public void OnPointerEnter(PointerEventData data)
         {
             StopAllCoroutines();
             SetActive(true);
@@ -192,7 +192,7 @@ namespace Goldenwere.Unity.UI
         /// <summary>
         /// OnPointerExit, disable the tooltip
         /// </summary>
-        public void OnPointerExit()
+        public void OnPointerExit(PointerEventData data)
         {
             StopAllCoroutines();
             SetActive(false);

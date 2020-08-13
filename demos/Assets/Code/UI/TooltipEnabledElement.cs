@@ -141,25 +141,25 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.CenterLeft:
-                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
+                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.x * 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
                         {
-                            newPos.y += (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
-                            tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(0,
-                                -((tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y / 2)));
-                            tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+                            newPos.x += (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
+                            tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(
+                                ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.x / 2)), 0);
+                            tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, 90);
                         }
                         break;
                     case AnchorPosition.CenterRight:
-                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
+                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.x * 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
                         {
-                            newPos.y += (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
-                            tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(0,
-                                -((tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y / 2)));
-                            tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+                            newPos.x += (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
+                            tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(
+                                -((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.x / 2)), 0);
+                            tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, -90);
                         }
                         break;
                     case AnchorPosition.BottomLeft:
@@ -233,30 +233,46 @@ namespace Goldenwere.Unity.UI
                         case AnchorPosition.TopLeft:
                             newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
+                            if (tooltipSpawnedElement.ArrowEnabled)
+                                newPos.y -= tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y;
                             break;
                         case AnchorPosition.TopMiddle:
                             newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
+                            if (tooltipSpawnedElement.ArrowEnabled)
+                                newPos.y -= tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y;
                             break;
                         case AnchorPosition.TopRight:
                             newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
+                            if (tooltipSpawnedElement.ArrowEnabled)
+                                newPos.y -= tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y;
                             break;
                         case AnchorPosition.CenterLeft:
                             newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
+                            if (tooltipSpawnedElement.ArrowEnabled)
+                                newPos.x += tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.x;
                             break;
                         case AnchorPosition.CenterRight:
                             newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
+                            if (tooltipSpawnedElement.ArrowEnabled)
+                                newPos.x -= tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.x;
                             break;
                         case AnchorPosition.BottomLeft:
                             newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
+                            if (tooltipSpawnedElement.ArrowEnabled)
+                                newPos.y += tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y;
                             break;
                         case AnchorPosition.BottomMiddle:
                             newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
+                            if (tooltipSpawnedElement.ArrowEnabled)
+                                newPos.y += tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y;
                             break;
                         case AnchorPosition.BottomRight:
                             newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
+                            if (tooltipSpawnedElement.ArrowEnabled)
+                                newPos.y += tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y;
                             break;
 
                         case AnchorPosition.CenterMiddle:
@@ -290,9 +306,20 @@ namespace Goldenwere.Unity.UI
                                     (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y / 2));
                                 tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
                                 break;
+                            case AnchorPosition.CenterLeft:
+                                tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(
+                                    -((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.x / 2)), 0);
+                                tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, -90);
+                                break;
+                            case AnchorPosition.CenterRight:
+                                tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(
+                                    ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.x / 2)), 0);
+                                tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, 90);
+                                break;
                             case AnchorPosition.BottomLeft:
                             case AnchorPosition.BottomMiddle:
                             case AnchorPosition.BottomRight:
+                            default:
                                 tooltipSpawnedElement.Arrow.rectTransform.anchoredPosition = new Vector2(0, 
                                     -((tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y / 2)));
                                 tooltipSpawnedElement.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, 0);

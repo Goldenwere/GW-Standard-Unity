@@ -23,7 +23,7 @@ namespace Goldenwere.Unity.UI
 
         public Image            Arrow           { get { return arrow; } }
         public bool             ArrowEnabled    { get { return arrowEnabled; } }
-        public CanvasGroup      CGroup     { get { return canvasGroup; } }
+        public CanvasGroup      CGroup          { get { return canvasGroup; } }
         public RectTransform    RTransform      { get { return GetComponent<RectTransform>(); } }
         public TMP_Text         Text            { get { return text; } }
     }

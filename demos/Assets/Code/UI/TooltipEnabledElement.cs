@@ -8,6 +8,21 @@ using UnityEngine.UI;
 namespace Goldenwere.Unity.UI
 {
     /// <summary>
+    /// 
+    /// </summary>
+    public enum AnchorMode
+    {
+        /// <summary>
+        /// Tooltip follows cursor
+        /// </summary>
+        AttachedToCursor,
+        /// <summary>
+        /// Tooltip stays fixed and positions based on element
+        /// </summary>
+        AttachedToElement
+    }
+
+    /// <summary>
     /// Defines how the tooltip should be anchored
     /// </summary>
     public enum AnchorPosition
@@ -45,6 +60,8 @@ namespace Goldenwere.Unity.UI
         [SerializeField] private string         cameraThatRendersCanvasName;
         [Tooltip         ("Needed in order to ensure proper tooltip positioning as well as attaching tooltip to canvas")]
         [SerializeField] private Canvas         canvasToBeAttachedTo;
+        [Tooltip         ("Defines how the tooltip is attached")]
+        [SerializeField] private AnchorMode     tooltipAnchorMode;
         [Tooltip         ("The default anchor position. If the tooltip text overflows with this anchor, will change to another one if needed")]
         [SerializeField] private AnchorPosition tooltipAnchorPosition;
         [Tooltip         ("Prefab which the topmost gameobject can be resized based on text and contains a text element that can be set\n" +
@@ -78,6 +95,81 @@ namespace Goldenwere.Unity.UI
             if (!isInitialized)
                 Initialize();
             SetText();
+
+            if (tooltipAnchorMode == AnchorMode.AttachedToElement)
+            {
+                RectTransform thisRect = GetComponent<RectTransform>();
+                Vector2 newPos = Vector2.zero;
+
+                switch (tooltipAnchorPosition)
+                {
+                    case AnchorPosition.TopLeft:
+                        newPos.x -= (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.y += (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
+
+                        if (tooltipSpawnedElement.ArrowEnabled)
+                        {
+                            newPos.y += (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
+                        }
+                        break;
+                    case AnchorPosition.TopMiddle:
+                        newPos.y += (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
+
+                        if (tooltipSpawnedElement.ArrowEnabled)
+                        {
+                            newPos.y += (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
+                        }
+                        break;
+                    case AnchorPosition.TopRight:
+                        newPos.x += (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.y += (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
+
+                        if (tooltipSpawnedElement.ArrowEnabled)
+                        {
+                            newPos.y += (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
+                        }
+                        break;
+                    case AnchorPosition.CenterLeft:
+                        newPos.x -= (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        break;
+                    case AnchorPosition.CenterRight:
+                        newPos.x += (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        break;
+                    case AnchorPosition.BottomLeft:
+                        newPos.x -= (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.y -= (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
+
+                        if (tooltipSpawnedElement.ArrowEnabled)
+                        {
+                            newPos.y -= (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
+                        }
+                        break;
+                    case AnchorPosition.BottomMiddle:
+                        newPos.y -= (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
+
+                        if (tooltipSpawnedElement.ArrowEnabled)
+                        {
+                            newPos.y -= (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
+                        }
+                        break;
+                    case AnchorPosition.BottomRight:
+                        newPos.x += (tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2);
+                        newPos.y -= (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
+
+                        if (tooltipSpawnedElement.ArrowEnabled)
+                        {
+                            newPos.y -= (tooltipSpawnedElement.Arrow.rectTransform.sizeDelta.y);
+                        }
+                        break;
+
+                    case AnchorPosition.CenterMiddle:
+                    default:
+                        // Do nothing in this case - newPos should already be centered if the notes for tooltipPrefab are followed
+                        break;
+                }
+
+                tooltipSpawnedElement.RTransform.anchoredPosition = newPos;
+            }
         }
 
         /// <summary>
@@ -90,7 +182,9 @@ namespace Goldenwere.Unity.UI
                 if (!EventSystem.current.IsPointerOverGameObject())
                     SetActive(false);
 
-                else if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasToBeAttachedTo.transform as RectTransform, Mouse.current.position.ReadValue(), cameraThatRendersCanvas, out Vector2 newPos))
+                else if (tooltipAnchorMode == AnchorMode.AttachedToCursor &&
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        canvasToBeAttachedTo.transform as RectTransform, Mouse.current.position.ReadValue(), cameraThatRendersCanvas, out Vector2 newPos))
                 {
                     switch (tooltipAnchorPosition)
                     {
@@ -188,7 +282,10 @@ namespace Goldenwere.Unity.UI
             if (canvasToBeAttachedTo == null)
                 canvasToBeAttachedTo = gameObject.GetComponentInParents<Canvas>();
 
-            tooltipSpawnedElement = Instantiate(tooltipPrefab, canvasToBeAttachedTo.transform).GetComponent<TooltipPrefab>();
+            if (tooltipAnchorMode == AnchorMode.AttachedToCursor)
+                tooltipSpawnedElement = Instantiate(tooltipPrefab, canvasToBeAttachedTo.transform).GetComponent<TooltipPrefab>();
+            else
+                tooltipSpawnedElement = Instantiate(tooltipPrefab, GetComponent<RectTransform>()).GetComponent<TooltipPrefab>();
             isActive = tooltipSpawnedElement.gameObject.activeSelf;
             SetActive(false, TransitionMode.None);
             isInitialized = true;

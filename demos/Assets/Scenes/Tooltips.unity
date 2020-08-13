@@ -178,7 +178,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 1
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -333,7 +333,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 3
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
@@ -524,7 +524,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 8
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -989,7 +989,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 3
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 4
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 5
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -1609,7 +1609,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 7
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -2080,7 +2080,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 3
-  tooltipHorizontalStrength: 0.1
+  tooltipHorizontalFactor: 0.1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
@@ -2235,7 +2235,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 0
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -2390,7 +2390,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 3
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
@@ -3010,7 +3010,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 3
-  tooltipHorizontalStrength: 0.1
+  tooltipHorizontalFactor: 0.1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
@@ -3264,7 +3264,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 2
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -3967,7 +3967,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 3
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -4164,7 +4164,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 5
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -4316,7 +4316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 672863101}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -4581,7 +4581,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 1
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -4736,7 +4736,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 4
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -5046,7 +5046,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 0
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -5601,7 +5601,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 3
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -6917,7 +6917,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 3
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
@@ -7072,7 +7072,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 6
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -7227,7 +7227,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 0
   tooltipAnchorPosition: 6
-  tooltipHorizontalStrength: 1
+  tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -7382,7 +7382,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 2
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -8622,7 +8622,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 7
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
@@ -8777,7 +8777,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipAnchorMode: 1
   tooltipAnchorPosition: 8
-  tooltipHorizontalStrength: 0.5
+  tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences

@@ -65,7 +65,7 @@ namespace Goldenwere.Unity.UI
         [Tooltip         ("The default anchor position. If the tooltip text overflows with this anchor, will change to another one if needed")]
         [SerializeField] private AnchorPosition tooltipAnchorPosition;
         [Range(0.01f,1)] [Tooltip               ("Determines how much the tooltip anchors to the left/right when AnchorPosition is one of the left/right settings (has no effect on Middle settings)")]
-        [SerializeField] private float          tooltipHorizontalStrength = 1;
+        [SerializeField] private float          tooltipHorizontalFactor = 1;
         [Tooltip         ("Prefab which the topmost gameobject can be resized based on text and contains a text element that can be set\n" +
                           "Note: Make sure that the text element has the horizontal+vertical stretch anchor preset and equivalent padding on all sides," +
                           "as this class depends on the left padding when determining container height + bottom padding\n" +
@@ -106,7 +106,7 @@ namespace Goldenwere.Unity.UI
                 switch (tooltipAnchorPosition)
                 {
                     case AnchorPosition.TopLeft:
-                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalStrength;
+                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
                         newPos.y += (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
@@ -129,7 +129,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.TopRight:
-                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalStrength;
+                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
                         newPos.y += (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
@@ -141,7 +141,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.CenterLeft:
-                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalStrength;
+                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
 
                         if (tooltipSpawnedElement.ArrowEnabled)
                         {
@@ -152,7 +152,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.CenterRight:
-                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalStrength;
+                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
 
                         if (tooltipSpawnedElement.ArrowEnabled)
                         {
@@ -163,7 +163,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.BottomLeft:
-                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalStrength;
+                        newPos.x -= ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
                         newPos.y -= (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
@@ -186,7 +186,7 @@ namespace Goldenwere.Unity.UI
                         }
                         break;
                     case AnchorPosition.BottomRight:
-                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalStrength;
+                        newPos.x += ((tooltipSpawnedElement.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
                         newPos.y -= (tooltipSpawnedElement.RTransform.sizeDelta.y / 2) + (thisRect.sizeDelta.y / 2);
 
                         if (tooltipSpawnedElement.ArrowEnabled)
@@ -231,31 +231,31 @@ namespace Goldenwere.Unity.UI
                     switch (tooltipAnchorPosition)
                     {
                         case AnchorPosition.TopLeft:
-                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalStrength;
+                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.TopMiddle:
                             newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.TopRight:
-                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalStrength;
+                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             newPos.y -= tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.CenterLeft:
-                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalStrength;
+                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             break;
                         case AnchorPosition.CenterRight:
-                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalStrength;
+                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             break;
                         case AnchorPosition.BottomLeft:
-                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalStrength;
+                            newPos.x += tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.BottomMiddle:
                             newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
                         case AnchorPosition.BottomRight:
-                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalStrength;
+                            newPos.x -= tooltipSpawnedElement.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
                             newPos.y += tooltipSpawnedElement.RTransform.sizeDelta.y / 2;
                             break;
 

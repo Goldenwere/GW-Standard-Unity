@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using System.Linq;
 using System.Collections;
 
 namespace Goldenwere.Unity.UI
@@ -506,7 +507,7 @@ namespace Goldenwere.Unity.UI
                 Initialize();
 
             if (tooltipValues != null && tooltipValues.Length > 0)
-                tooltipSpawnedElement.Text.text = string.Format(tooltipText, tooltipValues).RepairSerializedEscaping();
+                tooltipSpawnedElement.Text.text = string.Format(tooltipText, tooltipValues.Cast<object>().ToArray()).RepairSerializedEscaping();
             else
                 tooltipSpawnedElement.Text.text = tooltipText.RepairSerializedEscaping();
 

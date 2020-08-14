@@ -78,6 +78,8 @@ namespace Goldenwere.Unity.UI
         [SerializeField] private Canvas         canvasToBeAttachedTo;
         [Range(0.01f,1)] [Tooltip               ("Determines how much the tooltip anchors to the left/right when AnchorPosition is one of the left/right settings (has no effect on Middle settings)")]
         [SerializeField] private float          tooltipHorizontalFactor = 1;
+        [Tooltip         ("Padding between the edges of the tooltip and text element, done in traditional CSS order: Top, Right, Bottom, Left")]
+        [SerializeField] private Vector4        tooltipPadding;
         [Tooltip         ("Prefab which the topmost gameobject can be resized based on text and contains a text element that can be set\n" +
                           "Note: Make sure that the text element has the horizontal+vertical stretch anchor preset and equivalent padding on all sides," +
                           "as this class depends on the left padding when determining container height + bottom padding\n" +
@@ -157,6 +159,20 @@ namespace Goldenwere.Unity.UI
             isActive = tooltipInstance.gameObject.activeSelf;
             SetActive(false, TransitionMode.None);
             isInitialized = true;
+
+            // Override sizing/anchors in prefab in case they may conflict with tooltipping system
+            // Padding is a serialized variable, the anchor for text must be vertical+horizontal stretch for it to work properly
+            // Ensure arrow is set to center+center so that positioning is correct
+            tooltipInstance.Text.rectTransform.offsetMin = new Vector2(tooltipPadding.w, tooltipPadding.z);
+            tooltipInstance.Text.rectTransform.offsetMax = new Vector2(-tooltipPadding.y, -tooltipPadding.x);
+            tooltipInstance.Text.rectTransform.anchorMin = new Vector2(0, 0);
+            tooltipInstance.Text.rectTransform.anchorMax = new Vector2(1, 1);
+
+            if (tooltipInstance.ArrowEnabled)
+            {
+                tooltipInstance.Arrow.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                tooltipInstance.Arrow.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+            }
         }
 
         /// <summary>

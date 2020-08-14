@@ -173,31 +173,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 1
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 1
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &37398953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -329,31 +330,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &55733924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +413,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -485,6 +487,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -640,6 +643,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -795,6 +799,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -950,31 +955,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 5
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 5
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &122904081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1038,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1142,6 +1148,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1297,31 +1304,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 0
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check the difference in Default Arrow Position
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &148416500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1380,6 +1387,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1453,31 +1461,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 8
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 8
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &149992590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1536,6 +1544,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1649,6 +1658,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1804,10 +1814,11 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bottom Right
+  m_text: mspace tag
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1876,7 +1887,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 235220660}
-    characterCount: 12
+    characterCount: 10
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -1959,6 +1970,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2114,6 +2126,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2269,31 +2282,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &324975035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2352,6 +2365,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2425,6 +2439,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2580,31 +2595,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &425224435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2663,6 +2678,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2736,31 +2752,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &431265741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2819,6 +2835,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2892,31 +2909,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 5
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 5
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &470817153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2975,6 +2992,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3048,31 +3066,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 7
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 7
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &471242757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,6 +3149,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3233,8 +3252,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2131279486}
   m_HandleRect: {fileID: 2131279485}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.12074998
+  m_Value: 1
+  m_Size: 0.120750025
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3254,6 +3273,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3327,31 +3347,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: <color=#ff0000>TMPro tags supported</color>
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &479367352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3410,6 +3430,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3483,6 +3504,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3638,31 +3660,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 2
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 2
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Use 5:4 aspect ratio and bring cursor near edge
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &568308018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3721,6 +3743,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3794,31 +3817,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 2
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 2
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &571198680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3877,6 +3900,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3950,33 +3974,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'Value A: {0} | Value: {1}'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues:
   - 20
   - 30
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &596575602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4035,6 +4059,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4148,6 +4173,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4290,7 +4316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0048537767, y: -0.00015460134}
+  m_AnchoredPosition: {x: 0.0048537767, y: 0.0010986328}
   m_SizeDelta: {x: 0.0028613363, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &676880782
@@ -4345,31 +4371,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check the difference in Default Arrow Position
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &676880785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4428,6 +4454,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4501,10 +4528,11 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bottom Right
+  m_text: Top (Cursor)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4656,31 +4684,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &722327654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4739,6 +4767,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4812,31 +4841,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 0
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 0
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &733122582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4895,6 +4924,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4968,31 +4998,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: <mspace=1em>TMPro tags supported</mspace>
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &761811515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5051,6 +5081,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5124,31 +5155,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &819300211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5207,6 +5238,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5280,31 +5312,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 6
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 6
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Use 5:4 aspect ratio and bring cursor near edge
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &827624587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5363,6 +5395,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5436,6 +5469,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5591,31 +5625,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 8
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 8
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Use 5:4 aspect ratio and bring cursor near edge
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &842832608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5674,6 +5708,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5747,10 +5782,11 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Top Middle
+  m_text: color tag
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5819,7 +5855,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 852365697}
-    characterCount: 10
+    characterCount: 9
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -5902,6 +5938,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6057,6 +6094,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6212,31 +6250,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &882196519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6295,6 +6333,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6467,31 +6506,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 2
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 2
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &931903333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6550,6 +6589,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6706,6 +6746,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6861,31 +6902,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 0
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 0
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: Use 5:4 aspect ratio and bring cursor near edge
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &984819195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6944,6 +6985,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7017,10 +7059,11 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bottom Right
+  m_text: Single value for string.Format()
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7089,12 +7132,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 985964187}
-    characterCount: 12
+    characterCount: 32
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 3
+    wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -7172,6 +7215,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7327,6 +7371,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7482,6 +7527,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7637,31 +7683,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 0
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check the difference in Default Arrow Position
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1037187406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7720,6 +7766,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7793,31 +7840,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1053796701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7876,6 +7923,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7991,31 +8039,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 5
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 5
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1072980405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8074,6 +8122,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8147,6 +8196,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8302,6 +8352,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8491,6 +8542,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8564,6 +8616,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8719,31 +8772,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 1
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 1
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1147703363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8802,6 +8855,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8875,31 +8929,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 6
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 6
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1160801065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8958,6 +9012,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9031,31 +9086,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1173603424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9114,6 +9169,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9187,31 +9243,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 7
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 7
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1179966425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9270,6 +9326,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9343,6 +9400,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9498,31 +9556,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 0
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 0
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1184758856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9581,6 +9639,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9699,6 +9758,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9854,6 +9914,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10054,31 +10115,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1383532507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10137,6 +10198,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10210,10 +10272,11 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Top Middle
+  m_text: Multiple values for string.format()
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10282,12 +10345,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1387848493}
-    characterCount: 10
+    characterCount: 35
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 3
+    wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -10365,6 +10428,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10585,8 +10649,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1646672951}
   m_HandleRect: {fileID: 1646672950}
   m_Direction: 0
-  m_Value: -0.6213235
-  m_Size: 0.99999154
+  m_Value: 0
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10606,6 +10670,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10745,6 +10810,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10900,10 +10966,11 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Top Middle
+  m_text: Bottom (Element)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10972,7 +11039,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1536400827}
-    characterCount: 10
+    characterCount: 16
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -11055,6 +11122,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11255,6 +11323,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11425,6 +11494,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11498,6 +11568,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11653,31 +11724,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1643852364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11736,6 +11807,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11809,6 +11881,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11882,6 +11955,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12037,6 +12111,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12192,6 +12267,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12347,32 +12423,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'Value: {0}'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues:
   - 10
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1721705329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12431,6 +12507,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12504,31 +12581,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 8
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 8
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1724519996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12587,6 +12664,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12660,31 +12738,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 3
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 3
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Horizontal Factor" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1741119969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12743,6 +12821,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12816,31 +12895,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 6
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 6
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1757367242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12899,6 +12978,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12972,31 +13052,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 6
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 6
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1774743818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13055,6 +13135,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13128,31 +13209,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 2
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 2
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1776871673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13211,6 +13292,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13284,6 +13366,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13439,6 +13522,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13594,31 +13678,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 1
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 1
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1809105578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13677,6 +13761,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13750,6 +13835,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13905,6 +13991,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14060,31 +14147,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 4
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check the difference in Default Arrow Position
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1835603123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14143,6 +14230,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14216,31 +14304,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 0
+  anchorPosition: 0
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 0
-  tooltipAnchorPosition: 0
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
   tooltipText: 'There are two prefabs: arrow and arrowless'
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &1869725586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14299,6 +14387,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14372,6 +14461,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14527,6 +14617,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14682,6 +14773,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14837,6 +14929,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14992,6 +15085,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15147,6 +15241,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15342,6 +15437,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15497,10 +15593,11 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Top Middle
+  m_text: Bottom (Cursor)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15569,7 +15666,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2025788856}
-    characterCount: 10
+    characterCount: 15
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -15652,10 +15749,11 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bottom Right
+  m_text: Top (Element)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15724,7 +15822,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2030207982}
-    characterCount: 12
+    characterCount: 13
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -15807,31 +15905,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 7
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 7
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 0
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &2034714727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15890,6 +15988,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15963,6 +16062,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16118,31 +16218,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32283aa58a960ca4199a9a3a195373cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMode: 1
+  anchorPosition: 8
+  arrowDefaultPositionAtMiddle: 0
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
-  tooltipAnchorMode: 1
-  tooltipAnchorPosition: 8
-  tooltipDefaultArrowPositionForMiddle: 1
   tooltipHorizontalFactor: 0.5
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
   tooltipText: Check "Anchor Position" for differences
-  tooltipTransitionDuration: 0
-  tooltipTransitionCurveIn:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionCurveOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  tooltipTransitionMode: 0
   tooltipValues: []
+  transitionDuration: 5
+  transitionCurveIn:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionCurveOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionMode: 0
 --- !u!114 &2100589004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16201,6 +16301,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16274,6 +16375,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16429,6 +16531,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

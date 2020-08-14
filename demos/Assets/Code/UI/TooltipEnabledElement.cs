@@ -64,18 +64,18 @@ namespace Goldenwere.Unity.UI
     {
         #region Fields
 #pragma warning disable 0649
+        [Tooltip         ("Defines how the tooltip is attached")]
+        [SerializeField] private AnchorMode     anchorMode;
+        [Tooltip         ("The default anchor position. If the tooltip text overflows with this anchor, will change to another one if needed")]
+        [SerializeField] private AnchorPosition anchorPosition;
+        [Tooltip         ("Sets where the tooltip arrow goes when using the CenterMiddle setting in anchorPosition. Has no effect for other settings or when there is no arrow available")]
+        [SerializeField] private MiddlePosition arrowDefaultPositionAtMiddle;
         [Tooltip         ("Needed in order to ensure proper tooltip positioning; can be left unassigned as long as the UI element itself is attached to a canvas")]
         [SerializeField] private Camera         cameraThatRendersCanvas;
         [Tooltip         ("Optional string to provide if cannot attach camera in inspector (e.g. prefabbed UI elements instantiated at runtime)")]
         [SerializeField] private string         cameraThatRendersCanvasName;
         [Tooltip         ("Needed in order to ensure proper tooltip positioning as well as attaching tooltip to canvas")]
         [SerializeField] private Canvas         canvasToBeAttachedTo;
-        [Tooltip         ("Defines how the tooltip is attached")]
-        [SerializeField] private AnchorMode     tooltipAnchorMode;
-        [Tooltip         ("The default anchor position. If the tooltip text overflows with this anchor, will change to another one if needed")]
-        [SerializeField] private AnchorPosition tooltipAnchorPosition;
-        [Tooltip         ("Sets where the tooltip arrow goes when using the CenterMiddle setting in tooltipAnchorPosition. Has no effect for other settings or when there is no arrow available")]
-        [SerializeField] private MiddlePosition tooltipDefaultArrowPositionForMiddle;
         [Range(0.01f,1)] [Tooltip               ("Determines how much the tooltip anchors to the left/right when AnchorPosition is one of the left/right settings (has no effect on Middle settings)")]
         [SerializeField] private float          tooltipHorizontalFactor = 1;
         [Tooltip         ("Prefab which the topmost gameobject can be resized based on text and contains a text element that can be set\n" +
@@ -110,7 +110,7 @@ namespace Goldenwere.Unity.UI
                 Initialize();
             SetText();
 
-            if (tooltipAnchorMode == AnchorMode.AttachedToElement)
+            if (anchorMode == AnchorMode.AttachedToElement)
                 tooltipInstance.RTransform.anchoredPosition = PositionTooltipToElement();
         }
 
@@ -124,7 +124,7 @@ namespace Goldenwere.Unity.UI
                 if (!EventSystem.current.IsPointerOverGameObject())
                     SetActive(false);
 
-                else if (tooltipAnchorMode == AnchorMode.AttachedToCursor && PositionTooltipToCursor(out Vector2 newPos))
+                else if (anchorMode == AnchorMode.AttachedToCursor && PositionTooltipToCursor(out Vector2 newPos))
                     tooltipInstance.RTransform.anchoredPosition = newPos;
             }
         }
@@ -150,7 +150,7 @@ namespace Goldenwere.Unity.UI
             if (canvasToBeAttachedTo == null)
                 canvasToBeAttachedTo = gameObject.GetComponentInParents<Canvas>();
 
-            if (tooltipAnchorMode == AnchorMode.AttachedToCursor)
+            if (anchorMode == AnchorMode.AttachedToCursor)
                 tooltipInstance = Instantiate(tooltipPrefab, canvasToBeAttachedTo.transform).GetComponent<TooltipPrefab>();
             else
                 tooltipInstance = Instantiate(tooltipPrefab, GetComponent<RectTransform>()).GetComponent<TooltipPrefab>();
@@ -218,7 +218,7 @@ namespace Goldenwere.Unity.UI
             bool didHit = RectTransformUtility.ScreenPointToLocalPointInRectangle(
                         canvasToBeAttachedTo.transform as RectTransform, Mouse.current.position.ReadValue(), cameraThatRendersCanvas, out newPos);
 
-            switch (tooltipAnchorPosition)
+            switch (anchorPosition)
             {
                 case AnchorPosition.TopLeft:
                     newPos.x += tooltipInstance.RTransform.sizeDelta.x / 2 * tooltipHorizontalFactor;
@@ -285,7 +285,7 @@ namespace Goldenwere.Unity.UI
 
             if (tooltipInstance.ArrowEnabled)
             {
-                switch (tooltipAnchorPosition)
+                switch (anchorPosition)
                 {
                     case AnchorPosition.TopLeft:
                     case AnchorPosition.TopMiddle:
@@ -300,7 +300,7 @@ namespace Goldenwere.Unity.UI
                         tooltipInstance.Arrow.rectTransform.rotation = Quaternion.Euler(0, 0, -90);
                         break;
                     case AnchorPosition.CenterMiddle:
-                        if (tooltipDefaultArrowPositionForMiddle == MiddlePosition.Top)
+                        if (arrowDefaultPositionAtMiddle == MiddlePosition.Top)
                         {
                             tooltipInstance.Arrow.rectTransform.anchoredPosition = new Vector2(0,
                                 (tooltipInstance.RTransform.sizeDelta.y / 2) + (tooltipInstance.Arrow.rectTransform.sizeDelta.y / 2));
@@ -341,7 +341,7 @@ namespace Goldenwere.Unity.UI
             RectTransform thisRect = GetComponent<RectTransform>();
             Vector2 newPos = Vector2.zero;
 
-            switch (tooltipAnchorPosition)
+            switch (anchorPosition)
             {
                 case AnchorPosition.TopLeft:
                     newPos.x -= ((tooltipInstance.RTransform.sizeDelta.x / 2) + (thisRect.sizeDelta.x / 2)) * tooltipHorizontalFactor;
@@ -440,7 +440,7 @@ namespace Goldenwere.Unity.UI
                 default:
                     if (tooltipInstance.ArrowEnabled)
                     {
-                        if (tooltipDefaultArrowPositionForMiddle == MiddlePosition.Bottom)
+                        if (arrowDefaultPositionAtMiddle == MiddlePosition.Bottom)
                         {
                             newPos.y += (tooltipInstance.Arrow.rectTransform.sizeDelta.y);
                             tooltipInstance.Arrow.rectTransform.anchoredPosition = new Vector2(0,

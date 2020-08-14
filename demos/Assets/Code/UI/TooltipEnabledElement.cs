@@ -56,7 +56,10 @@ namespace Goldenwere.Unity.UI
         None,
         Fade,
         ShiftUp,
-        ShiftDown
+        ShiftDown,
+        Scale,
+        ScaleHorizontal,
+        ScaleVertical
     }
 
     /// <summary>
@@ -516,6 +519,17 @@ namespace Goldenwere.Unity.UI
                 isActive = _isActive;
                 switch (mode)
                 {
+                    case TransitionMode.Scale:
+                    case TransitionMode.ScaleHorizontal:
+                    case TransitionMode.ScaleVertical:
+                        if (!tooltipInstance.gameObject.activeSelf)
+                            tooltipInstance.gameObject.SetActive(true);
+                        if (!isActive && tooltipInstance.CGroup.alpha > 0 || isActive)
+                        {
+                            StartCoroutine(TransitionFade(isActive));
+                            StartCoroutine(TransitionScale(isActive, mode));
+                        }
+                        break;
                     case TransitionMode.ShiftUp:
                         if (!tooltipInstance.gameObject.activeSelf)
                             tooltipInstance.gameObject.SetActive(true);
@@ -599,6 +613,71 @@ namespace Goldenwere.Unity.UI
         }
 
         /// <summary>
+        /// Coroutine for the ScaleHorizontal/ScaleVertical/Scale transitions
+        /// </summary>
+        /// <param name="_isActive">Determines whether to shift in or out</param>
+        /// <param name="_scaleMode">One of the three scale modes; others passed through will simply default to Scale</param>
+        /// <returns></returns>
+        private IEnumerator TransitionScale(bool _isActive, TransitionMode _scaleMode)
+        {
+            float t = 0;
+            Vector3 scaleStart;
+            Vector3 scaleEnd;
+
+            if (_isActive)
+            {
+                scaleEnd = Vector3.one;
+                switch (_scaleMode)
+                {
+                    case TransitionMode.ScaleHorizontal:
+                        scaleStart = new Vector3(0, 1, 1);
+                        break;
+                    case TransitionMode.ScaleVertical:
+                        scaleStart = new Vector3(1, 0, 1);
+                        break;
+                    case TransitionMode.Scale:
+                    default:
+                        scaleStart = Vector3.zero;
+                        break;
+                }
+
+                while (t <= transitionDuration)
+                {
+                    tooltipInstance.RTransform.localScale = Vector3.LerpUnclamped(scaleStart, scaleEnd, transitionCurveIn.Evaluate(t / transitionDuration));
+                    yield return null;
+                    t += Time.deltaTime;
+                }
+            }
+
+            else
+            {
+                scaleStart = Vector3.one;
+                switch (_scaleMode)
+                {
+                    case TransitionMode.ScaleHorizontal:
+                        scaleEnd = new Vector3(0, 1, 1);
+                        break;
+                    case TransitionMode.ScaleVertical:
+                        scaleEnd = new Vector3(1, 0, 1);
+                        break;
+                    case TransitionMode.Scale:
+                    default:
+                        scaleEnd = Vector3.zero;
+                        break;
+                }
+
+                while (t <= transitionDuration)
+                {
+                    tooltipInstance.RTransform.localScale = Vector3.LerpUnclamped(scaleEnd, scaleStart, transitionCurveOut.Evaluate(t / transitionDuration));
+                    yield return null;
+                    t += Time.deltaTime;
+                }
+            }
+
+            tooltipInstance.RTransform.localScale = scaleEnd;
+        }
+
+        /// <summary>
         /// Coroutine for the ShiftUp/ShiftDown transitions
         /// </summary>
         /// <param name="_isActive">Determines whether to shift in or out</param>
@@ -621,25 +700,18 @@ namespace Goldenwere.Unity.UI
                 {
                     posStart = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y + tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
                     posEnd = parent.transform.localPosition;
-
-                    while (t <= transitionDuration)
-                    {
-                        parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
-                        yield return null;
-                        t += Time.deltaTime;
-                    }
                 }
                 else
                 {
                     posStart = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y - tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
                     posEnd = parent.transform.localPosition;
+                }
 
-                    while (t <= transitionDuration)
-                    {
-                        parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
-                        yield return null;
-                        t += Time.deltaTime;
-                    }
+                while (t <= transitionDuration)
+                {
+                    parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
+                    yield return null;
+                    t += Time.deltaTime;
                 }
             }
 
@@ -649,27 +721,21 @@ namespace Goldenwere.Unity.UI
                 {
                     posEnd = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y + tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
                     posStart = parent.transform.localPosition;
-
-                    while (t <= transitionDuration)
-                    {
-                        parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
-                        yield return null;
-                        t += Time.deltaTime;
-                    }
                 }
                 else
                 {
                     posEnd = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y - tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
                     posStart = parent.transform.localPosition;
+                }
 
-                    while (t <= transitionDuration)
-                    {
-                        parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
-                        yield return null;
-                        t += Time.deltaTime;
-                    }
+                while (t <= transitionDuration)
+                {
+                    parent.transform.localPosition = Vector3.LerpUnclamped(posEnd, posStart, transitionCurveOut.Evaluate(t / transitionDuration));
+                    yield return null;
+                    t += Time.deltaTime;
                 }
             }
+
             tooltipInstance.transform.SetParent(origParent, true);
             Destroy(parent.gameObject);
             if (!_isActive)

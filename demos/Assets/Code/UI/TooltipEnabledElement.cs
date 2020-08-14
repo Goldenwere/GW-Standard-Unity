@@ -60,10 +60,10 @@ namespace Goldenwere.Unity.UI
         Scale,
         ScaleHorizontal,
         ScaleVertical,
-        TiltUp,
-        TiltDown,
-        TiltLeft,
-        TiltRight
+        RotateHorizontal,
+        RotateHorizontalInverted,
+        RotateVertical,
+        RotateVerticalInverted,
     }
 
     /// <summary>
@@ -533,16 +533,16 @@ namespace Goldenwere.Unity.UI
                 isActive = _isActive;
                 switch (mode)
                 {
-                    case TransitionMode.TiltUp:
-                    case TransitionMode.TiltDown:
-                    case TransitionMode.TiltLeft:
-                    case TransitionMode.TiltRight:
+                    case TransitionMode.RotateHorizontal:
+                    case TransitionMode.RotateHorizontalInverted:
+                    case TransitionMode.RotateVertical:
+                    case TransitionMode.RotateVerticalInverted:
                         if (!tooltipInstance.gameObject.activeSelf)
                             tooltipInstance.gameObject.SetActive(true);
                         if (!isActive && tooltipInstance.CGroup.alpha > 0 || isActive)
                         {
                             StartCoroutine(TransitionFade(isActive));
-                            StartCoroutine(TransitionTilt(isActive, mode));
+                            StartCoroutine(TransitionRotate(isActive, mode));
                         }
                         break;
                     case TransitionMode.Scale:
@@ -645,7 +645,6 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         /// <param name="_isActive">Determines whether to shift in or out</param>
         /// <param name="_scaleMode">One of the three scale modes; others passed through will simply default to Scale</param>
-        /// <returns></returns>
         private IEnumerator TransitionScale(bool _isActive, TransitionMode _scaleMode)
         {
             float t = 0;
@@ -710,7 +709,6 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         /// <param name="_isActive">Determines whether to shift in or out</param>
         /// <param name="_shiftDown">Determines whether to shift up or down</param>
-        /// <returns></returns>
         private IEnumerator TransitionShift(bool _isActive, bool _shiftDown)
         {
             float t = 0;
@@ -774,11 +772,70 @@ namespace Goldenwere.Unity.UI
         /// Coroutine for the various Tilt transitions
         /// </summary>
         /// <param name="_isActive">Determines whether to shift in or out</param>
-        /// <param name="_tiltMode">One of the four tilt modes; others passed through will simply default to TiltUp</param>
-        /// <returns></returns>
-        private IEnumerator TransitionTilt(bool _isActive, TransitionMode _tiltMode)
+        /// <param name="_rotMode">One of the four tilt modes; others passed through will simply default to RotateVerticalInverted</param>
+        private IEnumerator TransitionRotate(bool _isActive, TransitionMode _rotMode)
         {
+            float t = 0;
+            Quaternion rotStart;
+            Quaternion rotEnd;
 
+            if (_isActive)
+            {
+                rotEnd = Quaternion.identity;
+                switch(_rotMode)
+                {
+                    case TransitionMode.RotateHorizontal:
+                        rotStart = Quaternion.Euler(new Vector3(90, 0, 0));
+                        break;
+                    case TransitionMode.RotateHorizontalInverted:
+                        rotStart = Quaternion.Euler(new Vector3(-90, 0, 0));
+                        break;
+                    case TransitionMode.RotateVertical:
+                        rotStart = Quaternion.Euler(new Vector3(0, 90, 0));
+                        break;
+                    case TransitionMode.RotateVerticalInverted:
+                    default:
+                        rotStart = Quaternion.Euler(new Vector3(0, -90, 0));
+                        break;
+                }
+
+                while (t <= transitionDuration)
+                {
+                    tooltipInstance.RTransform.rotation = Quaternion.SlerpUnclamped(rotStart, rotEnd, transitionCurveIn.Evaluate(t / transitionDuration));
+                    yield return null;
+                    t += Time.deltaTime;
+                }
+            }
+
+            else
+            {
+                rotStart = Quaternion.identity;
+                switch (_rotMode)
+                {
+                    case TransitionMode.RotateHorizontal:
+                        rotEnd = Quaternion.Euler(new Vector3(90, 0, 0));
+                        break;
+                    case TransitionMode.RotateHorizontalInverted:
+                        rotEnd = Quaternion.Euler(new Vector3(-90, 0, 0));
+                        break;
+                    case TransitionMode.RotateVertical:
+                        rotEnd = Quaternion.Euler(new Vector3(0, 90, 0));
+                        break;
+                    case TransitionMode.RotateVerticalInverted:
+                    default:
+                        rotEnd = Quaternion.Euler(new Vector3(0, -90, 0));
+                        break;
+                }
+
+                while (t <= transitionDuration)
+                {
+                    tooltipInstance.RTransform.rotation = Quaternion.SlerpUnclamped(rotEnd, rotStart, transitionCurveOut.Evaluate(t / transitionDuration));
+                    yield return null;
+                    t += Time.deltaTime;
+                }
+            }
+
+            tooltipInstance.RTransform.rotation = rotEnd;
         }
         #endregion
         #endregion

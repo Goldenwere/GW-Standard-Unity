@@ -113,8 +113,10 @@ namespace Goldenwere.Unity.UI
 #pragma warning restore 0649
         /**************/ private bool           isActive;
         /**************/ private bool           isInitialized;
+        /**************/ private bool           isTransitioning;
         /**************/ private TooltipPrefab  tooltipInstance;
-        // Needed to ensure tooltip is set back to the same position when using ShiftUp/ShiftDown transitions
+        // Parent and position needed to ensure tooltip is set back to the same position when using ShiftUp/ShiftDown transitions
+        /**************/ private Transform      tooltipInstanceParent;
         /**************/ private Vector3        tooltipInstancePosition;
         #endregion
         #region Methods
@@ -184,6 +186,7 @@ namespace Goldenwere.Unity.UI
             else
                 tooltipInstance = Instantiate(tooltipPrefab, GetComponent<RectTransform>()).GetComponent<TooltipPrefab>();
 
+            tooltipInstanceParent = tooltipInstance.transform.parent;
             isActive = tooltipInstance.gameObject.activeSelf;
             SetActive(false, TransitionMode.None);
             isInitialized = true;
@@ -212,6 +215,16 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         public void OnDeselect(BaseEventData data)
         {
+            if (transitionMode == TransitionMode.ShiftDown || transitionMode == TransitionMode.ShiftUp)
+            {
+                if (isTransitioning)
+                {
+                    Transform parent = tooltipInstance.transform.parent;
+                    tooltipInstance.transform.SetParent(tooltipInstanceParent, true);
+                    Destroy(parent.gameObject);
+                    tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
+                }
+            }
             StopAllCoroutines();
             SetActive(false);
         }
@@ -233,6 +246,16 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         public void OnPointerExit(PointerEventData data)
         {
+            if (transitionMode == TransitionMode.ShiftDown || transitionMode == TransitionMode.ShiftUp)
+            {
+                if (isTransitioning)
+                {
+                    Transform parent = tooltipInstance.transform.parent;
+                    tooltipInstance.transform.SetParent(tooltipInstanceParent, true);
+                    Destroy(parent.gameObject);
+                    tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
+                }
+            }
             StopAllCoroutines();
             SetActive(false);
         }
@@ -651,7 +674,9 @@ namespace Goldenwere.Unity.UI
         /// <param name="_isActive">Determines whether to fade in or out</param>
         private IEnumerator TransitionFade(bool _isActive)
         {
+            isTransitioning = true;
             float t = 0;
+
             while (t <= transitionDuration)
             {
                 if (_isActive)
@@ -667,6 +692,8 @@ namespace Goldenwere.Unity.UI
                 tooltipInstance.CGroup.alpha = 1;
             else
                 tooltipInstance.CGroup.alpha = 0;
+
+            isTransitioning = false;
         }
 
         /// <summary>
@@ -676,6 +703,7 @@ namespace Goldenwere.Unity.UI
         /// <param name="_scaleMode">One of the three scale modes; others passed through will simply default to Scale</param>
         private IEnumerator TransitionScale(bool _isActive, TransitionMode _scaleMode)
         {
+            isTransitioning = true;
             float t = 0;
             Vector3 scaleStart;
             Vector3 scaleEnd;
@@ -731,6 +759,7 @@ namespace Goldenwere.Unity.UI
             }
 
             tooltipInstance.RTransform.localScale = scaleEnd;
+            isTransitioning = false;
         }
 
         /// <summary>
@@ -740,8 +769,8 @@ namespace Goldenwere.Unity.UI
         /// <param name="_shiftDown">Determines whether to shift up or down</param>
         private IEnumerator TransitionShift(bool _isActive, bool _shiftDown)
         {
+            isTransitioning = true;
             float t = 0;
-            Transform origParent = tooltipInstance.transform.parent;
             GameObject parent = new GameObject();
             parent.transform.localPosition = tooltipInstance.transform.localPosition;
             parent.transform.SetParent(tooltipInstance.transform.parent, true);
@@ -791,10 +820,11 @@ namespace Goldenwere.Unity.UI
                 }
             }
 
-            tooltipInstance.transform.SetParent(origParent, true);
+            tooltipInstance.transform.SetParent(tooltipInstanceParent, true);
             Destroy(parent.gameObject);
             if (!_isActive)
                 tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
+            isTransitioning = false;
         }
 
         /// <summary>
@@ -804,6 +834,7 @@ namespace Goldenwere.Unity.UI
         /// <param name="_rotMode">One of the four tilt modes; others passed through will simply default to RotateVerticalInverted</param>
         private IEnumerator TransitionRotate(bool _isActive, TransitionMode _rotMode)
         {
+            isTransitioning = true;
             float t = 0;
             Quaternion rotStart;
             Quaternion rotEnd;
@@ -865,6 +896,7 @@ namespace Goldenwere.Unity.UI
             }
 
             tooltipInstance.RTransform.rotation = rotEnd;
+            isTransitioning = false;
         }
         #endregion
         #endregion

@@ -54,7 +54,9 @@ namespace Goldenwere.Unity.UI
     public enum TransitionMode
     {
         None,
-        Fade
+        Fade,
+        ShiftUp,
+        ShiftDown
     }
 
     /// <summary>
@@ -103,6 +105,8 @@ namespace Goldenwere.Unity.UI
         /**************/ private bool           isActive;
         /**************/ private bool           isInitialized;
         /**************/ private TooltipPrefab  tooltipInstance;
+        // Needed to ensure tooltip is set back to the same position when using ShiftUp/ShiftDown transitions
+        /**************/ private Vector3        tooltipInstancePosition;
         #endregion
         #region Methods
         /// <summary>
@@ -115,7 +119,10 @@ namespace Goldenwere.Unity.UI
             SetText();
 
             if (anchorMode == AnchorMode.AttachedToElement)
+            {
                 tooltipInstance.RTransform.anchoredPosition = PositionTooltipToElement();
+                tooltipInstancePosition = tooltipInstance.RTransform.anchoredPosition;
+            }
         }
 
         /// <summary>
@@ -155,7 +162,11 @@ namespace Goldenwere.Unity.UI
                 canvasToBeAttachedTo = gameObject.GetComponentInParents<Canvas>();
 
             if (anchorMode == AnchorMode.AttachedToCursor)
+            {
                 tooltipInstance = Instantiate(tooltipPrefab, canvasToBeAttachedTo.transform).GetComponent<TooltipPrefab>();
+                if (transitionMode == TransitionMode.ShiftDown || transitionMode == TransitionMode.ShiftUp)
+                    transitionMode = TransitionMode.Fade;
+            }
             else
                 tooltipInstance = Instantiate(tooltipPrefab, GetComponent<RectTransform>()).GetComponent<TooltipPrefab>();
             isActive = tooltipInstance.gameObject.activeSelf;
@@ -505,6 +516,24 @@ namespace Goldenwere.Unity.UI
                 isActive = _isActive;
                 switch (mode)
                 {
+                    case TransitionMode.ShiftUp:
+                        if (!tooltipInstance.gameObject.activeSelf)
+                            tooltipInstance.gameObject.SetActive(true);
+                        if (!isActive && tooltipInstance.CGroup.alpha > 0 || isActive)
+                        {
+                            StartCoroutine(TransitionFade(isActive));
+                            StartCoroutine(TransitionShift(isActive, false));
+                        }
+                        break;
+                    case TransitionMode.ShiftDown:
+                        if (!tooltipInstance.gameObject.activeSelf)
+                            tooltipInstance.gameObject.SetActive(true);
+                        if (!isActive && tooltipInstance.CGroup.alpha > 0 || isActive)
+                        {
+                            StartCoroutine(TransitionFade(isActive));
+                            StartCoroutine(TransitionShift(isActive, true));
+                        }
+                        break;
                     case TransitionMode.Fade:
                         if (!tooltipInstance.gameObject.activeSelf)
                             tooltipInstance.gameObject.SetActive(true);
@@ -567,6 +596,84 @@ namespace Goldenwere.Unity.UI
                 tooltipInstance.CGroup.alpha = 1;
             else
                 tooltipInstance.CGroup.alpha = 0;
+        }
+
+        /// <summary>
+        /// Coroutine for the ShiftUp/ShiftDown transitions
+        /// </summary>
+        /// <param name="_isActive">Determines whether to shift in or out</param>
+        /// <param name="_shiftDown">Determines whether to shift up or down</param>
+        /// <returns></returns>
+        private IEnumerator TransitionShift(bool _isActive, bool _shiftDown)
+        {
+            float t = 0;
+            Transform origParent = tooltipInstance.transform.parent;
+            GameObject parent = new GameObject();
+            parent.transform.localPosition = tooltipInstance.transform.localPosition;
+            parent.transform.SetParent(tooltipInstance.transform.parent, true);
+            tooltipInstance.transform.SetParent(parent.transform, true);
+            Vector3 posStart;
+            Vector3 posEnd;
+
+            if (_isActive)
+            {
+                if (_shiftDown) 
+                {
+                    posStart = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y + tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
+                    posEnd = parent.transform.localPosition;
+
+                    while (t <= transitionDuration)
+                    {
+                        parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
+                        yield return null;
+                        t += Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    posStart = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y - tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
+                    posEnd = parent.transform.localPosition;
+
+                    while (t <= transitionDuration)
+                    {
+                        parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
+                        yield return null;
+                        t += Time.deltaTime;
+                    }
+                }
+            }
+
+            else
+            {
+                if (_shiftDown)
+                {
+                    posEnd = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y + tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
+                    posStart = parent.transform.localPosition;
+
+                    while (t <= transitionDuration)
+                    {
+                        parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
+                        yield return null;
+                        t += Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    posEnd = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y - tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
+                    posStart = parent.transform.localPosition;
+
+                    while (t <= transitionDuration)
+                    {
+                        parent.transform.localPosition = Vector3.Lerp(posStart, posEnd, transitionCurveIn.Evaluate(t / transitionDuration));
+                        yield return null;
+                        t += Time.deltaTime;
+                    }
+                }
+            }
+            tooltipInstance.transform.SetParent(origParent, true);
+            Destroy(parent.gameObject);
+            if (!_isActive)
+                tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
         }
         #endregion
     }

@@ -91,10 +91,8 @@ namespace Goldenwere.Unity.UI
         [SerializeField] private float          tooltipHorizontalFactor = 1;
         [Tooltip         ("Padding between the edges of the tooltip and text element, done in traditional CSS order: Top, Right, Bottom, Left")]
         [SerializeField] private Vector4        tooltipPadding;
-        [Tooltip         ("Prefab which the topmost gameobject can be resized based on text and contains a text element that can be set\n" +
-                          "Note: Make sure that the text element has the horizontal+vertical stretch anchor preset and equivalent padding on all sides," +
-                          "as this class depends on the left padding when determining container height + bottom padding\n" +
-                          "Make sure that the container uses the center+center anchor preset, as this class needs to use its own anchor method due to depending on cursor position")]
+        [Tooltip         ("Prefab which contains a TooltipPrefab class. Only the width of the prefab and text size are a concern;\n" +
+                         "text padding is defined in TooltipEnabledElement, and height is determined dynamically based on text contents.")]
         [SerializeField] private GameObject     tooltipPrefab;
         [Tooltip         ("The text to display in the tooltip")]
         [SerializeField] private string         tooltipText;
@@ -185,11 +183,14 @@ namespace Goldenwere.Unity.UI
 
             // Override sizing/anchors in prefab in case they may conflict with tooltipping system
             // Padding is a serialized variable, the anchor for text must be vertical+horizontal stretch for it to work properly
-            // Ensure arrow is set to center+center so that positioning is correct
             tooltipInstance.Text.rectTransform.offsetMin = new Vector2(tooltipPadding.w, tooltipPadding.z);
             tooltipInstance.Text.rectTransform.offsetMax = new Vector2(-tooltipPadding.y, -tooltipPadding.x);
             tooltipInstance.Text.rectTransform.anchorMin = new Vector2(0, 0);
             tooltipInstance.Text.rectTransform.anchorMax = new Vector2(1, 1);
+
+            // Ensure arrow and container are set to center+center so that positioning is correct
+            tooltipInstance.RTransform.anchorMin = new Vector2(0.5f, 0.5f);
+            tooltipInstance.RTransform.anchorMax = new Vector3(0.5f, 0.5f);
 
             if (tooltipInstance.ArrowEnabled)
             {

@@ -73,18 +73,21 @@ namespace Goldenwere.Unity.UI
     {
         #region Fields
 #pragma warning disable 0649
+        [Header("Anchoring Properties")]
         [Tooltip         ("Defines how the tooltip is attached")]
         [SerializeField] private AnchorMode     anchorMode;
         [Tooltip         ("The default anchor position. If the tooltip text overflows with this anchor, will change to another one if needed")]
         [SerializeField] private AnchorPosition anchorPosition;
         [Tooltip         ("Sets where the tooltip arrow goes when using the CenterMiddle setting in anchorPosition. Has no effect for other settings or when there is no arrow available")]
         [SerializeField] private MiddlePosition arrowDefaultPositionAtMiddle;
-        [Tooltip         ("Needed in order to ensure proper tooltip positioning; can be left unassigned as long as the UI element itself is attached to a canvas")]
+        [Header("Required Utilities")]
+        [Tooltip         ("Needed in order to ensure proper tooltip positioning in AnchorMode.AttachedToCamera; otherwise not necessary")]
         [SerializeField] private Camera         cameraThatRendersCanvas;
         [Tooltip         ("Optional string to provide if cannot attach camera in inspector (e.g. prefabbed UI elements instantiated at runtime)")]
         [SerializeField] private string         cameraThatRendersCanvasName;
         [Tooltip         ("Needed in order to ensure proper tooltip positioning as well as attaching tooltip to canvas")]
         [SerializeField] private Canvas         canvasToBeAttachedTo;
+        [Header("Tooltip Properties")]
         [Range(00f,10f)] [Tooltip               ("Delay between triggering the tooltip and transitioning it into existence")]
         [SerializeField] private float          tooltipDelay;
         [Range(0.01f,1)] [Tooltip               ("Determines how much the tooltip anchors to the left/right when AnchorPosition is one of the left/right settings (has no effect on Middle settings)")]
@@ -98,6 +101,7 @@ namespace Goldenwere.Unity.UI
         [SerializeField] private string         tooltipText;
         [Tooltip         ("Values used if defining a string that needs formatting. Leave blank if no formatting is done inside tooltipText")]
         [SerializeField] private double[]       tooltipValues;
+        [Header("Transition Properties")]
         [Range(000,100)] [Tooltip               ("How long tooltip transitions last (only used if transitionMode isn't set to None")]
         [SerializeField] private float          transitionDuration;
         [Tooltip         ("The curve for animating transitions when transitioning into existence")]
@@ -161,22 +165,25 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         private void Initialize()
         {
-            if (cameraThatRendersCanvas == null)
-                if (cameraThatRendersCanvasName != null && cameraThatRendersCanvasName != "")
-                    cameraThatRendersCanvas = GameObject.Find(cameraThatRendersCanvasName).GetComponent<Camera>();
-                else
-                    cameraThatRendersCanvas = Camera.main;
             if (canvasToBeAttachedTo == null)
                 canvasToBeAttachedTo = gameObject.GetComponentInParents<Canvas>();
 
             if (anchorMode == AnchorMode.AttachedToCursor)
             {
+                if (cameraThatRendersCanvas == null)
+                    if (cameraThatRendersCanvasName != null && cameraThatRendersCanvasName != "")
+                        cameraThatRendersCanvas = GameObject.Find(cameraThatRendersCanvasName).GetComponent<Camera>();
+                    else
+                        cameraThatRendersCanvas = Camera.main;
+
                 tooltipInstance = Instantiate(tooltipPrefab, canvasToBeAttachedTo.transform).GetComponent<TooltipPrefab>();
                 if (transitionMode == TransitionMode.ShiftDown || transitionMode == TransitionMode.ShiftUp)
                     transitionMode = TransitionMode.Fade;
             }
+
             else
                 tooltipInstance = Instantiate(tooltipPrefab, GetComponent<RectTransform>()).GetComponent<TooltipPrefab>();
+
             isActive = tooltipInstance.gameObject.activeSelf;
             SetActive(false, TransitionMode.None);
             isInitialized = true;

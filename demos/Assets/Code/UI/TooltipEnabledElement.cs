@@ -85,16 +85,16 @@ namespace Goldenwere.Unity.UI
         [SerializeField] private GameObject     tooltipPrefab;
         [Tooltip         ("The text to display in the tooltip")]
         [SerializeField] private string         tooltipText;
-        [Tooltip         ("How long tooltip transitions last (only used if tooltipTransitionMode isn't set to None")]
-        [SerializeField] private float          tooltipTransitionDuration;
-        [Tooltip         ("The curve for animating transitions when transitioning into existence")]
-        [SerializeField] private AnimationCurve tooltipTransitionCurveIn;
-        [Tooltip         ("The curve for animating transitions when transitioning out of existence")]
-        [SerializeField] private AnimationCurve tooltipTransitionCurveOut;
-        [Tooltip         ("How the tooltip is transitioned/animated into/out of existence")]
-        [SerializeField] private TransitionMode tooltipTransitionMode;
         [Tooltip         ("Values used if defining a string that needs formatting. Leave blank if no formatting is done inside tooltipText")]
         [SerializeField] private double[]       tooltipValues;
+        [Range(000,100)] [Tooltip               ("How long tooltip transitions last (only used if transitionMode isn't set to None")]
+        [SerializeField] private float          transitionDuration;
+        [Tooltip         ("The curve for animating transitions when transitioning into existence")]
+        [SerializeField] private AnimationCurve transitionCurveIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        [Tooltip         ("The curve for animating transitions when transitioning out of existence")]
+        [SerializeField] private AnimationCurve transitionCurveOut = AnimationCurve.EaseInOut(0, 1, 1, 0);
+        [Tooltip         ("How the tooltip is transitioned/animated into/out of existence")]
+        [SerializeField] private TransitionMode transitionMode;
 #pragma warning restore 0649
         /**************/ private bool           isActive;
         /**************/ private bool           isInitialized;
@@ -468,7 +468,7 @@ namespace Goldenwere.Unity.UI
         /// <param name="_isActive">Whether to activate or deactivate the tooltip</param>
         private void SetActive(bool _isActive)
         {
-            SetActive(_isActive, tooltipTransitionMode);
+            SetActive(_isActive, transitionMode);
         }
 
         /// <summary>
@@ -522,12 +522,12 @@ namespace Goldenwere.Unity.UI
         private IEnumerator TransitionFade(bool _isActive)
         {
             float t = 0;
-            while (t <= tooltipTransitionDuration)
+            while (t <= transitionDuration)
             {
                 if (_isActive)
-                    tooltipInstance.CGroup.alpha = tooltipTransitionCurveIn.Evaluate(t / tooltipTransitionDuration);
+                    tooltipInstance.CGroup.alpha = transitionCurveIn.Evaluate(t / transitionDuration);
                 else
-                    tooltipInstance.CGroup.alpha = tooltipTransitionCurveOut.Evaluate(t / tooltipTransitionDuration);
+                    tooltipInstance.CGroup.alpha = transitionCurveOut.Evaluate(t / transitionDuration);
 
                 yield return null;
                 t += Time.deltaTime;

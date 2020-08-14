@@ -59,7 +59,11 @@ namespace Goldenwere.Unity.UI
         ShiftDown,
         Scale,
         ScaleHorizontal,
-        ScaleVertical
+        ScaleVertical,
+        TiltUp,
+        TiltDown,
+        TiltLeft,
+        TiltRight
     }
 
     /// <summary>
@@ -112,6 +116,8 @@ namespace Goldenwere.Unity.UI
         /**************/ private Vector3        tooltipInstancePosition;
         #endregion
         #region Methods
+
+        #region Unity Methods
         /// <summary>
         /// Sets up the tooltip at start
         /// </summary>
@@ -150,6 +156,7 @@ namespace Goldenwere.Unity.UI
         {
             Destroy(tooltipInstance);
         }
+        #endregion
 
         /// <summary>
         /// Initializes the tooltip; this is separate from Start in case SetText is called externally before Start gets a chance to run
@@ -191,6 +198,7 @@ namespace Goldenwere.Unity.UI
             }
         }
 
+        #region Handlers
         /// <summary>
         /// OnPointerEnter, enable the tooltip
         /// </summary>
@@ -211,7 +219,9 @@ namespace Goldenwere.Unity.UI
             StopAllCoroutines();
             SetActive(false);
         }
+        #endregion
 
+        #region Appearance
         /// <summary>
         /// Set the tooltip's colors with this method
         /// </summary>
@@ -243,7 +253,9 @@ namespace Goldenwere.Unity.UI
             tooltipValues = newValues;
             SetText();
         }
+        #endregion
 
+        #region Positioning
         /// <summary>
         /// Positions the tooltip to the element for AnchorMode.AttachedToCursor
         /// </summary>
@@ -496,7 +508,9 @@ namespace Goldenwere.Unity.UI
 
             return newPos;
         }
+        #endregion
 
+        #region Utility
         /// <summary>
         /// Activates/deactivates the tooltip, which engages in transitions if the tooltip's active state is different from the new state
         /// </summary>
@@ -519,6 +533,18 @@ namespace Goldenwere.Unity.UI
                 isActive = _isActive;
                 switch (mode)
                 {
+                    case TransitionMode.TiltUp:
+                    case TransitionMode.TiltDown:
+                    case TransitionMode.TiltLeft:
+                    case TransitionMode.TiltRight:
+                        if (!tooltipInstance.gameObject.activeSelf)
+                            tooltipInstance.gameObject.SetActive(true);
+                        if (!isActive && tooltipInstance.CGroup.alpha > 0 || isActive)
+                        {
+                            StartCoroutine(TransitionFade(isActive));
+                            StartCoroutine(TransitionTilt(isActive, mode));
+                        }
+                        break;
                     case TransitionMode.Scale:
                     case TransitionMode.ScaleHorizontal:
                     case TransitionMode.ScaleVertical:
@@ -587,7 +613,9 @@ namespace Goldenwere.Unity.UI
             yield return new WaitForSeconds(tooltipDelay);
             SetActive(true);
         }
+        #endregion
 
+        #region Transitions
         /// <summary>
         /// Coroutine for the Fade transition
         /// </summary>
@@ -741,6 +769,18 @@ namespace Goldenwere.Unity.UI
             if (!_isActive)
                 tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
         }
+
+        /// <summary>
+        /// Coroutine for the various Tilt transitions
+        /// </summary>
+        /// <param name="_isActive">Determines whether to shift in or out</param>
+        /// <param name="_tiltMode">One of the four tilt modes; others passed through will simply default to TiltUp</param>
+        /// <returns></returns>
+        private IEnumerator TransitionTilt(bool _isActive, TransitionMode _tiltMode)
+        {
+
+        }
+        #endregion
         #endregion
     }
 }

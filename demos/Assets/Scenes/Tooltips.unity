@@ -3336,7 +3336,7 @@ MonoBehaviour:
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
-  tooltipText: Check the difference in Default Arrow Position
+  tooltipText: <color=#ff0000>TMPro tags supported</color>
   tooltipTransitionDuration: 0
   tooltipTransitionCurveIn:
     serializedVersion: 2
@@ -4977,7 +4977,7 @@ MonoBehaviour:
   tooltipHorizontalFactor: 1
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
-  tooltipText: Check the difference in Default Arrow Position
+  tooltipText: <mspace=1em>TMPro tags supported</mspace>
   tooltipTransitionDuration: 0
   tooltipTransitionCurveIn:
     serializedVersion: 2
@@ -10368,7 +10368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Formatting
+  m_text: Formatting (string.Format() / TMPro Tags)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10437,10 +10437,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1407522327}
-    characterCount: 10
+    characterCount: 41
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 4
+    wordCount: 5
     linkCount: 0
     lineCount: 1
     pageCount: 1

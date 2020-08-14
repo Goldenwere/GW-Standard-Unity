@@ -76,6 +76,8 @@ namespace Goldenwere.Unity.UI
         [SerializeField] private string         cameraThatRendersCanvasName;
         [Tooltip         ("Needed in order to ensure proper tooltip positioning as well as attaching tooltip to canvas")]
         [SerializeField] private Canvas         canvasToBeAttachedTo;
+        [Range(00f,10f)] [Tooltip               ("Delay between triggering the tooltip and transitioning it into existence")]
+        [SerializeField] private float          tooltipDelay;
         [Range(0.01f,1)] [Tooltip               ("Determines how much the tooltip anchors to the left/right when AnchorPosition is one of the left/right settings (has no effect on Middle settings)")]
         [SerializeField] private float          tooltipHorizontalFactor = 1;
         [Tooltip         ("Padding between the edges of the tooltip and text element, done in traditional CSS order: Top, Right, Bottom, Left")]
@@ -181,7 +183,10 @@ namespace Goldenwere.Unity.UI
         public void OnPointerEnter(PointerEventData data)
         {
             StopAllCoroutines();
-            SetActive(true);
+            if (tooltipDelay > 0)
+                StartCoroutine(DelayOpening());
+            else
+                SetActive(true);
         }
 
         /// <summary>
@@ -529,6 +534,15 @@ namespace Goldenwere.Unity.UI
 
             tooltipInstance.RTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
                 tooltipInstance.Text.preferredHeight + tooltipInstance.Text.rectTransform.offsetMin.y * 2);
+        }
+
+        /// <summary>
+        /// Coroutine for delaying the opening of the tooltip
+        /// </summary>
+        private IEnumerator DelayOpening()
+        {
+            yield return new WaitForSeconds(tooltipDelay);
+            SetActive(true);
         }
 
         /// <summary>

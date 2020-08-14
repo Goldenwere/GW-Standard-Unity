@@ -1986,8 +1986,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorMode: 0
-  anchorPosition: 3
-  arrowDefaultPositionAtMiddle: 0
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
@@ -6221,7 +6221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorMode: 1
   anchorPosition: 7
-  arrowDefaultPositionAtMiddle: 0
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
@@ -7832,7 +7832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorMode: 1
   anchorPosition: 2
-  arrowDefaultPositionAtMiddle: 0
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
@@ -8879,7 +8879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorMode: 1
   anchorPosition: 8
-  arrowDefaultPositionAtMiddle: 0
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
@@ -9701,7 +9701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorMode: 1
   anchorPosition: 1
-  arrowDefaultPositionAtMiddle: 0
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
@@ -12608,7 +12608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorMode: 1
   anchorPosition: 0
-  arrowDefaultPositionAtMiddle: 0
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
@@ -13545,7 +13545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorMode: 1
   anchorPosition: 4
-  arrowDefaultPositionAtMiddle: 0
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
@@ -13554,29 +13554,29 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
-  tooltipText: Check Transition Mode for differences
+  tooltipText: Look at the curves and notice that they are unclamped
   tooltipValues: []
-  transitionDuration: 0.5
+  transitionDuration: 0.33
   transitionCurveIn:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 4.710799
+      outSlope: 4.710799
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.01556814
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.3342608
+      outSlope: -1.3342608
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.04532981
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -13587,25 +13587,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 1.3613259
+      outSlope: 1.3613259
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.056287378
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -4.6158366
+      outSlope: -4.6158366
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.03295493
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  transitionMode: 0
+  transitionMode: 4
 --- !u!114 &1487972752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14812,8 +14812,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorMode: 1
-  anchorPosition: 5
-  arrowDefaultPositionAtMiddle: 0
+  anchorPosition: 4
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}
@@ -15870,7 +15870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Center Middle
+  m_text: Unclamped Transitions
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15939,7 +15939,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1704076743}
-    characterCount: 13
+    characterCount: 21
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -18704,7 +18704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorMode: 1
   anchorPosition: 6
-  arrowDefaultPositionAtMiddle: 0
+  arrowDefaultPositionAtMiddle: 1
   cameraThatRendersCanvas: {fileID: 963269166}
   cameraThatRendersCanvasName: 
   canvasToBeAttachedTo: {fileID: 931533398}

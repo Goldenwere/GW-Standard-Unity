@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains the TooltipEnabledElement class and associated structures AnchorMode, AnchorPosition, MiddlePosition, and TransitionMode
-***     Bundle Name - TooltipSystem
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - CoreAPI
+***     Pkg Name    - TooltipSystem
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - CoreAPI
 **/
 
 using UnityEngine;

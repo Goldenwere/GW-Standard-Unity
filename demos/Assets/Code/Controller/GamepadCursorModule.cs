@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains the GamepadCursorModule class
-***     Bundle Name - ManagementCamera
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - CoreAPI
+***     Pkg Name    - ManagementCamera
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - CoreAPI
 **/
 
 using UnityEngine;

@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains API that can be used by other code within the Goldenwere Standard Unity project
-***     Bundle Name - CoreAPI
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - None
+***     Pkg Name    - CoreAPI
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - None
 **/
 
 using UnityEngine;

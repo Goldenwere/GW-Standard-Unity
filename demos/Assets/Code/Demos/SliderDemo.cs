@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains the SliderDemo class
-***     Bundle Name - Slider_Demo
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - SliderExtensions
+***     Pkg Name    - Slider_Demo
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - SliderExtensions
 **/
 
 using UnityEngine;

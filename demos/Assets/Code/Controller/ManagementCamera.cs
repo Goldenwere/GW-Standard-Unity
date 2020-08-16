@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains the ManagementCamera class and associated delegate
-***     Bundle Name - ManagementCamera
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - CoreAPI
+***     Pkg Name    - ManagementCamera
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - CoreAPI
 **/
 
 using UnityEngine;

@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains the ControllerAnimationSystem
-***     Bundle Name - FirstPersonController
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - CoreAPI
+***     Pkg Name    - FirstPersonController
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - CoreAPI
 **/
 
 using UnityEngine;

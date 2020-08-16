@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains the DeveloperCamera class
-***     Bundle Name - DeveloperCamera
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - None
+***     Pkg Name    - DeveloperCamera
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - None
 **/
 
 using UnityEngine;

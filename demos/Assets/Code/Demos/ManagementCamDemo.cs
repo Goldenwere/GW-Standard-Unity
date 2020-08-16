@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains the ManagementCamDemo class
-***     Bundle Name - ManagementCamera_Demo
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - ManagementCamera
+***     Pkg Name    - ManagementCamera_Demo
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - ManagementCamera
 **/
 
 using UnityEngine;

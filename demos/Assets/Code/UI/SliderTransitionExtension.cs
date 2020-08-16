@@ -5,9 +5,9 @@
 ***
 *** File Info:
 ***     Description - Contains the SliderTransitionExtension class
-***     Bundle Name - SliderExtensions
-***     Bundle Ver  - 1.0.0
-***     Bundle Req  - None
+***     Pkg Name    - SliderExtensions
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - None
 **/
 
 using System.Collections;

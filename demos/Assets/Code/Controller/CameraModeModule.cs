@@ -8,11 +8,14 @@ namespace Goldenwere.Unity.Controller
     /// </summary>
     public class CameraModeModule : MonoBehaviour
     {
+        #region Fields
 #pragma warning disable 0649
         [SerializeField] private ManagementCamera[] cameraModes;
 #pragma warning restore 0649
-        /**************/ private int selectedCamera;
+        /**************/ private int                selectedCamera;
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Setting selectedCamera in Start rather than inline allows this class to be enabled/disabled in inspector to disable event
         /// </summary>
@@ -42,5 +45,6 @@ namespace Goldenwere.Unity.Controller
                 }
             }
         }
+        #endregion
     }
 }

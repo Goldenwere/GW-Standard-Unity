@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Goldenwere.Unity.Controller
 {
-    public class FreeFlyCamera : MonoBehaviour
+    public class DeveloperCamera : MonoBehaviour
     {
         #region Fields
 #pragma warning disable 0649

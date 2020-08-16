@@ -245,6 +245,19 @@ namespace Goldenwere.Unity.Controller
         #endregion
 
         /// <summary>
+        /// Used for transferring the working variable set from one camera to another when using the CameraModeModule.
+        /// This prevents the camera from jumping around when the modes get swapped
+        /// </summary>
+        /// <param name="other">The camera to copy from</param>
+        public void TransferCameraTransforms(ManagementCamera other)
+        {
+            workingDesiredPosition = other.workingDesiredPosition;
+            workingDesiredRotationHorizontal = other.workingDesiredRotationHorizontal;
+            workingDesiredRotationVertical = other.workingDesiredRotationVertical;
+            workingLastHeight = other.workingLastHeight;
+        }
+
+        /// <summary>
         /// Performs camera movement on the horizontal plane based on input
         /// </summary>
         /// <param name="input">The current input (modified to account for device sensitivity scaling)</param>

@@ -32,17 +32,17 @@ namespace Goldenwere.Unity.Controller
         {
             if (context.performed && cameraModes.Length > 0)
             {
+                ManagementCamera curr = cameraModes[selectedCamera];
+
                 selectedCamera++;
                 if (selectedCamera >= cameraModes.Length)
                     selectedCamera = 0;
 
-                for (int i = 0; i < cameraModes.Length; i++)
-                {
-                    if (i == selectedCamera)
-                        cameraModes[i].enabled = true;
-                    else
-                        cameraModes[i].enabled = false;
-                }
+                ManagementCamera next = cameraModes[selectedCamera];
+
+                next.TransferCameraTransforms(curr);
+                curr.enabled = false;
+                next.enabled = true;
             }
         }
         #endregion

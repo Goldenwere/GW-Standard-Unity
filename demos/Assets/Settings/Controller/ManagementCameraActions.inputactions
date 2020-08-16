@@ -84,6 +84,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SwapCamera",
+                    "type": "Button",
+                    "id": "84dfc7e7-67f3-4608-8da4-0f86fd0670ee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -493,6 +501,28 @@
                     "action": "MoveCursor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "66fcd173-bd85-4b1e-8a41-d49f70068b88",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "370d25a0-52cb-41b3-b510-69463342f176",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

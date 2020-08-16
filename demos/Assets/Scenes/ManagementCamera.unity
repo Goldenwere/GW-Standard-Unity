@@ -3846,6 +3846,7 @@ GameObject:
   - component: {fileID: 1277715470}
   - component: {fileID: 1277715474}
   - component: {fileID: 1277715472}
+  - component: {fileID: 1277715475}
   m_Layer: 0
   m_Name: ManagementCamera
   m_TagString: Untagged
@@ -3860,7 +3861,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277715469}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9ab34a34b541c445bd78423e46f4899, type: 3}
   m_Name: 
@@ -4156,6 +4157,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: dcaede9c-4499-460a-9d58-3eaf27dca495
     m_ActionName: ManagementCameraMap/MoveCursor[/XInputControllerWindows/rightStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1277715475}
+        m_MethodName: OnInput_SwapCamera
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 84dfc7e7-67f3-4608-8da4-0f86fd0670ee
+    m_ActionName: ManagementCameraMap/SwapCamera[/Keyboard/tab,/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: ManagementCameraMap
@@ -4197,7 +4213,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277715469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fe49d63b2ccae941a89381d6ac67941, type: 3}
   m_Name: 
@@ -4216,6 +4232,21 @@ MonoBehaviour:
   smoothMotionSpeed: 10
   useCameraSmoothing: 1
   verticalClamping: {x: -10, y: 50}
+--- !u!114 &1277715475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277715469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb42a73a5a6d1f4da04031895801450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraModes:
+  - {fileID: 1277715470}
+  - {fileID: 1277715474}
 --- !u!1 &1279900779
 GameObject:
   m_ObjectHideFlags: 0

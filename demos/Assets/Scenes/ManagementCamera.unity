@@ -3844,9 +3844,10 @@ GameObject:
   - component: {fileID: 1277715473}
   - component: {fileID: 1277715471}
   - component: {fileID: 1277715470}
+  - component: {fileID: 1277715474}
   - component: {fileID: 1277715472}
   m_Layer: 0
-  m_Name: ManagementCamera_Raycasted
+  m_Name: ManagementCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3859,7 +3860,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277715469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9ab34a34b541c445bd78423e46f4899, type: 3}
   m_Name: 
@@ -3919,11 +3920,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1277715474}
+        m_MethodName: OnInput_ActionMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e723375e-8dbf-437b-8d85-3f3fc8ebee9a
     m_ActionName: ManagementCameraMap/ActionMovement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1277715470}
+        m_MethodName: OnInput_ActionRotation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1277715474}
         m_MethodName: OnInput_ActionRotation
         m_Mode: 0
         m_Arguments:
@@ -3949,6 +3972,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1277715474}
+        m_MethodName: OnInput_ActionZoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6a137a4f-aa86-4edd-bba5-949997deb531
     m_ActionName: ManagementCameraMap/ActionZoom[/Keyboard/t,/Keyboard/g]
   - m_PersistentCalls:
@@ -3964,10 +3998,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1277715474}
+        m_MethodName: OnInput_MouseDelta
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 02283673-3e2b-489d-969c-9aa4e9ece743
     m_ActionName: ManagementCameraMap/MouseDelta[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1277715470}
+        m_MethodName: OnInput_MouseScroll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1277715470}
         m_MethodName: OnInput_MouseScroll
         m_Mode: 0
@@ -3994,11 +4050,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1277715474}
+        m_MethodName: OnInput_MouseToggleMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b6964ab1-accf-4a96-897c-378b213918b9
     m_ActionName: ManagementCameraMap/MouseToggleMovement[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1277715470}
+        m_MethodName: OnInput_MouseToggleRotation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1277715474}
         m_MethodName: OnInput_MouseToggleRotation
         m_Mode: 0
         m_Arguments:
@@ -4024,11 +4102,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1277715474}
+        m_MethodName: OnInput_MouseToggleZoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3408d9ac-4f8b-490a-9016-6848d3d988d5
     m_ActionName: ManagementCameraMap/MouseToggleZoom[/Keyboard/ctrl]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1277715470}
+        m_MethodName: OnInput_GamepadToggleZoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1277715474}
         m_MethodName: OnInput_GamepadToggleZoom
         m_Mode: 0
         m_Arguments:
@@ -4090,6 +4190,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1277715474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277715469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe49d63b2ccae941a89381d6ac67941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlMotionEnabled: 1
+  settingMouseMotionIsToggled: 0
+  settingMovementSensitivity: 1
+  settingRotationSensitivity: 1
+  settingZoomSensitivity: 1
+  attachedInput: {fileID: 1277715471}
+  collisionPadding: 3
+  downcastEnabled: 1
+  downcastMaxDistance: 100
+  transformPivot: {fileID: 1696873528}
+  transformTilt: {fileID: 1394519251}
+  smoothMotionSpeed: 10
+  useCameraSmoothing: 1
+  verticalClamping: {x: -10, y: 50}
 --- !u!1 &1279900779
 GameObject:
   m_ObjectHideFlags: 0

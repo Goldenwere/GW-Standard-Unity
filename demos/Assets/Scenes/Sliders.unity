@@ -2697,7 +2697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   associatedSlider: {fileID: 548464871}
-  associatedText: {fileID: 910890543}
+  associatedTextElement: {fileID: 910890543}
 --- !u!1 &607391063
 GameObject:
   m_ObjectHideFlags: 0
@@ -4958,7 +4958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   associatedSlider: {fileID: 1134881501}
-  associatedText: {fileID: 2018386188}
+  associatedTextElement: {fileID: 2018386188}
 --- !u!1 &1135401670
 GameObject:
   m_ObjectHideFlags: 0

@@ -173,7 +173,7 @@ namespace Goldenwere.Unity.Controller
         {
             Vector2 workingInputMouseDelta = context.ReadValue<Vector2>();
 
-            if (controlMotionEnabled) 
+            if (controlMotionEnabled)
             {
                 if (workingInputMouseToggleMovement)
                     PerformMovement(workingInputMouseDelta * sensitivityScaleMovementMouse);

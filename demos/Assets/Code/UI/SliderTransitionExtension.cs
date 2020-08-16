@@ -10,10 +10,12 @@ namespace Goldenwere.Unity.UI
     /// </summary>
     public class SliderTransitionExtension
     {
-        #region Fields & Properties
+        #region Fields
         private Coroutine   runningCoroutine;
         private float       sliderWaitTimer;
+        #endregion
 
+        #region Properties
         public MonoBehaviour    AssociatedController            { get; private set; }
         public Slider           AssociatedSlider                { get; private set; }
         public bool             SliderIsStale                   { get; private set; }
@@ -23,7 +25,7 @@ namespace Goldenwere.Unity.UI
         public AnimationCurve   SliderTransitionCurve           { get; private set; }
         #endregion
 
-        #region Methods
+        #region Constructors
         /// <summary>
         /// Creates a new slider with defined parameters; these parameters are to be treated as though they are constant
         /// </summary>
@@ -64,25 +66,9 @@ namespace Goldenwere.Unity.UI
             SliderIsStale = false;
             sliderWaitTimer = 1;
         }
+        #endregion
 
-        /// <summary>
-        /// Transitions a slider between an old and new value over time
-        /// </summary>
-        /// <param name="controlled">The slider that is being manipulated</param>
-        /// <param name="oldVal">The old value of the slider that the animation starts from</param>
-        /// <param name="newVal">The new value of the slider that the animation ends at</param>
-        /// <param name="length">The length of time to transition the slider</param>
-        public IEnumerator TransitionSlider(Slider controlled, float oldVal, float newVal, float length)
-        {
-            float t = 0;
-            while (t <= length)
-            {
-                controlled.value = Mathf.Lerp(oldVal, newVal, SliderTransitionCurve.Evaluate(t / length));
-                t += Time.deltaTime;
-                yield return null;
-            }
-        }
-
+        #region Methods
         /// <summary>
         /// Call this under MonoBehaviour.Update(); ensures the extension functions properly
         /// </summary>
@@ -108,6 +94,24 @@ namespace Goldenwere.Unity.UI
         {
             SliderStaleValue = newVal;
             SliderIsStale = true;
+        }
+
+        /// <summary>
+        /// Transitions a slider between an old and new value over time
+        /// </summary>
+        /// <param name="controlled">The slider that is being manipulated</param>
+        /// <param name="oldVal">The old value of the slider that the animation starts from</param>
+        /// <param name="newVal">The new value of the slider that the animation ends at</param>
+        /// <param name="length">The length of time to transition the slider</param>
+        public IEnumerator TransitionSlider(Slider controlled, float oldVal, float newVal, float length)
+        {
+            float t = 0;
+            while (t <= length)
+            {
+                controlled.value = Mathf.Lerp(oldVal, newVal, SliderTransitionCurve.Evaluate(t / length));
+                t += Time.deltaTime;
+                yield return null;
+            }
         }
         #endregion
     }

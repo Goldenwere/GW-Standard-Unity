@@ -74,41 +74,46 @@ namespace Goldenwere.Unity.UI
         #region Fields
 #pragma warning disable 0649
         [Header("Anchoring Properties")]
-        [Tooltip         ("Defines how the tooltip is attached")]
+        [Tooltip                                ("Defines how the tooltip is attached")]
         [SerializeField] private AnchorMode     anchorMode;
-        [Tooltip         ("The default anchor position. If the tooltip text overflows with this anchor, will change to another one if needed")]
+        [Tooltip                                ("The default anchor position. If the tooltip text overflows with this anchor, will change to another one if needed")]
         [SerializeField] private AnchorPosition anchorPosition;
-        [Tooltip         ("Sets where the tooltip arrow goes when using the CenterMiddle setting in anchorPosition. Has no effect for other settings or when there is no arrow available")]
+        [Tooltip                                ("Sets where the tooltip arrow goes when using the CenterMiddle setting in anchorPosition. " +
+                                                "Has no effect for other settings or when there is no arrow available")]
         [SerializeField] private MiddlePosition arrowDefaultPositionAtMiddle;
+
         [Header("Required Utilities")]
-        [Tooltip         ("Needed in order to ensure proper tooltip positioning in AnchorMode.AttachedToCamera; otherwise not necessary")]
+        [Tooltip                                ("Needed in order to ensure proper tooltip positioning in AnchorMode.AttachedToCamera; otherwise not necessary")]
         [SerializeField] private Camera         cameraThatRendersCanvas;
-        [Tooltip         ("Optional string to provide if cannot attach camera in inspector (e.g. prefabbed UI elements instantiated at runtime)")]
+        [Tooltip                                ("Optional string to provide if cannot attach camera in inspector (e.g. prefabbed UI elements instantiated at runtime)")]
         [SerializeField] private string         cameraThatRendersCanvasName;
-        [Tooltip         ("Needed in order to ensure proper tooltip positioning as well as attaching tooltip to canvas")]
+        [Tooltip                                ("Needed in order to ensure proper tooltip positioning as well as attaching tooltip to canvas")]
         [SerializeField] private Canvas         canvasToBeAttachedTo;
+
         [Header("Tooltip Properties")]
-        [Range(00f,10f)] [Tooltip               ("Delay between triggering the tooltip and transitioning it into existence")]
+        [Range(00f,10f)] [Tooltip               ("Delay (in seconds) between triggering the tooltip and transitioning it into existence")]
         [SerializeField] private float          tooltipDelay;
-        [Range(0.01f,1)] [Tooltip               ("Determines how much the tooltip anchors to the left/right when AnchorPosition is one of the left/right settings (has no effect on Middle settings)")]
+        [Range(0.01f,1)] [Tooltip               ("Multiplier that determines how much the tooltip anchors to the left/right when AnchorPosition is one of the " +
+                                                "left/right settings (has no effect on Middle settings)")]
         [SerializeField] private float          tooltipHorizontalFactor = 1;
-        [Tooltip         ("Padding between the edges of the tooltip and text element, done in traditional CSS order: Top, Right, Bottom, Left")]
+        [Tooltip                                ("Padding between the edges of the tooltip and text element, done in traditional CSS order: Top, Right, Bottom, Left")]
         [SerializeField] private Vector4        tooltipPadding;
-        [Tooltip         ("Prefab which contains a TooltipPrefab class. Only the width of the prefab and text size are a concern;\n" +
-                         "text padding is defined in TooltipEnabledElement, and height is determined dynamically based on text contents.")]
+        [Tooltip                                ("Prefab which contains a TooltipPrefab class. Only the width of the prefab and text size are a concern;\n" +
+                                                "text padding is defined in TooltipEnabledElement, and height is determined dynamically based on text contents.")]
         [SerializeField] private GameObject     tooltipPrefab;
-        [Tooltip         ("The text to display in the tooltip")]
+        [Tooltip                                ("The text to display in the tooltip")]
         [SerializeField] private string         tooltipText;
-        [Tooltip         ("Values used if defining a string that needs formatting. Leave blank if no formatting is done inside tooltipText")]
+        [Tooltip                                ("Values used if defining a string that needs formatting. Leave blank if no formatting is done inside tooltipText")]
         [SerializeField] private double[]       tooltipValues;
+
         [Header("Transition Properties")]
-        [Range(000,100)] [Tooltip               ("How long tooltip transitions last (only used if transitionMode isn't set to None")]
+        [Range(000,100)] [Tooltip               ("How long (in seconds) tooltip transitions last (only used if transitionMode isn't set to None")]
         [SerializeField] private float          transitionDuration;
-        [Tooltip         ("The curve for animating transitions when transitioning into existence")]
+        [Tooltip                                ("The curve for animating transitions when transitioning into existence")]
         [SerializeField] private AnimationCurve transitionCurveIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
-        [Tooltip         ("The curve for animating transitions when transitioning out of existence")]
+        [Tooltip                                ("The curve for animating transitions when transitioning out of existence")]
         [SerializeField] private AnimationCurve transitionCurveOut = AnimationCurve.EaseInOut(0, 1, 1, 0);
-        [Tooltip         ("How the tooltip is transitioned/animated into/out of existence")]
+        [Tooltip                                ("How the tooltip is transitioned/animated into/out of existence")]
         [SerializeField] private TransitionMode transitionMode;
 #pragma warning restore 0649
         /**************/ private bool           isActive;
@@ -119,6 +124,7 @@ namespace Goldenwere.Unity.UI
         /**************/ private Transform      tooltipInstanceParent;
         /**************/ private Vector3        tooltipInstancePosition;
         #endregion
+
         #region Methods
 
         #region Unity Methods
@@ -780,7 +786,7 @@ namespace Goldenwere.Unity.UI
 
             if (_isActive)
             {
-                if (_shiftDown) 
+                if (_shiftDown)
                 {
                     posStart = new Vector3(parent.transform.localPosition.x, parent.transform.localPosition.y + tooltipInstance.RTransform.sizeDelta.y / 2, parent.transform.localPosition.z);
                     posEnd = parent.transform.localPosition;

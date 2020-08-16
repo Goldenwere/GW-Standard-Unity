@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 namespace Goldenwere.Unity.Controller
 {
     /// <summary>
-    /// Recommended (optional and separate in case of a custom implementation or use of UI navigation) module 
+    /// Recommended (optional and separate in case of a custom implementation or use of UI navigation) module
     /// for cursor movement via gamepad for use with the ManagementCamera
     /// </summary>
     public class GamepadCursorModule : MonoBehaviour

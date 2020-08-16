@@ -13,6 +13,7 @@ namespace Goldenwere.Unity.Demos
         [SerializeField] private ManagementCamera cam;
 #pragma warning restore 0649
         #endregion
+
         #region Methods
         /// <summary>
         /// On Start, enable cam

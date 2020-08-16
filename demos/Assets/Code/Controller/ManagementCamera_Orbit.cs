@@ -55,7 +55,7 @@ namespace Goldenwere.Unity.Controller
             Quaternion verticalClamped = vertical.VerticalClampEuler(verticalClamping.x, verticalClamping.y);
 
             Vector3 eulerAngles;
-            if (verticalClamped.eulerAngles.x >= verticalClamping.y - settingRotationSensitivity * Time.deltaTime || 
+            if (verticalClamped.eulerAngles.x >= verticalClamping.y - settingRotationSensitivity * Time.deltaTime ||
                 verticalClamped.eulerAngles.x <= verticalClamping.x + settingRotationSensitivity * Time.deltaTime)
                 eulerAngles = new Vector3(0, input.x, 0);
             else

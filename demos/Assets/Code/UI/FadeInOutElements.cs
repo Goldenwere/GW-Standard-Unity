@@ -24,17 +24,19 @@ namespace Goldenwere.Unity.UI
     /// </summary>
     public class FadeInOutElements
     {
-        #region Fields & Properties
-        private Coroutine       runningCoroutine;
-
-        public  MonoBehaviour   AssociatedController    { get; private set; }
-        public  CanvasGroup     AssociatedGroup         { get; private set; }
-        public  AnimationCurve  FadeCurve               { get; private set; }
-        public  float           FadeInLength            { get; private set; }
-        public  float           FadeOutLength           { get; private set; }
+        #region Fields
+        private Coroutine   runningCoroutine;
         #endregion
 
-        #region Methods
+        #region Properties
+        public MonoBehaviour    AssociatedController    { get; private set; }
+        public CanvasGroup      AssociatedGroup         { get; private set; }
+        public AnimationCurve   FadeCurve               { get; private set; }
+        public float            FadeInLength            { get; private set; }
+        public float            FadeOutLength           { get; private set; }
+        #endregion
+
+        #region Constructors
         /// <summary>
         /// Creates an instance of the fade in/out extension with a default animation curve
         /// </summary>
@@ -69,6 +71,28 @@ namespace Goldenwere.Unity.UI
             FadeInLength = fadeInLength;
             FadeOutLength = fadeOutLength;
         }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Call this to fade in the CanvasGroup reliably
+        /// </summary>
+        public void FadeIn()
+        {
+            if (runningCoroutine != null)
+                AssociatedController.StopCoroutine(runningCoroutine);
+            runningCoroutine = AssociatedController.StartCoroutine(Fade(FadeMethod.FadeIn));
+        }
+
+        /// <summary>
+        /// Call this to fade out the CanvasGroup reliably
+        /// </summary>
+        public void FadeOut()
+        {
+            if (runningCoroutine != null)
+                AssociatedController.StopCoroutine(runningCoroutine);
+            runningCoroutine = AssociatedController.StartCoroutine(Fade(FadeMethod.FadeOut));
+        }
 
         /// <summary>
         /// Fades the associated CanvasGroup with the defined method
@@ -98,26 +122,6 @@ namespace Goldenwere.Unity.UI
                     yield return null;
                 }
             }
-        }
-
-        /// <summary>
-        /// Call this to fade in the CanvasGroup reliably
-        /// </summary>
-        public void FadeIn()
-        {
-            if (runningCoroutine != null)
-                AssociatedController.StopCoroutine(runningCoroutine);
-            runningCoroutine = AssociatedController.StartCoroutine(Fade(FadeMethod.FadeIn));
-        }
-
-        /// <summary>
-        /// Call this to fade out the CanvasGroup reliably
-        /// </summary>
-        public void FadeOut()
-        {
-            if (runningCoroutine != null)
-                AssociatedController.StopCoroutine(runningCoroutine);
-            runningCoroutine = AssociatedController.StartCoroutine(Fade(FadeMethod.FadeOut));
         }
         #endregion
     }

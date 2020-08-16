@@ -106,7 +106,7 @@ namespace Goldenwere.Unity
         }
 
         /// <summary>
-        /// Finds a matching component 
+        /// Finds a matching component
         /// </summary>
         /// <typeparam name="T">The Component being searched for</typeparam>
         /// <param name="other">The GameObject to search from</param>
@@ -129,26 +129,20 @@ namespace Goldenwere.Unity
         }
 
         /// <summary>
-        /// Clamps a quaternion's vertical rotation
+        /// Unity serialization escapes double-slashes, which breaks any sort of desired escaping in serialized string fields
         /// </summary>
-        /// <param name="parent">The quaternion to clamp</param>
-        /// <param name="min">The lowest possible vertical rotation in degrees</param>
-        /// <param name="max">The highest possible vertical rotation in degrees</param>
-        /// <returns>The clamped quaternion</returns>
-        public static Quaternion VerticalClampEuler(this Quaternion parent, float min, float max)
+        /// <param name="other">The string that needs fixed</param>
+        /// <returns>The string after fixing</returns>
+        public static string RepairSerializedEscaping(this string other)
         {
-            parent.x /= parent.w;
-            parent.y /= parent.w;
-            parent.z /= parent.w;
-            parent.w = 1.0f;
-
-            float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(parent.x);
-
-            angleX = Mathf.Clamp(angleX, min, max);
-
-            parent.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
-
-            return parent;
+            return other
+                .Replace("\\n", "\n")
+                .Replace("\\t", "\t")
+                .Replace("\\'", "\'")
+                .Replace("\\\"", "\"")
+                .Replace("\\\\", "\\")
+                .Replace("\\b", "\b")
+                .Replace("\\r", "\r");
         }
 
         /// <summary>
@@ -159,9 +153,9 @@ namespace Goldenwere.Unity
         /// <param name="eulerAngles">The angle at which the point is being rotated</param>
         /// <returns>The original point after rotation</returns>
         public static Vector3 RotateSelfAroundPoint(this Vector3 self, Vector3 pivot, Vector3 eulerAngles)
-		{
+        {
             return Quaternion.Euler(eulerAngles) * (self - pivot) + pivot;
-		}
+        }
 
         /// <summary>
         /// Rounds a Vector3's values to the nearest precision
@@ -189,20 +183,26 @@ namespace Goldenwere.Unity
         }
 
         /// <summary>
-        /// Unity serialization escapes double-slashes, which breaks any sort of desired escaping in serialized string fields
+        /// Clamps a quaternion's vertical rotation
         /// </summary>
-        /// <param name="other">The string that needs fixed</param>
-        /// <returns>The string after fixing</returns>
-        public static string RepairSerializedEscaping(this string other)
+        /// <param name="parent">The quaternion to clamp</param>
+        /// <param name="min">The lowest possible vertical rotation in degrees</param>
+        /// <param name="max">The highest possible vertical rotation in degrees</param>
+        /// <returns>The clamped quaternion</returns>
+        public static Quaternion VerticalClampEuler(this Quaternion parent, float min, float max)
         {
-            return other
-                .Replace("\\n", "\n")
-                .Replace("\\t", "\t")
-                .Replace("\\'", "\'")
-                .Replace("\\\"", "\"")
-                .Replace("\\\\", "\\")
-                .Replace("\\b", "\b")
-                .Replace("\\r", "\r");
+            parent.x /= parent.w;
+            parent.y /= parent.w;
+            parent.z /= parent.w;
+            parent.w = 1.0f;
+
+            float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(parent.x);
+
+            angleX = Mathf.Clamp(angleX, min, max);
+
+            parent.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
+
+            return parent;
         }
     }
 }

@@ -1,4 +1,16 @@
-﻿using UnityEngine;
+﻿/**
+*** Copyright (C) 2020 Goldenwere
+*** Part of the Goldenwere Standard Unity repository
+*** The Goldenwere Standard Unity Repository is licensed under the MIT license
+***
+*** File Info:
+***     Description - Contains the SliderDemo class
+***     Pkg Name    - SliderExtensions_Demo
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - SliderExtensions
+**/
+
+using UnityEngine;
 using UnityEngine.UI;
 using Goldenwere.Unity.UI;
 using System.Collections.Generic;
@@ -6,16 +18,24 @@ using System.Collections;
 
 namespace Goldenwere.Unity.Demos
 {
+    /// <summary>
+    /// Class used in order to demonstrate sliders
+    /// </summary>
     public class SliderDemo : MonoBehaviour
     {
-        [SerializeField]    private SliderTextLoadExtension[]                       textLoadDemoSliders;
-        [SerializeField]    private Slider[]                                        transitionDemoSliders;
-        [SerializeField]    private AnimationCurve[]                                transitionDemoCurves;
-        // this dictionary is only for the demo; 
+        #region Fields
+#pragma warning disable 0649
+        [SerializeField] private SliderTextLoadExtension[]                      textLoadDemoSliders;
+        [SerializeField] private Slider[]                                       transitionDemoSliders;
+        [SerializeField] private AnimationCurve[]                               transitionDemoCurves;
+#pragma warning restore 0649
+        // this dictionary is only for the demo;
         // normally one does not need to keep track of any coroutines, one would just set the slider whenever an associated value is updated
-        /**************/    private Dictionary<Slider, bool>                        transitionDemoIsRunning;
-        /**************/    private Dictionary<Slider, SliderTransitionExtension>   transitionExtensions;
+        /**************/ private Dictionary<Slider, bool>                       transitionDemoIsRunning;
+        /**************/ private Dictionary<Slider, SliderTransitionExtension>  transitionExtensions;
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Initializes sliders on Monobehaviour.Start()
         /// </summary>
@@ -68,7 +88,7 @@ namespace Goldenwere.Unity.Demos
         }
 
         /// <summary>
-        /// This is used to demonstrate the sliders by randomly assigning values to the slider at random times 
+        /// This is used to demonstrate the sliders by randomly assigning values to the slider at random times
         /// <para>(with a range lower than the slider's transition times to show off the stale mechanic that prevents playing transitions too soon)</para>
         /// </summary>
         private IEnumerator PeriodicallyUpdateSlider(Slider s)
@@ -78,5 +98,6 @@ namespace Goldenwere.Unity.Demos
             yield return new WaitForSeconds(Random.Range(0.25f, 3f));
             transitionDemoIsRunning[s] = false;
         }
+        #endregion
     }
 }

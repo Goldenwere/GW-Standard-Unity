@@ -1,16 +1,32 @@
-﻿using UnityEngine;
+﻿/**
+*** Copyright (C) 2020 Goldenwere
+*** Part of the Goldenwere Standard Unity repository
+*** The Goldenwere Standard Unity Repository is licensed under the MIT license
+***
+*** File Info:
+***     Description - Contains the ControllerAnimationSystem
+***     Pkg Name    - FirstPersonController
+***     Pkg Ver     - 1.0.0
+***     Pkg Req     - CoreAPI
+**/
+
+using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 {
     [RequireComponent(typeof(FirstPersonController))]
     public class ControllerAnimationSystem : MonoBehaviour
     {
+        #region Fields
 #pragma warning disable 0649
-        [Tooltip("Attach all animators you plan on calling animations on. Ensure that you use the same strings as those defined in here.")]
-        [SerializeField]    private Animator[]              animatorsToCall;
-        /**************/    private FirstPersonController   attachedController;
+        [Tooltip                                        ("Attach all animators you plan on calling animations on. " +
+                                                        "Ensure that you use the same strings as those defined in here.")]
+        [SerializeField] private Animator[]             animatorsToCall;
 #pragma warning restore 0649
+        /**************/ private FirstPersonController  attachedController;
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Reference the controller on Monobehaviour.Awake()
         /// </summary>
@@ -88,5 +104,6 @@ namespace Goldenwere.Unity.Controller
                 }
             }
         }
+        #endregion
     }
 }

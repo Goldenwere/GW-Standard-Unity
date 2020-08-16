@@ -68,8 +68,12 @@ namespace Goldenwere.Unity.Controller
                 workingDesiredPosition = newPos;
             }
 
-            if (downcastEnabled && Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance))
-                workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+            if (downcastEnabled)
+            {
+                workingLostHeight = !Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance);
+                if (!workingLostHeight)
+                    workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+            }
         }
 
         /// <summary>

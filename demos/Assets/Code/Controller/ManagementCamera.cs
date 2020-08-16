@@ -55,6 +55,7 @@ namespace Goldenwere.Unity.Controller
         /**************/ protected Quaternion   workingDesiredRotationHorizontal;
         /**************/ protected Quaternion   workingDesiredRotationVertical;
         /**************/ protected float        workingLastHeight;
+        /**************/ protected bool         workingLostHeight;
         /**************/ protected bool         workingInputActionMovement;
         /**************/ protected bool         workingInputActionRotation;
         /**************/ protected bool         workingInputActionZoom;
@@ -75,8 +76,12 @@ namespace Goldenwere.Unity.Controller
             workingDesiredPosition = transform.position;
             workingDesiredRotationHorizontal = transformPivot.transform.localRotation;
             workingDesiredRotationVertical = transformTilt.transform.localRotation;
-            if (downcastEnabled && Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance))
-                workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+            if (downcastEnabled)
+            {
+                workingLostHeight = !Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance);
+                if (!workingLostHeight)
+                    workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+            }
         }
 
         /// <summary>
@@ -228,13 +233,22 @@ namespace Goldenwere.Unity.Controller
             if (!WillCollideAtNewPosition(workingDesiredPosition + add, add))
                 workingDesiredPosition += add;
 
-            if (downcastEnabled && Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance))
+            if (downcastEnabled)
             {
-                float dist = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
-                if (Mathf.Abs(dist - workingLastHeight) >= float.Epsilon)
+                bool prevLostHeight = workingLostHeight;
+                workingLostHeight = !Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance);
+                if (!workingLostHeight)
                 {
-                    workingDesiredPosition.y += workingLastHeight - dist;
-                    workingLastHeight = dist;
+                    float dist = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+
+                    if (prevLostHeight)
+                        workingLastHeight = dist;
+
+                    else if (Mathf.Abs(dist - workingLastHeight) >= float.Epsilon)
+                    {
+                        workingDesiredPosition.y += workingLastHeight - dist;
+                        workingLastHeight = dist;
+                    }
                 }
             }
         }
@@ -255,8 +269,12 @@ namespace Goldenwere.Unity.Controller
             if (!WillCollideAtNewPosition(workingDesiredPosition + add, add))
                 workingDesiredPosition += add;
 
-            if (downcastEnabled && Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance))
-                workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+            if (downcastEnabled)
+            {
+                workingLostHeight = !Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance);
+                if (!workingLostHeight)
+                    workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+            }
         }
 
         /// <summary>

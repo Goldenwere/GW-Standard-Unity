@@ -1,4 +1,16 @@
-﻿using UnityEngine;
+﻿/**
+*** Copyright (C) 2020 Goldenwere
+*** Part of the Goldenwere Standard Unity repository
+*** The Goldenwere Standard Unity Repository is licensed under the MIT license
+***
+*** File Info:
+***     Description - Contains the ControllerAnimationSystem
+***     Bundle Name - FirstPersonController
+***     Bundle Ver  - 1.0.0
+***     Bundle Req  - CoreAPI
+**/
+
+using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 {
@@ -7,10 +19,11 @@ namespace Goldenwere.Unity.Controller
     {
         #region Fields
 #pragma warning disable 0649
-        [Tooltip("Attach all animators you plan on calling animations on. Ensure that you use the same strings as those defined in here.")]
+        [Tooltip                                        ("Attach all animators you plan on calling animations on. " +
+                                                        "Ensure that you use the same strings as those defined in here.")]
         [SerializeField] private Animator[]             animatorsToCall;
-        /**************/ private FirstPersonController  attachedController;
 #pragma warning restore 0649
+        /**************/ private FirstPersonController  attachedController;
         #endregion
 
         #region Methods

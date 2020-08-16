@@ -1,4 +1,16 @@
-﻿using System;
+﻿/**
+*** Copyright (C) 2020 Goldenwere
+*** Part of the Goldenwere Standard Unity repository
+*** The Goldenwere Standard Unity Repository is licensed under the MIT license
+***
+*** File Info:
+***     Description - Contains the FirstPersonController class and associated structures MovementState, MovementType, and MovementStateDelevate
+***     Bundle Name - FirstPersonController
+***     Bundle Ver  - 1.0.0
+***     Bundle Req  - CoreAPI
+**/
+
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;

@@ -1,4 +1,16 @@
-﻿using TMPro;
+﻿/**
+*** Copyright (C) 2020 Goldenwere
+*** Part of the Goldenwere Standard Unity repository
+*** The Goldenwere Standard Unity Repository is licensed under the MIT license
+***
+*** File Info:
+***     Description - Contains the TooltipPrefab class
+***     Bundle Name - TooltipSystem
+***     Bundle Ver  - 1.0.0
+***     Bundle Req  - CoreAPI
+**/
+
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,4 +1,16 @@
-﻿using UnityEngine;
+﻿/**
+*** Copyright (C) 2020 Goldenwere
+*** Part of the Goldenwere Standard Unity repository
+*** The Goldenwere Standard Unity Repository is licensed under the MIT license
+***
+*** File Info:
+***     Description - Contains the DeveloperCamera class
+***     Bundle Name - DeveloperCamera
+***     Bundle Ver  - 1.0.0
+***     Bundle Req  - None
+**/
+
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Goldenwere.Unity.Controller
@@ -12,8 +24,7 @@ namespace Goldenwere.Unity.Controller
         [SerializeField]    private GameObject  pointPivot;
         [SerializeField]    private float       settingMoveSpeed = 2f;
 #pragma warning restore 0649
-        /**************/
-        public  float       settingRotationSensitivity = 3f;
+        /**************/    public  float       settingRotationSensitivity = 3f;
         /**************/    private bool        workingDoHorizontal;
         /**************/    private bool        workingDoRotation;
         /**************/    private bool        workingDoVertical;

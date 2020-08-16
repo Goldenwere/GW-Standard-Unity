@@ -1,4 +1,16 @@
-﻿using System;
+﻿/**
+*** Copyright (C) 2020 Goldenwere
+*** Part of the Goldenwere Standard Unity repository
+*** The Goldenwere Standard Unity Repository is licensed under the MIT license
+***
+*** File Info:
+***     Description - Contains the ControllerSoundSystem
+***     Bundle Name - FirstPersonController
+***     Bundle Ver  - 1.0.0
+***     Bundle Req  - CoreAPI
+**/
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,27 +22,28 @@ namespace Goldenwere.Unity.Controller
     {
         #region Fields
 #pragma warning disable 0649
-        [Tooltip         ("The default clip to play when moving and no other material/texture was found. At minimum, if using this system, this should be defined.")]
+        [Tooltip                                                ("The default clip to play when moving and no other material/texture was found. " +
+                                                                "At minimum, if using this system, this should be defined.")]
         [SerializeField] private AudioClip                      clipDefaultMovement;
-        [Tooltip         ("Associate audio clips with any materials you want to have specific sounds for while stepping on them.")]
+        [Tooltip                                                ("Associate audio clips with any materials you want to have specific sounds for while stepping on them.")]
         [SerializeField] private MaterialCollection[]           clipsMaterials;
-        [Tooltip         ("Associate audio clips with terrain textures here. These must match the textures applied to the terrain.")]
+        [Tooltip                                                ("Associate audio clips with terrain textures here. These must match the textures applied to the terrain.")]
         [SerializeField] private AudioClip[]                    clipsTerrain;
-        [Tooltip         ("The pitch to use while crouched (ideally lower than the pitch while not crouched)")]
+        [Tooltip                                                ("The pitch to use while crouched (ideally lower than the pitch while not crouched)")]
         [SerializeField] private float                          settingPitchWhileCrouched = 0.5f;
-        [Tooltip         ("The pitch to use while not crouched (ideally 1)")]
+        [Tooltip                                                ("The pitch to use while not crouched (ideally 1)")]
         [SerializeField] private float                          settingPitchWhileNotCrouched = 1f;
-        [Tooltip         ("The volume to use while crouched (ideally lower than the pitch while not crouched)")]
+        [Tooltip                                                ("The volume to use while crouched (ideally lower than the pitch while not crouched)")]
         [SerializeField] private float                          settingVolumeWhileCrouched = 0.5f;
-        [Tooltip         ("The volume to use while not crouched (ideally 1)")]
+        [Tooltip                                                ("The volume to use while not crouched (ideally 1)")]
         [SerializeField] private float                          settingVolumeWhileNotCrouched = 1f;
-        [Tooltip         ("The time between playing footsteps while moving crouched")]
+        [Tooltip                                                ("The time (in seconds) between playing footsteps while moving crouched")]
         [SerializeField] private float                          timeBetweenStepsCrouched = 1f;
-        [Tooltip         ("The time between playing footsteps while moving fast")]
+        [Tooltip                                                ("The time (in seconds) between playing footsteps while moving fast")]
         [SerializeField] private float                          timeBetweenStepsFast = 0.3333f;
-        [Tooltip         ("The time between playing footsteps while moving normally")]
+        [Tooltip                                                ("The time (in seconds) between playing footsteps while moving normally")]
         [SerializeField] private float                          timeBetweenStepsNorm = 0.5f;
-        [Tooltip         ("The time between playing footsteps while moving slow")]
+        [Tooltip                                                ("The time (in seconds) between playing footsteps while moving slow")]
         [SerializeField] private float                          timeBetweenStepsSlow = 1f;
 
         /**************/ private FirstPersonController          attachedController;

@@ -26,6 +26,10 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] protected PlayerInput  attachedInput;
         [Range(0.01f, 100)][Tooltip             ("Distance that must be kept between the camera and any object not under IgnoreRaycast with a collider")]
         [SerializeField] protected float        collisionPadding = 3f;
+        [Tooltip                                ("Whether to raycast downward to keep the camera the same distance off the ground when ground height changes")]
+        [SerializeField] protected bool         downcastEnabled;
+        [Range(.01f, 1000)][Tooltip             ("The max distance to use for the downcasting mechanism (if enabled)")]
+        [SerializeField] protected float        downcastMaxDistance = 100;
         [Tooltip                                ("Transform for horizontal rotation")]
         [SerializeField] protected Transform    transformPivot;
         [Tooltip                                ("Transform for vertical rotation")]
@@ -39,17 +43,18 @@ namespace Goldenwere.Unity.Controller
 #pragma warning restore 0649
 
         #region Sensitivty Constants (these shouldn't need tweaked, as they are for ensuring that different inputs result in similar sensitivity at base; use other settings instead)
-        /**************/ protected const float    sensitivityScaleMovement = 0.35f;
-        /**************/ protected const float    sensitivityScaleMovementMouse = 0.05f;
-        /**************/ protected const float    sensitivityScaleRotation = 1f;
-        /**************/ protected const float    sensitivityScaleRotationMouse = 0.1f;
-        /**************/ protected const float    sensitivityScaleZoom = 1f;
-        /**************/ protected const float    sensitivityScaleZoomMouse = 3f;
+        /**************/ protected const float  sensitivityScaleMovement = 0.35f;
+        /**************/ protected const float  sensitivityScaleMovementMouse = 0.05f;
+        /**************/ protected const float  sensitivityScaleRotation = 1f;
+        /**************/ protected const float  sensitivityScaleRotationMouse = 0.1f;
+        /**************/ protected const float  sensitivityScaleZoom = 1f;
+        /**************/ protected const float  sensitivityScaleZoomMouse = 3f;
         #endregion
         #region Working Variables (these are used for the camera's functionality)
         /**************/ protected Vector3      workingDesiredPosition;
         /**************/ protected Quaternion   workingDesiredRotationHorizontal;
         /**************/ protected Quaternion   workingDesiredRotationVertical;
+        /**************/ protected float        workingLastHeight;
         /**************/ protected bool         workingInputActionMovement;
         /**************/ protected bool         workingInputActionRotation;
         /**************/ protected bool         workingInputActionZoom;
@@ -70,6 +75,8 @@ namespace Goldenwere.Unity.Controller
             workingDesiredPosition = transform.position;
             workingDesiredRotationHorizontal = transformPivot.transform.localRotation;
             workingDesiredRotationVertical = transformTilt.transform.localRotation;
+            if (downcastEnabled && Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance))
+                workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
         }
 
         /// <summary>
@@ -220,6 +227,16 @@ namespace Goldenwere.Unity.Controller
             Vector3 add = (transformPivot.forward * input.y * settingMovementSensitivity) + (transformPivot.right * input.x * settingMovementSensitivity);
             if (!WillCollideAtNewPosition(workingDesiredPosition + add, add))
                 workingDesiredPosition += add;
+
+            if (downcastEnabled && Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance))
+            {
+                float dist = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+                if (Mathf.Abs(dist - workingLastHeight) >= float.Epsilon)
+                {
+                    workingDesiredPosition.y += workingLastHeight - dist;
+                    workingLastHeight = dist;
+                }
+            }
         }
 
         /// <summary>
@@ -237,6 +254,9 @@ namespace Goldenwere.Unity.Controller
             Vector3 add = transformTilt.forward * input * settingZoomSensitivity;
             if (!WillCollideAtNewPosition(workingDesiredPosition + add, add))
                 workingDesiredPosition += add;
+
+            if (downcastEnabled && Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance))
+                workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
         }
 
         /// <summary>

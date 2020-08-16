@@ -12,6 +12,8 @@ namespace Goldenwere.Unity.Controller
 #pragma warning disable 0649
         [Range(0.1f,100f)][Tooltip          ("When the raycast doesn't find a collider, an invisible point will be used instead defaultPointDistance units away from the camera")]
         [SerializeField] private float      defaultPointDistance;
+        [Tooltip                            ("Whether to raycast downward while rotating; only applies if downcastEnabled is also true; might produce odd behaviour if allowed to tilt")]
+        [SerializeField] protected bool     downcastEnabledForRotation;
         [Range(0.1f,1000f)][Tooltip         ("The maximum distance to raycast")]
         [SerializeField] private float      maxDistance;
 #pragma warning restore 0649
@@ -71,9 +73,31 @@ namespace Goldenwere.Unity.Controller
 
             if (downcastEnabled)
             {
-                workingLostHeight = !Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance);
-                if (!workingLostHeight)
-                    workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+                if (!downcastEnabledForRotation)
+                {
+                    workingLostHeight = !Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance);
+                    if (!workingLostHeight)
+                        workingLastHeight = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+                }
+
+                else
+                {
+                    bool prevLostHeight = workingLostHeight;
+                    workingLostHeight = !Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hitInfo, downcastMaxDistance);
+                    if (!workingLostHeight)
+                    {
+                        float dist = Mathf.Abs(Vector3.Distance(transform.position, hitInfo.point));
+
+                        if (prevLostHeight)
+                            workingLastHeight = dist;
+
+                        else if (Mathf.Abs(dist - workingLastHeight) >= float.Epsilon)
+                        {
+                            workingDesiredPosition.y += workingLastHeight - dist;
+                            workingLastHeight = dist;
+                        }
+                    }
+                }
             }
         }
 

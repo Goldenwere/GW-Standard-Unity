@@ -5,7 +5,7 @@
 ***
 *** File Info:
 ***     Description - Contains the SliderDemo class
-***     Pkg Name    - Slider_Demo
+***     Pkg Name    - SliderExtensions_Demo
 ***     Pkg Ver     - 1.0.0
 ***     Pkg Req     - SliderExtensions
 **/

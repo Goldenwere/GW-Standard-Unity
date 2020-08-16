@@ -75,7 +75,7 @@ namespace Goldenwere.Unity.UI
         RotateHorizontal,
         RotateHorizontalInverted,
         RotateVertical,
-        RotateVerticalInverted,
+        RotateVerticalInverted
     }
 
     /// <summary>

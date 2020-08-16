@@ -59,6 +59,7 @@ namespace Goldenwere.Unity.Controller
         /**************/ protected bool         workingInputActionMovement;
         /**************/ protected bool         workingInputActionRotation;
         /**************/ protected bool         workingInputActionZoom;
+        /**************/ protected bool         workingInputGamepadToggleZoom;
         /**************/ protected bool         workingInputMouseToggleMovement;
         /**************/ protected bool         workingInputMouseToggleRotation;
         /**************/ protected bool         workingInputMouseToggleZoom;
@@ -92,13 +93,17 @@ namespace Goldenwere.Unity.Controller
             if (controlMotionEnabled)
             {
                 if (workingInputActionMovement)
-                    PerformMovement(attachedInput.actions["ActionMovement"].ReadValue<Vector2>().normalized * sensitivityScaleMovement);
+                {
+                    if (!workingInputGamepadToggleZoom)
+                        PerformMovement(attachedInput.actions["ActionMovement"].ReadValue<Vector2>().normalized * sensitivityScaleMovement);
+                }
 
                 if (workingInputActionRotation)
                     PerformRotation(attachedInput.actions["ActionRotation"].ReadValue<Vector2>().normalized * sensitivityScaleRotation);
 
                 if (workingInputActionZoom)
-                    PerformZoom(attachedInput.actions["ActionZoom"].ReadValue<float>() * sensitivityScaleZoom);
+                    if (attachedInput.actions["ActionZoom"].activeControl.path.Contains("Keyboard") || workingInputGamepadToggleZoom)
+                        PerformZoom(attachedInput.actions["ActionZoom"].ReadValue<float>() * sensitivityScaleZoom);
 
                 if (useCameraSmoothing)
                 {
@@ -142,6 +147,18 @@ namespace Goldenwere.Unity.Controller
         public void OnInput_ActionZoom(InputAction.CallbackContext context)
         {
             workingInputActionZoom = context.performed;
+        }
+
+        /// <summary>
+        /// Handler for GamepadToggleZoom from PlayerInput
+        /// </summary>
+        /// <param name="context">Holds bool regarding performed or cancelled</param>
+        public void OnInput_GamepadToggleZoom(InputAction.CallbackContext context)
+        {
+            if (settingMouseMotionIsToggled)
+                workingInputGamepadToggleZoom = !workingInputGamepadToggleZoom;
+            else
+                workingInputGamepadToggleZoom = context.performed;
         }
 
         /// <summary>

@@ -30,6 +30,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "GamepadToggleZoom",
+                    "type": "Button",
+                    "id": "4b2c3e04-8043-4a4a-9b2f-a46f21a1857a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "MouseDelta",
                     "type": "Value",
                     "id": "02283673-3e2b-489d-969c-9aa4e9ece743",
@@ -325,6 +333,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Gamepad",
+                    "id": "3b1ff520-070c-4aa9-8207-c2af09d7fc16",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionZoom",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "fd4043d6-f7ee-490c-9016-42d6e96dde27",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "adea3a3c-ffef-40ac-8c87-46fb2186ed87",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "c70badd0-a033-4e08-b25a-ae7de4847082",
                     "path": "<Mouse>/delta",
@@ -376,6 +417,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseToggleZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57abb997-5276-4adb-b8ff-ae8629fefe6c",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GamepadToggleZoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

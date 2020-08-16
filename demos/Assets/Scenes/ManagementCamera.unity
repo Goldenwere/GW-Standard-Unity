@@ -3876,7 +3876,7 @@ MonoBehaviour:
   transformTilt: {fileID: 1394519251}
   smoothMotionSpeed: 10
   useCameraSmoothing: 1
-  verticalClamping: {x: -50, y: 50}
+  verticalClamping: {x: -10, y: 50}
   defaultPointDistance: 100
   maxDistance: 100
 --- !u!114 &1277715471
@@ -4025,6 +4025,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3408d9ac-4f8b-490a-9016-6848d3d988d5
     m_ActionName: ManagementCameraMap/MouseToggleZoom[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1277715470}
+        m_MethodName: OnInput_GamepadToggleZoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4b2c3e04-8043-4a4a-9b2f-a46f21a1857a
+    m_ActionName: ManagementCameraMap/GamepadToggleZoom[/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/up]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: ManagementCameraMap

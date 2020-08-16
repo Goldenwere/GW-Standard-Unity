@@ -4339,6 +4339,7 @@ MonoBehaviour:
   useCameraSmoothing: 1
   verticalClamping: {x: -10, y: 50}
   defaultPointDistance: 100
+  downcastEnabledForRotation: 1
   maxDistance: 100
 --- !u!114 &1277715471
 MonoBehaviour:

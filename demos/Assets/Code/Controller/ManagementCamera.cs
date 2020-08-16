@@ -11,6 +11,7 @@ namespace Goldenwere.Unity.Controller
     public abstract class ManagementCamera : MonoBehaviour
     {
         #region Fields
+        #region Serialized
 #pragma warning disable 0649
         [Header("Game Settings")]               // useful exposed code for circumstances such as changes in game state
         /**************/ public bool            controlMotionEnabled;
@@ -41,9 +42,10 @@ namespace Goldenwere.Unity.Controller
         [Tooltip                                ("Sets the maximum angle at which the camera can rotate vertically (down and up respectively)")]
         [SerializeField] protected Vector2      verticalClamping = new Vector2(-50f, 50f);
 #pragma warning restore 0649
-
+        #endregion
         #region Sensitivty Constants (these shouldn't need tweaked, as they are for ensuring that different inputs result in similar sensitivity at base; use other settings instead)
-        /**************/ protected const float  sensitivityScaleMovement = 0.35f;
+        /**************/
+        protected const float  sensitivityScaleMovement = 0.35f;
         /**************/ protected const float  sensitivityScaleMovementMouse = 0.05f;
         /**************/ protected const float  sensitivityScaleRotation = 1f;
         /**************/ protected const float  sensitivityScaleRotationMouse = 0.1f;
@@ -65,9 +67,11 @@ namespace Goldenwere.Unity.Controller
         /**************/ protected bool         workingInputMouseToggleZoom;
         #endregion
         #endregion
+
         #region Events
         public event    CameraMouseState        CameraMouseStateChanged;
         #endregion
+
         #region Methods
         /// <summary>
         /// Sets working transform variables on Start

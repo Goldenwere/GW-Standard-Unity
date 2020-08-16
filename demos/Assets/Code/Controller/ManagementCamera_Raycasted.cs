@@ -19,6 +19,7 @@ namespace Goldenwere.Unity.Controller
         /**************/ private Vector3    rotationPoint;
         /**************/ private bool       rotationPointSet;
         #endregion
+
         #region Methods
         /// <summary>
         /// Sets transform on Update

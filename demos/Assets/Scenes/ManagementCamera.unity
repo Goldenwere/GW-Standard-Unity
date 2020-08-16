@@ -3844,6 +3844,7 @@ GameObject:
   - component: {fileID: 1277715473}
   - component: {fileID: 1277715471}
   - component: {fileID: 1277715470}
+  - component: {fileID: 1277715472}
   m_Layer: 0
   m_Name: ManagementCamera_Raycasted
   m_TagString: Untagged
@@ -4040,11 +4041,40 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4b2c3e04-8043-4a4a-9b2f-a46f21a1857a
     m_ActionName: ManagementCameraMap/GamepadToggleZoom[/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1277715472}
+        m_MethodName: OnInput_MoveCursor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dcaede9c-4499-460a-9d58-3eaf27dca495
+    m_ActionName: ManagementCameraMap/MoveCursor[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: ManagementCameraMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1277715472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277715469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29cfa539d0fc1fa43b946c3b9c1a35b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingCursorSensitivity: 1
+  attachedInput: {fileID: 1277715471}
 --- !u!4 &1277715473
 Transform:
   m_ObjectHideFlags: 0

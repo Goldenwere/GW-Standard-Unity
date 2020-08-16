@@ -3,9 +3,9 @@
 namespace Goldenwere.Unity.Controller
 {
     /// <summary>
-    /// Variant of ManagementCamera which depends on raycasting from the camera to a point in the scene
+    /// Variant of ManagementCamera which does orbit-style rotation using raycasting from the camera to a point in the scene
     /// </summary>
-    public class ManagementCamera_Raycasted : ManagementCamera
+    public class ManagementCamera_Orbit : ManagementCamera
     {
         #region Fields
         [Header("Raycasted Settings")]

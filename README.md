@@ -1,13 +1,20 @@
-# Goldenwere Cross-Project Unity Code
+# Goldenwere Standard Unity Repository
 
 ## About
 
-This repo contains code that is intended to be used across multiple projects. It is kept as independent as possible so that it can work even outside Goldenwere Unity projects.
+The Goldenwere Standard Unity Repository (GW-Std-Unity) is a collection of free-and-open-source (FOSS) assets for use in developing within the Unity engine. GW-Std-Unity is licensed under the [MIT license](LICENSE.md) (note: demo packages may include third party assets not licensed under MIT; their respective licenses will be included in both the repo and in asset packages).
 
-## Src and Documentation
+## Purpose
 
-The code associated with this repo is available [demos/Assets/Code](demos/Assets/Code). All code falls within children of the Goldenwere.Unity namespace. Some classes may require this repo's CoreAPI. The code styling originates from [Unknown Entity 2](https://github.com/Goldenwere/UE2_Source/wiki)'s source guidelines. See the [wiki](https://github.com/Goldenwere/GW-Standard-Unity/wiki) for an explanation of the function/purpose of each class. Code features XML comments to explain methods and usage further.
+GW-Std-Unity was created in order to make independent, re-usable cross-project assets for use in game development with Unity. As such, most assets contain a variety of features to allow for greatest usage.
 
-## Demos
+## Resources
 
-To view demos of the code available in `src`, open the `demos` folder in Unity (Unity Hub -> Add -> "demos") and load the scene you wish to see a demo of. If video demos are available, they will be linked in the wiki-documentation for the associated code.
+- [Goldenwere Page](https://goldenwere.surge.sh/projects/gw-std-unity)
+- [Released Packages](https://www.dropbox.com/sh/osd6e0arkca1g3f/AACjni2fx5vDgL2_5hZ1Jlypa?dl=0)
+- [Wiki](https://github.com/Goldenwere/GW-Standard-Unity/wiki)
+
+## Repo
+
+The repository contains a Unity project, [demos](demos). See [ProjectVersion.txt](demos/ProjectSettings/ProjectVersion.txt) to determine which version of Unity to open with.  
+If you simply want the asset packages for importing into your own project, see [Released Packages under Resources](#resources).

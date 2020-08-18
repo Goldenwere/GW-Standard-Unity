@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlMotionEnabled: 1
+  controlMouseEnabled: 1
   settingMouseMotionIsToggled: 0
   settingMovementSensitivity: 1
   settingRotationSensitivity: 1
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlMotionEnabled: 1
+  controlMouseEnabled: 1
   settingMouseMotionIsToggled: 0
   settingMovementSensitivity: 1
   settingRotationSensitivity: 1

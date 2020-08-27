@@ -249,6 +249,7 @@ MonoBehaviour:
   settingRotationSensitivity: 1
   settingZoomSensitivity: 1
   attachedInput: {fileID: 5850904899793179154}
+  cameraMotionSpeed: 2
   collisionPadding: 3
   downcastEnabled: 1
   downcastMaxDistance: 100

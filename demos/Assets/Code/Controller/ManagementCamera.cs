@@ -57,13 +57,12 @@ namespace Goldenwere.Unity.Controller
 #pragma warning restore 0649
         #endregion
         #region Sensitivty Constants (these shouldn't need tweaked, as they are for ensuring that different inputs result in similar sensitivity at base; use other settings instead)
-        /**************/
-        protected const float  sensitivityScaleMovement = 0.35f;
+        /**************/ protected const float  sensitivityScaleMovement = 0.35f;
         /**************/ protected const float  sensitivityScaleMovementMouse = 0.05f;
         /**************/ protected const float  sensitivityScaleRotation = 1f;
         /**************/ protected const float  sensitivityScaleRotationMouse = 0.1f;
-        /**************/ protected const float  sensitivityScaleZoom = 1f;
-        /**************/ protected const float  sensitivityScaleZoomMouse = 3f;
+        /**************/ protected const float  sensitivityScaleZoom = 0.33f;
+        /**************/ protected const float  sensitivityScaleZoomMouse = 1f;
         #endregion
         #region Working Variables (these are used for the camera's functionality)
         /**************/ protected Vector3      workingDesiredPosition;

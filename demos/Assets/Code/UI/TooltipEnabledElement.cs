@@ -6,7 +6,7 @@
 *** File Info:
 ***     Description - Contains the TooltipEnabledElement class and associated structures AnchorMode, AnchorPosition, MiddlePosition, and TransitionMode
 ***     Pkg Name    - TooltipSystem
-***     Pkg Ver     - 1.0.1
+***     Pkg Ver     - 1.1.0
 ***     Pkg Req     - CoreAPI
 **/
 

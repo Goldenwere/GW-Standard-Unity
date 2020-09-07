@@ -115,6 +115,8 @@ namespace Goldenwere.Unity.UI
         [Tooltip                                ("Prefab which contains a TooltipPrefab class. Only the width of the prefab and text size are a concern;\n" +
                                                 "text padding is defined in TooltipEnabledElement, and height is determined dynamically based on text contents.")]
         [SerializeField] private GameObject     tooltipPrefab;
+        [Range(0,10)] [Tooltip                  ("Adds a delay between closing and re-opening")]
+        [SerializeField] private float          tooltipDelayReopening;
         [Tooltip                                ("The text to display in the tooltip")]
         [SerializeField] private string         tooltipText;
         [Tooltip                                ("Values used if defining a string that needs formatting. Leave blank if no formatting is done inside tooltipText")]
@@ -131,6 +133,7 @@ namespace Goldenwere.Unity.UI
         [SerializeField] private TransitionMode transitionMode;
 #pragma warning restore 0649
         /**************/ private bool           isActive;
+        /**************/ private bool           isDelayedForReopening;
         /**************/ private bool           isInitialized;
         /**************/ private bool           isTransitioning;
         /**************/ private TooltipPrefab  tooltipInstance;
@@ -247,6 +250,8 @@ namespace Goldenwere.Unity.UI
             }
             StopAllCoroutines();
             SetActive(false);
+            if (tooltipDelayReopening > 0)
+                StartCoroutine(DelayReOpening());
         }
 
         /// <summary>
@@ -268,6 +273,8 @@ namespace Goldenwere.Unity.UI
                 }
                 StopAllCoroutines();
                 SetActive(false);
+                if (tooltipDelayReopening > 0)
+                    StartCoroutine(DelayReOpening());
             }
         }
 
@@ -276,11 +283,14 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         public void OnPointerEnter(PointerEventData data)
         {
-            StopAllCoroutines();
-            if (tooltipDelay > 0)
-                StartCoroutine(DelayOpening());
-            else
-                SetActive(true);
+            if (!isDelayedForReopening)
+            {
+                StopAllCoroutines();
+                if (tooltipDelay > 0)
+                    StartCoroutine(DelayOpening());
+                else
+                    SetActive(true);
+            }
         }
 
         /// <summary>
@@ -300,6 +310,8 @@ namespace Goldenwere.Unity.UI
             }
             StopAllCoroutines();
             SetActive(false);
+            if (tooltipDelayReopening > 0)
+                StartCoroutine(DelayReOpening());
         }
 
         /// <summary>
@@ -307,11 +319,14 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         public void OnSelect(BaseEventData data)
         {
-            StopAllCoroutines();
-            if (tooltipDelay > 0)
-                StartCoroutine(DelayOpening());
-            else
-                SetActive(true);
+            if (!isDelayedForReopening)
+            {
+                StopAllCoroutines();
+                if (tooltipDelay > 0)
+                    StartCoroutine(DelayOpening());
+                else
+                    SetActive(true);
+            }
         }
 
         /// <summary>
@@ -333,6 +348,8 @@ namespace Goldenwere.Unity.UI
                 }
                 StopAllCoroutines();
                 SetActive(false);
+                if (tooltipDelayReopening > 0)
+                    StartCoroutine(DelayReOpening());
             }
         }
         #endregion
@@ -746,6 +763,16 @@ namespace Goldenwere.Unity.UI
         {
             yield return new WaitForSeconds(tooltipDelay);
             SetActive(true);
+        }
+
+        /// <summary>
+        /// Adds a slight delay between re-opening tooltip (useful in case UI navigation reselects after click/submit)
+        /// </summary>
+        private IEnumerator DelayReOpening()
+        {
+            isDelayedForReopening = true;
+            yield return new WaitForSecondsRealtime(tooltipDelayReopening);
+            isDelayedForReopening = false;
         }
         #endregion
 

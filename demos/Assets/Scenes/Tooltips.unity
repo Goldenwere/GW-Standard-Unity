@@ -185,6 +185,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -345,6 +346,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Horizontal Factor" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -1339,6 +1341,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -1692,6 +1695,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check the difference in Default Arrow Position
   tooltipValues: []
   transitionDuration: 0
@@ -1852,6 +1856,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -2012,6 +2017,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Certain Transition Modes don't work with Cursor Attachment
   tooltipValues: []
   transitionDuration: 0.5
@@ -2208,6 +2214,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check the difference in Tooltip Delay
   tooltipValues: []
   transitionDuration: 0
@@ -2722,6 +2729,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -3232,6 +3240,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Horizontal Factor" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -3549,6 +3558,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -3709,6 +3719,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -3869,6 +3880,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -4029,6 +4041,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -4313,6 +4326,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: <color=#ff0000>TMPro tags supported</color>
   tooltipValues: []
   transitionDuration: 0
@@ -4630,6 +4644,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Use 5:4 aspect ratio and bring cursor near edge
   tooltipValues: []
   transitionDuration: 0
@@ -4790,6 +4805,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -4950,6 +4966,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'Value A: {0} | Value: {1}'
   tooltipValues:
   - 20
@@ -5112,6 +5129,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -5706,6 +5724,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check the difference in Default Arrow Position
   tooltipValues: []
   transitionDuration: 0
@@ -6023,6 +6042,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Horizontal Factor" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -6183,6 +6203,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check the difference in Tooltip Delay
   tooltipValues: []
   transitionDuration: 0
@@ -6343,6 +6364,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -6503,6 +6525,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: <mspace=1em>TMPro tags supported</mspace>
   tooltipValues: []
   transitionDuration: 0
@@ -6820,6 +6843,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -7173,6 +7197,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Horizontal Factor" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -7333,6 +7358,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Use 5:4 aspect ratio and bring cursor near edge
   tooltipValues: []
   transitionDuration: 0
@@ -7650,6 +7676,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Use 5:4 aspect ratio and bring cursor near edge
   tooltipValues: []
   transitionDuration: 0
@@ -8281,6 +8308,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Horizontal Factor" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -8441,6 +8469,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -8736,6 +8765,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -9176,6 +9206,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Use 5:4 aspect ratio and bring cursor near edge
   tooltipValues: []
   transitionDuration: 0
@@ -9493,6 +9524,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -10160,6 +10192,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check the difference in Default Arrow Position
   tooltipValues: []
   transitionDuration: 0
@@ -10320,6 +10353,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -10516,6 +10550,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -10718,6 +10753,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -11616,6 +11652,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -11933,6 +11970,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -12093,6 +12131,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -12253,6 +12292,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -12570,6 +12610,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -13044,6 +13085,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -13599,6 +13641,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -13840,6 +13883,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -14157,6 +14201,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -14674,7 +14719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 2100589001}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1453398905
@@ -14755,6 +14800,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Look at the curves and notice that they are unclamped
   tooltipValues: []
   transitionDuration: 0.33
@@ -16027,6 +16073,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check the difference in Tooltip Delay
   tooltipValues: []
   transitionDuration: 0
@@ -16344,6 +16391,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -16540,6 +16588,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -16931,6 +16980,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check the difference in Tooltip Delay
   tooltipValues: []
   transitionDuration: 0
@@ -18033,6 +18083,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'Value: {0}'
   tooltipValues:
   - 10
@@ -18194,6 +18245,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -18511,6 +18563,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Horizontal Factor" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -18671,6 +18724,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -18831,6 +18885,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -18991,6 +19046,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -19465,6 +19521,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -19939,6 +19996,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check the difference in Default Arrow Position
   tooltipValues: []
   transitionDuration: 0
@@ -20099,6 +20157,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: 'There are two prefabs: arrow and arrowless'
   tooltipValues: []
   transitionDuration: 0
@@ -20259,6 +20318,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check Transition Mode for differences
   tooltipValues: []
   transitionDuration: 0.5
@@ -22379,6 +22439,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 0
@@ -22696,6 +22757,7 @@ MonoBehaviour:
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
+  tooltipDelayReopening: 0.1
   tooltipText: Check "Anchor Position" for differences
   tooltipValues: []
   transitionDuration: 5

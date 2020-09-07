@@ -108,6 +108,8 @@ namespace Goldenwere.Unity.UI
         [Range(0.01f,1)] [Tooltip               ("Multiplier that determines how much the tooltip anchors to the left/right when AnchorPosition is one of the " +
                                                 "left/right settings (has no effect on Middle settings)")]
         [SerializeField] private float          tooltipHorizontalFactor = 1;
+        [Tooltip                                ("Whether the tooltip closes on click/submit")]
+        [SerializeField] private bool           tooltipCloseOnSubmit = true;
         [Tooltip                                ("Padding between the edges of the tooltip and text element, done in traditional CSS order: Top, Right, Bottom, Left")]
         [SerializeField] private Vector4        tooltipPadding;
         [Tooltip                                ("Prefab which contains a TooltipPrefab class. Only the width of the prefab and text size are a concern;\n" +
@@ -252,18 +254,21 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         public void OnPointerClick(PointerEventData data)
         {
-            if (transitionMode == TransitionMode.ShiftDown || transitionMode == TransitionMode.ShiftUp)
+            if (tooltipCloseOnSubmit)
             {
-                if (isTransitioning)
+                if (transitionMode == TransitionMode.ShiftDown || transitionMode == TransitionMode.ShiftUp)
                 {
-                    Transform parent = tooltipInstance.transform.parent;
-                    tooltipInstance.transform.SetParent(tooltipInstanceParent, true);
-                    Destroy(parent.gameObject);
-                    tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
+                    if (isTransitioning)
+                    {
+                        Transform parent = tooltipInstance.transform.parent;
+                        tooltipInstance.transform.SetParent(tooltipInstanceParent, true);
+                        Destroy(parent.gameObject);
+                        tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
+                    }
                 }
+                StopAllCoroutines();
+                SetActive(false);
             }
-            StopAllCoroutines();
-            SetActive(false);
         }
 
         /// <summary>
@@ -314,18 +319,21 @@ namespace Goldenwere.Unity.UI
         /// </summary>
         public void OnSubmit(BaseEventData data)
         {
-            if (transitionMode == TransitionMode.ShiftDown || transitionMode == TransitionMode.ShiftUp)
+            if (tooltipCloseOnSubmit)
             {
-                if (isTransitioning)
+                if (transitionMode == TransitionMode.ShiftDown || transitionMode == TransitionMode.ShiftUp)
                 {
-                    Transform parent = tooltipInstance.transform.parent;
-                    tooltipInstance.transform.SetParent(tooltipInstanceParent, true);
-                    Destroy(parent.gameObject);
-                    tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
+                    if (isTransitioning)
+                    {
+                        Transform parent = tooltipInstance.transform.parent;
+                        tooltipInstance.transform.SetParent(tooltipInstanceParent, true);
+                        Destroy(parent.gameObject);
+                        tooltipInstance.RTransform.anchoredPosition = tooltipInstancePosition;
+                    }
                 }
+                StopAllCoroutines();
+                SetActive(false);
             }
-            StopAllCoroutines();
-            SetActive(false);
         }
         #endregion
 

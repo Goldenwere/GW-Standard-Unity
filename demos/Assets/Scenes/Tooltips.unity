@@ -181,6 +181,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -340,6 +341,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -1333,6 +1335,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -1685,6 +1688,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -1844,6 +1848,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -2003,6 +2008,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -2198,6 +2204,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -2711,6 +2718,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -3220,6 +3228,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -3536,6 +3545,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -3695,6 +3705,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -3854,6 +3865,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -4013,6 +4025,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -4296,6 +4309,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -4612,6 +4626,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -4771,6 +4786,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -4930,6 +4946,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -5091,6 +5108,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -5684,6 +5702,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -6000,6 +6019,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -6159,6 +6179,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 1
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -6318,6 +6339,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -6477,6 +6499,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -6793,6 +6816,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -7145,6 +7169,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -7304,6 +7329,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -7620,6 +7646,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -8250,6 +8277,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -8409,6 +8437,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -8703,6 +8732,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -9142,6 +9172,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -9458,6 +9489,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -10124,6 +10156,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -10283,6 +10316,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -10478,6 +10512,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -10679,6 +10714,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -11576,6 +11612,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -11892,6 +11929,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -12051,6 +12089,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -12210,6 +12249,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -12526,6 +12566,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -12999,6 +13040,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -13553,6 +13595,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -13793,6 +13836,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -14109,6 +14153,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -14706,6 +14751,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -15977,6 +16023,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0.1
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -16293,6 +16340,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -16488,6 +16536,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -16878,6 +16927,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0.5
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -17979,6 +18029,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -18139,6 +18190,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -18455,6 +18507,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -18614,6 +18667,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -18773,6 +18827,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -18932,6 +18987,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -19405,6 +19461,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -19878,6 +19935,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -20037,6 +20095,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 1
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: 1e048465da7010d498c4796a13ac83b3,
     type: 3}
@@ -20196,6 +20255,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -22315,6 +22375,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}
@@ -22631,6 +22692,7 @@ MonoBehaviour:
   canvasToBeAttachedTo: {fileID: 931533398}
   tooltipDelay: 0
   tooltipHorizontalFactor: 0.5
+  tooltipCloseOnSubmit: 1
   tooltipPadding: {x: 10, y: 10, z: 10, w: 10}
   tooltipPrefab: {fileID: 1028998215143860895, guid: c03ac9375ff92c9458a62dc5d5b66b20,
     type: 3}

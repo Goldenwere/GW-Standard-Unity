@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Mark external assets as vendored for github linguist
+External/* linguist-vendored

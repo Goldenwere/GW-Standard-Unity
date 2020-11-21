@@ -16,5 +16,5 @@ GW-Std-Unity was created in order to make independent, re-usable cross-project a
 
 ## Repo
 
-The repository contains a Unity project, [demos](demos). See [ProjectVersion.txt](demos/ProjectSettings/ProjectVersion.txt) to determine which version of Unity to open with.  
+The repository contains a Unity project, [src](src). See [ProjectVersion.txt](src/ProjectSettings/ProjectVersion.txt) to determine which version of Unity to open with.  
 If you simply want the asset packages for importing into your own project, see [Released Packages under Resources](#resources).

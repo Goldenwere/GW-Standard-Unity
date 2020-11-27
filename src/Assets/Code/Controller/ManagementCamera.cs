@@ -388,7 +388,7 @@ namespace Goldenwere.Unity.Controller
             bool willCollide = false;
             foreach(Collider c in cols)
             {
-                if (!willCollide && c.gameObject.layer != 2)
+                if (c.gameObject.layer != 2)
                 {
                     Vector3 headingCurrent = c.transform.position - newPosition - direction;
                     float dotCurr = Vector3.Dot(headingCurrent, newPosition - direction);
@@ -396,6 +396,8 @@ namespace Goldenwere.Unity.Controller
                     float dotNew = Vector3.Dot(headingNew, newPosition);
                     willCollide = Mathf.Abs(dotNew) - Mathf.Abs(dotCurr) > 0;
                 }
+                if (willCollide)
+                    break;
             }
             return willCollide;
         }

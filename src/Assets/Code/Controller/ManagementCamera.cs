@@ -36,8 +36,11 @@ namespace Goldenwere.Unity.Controller
         [Range(0.01f,5)] public float           settingRotationSensitivity = 1f;
         [Range(0.01f,5)] public float           settingZoomSensitivity = 1f;
         /**************/ public bool            useCameraSmoothing = true;
+        /**************/ public ZoomMode        zoomMode = ZoomMode.Forward;
 
         [Header("Core Components")]
+        [Tooltip                                ("The attached camera (currently only needed for ZoomMode.ToCursor, otherwise can be left unassigned)")]
+        [SerializeField] protected Camera       attachedCamera;
         [Tooltip                                ("The attached PlayerInput class")]
         [SerializeField] protected PlayerInput  attachedInput;
         [Range(0.1f,5)][Tooltip                 ("How fast the camera's motion is, applied after scale constants and before sensitivity settings; " +
@@ -371,7 +374,12 @@ namespace Goldenwere.Unity.Controller
         /// <param name="input">The current input (modified to account for device sensitivity scaling)</param>
         protected void PerformZoom(float input)
         {
-            Vector3 add = transformTilt.forward * input * settingZoomSensitivity;
+            Vector3 add;
+            if (zoomMode == ZoomMode.ToCursor)
+                add = attachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue()).direction * input * settingZoomSensitivity;
+            else
+                add = transformTilt.forward * input * settingZoomSensitivity;
+
             if (!WillCollideAtNewPosition(workingDesiredPosition + add, add))
                 workingDesiredPosition += add;
 
@@ -435,5 +443,14 @@ namespace Goldenwere.Unity.Controller
     {
         public InversionModes   mouse;
         public InversionModes   other;
+    }
+
+    /// <summary>
+    /// Defines the mode of which the camera uses for zooming
+    /// </summary>
+    public enum ZoomMode
+    {
+        Forward,
+        ToCursor
     }
 }

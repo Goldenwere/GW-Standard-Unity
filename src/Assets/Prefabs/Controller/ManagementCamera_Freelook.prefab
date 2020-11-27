@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3632956989558295386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234, y: 67.3, z: 219.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3632956988904264559}
@@ -347,10 +347,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlMotionEnabled: 1
   controlMouseEnabled: 1
+  settingInputInversion:
+    mouse:
+      movementHorizontal: 0
+      movementVertical: 0
+      rotationHorizontal: 0
+      rotationVertical: 0
+      zoom: 0
+    other:
+      movementHorizontal: 0
+      movementVertical: 0
+      rotationHorizontal: 0
+      rotationVertical: 0
+      zoom: 0
   settingMouseMotionIsToggled: 0
   settingMovementSensitivity: 1
   settingRotationSensitivity: 1
   settingZoomSensitivity: 1
+  useCameraSmoothing: 1
+  zoomMode: 0
+  attachedCamera: {fileID: 3632956989070623621}
   attachedInput: {fileID: 3632956989558295384}
   cameraMotionSpeed: 2
   collisionPadding: 3
@@ -359,7 +375,6 @@ MonoBehaviour:
   transformPivot: {fileID: 3632956988904264559}
   transformTilt: {fileID: 3632956989070623620}
   smoothMotionSpeed: 10
-  useCameraSmoothing: 1
   verticalClamping: {x: -10, y: 50}
 --- !u!114 &3632956989558295367
 MonoBehaviour:

@@ -116,8 +116,8 @@ namespace Goldenwere.Unity
 
             return null;
         }
-		
-		/// <summary>
+
+        /// <summary>
         /// Find the parent with the specific name of a Transform, recursively searching upwards
         /// </summary>
         /// <param name="transform">The transform to search from</param>
@@ -138,7 +138,7 @@ namespace Goldenwere.Unity
 
             return null;
         }
-		
+
         /// <summary>
         /// Find the parent with the specific tag of a Transform, recursively searching upwards
         /// </summary>

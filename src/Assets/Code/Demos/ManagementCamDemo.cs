@@ -11,6 +11,7 @@
 **/
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Goldenwere.Unity.Controller;
 
 namespace Goldenwere.Unity.Demos
@@ -23,12 +24,17 @@ namespace Goldenwere.Unity.Demos
         #region Fields
 #pragma warning disable 0649
         [SerializeField] private ManagementCamera   cam;
-        [Range(0.01f,10f)][Tooltip                  ("The cursor only gets hidden when the squared velocity of the camera reaches this value\n" +
+        [Range(0.01f,10f)][Tooltip                  ("The cursor only gets hidden when the squared velocity of the camera reaches this value.\n" +
                                                     "Note that this value is directly compared against the velocity's sqrMagnitude for performance reasons," +
                                                     "meaning it is not itself squared.")]
         [SerializeField] private float              cursorHideSqrVelocityThreshold = 1.0f;
+        [Tooltip                                    ("Whether to restore the cursor after unhiding it to the position it was originally at before hiding.\n" +
+                                                    "Normally, CursorLockMode.Locked centers the cursor, which is good for things like first person controllers" +
+                                                    "but may actually be frustrating to the player for controllers like the management cameras.")]
+        [SerializeField] private bool               restoreCursorPositionAfterShown = true;
 #pragma warning restore 0649
         /**************/ private bool               isMouseBeingUsed;
+        /**************/ private Vector2            prevMousePos;
         #endregion
 
         #region Methods
@@ -55,6 +61,7 @@ namespace Goldenwere.Unity.Demos
                 {
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
+                    prevMousePos = Mouse.current.position.ReadValue();
                 }
             }
         }
@@ -81,12 +88,14 @@ namespace Goldenwere.Unity.Demos
         /// <param name="isMouseBeingUsed">Whether the mouse is currently being used for camera motion</param>
         private void OnCameraMouseStateChanged(bool _isMouseBeingUsed)
         {
-            isMouseBeingUsed = _isMouseBeingUsed;
-            if (!_isMouseBeingUsed)
+            if (isMouseBeingUsed && !_isMouseBeingUsed)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                if (restoreCursorPositionAfterShown)
+                    Mouse.current.WarpCursorPosition(prevMousePos);
             }
+            isMouseBeingUsed = _isMouseBeingUsed;
         }
         #endregion
     }

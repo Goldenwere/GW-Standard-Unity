@@ -83,6 +83,10 @@ namespace Goldenwere.Unity.Controller
         #endregion
         #endregion
 
+        #region Properties
+        public Vector3  CurrentCameraVelocity   { get; private set; }
+        #endregion
+
         #region Events
         public event    CameraMouseState        CameraMouseStateChanged;
         #endregion
@@ -111,6 +115,8 @@ namespace Goldenwere.Unity.Controller
         {
             if (controlMotionEnabled)
             {
+                Vector3 oldPos = transform.position;
+
                 if (workingInputActionMovement)
                 {
                     if (!workingInputGamepadToggleZoom)
@@ -158,6 +164,8 @@ namespace Goldenwere.Unity.Controller
                     transformPivot.localRotation = workingDesiredRotationHorizontal;
                     transformTilt.localRotation = workingDesiredRotationVertical;
                 }
+
+                CurrentCameraVelocity = transform.position - oldPos;
             }
         }
 

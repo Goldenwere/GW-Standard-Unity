@@ -22,8 +22,13 @@ namespace Goldenwere.Unity.Demos
     {
         #region Fields
 #pragma warning disable 0649
-        [SerializeField] private ManagementCamera cam;
+        [SerializeField] private ManagementCamera   cam;
+        [Range(0.01f,10f)][Tooltip                  ("The cursor only gets hidden when the squared velocity of the camera reaches this value\n" +
+                                                    "Note that this value is directly compared against the velocity's sqrMagnitude for performance reasons," +
+                                                    "meaning it is not itself squared.")]
+        [SerializeField] private float              cursorHideSqrVelocityThreshold = 1.0f;
 #pragma warning restore 0649
+        /**************/ private bool               isMouseBeingUsed;
         #endregion
 
         #region Methods
@@ -35,6 +40,23 @@ namespace Goldenwere.Unity.Demos
             cam.controlMotionEnabled = true;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+        }
+
+        /// <summary>
+        /// On Update, check to see if the cursor needs hidden
+        /// </summary>
+        private void Update()
+        {
+            // First, check if the camera is using mouse and the cursor is still visible
+            if (isMouseBeingUsed && Cursor.visible)
+            {
+                // Second, only hide the cursor if the velocity is great enough
+                if (cam.CurrentCameraVelocity.sqrMagnitude >= cursorHideSqrVelocityThreshold)
+                {
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
         }
 
         /// <summary>
@@ -57,15 +79,10 @@ namespace Goldenwere.Unity.Demos
         /// Handler for the CameraMouseStateChanged event which toggles cursor state
         /// </summary>
         /// <param name="isMouseBeingUsed">Whether the mouse is currently being used for camera motion</param>
-        private void OnCameraMouseStateChanged(bool isMouseBeingUsed)
+        private void OnCameraMouseStateChanged(bool _isMouseBeingUsed)
         {
-            if (isMouseBeingUsed)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-
-            else
+            isMouseBeingUsed = _isMouseBeingUsed;
+            if (!_isMouseBeingUsed)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;

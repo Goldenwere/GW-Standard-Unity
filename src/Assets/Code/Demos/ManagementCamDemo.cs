@@ -91,9 +91,9 @@ namespace Goldenwere.Unity.Demos
             if (isMouseBeingUsed && !_isMouseBeingUsed)
             {
                 Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                if (restoreCursorPositionAfterShown)
+                if (restoreCursorPositionAfterShown && !Cursor.visible)
                     Mouse.current.WarpCursorPosition(prevMousePos);
+                Cursor.visible = true;
             }
             isMouseBeingUsed = _isMouseBeingUsed;
         }

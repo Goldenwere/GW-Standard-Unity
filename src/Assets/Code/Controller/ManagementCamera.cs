@@ -4,9 +4,9 @@
 *** The Goldenwere Standard Unity Repository is licensed under the MIT license
 ***
 *** File Info:
-***     Description - Contains the ManagementCamera class and associated delegate
+***     Description - Contains the ManagementCamera class and associated delegate + InversionModes, InputInversion structs + ZoomMode enum
 ***     Pkg Name    - ManagementCamera
-***     Pkg Ver     - 1.1.0
+***     Pkg Ver     - 1.2.0
 ***     Pkg Req     - CoreAPI
 **/
 

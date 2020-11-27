@@ -6,7 +6,7 @@
 *** File Info:
 ***     Description - Contains the ManagementCamDemo class
 ***     Pkg Name    - ManagementCamera_Demo
-***     Pkg Ver     - 1.1.0
+***     Pkg Ver     - 1.2.0
 ***     Pkg Req     - ManagementCamera
 **/
 

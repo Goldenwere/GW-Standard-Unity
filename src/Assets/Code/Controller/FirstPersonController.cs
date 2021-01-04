@@ -6,7 +6,7 @@
 *** File Info:
 ***     Description - Contains the FirstPersonController class and associated structures MovementState, MovementType, and MovementStateDelevate
 ***     Pkg Name    - FirstPersonController
-***     Pkg Ver     - 1.0.0
+***     Pkg Ver     - 1.0.1
 ***     Pkg Req     - CoreAPI
 **/
 
@@ -117,7 +117,7 @@ namespace Goldenwere.Unity.Controller
             #region Exposed settings
             [Header("Exposed Settings / Utility")]
 
-            [Tooltip            ("Whether modifiers (fast, slow/crouch) are toggled or held")]
+            [Tooltip         ("Whether modifiers (fast, slow/crouch) are toggled or held")]
             /**************/ public  bool           areModifiersToggled = false;
             [Tooltip         ("Whether the player can crouch")]
             /**************/ public  bool           canCrouch = true;
@@ -316,12 +316,34 @@ namespace Goldenwere.Unity.Controller
                     workingControlActionModifierMoveSlow = false;
                     break;
                 case MovementType.fast:
-                default:
                     settingsMovement.canMoveFast = false;
                     workingControlActionModifierMoveFast = false;
                     break;
+                default:
+                    settingsMovement.canMove = false;
+                    workingControlActionModifierMoveFast = false;
+                    workingControlActionModifierMoveSlow = false;
+                    workingIsCrouched = false;
+                    break;
             }
             DetermineMovementState();
+        }
+
+        /// <summary>
+        /// A safe way to disable movement; directly manipulating certain types of movement will produce bugs if in the middle of said movement
+        /// </summary>
+        public void DisableMovementSafely()
+        {
+            settingsMovement.canMove = false;
+            workingControlActionModifierMoveFast = false;
+            workingControlActionModifierMoveSlow = false;
+            workingControlActionDoMovement = false;
+            workingControlActionDoRotation = false;
+            attachedRigidbody.velocity = Vector3.zero;
+            if (workingIsCrouched)
+                UpdateMovementState?.Invoke(MovementState.idle_crouched);
+            else
+                UpdateMovementState?.Invoke(MovementState.idle);
         }
 
         /// <summary>
@@ -330,7 +352,7 @@ namespace Goldenwere.Unity.Controller
         /// <param name="context">The context associated with the input</param>
         public void OnCrouch(InputAction.CallbackContext context)
         {
-            if (settingsMovement.canCrouch)
+            if (settingsMovement.canMove && settingsMovement.canCrouch)
             {
                 if (settingsMovement.areModifiersToggled)
                     workingIsCrouched = !workingIsCrouched;
@@ -346,10 +368,13 @@ namespace Goldenwere.Unity.Controller
         /// <param name="context">The context associated with the input (unused)</param>
         public void OnJump(InputAction.CallbackContext context)
         {
-            if (!context.canceled && !workingIsCrouched || !context.canceled && settingsMovement.SettingCanJumpWhileCrouched)
+            if (settingsMovement.canMove)
             {
-                workingJumpDesired = true;
-                DetermineMovementState();
+                if (!context.canceled && !workingIsCrouched || !context.canceled && settingsMovement.SettingCanJumpWhileCrouched)
+                {
+                    workingJumpDesired = true;
+                    DetermineMovementState();
+                }
             }
         }
 
@@ -359,7 +384,7 @@ namespace Goldenwere.Unity.Controller
         /// <param name="context">The context associated with the input</param>
         public void OnModifierMovementFast(InputAction.CallbackContext context)
         {
-            if (settingsMovement.canMoveFast)
+            if (settingsMovement.canMove && settingsMovement.canMoveFast)
             {
                 if (settingsMovement.areModifiersToggled)
                     workingControlActionModifierMoveFast = !workingControlActionModifierMoveFast;
@@ -376,7 +401,7 @@ namespace Goldenwere.Unity.Controller
         /// <param name="context">The context associated with the input</param>
         public void OnModifierMovementSlow(InputAction.CallbackContext context)
         {
-            if (settingsMovement.canMoveSlow)
+            if (settingsMovement.canMove && settingsMovement.canMoveSlow)
             {
                 if (settingsMovement.areModifiersToggled)
                     workingControlActionModifierMoveSlow = !workingControlActionModifierMoveSlow;
@@ -393,8 +418,11 @@ namespace Goldenwere.Unity.Controller
         /// <param name="context">The context associated with the input</param>
         public void OnMovement(InputAction.CallbackContext context)
         {
-            workingControlActionDoMovement = context.performed;
-            DetermineMovementState();
+            if (settingsMovement.canMove)
+            {
+                workingControlActionDoMovement = context.performed;
+                DetermineMovementState();
+            }
         }
 
         /// <summary>
@@ -403,8 +431,11 @@ namespace Goldenwere.Unity.Controller
         /// <param name="context">The context associated with the input</param>
         public void OnRotation(InputAction.CallbackContext context)
         {
-            workingControlActionDoRotation = context.performed;
-            workingRotationFromMouse = context.performed && context.control.device.path.Contains("Mouse");
+            if (settingsMovement.canMove)
+            {
+                workingControlActionDoRotation = context.performed;
+                workingRotationFromMouse = context.performed && context.control.device.path.Contains("Mouse");
+            }
         }
 
         /// <summary>

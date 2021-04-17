@@ -5849,7 +5849,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065039867}
-  - component: {fileID: 1065039868}
   - component: {fileID: 1065039869}
   m_Layer: 0
   m_Name: Controller
@@ -5873,20 +5872,6 @@ Transform:
   m_Father: {fileID: 1106780689}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1065039868
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065039866}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1065039869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5913,6 +5898,21 @@ MonoBehaviour:
     actionNameGravity: Gravity
     actionNameLean: Lean
     actionNameInteract: Interact
+  settingsForPhysics:
+    mass: 1
+    drag: 0.01
+    angularDrag: 0.01
+    shellOffset: 0.05
+    groundDistance: 0.1
+    heightNormal: 2
+    heightCrouch: 1
+    heightCrawl: 0.5
+  settingsForMovement:
+    allowWalk: 1
+    allowRun: 1
+    allowCrouch: 1
+    allowCrawl: 1
+    allowAirMovement: 1
   settingsForCamera:
     cameras:
     - {fileID: 624975866}

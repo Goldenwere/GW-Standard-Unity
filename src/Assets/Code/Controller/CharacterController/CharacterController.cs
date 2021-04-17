@@ -13,6 +13,7 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] private bool                       initializeOnStart = true;
         [SerializeField] private InputSettings              settingsForInput;
         [SerializeField] private PhysicSettings             settingsForPhysics;
+        [SerializeField] private MovementSettings           settingsForMovement;
         [SerializeField] private CameraSettings             settingsForCamera;
 #pragma warning restore
         /**************/ private bool                       initialized;
@@ -51,7 +52,8 @@ namespace Goldenwere.Unity.Controller
 
         private void FixedUpdate()
         {
-        
+            Update_Movement();
+            Update_Physics();
         }
     }
 }

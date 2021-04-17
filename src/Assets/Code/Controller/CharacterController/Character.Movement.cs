@@ -13,11 +13,15 @@ namespace Goldenwere.Unity.Controller
             public bool allowRun;
             public bool allowCrouch;
             public bool allowCrawl;
+            public bool allowAirMovement;
         }
 
-        private void Fixed_Update()
+        private void Update_Movement()
         {
-            
+            if (settingsForMovement.allowAirMovement || Grounded)
+            {
+                
+            }
         }
     }
 }

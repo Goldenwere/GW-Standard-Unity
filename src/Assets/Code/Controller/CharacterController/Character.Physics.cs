@@ -4,9 +4,13 @@ namespace Goldenwere.Unity.Controller
 {
     public partial class CharacterController
     {
-        private ICharacterPhysics system;
+        private ICharacterPhysics   system;
+        private CapsuleCollider     collider;
 
-        public ICharacterPhysics System => system;
+        public ICharacterPhysics    System => system;
+
+        public bool                 Grounded                { get; private set; }
+        public Vector3              GroundContactNormal     { get; private set; }
 
         /// <summary>
         /// Initializes the physics module
@@ -16,6 +20,27 @@ namespace Goldenwere.Unity.Controller
         {
             system = _system;
             system.Initialize(transform, settingsForPhysics);
+
+            if (!transform.TryGetComponent(out collider))
+                collider = gameObject.AddComponent<CapsuleCollider>();
+
+            // we will set center as height / 2 to make grounding math simpler by making ground = the actual bottom of the controller
+            collider.height = settingsForPhysics.heightNormal;
+            collider.center = new Vector3(0, collider.height / 2, 0);
+        }
+
+        private void Update_Physics()
+        {
+            // TODO: implement way of sleeping to prevent calling this every frame; ideally, if not asleep and there's no forces applied and no inputs/is grounded, sleep
+            // AddForce automatically unsleeps (dont check for force while asleep)
+            // the check nesting would be if !Sleep -> !Input && Grounded -> if velocity.sqrMag < sqrEpsilon -> sleep()
+            Grounded = Physics.SphereCast(transform.position,
+                collider.radius * (1.0f - settingsForPhysics.shellOffset),
+                Vector3.down,
+                out RaycastHit hit,
+                settingsForPhysics.groundDistance,
+                Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            GroundContactNormal = hit.normal;
         }
     }
 
@@ -28,6 +53,13 @@ namespace Goldenwere.Unity.Controller
         public float mass;
         public float drag;
         public float angularDrag;
+
+        public float shellOffset;
+        public float groundDistance;
+
+        public float heightNormal;
+        public float heightCrouch;
+        public float heightCrawl;
     }
 
     /// <summary>

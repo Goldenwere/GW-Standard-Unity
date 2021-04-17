@@ -6,10 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Goldenwere.Unity.Controller
 {
-    public delegate void inputBtn(bool val);
-    public delegate void input1d(float val);
-    public delegate void input2d(Vector2 val);
-    public delegate void inputVoid();
+    public delegate void inputActive(bool val);
 
     public partial class CharacterController : MonoBehaviour
     {
@@ -79,7 +76,7 @@ namespace Goldenwere.Unity.Controller
             public CharacterController  parent;
             public bool                 isActive;
             public bool                 isModifier;
-            public event inputVoid      Input;
+            public event inputActive    updated;
 
             public T GetValue<T>() where T: struct
             {
@@ -110,31 +107,44 @@ namespace Goldenwere.Unity.Controller
                             isActive = !isActive;
                         else
                             isActive = true;
-                        Input?.Invoke();
+                        updated?.Invoke(isActive);
                     };
                     action.canceled += ctx =>
                     {
                         if (!isModifier)
+                        { 
                             isActive = false;
-                        Input?.Invoke();
+                            updated?.Invoke(isActive);
+                        }
                     };
                 }
             }
         }
 
-        /**************/ private ControllerInputs           inputs;
-        /**************/ private List<InputContainer>       activeInputs;
+        /**************/ private ControllerInputs       inputs;
+        /**************/ private List<InputContainer>   activeInputs;
 
-        public event input2d                                Movement;
-        public event input2d                                Rotation;
-        public event inputBtn                               Jump;
-        public event inputBtn                               Crouch;
-        public event inputBtn                               Crawl;
-        public event inputBtn                               Walk;
-        public event inputBtn                               Run;
-        public event inputBtn                               Gravity;
-        public event input1d                                Lean;
-        public event inputBtn                               Interact;
+        public event inputActive                        Movement;
+        public event inputActive                        Rotation;
+        public event inputActive                        Jump;
+        public event inputActive                        Crouch;
+        public event inputActive                        Crawl;
+        public event inputActive                        Walk;
+        public event inputActive                        Run;
+        public event inputActive                        Gravity;
+        public event inputActive                        Lean;
+        public event inputActive                        Interact;
+
+        public Vector2                                  ValMovement { get; private set; }
+        public Vector2                                  ValRotation { get; private set; }
+        public bool                                     ValJump     { get; private set; }
+        public bool                                     ValCrouch   { get; private set;}
+        public bool                                     ValCrawl    { get; private set; }
+        public bool                                     ValWalk     { get; private set;}
+        public bool                                     ValRun      { get; private set; }
+        public bool                                     ValGravity  { get; private set; }
+        public float                                    ValLean     { get; private set; }
+        public bool                                     ValInteract { get; private set; }
 
         /// <summary>
         /// Initialize the controller's input module
@@ -143,6 +153,57 @@ namespace Goldenwere.Unity.Controller
         {
             inputs = settingsForInput.InitializeInputsFromSettings(settingsForInput.playerInput, this);
             activeInputs = new List<InputContainer>(10);
+
+            inputs.movement.updated += (bool val) =>
+            {
+                Movement?.Invoke(val);
+                ValMovement = inputs.movement.GetValue<Vector2>();
+            };
+            inputs.rotation.updated += (bool val) =>
+            {
+                Rotation?.Invoke(val);
+                ValRotation = inputs.rotation.GetValue<Vector2>();
+            };
+            inputs.jump.updated     += (bool val) =>
+            {
+                Jump?.Invoke(val);
+                ValJump = val;
+            };
+            inputs.crouch.updated   += (bool val) =>
+            {
+                Crouch?.Invoke(val);
+                ValCrouch = val;
+            };
+            inputs.crawl.updated    += (bool val) =>
+            {
+                Crawl?.Invoke(val);
+                ValCrawl = val;
+            };
+            inputs.walk.updated     += (bool val) =>
+            {
+                Walk?.Invoke(val);
+                ValWalk = val;
+            };
+            inputs.run.updated      += (bool val) =>
+            {
+                Run?.Invoke(val);
+                ValRun = val;
+            };
+            inputs.gravity.updated  += (bool val) =>
+            {
+                Gravity?.Invoke(val);
+                ValGravity = val;
+            };
+            inputs.lean.updated     += (bool val) =>
+            {
+                Lean?.Invoke(val);
+                ValLean = inputs.lean.GetValue<float>();
+            };
+            inputs.interact.updated += (bool val) =>
+            {
+                Interact?.Invoke(val);
+                ValInteract = val;
+            };
         }
     }
 }

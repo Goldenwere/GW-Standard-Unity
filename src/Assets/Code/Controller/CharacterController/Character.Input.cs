@@ -32,20 +32,25 @@ namespace Goldenwere.Unity.Controller
             public string           actionNameInteract;
             #endregion
 
-            public ControllerInputs InitializeInputsFromSettings(PlayerInput input, CharacterController parent)
+            /// <summary>
+            /// Creates ControllerInputs from the inspector-defined action names for the input module to use
+            /// </summary>
+            /// <param name="parent">The parent CharacterController, needed for modifier-based input containers to read if modifiers are toggled</param>
+            /// <returns>The initialized ControllerInputs from InputContainers' action names</returns>
+            public ControllerInputs InitializeInputsFromSettings(CharacterController parent)
             {
                 return new ControllerInputs()
                 {
-                    movement = new InputContainer(actionNameMovement, input, parent, false),
-                    rotation = new InputContainer(actionNameRotation, input, parent, false),
-                    jump = new InputContainer(actionNameJump, input, parent, false),
-                    crouch = new InputContainer(actionNameCrouch, input, parent, true),
-                    crawl = new InputContainer(actionNameCrawl, input, parent, true),
-                    walk = new InputContainer(actionNameWalk, input, parent, true),
-                    run = new InputContainer(actionNameRun, input, parent, true),
-                    gravity = new InputContainer(actionNameGravity, input, parent, false),
-                    lean = new InputContainer(actionNameLean, input, parent, true),
-                    interact = new InputContainer(actionNameInteract, input, parent, false),
+                    movement = new InputContainer(actionNameMovement, playerInput, parent, false),
+                    rotation = new InputContainer(actionNameRotation, playerInput, parent, false),
+                    jump = new InputContainer(actionNameJump, playerInput, parent, false),
+                    crouch = new InputContainer(actionNameCrouch, playerInput, parent, true),
+                    crawl = new InputContainer(actionNameCrawl, playerInput, parent, true),
+                    walk = new InputContainer(actionNameWalk, playerInput, parent, true),
+                    run = new InputContainer(actionNameRun, playerInput, parent, true),
+                    gravity = new InputContainer(actionNameGravity, playerInput, parent, false),
+                    lean = new InputContainer(actionNameLean, playerInput, parent, true),
+                    interact = new InputContainer(actionNameInteract, playerInput, parent, false),
                 };
             }
         }
@@ -76,8 +81,13 @@ namespace Goldenwere.Unity.Controller
             public CharacterController  parent;
             public bool                 isActive;
             public bool                 isModifier;
-            public event inputActive    updated;
+            public event inputActive    Updated;
 
+            /// <summary>
+            /// Calls action.ReadValue
+            /// </summary>
+            /// <typeparam name="T">The value-type associated with the input</typeparam>
+            /// <returns>The value stored in the input</returns>
             public T GetValue<T>() where T: struct
             {
                 return action.ReadValue<T>();
@@ -96,9 +106,11 @@ namespace Goldenwere.Unity.Controller
                 isModifier = _isModifier;
                 parent = _parent;
                 action = input.actions.FindAction(name);
+                
                 if (action == null)
                     throw new System.NullReferenceException("[gw-std-unity] Controller encountered null when searching for " + name + " on the provided PlayerInput. " +
                     "If the action is unused, this can be disregarded; otherwise, this input will not function properly");
+
                 else
                 {
                     action.performed += ctx =>
@@ -107,23 +119,23 @@ namespace Goldenwere.Unity.Controller
                             isActive = !isActive;
                         else
                             isActive = true;
-                        updated?.Invoke(isActive);
+                        Updated?.Invoke(isActive);
                     };
                     action.canceled += ctx =>
                     {
                         if (!isModifier)
                         { 
                             isActive = false;
-                            updated?.Invoke(isActive);
+                            Updated?.Invoke(isActive);
                         }
                     };
                 }
             }
         }
 
-        /**************/ private ControllerInputs       inputs;
-        /**************/ private List<InputContainer>   activeInputs;
+        private ControllerInputs       inputs;
 
+        #region State events for custom systems to optionally subscribe to without having to read values every frame
         public event inputActive                        Movement;
         public event inputActive                        Rotation;
         public event inputActive                        Jump;
@@ -134,75 +146,70 @@ namespace Goldenwere.Unity.Controller
         public event inputActive                        Gravity;
         public event inputActive                        Lean;
         public event inputActive                        Interact;
+        #endregion
 
-        public Vector2                                  ValMovement { get; private set; }
-        public Vector2                                  ValRotation { get; private set; }
-        public bool                                     ValJump     { get; private set; }
-        public bool                                     ValCrouch   { get; private set;}
-        public bool                                     ValCrawl    { get; private set; }
-        public bool                                     ValWalk     { get; private set;}
-        public bool                                     ValRun      { get; private set; }
-        public bool                                     ValGravity  { get; private set; }
-        public float                                    ValLean     { get; private set; }
-        public bool                                     ValInteract { get; private set; }
+        #region Properties of current input values
+        public Vector2                                  ValMovement         { get => inputs.movement.GetValue<Vector2>(); }
+        public bool                                     ValMovementActive   { get => inputs.movement.isActive; }
+        public Vector2                                  ValRotation         { get => inputs.rotation.GetValue<Vector2>(); }
+        public bool                                     ValRotationActive   { get => inputs.rotation.isActive; }
+        public bool                                     ValJump             { get => inputs.jump.isActive; }
+        public bool                                     ValCrouch           { get => inputs.crouch.isActive; }
+        public bool                                     ValCrawl            { get => inputs.crawl.isActive; }
+        public bool                                     ValWalk             { get => inputs.walk.isActive; }
+        public bool                                     ValRun              { get => inputs.run.isActive; }
+        public bool                                     ValGravity          { get => inputs.gravity.isActive; }
+        public float                                    ValLean             { get => inputs.lean.GetValue<float>(); }
+        public bool                                     ValLeanActive       { get => inputs.lean.isActive; }
+        public bool                                     ValInteract         { get => inputs.interact.isActive; }
+        #endregion
 
         /// <summary>
         /// Initialize the controller's input module
         /// </summary>
         private void InitializeInput()
         {
-            inputs = settingsForInput.InitializeInputsFromSettings(settingsForInput.playerInput, this);
-            activeInputs = new List<InputContainer>(10);
+            inputs = settingsForInput.InitializeInputsFromSettings(this);
 
-            inputs.movement.updated += (bool val) =>
+            inputs.movement.Updated += (bool val) =>
             {
                 Movement?.Invoke(val);
-                ValMovement = inputs.movement.GetValue<Vector2>();
             };
-            inputs.rotation.updated += (bool val) =>
+            inputs.rotation.Updated += (bool val) =>
             {
                 Rotation?.Invoke(val);
-                ValRotation = inputs.rotation.GetValue<Vector2>();
             };
-            inputs.jump.updated     += (bool val) =>
+            inputs.jump.Updated     += (bool val) =>
             {
                 Jump?.Invoke(val);
-                ValJump = val;
             };
-            inputs.crouch.updated   += (bool val) =>
+            inputs.crouch.Updated   += (bool val) =>
             {
                 Crouch?.Invoke(val);
-                ValCrouch = val;
             };
-            inputs.crawl.updated    += (bool val) =>
+            inputs.crawl.Updated    += (bool val) =>
             {
                 Crawl?.Invoke(val);
-                ValCrawl = val;
             };
-            inputs.walk.updated     += (bool val) =>
+            inputs.walk.Updated     += (bool val) =>
             {
                 Walk?.Invoke(val);
-                ValWalk = val;
             };
-            inputs.run.updated      += (bool val) =>
+            inputs.run.Updated      += (bool val) =>
             {
                 Run?.Invoke(val);
-                ValRun = val;
             };
-            inputs.gravity.updated  += (bool val) =>
+            inputs.gravity.Updated  += (bool val) =>
             {
                 Gravity?.Invoke(val);
-                ValGravity = val;
             };
-            inputs.lean.updated     += (bool val) =>
+            inputs.lean.Updated     += (bool val) =>
             {
                 Lean?.Invoke(val);
-                ValLean = inputs.lean.GetValue<float>();
             };
-            inputs.interact.updated += (bool val) =>
+            inputs.interact.Updated += (bool val) =>
             {
                 Interact?.Invoke(val);
-                ValInteract = val;
             };
         }
     }

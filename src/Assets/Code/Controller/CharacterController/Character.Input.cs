@@ -136,32 +136,32 @@ namespace Goldenwere.Unity.Controller
         private ControllerInputs        inputs;
 
         #region State events for custom systems to optionally subscribe to without having to read values every frame
-        public event inputActive                        Movement;
-        public event inputActive                        Rotation;
-        public event inputActive                        Jump;
-        public event inputActive                        Crouch;
-        public event inputActive                        Crawl;
-        public event inputActive                        Walk;
-        public event inputActive                        Run;
-        public event inputActive                        Gravity;
-        public event inputActive                        Lean;
-        public event inputActive                        Interact;
+        public event inputActive            Movement;
+        public event inputActive            Rotation;
+        public event inputActive            Jump;
+        public event inputActive            Crouch;
+        public event inputActive            Crawl;
+        public event inputActive            Walk;
+        public event inputActive            Run;
+        public event inputActive            Gravity;
+        public event inputActive            Lean;
+        public event inputActive            Interact;
         #endregion
 
         #region Properties of current input values
-        public Vector2                                  ValMovement         { get => inputs.movement.GetValue<Vector2>(); }
-        public bool                                     ValMovementActive   { get => inputs.movement.isActive; }
-        public Vector2                                  ValRotation         { get => inputs.rotation.GetValue<Vector2>(); }
-        public bool                                     ValRotationActive   { get => inputs.rotation.isActive; }
-        public bool                                     ValJump             { get => inputs.jump.isActive; }
-        public bool                                     ValCrouch           { get => inputs.crouch.isActive; }
-        public bool                                     ValCrawl            { get => inputs.crawl.isActive; }
-        public bool                                     ValWalk             { get => inputs.walk.isActive; }
-        public bool                                     ValRun              { get => inputs.run.isActive; }
-        public bool                                     ValGravity          { get => inputs.gravity.isActive; }
-        public float                                    ValLean             { get => inputs.lean.GetValue<float>(); }
-        public bool                                     ValLeanActive       { get => inputs.lean.isActive; }
-        public bool                                     ValInteract         { get => inputs.interact.isActive; }
+        public Vector2                      InputValueMovement      { get => inputs.movement.GetValue<Vector2>(); }
+        public bool                         InputActiveMovement     { get => inputs.movement.isActive; }
+        public Vector2                      InputValueRotation      { get => inputs.rotation.GetValue<Vector2>(); }
+        public bool                         InputActiveRotation     { get => inputs.rotation.isActive; }
+        public bool                         InputValueJump          { get => inputs.jump.isActive; }
+        public bool                         InputValueCrouch        { get => inputs.crouch.isActive; }
+        public bool                         InputValueCrawl         { get => inputs.crawl.isActive; }
+        public bool                         InputValueWalk          { get => inputs.walk.isActive; }
+        public bool                         InputValueRun           { get => inputs.run.isActive; }
+        public bool                         InputValueGravity       { get => inputs.gravity.isActive; }
+        public float                        InputValueLean          { get => inputs.lean.GetValue<float>(); }
+        public bool                         InputActiveLean         { get => inputs.lean.isActive; }
+        public bool                         InputValueInteract      { get => inputs.interact.isActive; }
         #endregion
 
         /// <summary>

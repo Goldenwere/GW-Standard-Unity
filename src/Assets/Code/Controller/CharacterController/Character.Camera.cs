@@ -197,9 +197,9 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void Update_Camera()
         {
-            if (ValRotationActive)
+            if (InputActiveRotation)
             {
-                Vector2 val = ValRotation;
+                Vector2 val = InputValueRotation;
                 if (CameraInvertHorizontal)
                     val.x *= -1;
                 if (CameraInvertVertical)

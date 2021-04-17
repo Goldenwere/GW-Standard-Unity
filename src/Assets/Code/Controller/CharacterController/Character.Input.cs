@@ -133,7 +133,7 @@ namespace Goldenwere.Unity.Controller
             }
         }
 
-        private ControllerInputs       inputs;
+        private ControllerInputs        inputs;
 
         #region State events for custom systems to optionally subscribe to without having to read values every frame
         public event inputActive                        Movement;

@@ -45,7 +45,7 @@ namespace Goldenwere.Unity.Controller
 
         private void Update()
         {
-        
+            Update_Camera();
         }
 
         private void FixedUpdate()

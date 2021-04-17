@@ -6,6 +6,8 @@ namespace Goldenwere.Unity.Controller
 {
     public partial class CharacterController : MonoBehaviour
     {
+        protected delegate void RotationForm();
+
         /// <summary>
         /// Structure for defining field of view settings
         /// </summary>
@@ -47,6 +49,7 @@ namespace Goldenwere.Unity.Controller
             public bool                 invertVertical;
             public bool                 useMouseSmoothing;
             public float                mouseSmoothSpeed;
+            public float                lookSensitivity;
         }
 
         /// <summary>
@@ -64,8 +67,8 @@ namespace Goldenwere.Unity.Controller
                                         "Note: If intending to use animation (e.g. bobbing), make sure the rotation joint takes priority in hierarchy over the animation joint.")]
             public Transform[]          cameraRotationJoints;
 
-            [Tooltip                    ("The min/max in euler angles that the camera can look up or down (typically this is just around -/+ 89-90)")]
-            public ValueClamp<float>    verticalClamp;
+            [Tooltip                    ("The min/max in euler angles that the camera can look up or down (typically this is just around -/+ 89-90); x = min, y = max")]
+            public Vector2              verticalClamp;
 
             public FOVSettings          settingsFOV;
             public MotionSettings       settingsMotion;
@@ -76,6 +79,11 @@ namespace Goldenwere.Unity.Controller
             // Have bool for if third person distance setting is supported (this determines if the input is listened to) and a state bool (outside CameraSettings) for first versus third
             // Have setting whether to swap left or right (this essentially multiplies the x of the joint by -1 when changed) and clamp setting for shoulder factor, both also properties
         }
+
+        private Quaternion[]            workingCameraRotations;         // for working with camera rotations before applying them to the cameras
+        private Quaternion              workingControllerRotation;      // for working with controller rotation before applying them to the controller
+        private RotationForm            workingRotationForm;            // for storing which form of rotation should be performed without checking the setting every frame
+        // TODO: potentially wrap controller in another transform for separating y-axis rotation from potential gravity-rotation module
 
         #region UX exposed properties
         /// <summary>
@@ -105,17 +113,51 @@ namespace Goldenwere.Unity.Controller
         public bool CameraSmoothingEnabled
         {
             get => settingsForCamera.settingsMotion.useMouseSmoothing;
-            set => settingsForCamera.settingsMotion.useMouseSmoothing = value;
+            set
+            {
+                settingsForCamera.settingsMotion.useMouseSmoothing = value;
+                workingRotationForm = CameraSmoothingEnabled ? (RotationForm)RotateWithSmoothing : (RotationForm)RotateWithoutSmoothing;
+            }
         }
 
         /// <summary>
         /// Sets the camera's smoothing speed
         /// </summary>
         /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
-        public bool CameraSmoothingSpeed
+        public float CameraSmoothingSpeed
         {
-            get => settingsForCamera.settingsMotion.useMouseSmoothing;
-            set => settingsForCamera.settingsMotion.useMouseSmoothing = value;
+            get => settingsForCamera.settingsMotion.mouseSmoothSpeed;
+            set => settingsForCamera.settingsMotion.mouseSmoothSpeed = value;
+        }
+
+        /// <summary>
+        /// Sets the camera's look sensitivity
+        /// </summary>
+        /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
+        public float CameraLookSensitivity
+        {
+            get => settingsForCamera.settingsMotion.lookSensitivity;
+            set => settingsForCamera.settingsMotion.lookSensitivity = value;
+        }
+
+        /// <summary>
+        /// Sets the camera's horizontal inversion setting
+        /// </summary>
+        /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
+        public bool CameraInvertHorizontal
+        {
+            get => settingsForCamera.settingsMotion.invertHorizontal;
+            set => settingsForCamera.settingsMotion.invertHorizontal = value;
+        }
+
+        /// <summary>
+        /// Sets the camera's vertical inversion setting
+        /// </summary>
+        /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
+        public bool CameraInvertVertical
+        {
+            get => settingsForCamera.settingsMotion.invertVertical;
+            set => settingsForCamera.settingsMotion.invertVertical = value;
         }
         #endregion
 
@@ -139,6 +181,62 @@ namespace Goldenwere.Unity.Controller
                 foreach(Transform t in settingsForCamera.cameraRotationJoints)
                     if (t == null)
                         Debug.LogException(new System.Exception("[gw-std-unity] Controller has a null rotation joint assigned. Ensure all slots of settingsForCamera.cameraRotationJoints are assigned"));
+                    else
+                    {
+                        workingCameraRotations = new Quaternion[settingsForCamera.cameraRotationJoints.Length];
+                        for (int i = 0; i < workingCameraRotations.Length; i++)
+                            workingCameraRotations[i] = settingsForCamera.cameraRotationJoints[i].localRotation;
+                        workingControllerRotation = transform.localRotation;
+                    }
+
+            workingRotationForm = CameraSmoothingEnabled ? (RotationForm)RotateWithSmoothing : (RotationForm)RotateWithoutSmoothing;
+        }
+
+        /// <summary>
+        /// [Performed Under: Update()] Updates the camera and controller rotation
+        /// </summary>
+        private void Update_Camera()
+        {
+            if (ValRotationActive)
+            {
+                Vector2 val = ValRotation;
+                if (CameraInvertHorizontal)
+                    val.x *= -1;
+                if (CameraInvertVertical)
+                    val.y *= -1;
+
+                for (int i = 0; i < workingCameraRotations.Length; i++)
+                {
+                    workingCameraRotations[i] *= Quaternion.Euler(-val.y * CameraLookSensitivity, 0, 0);
+                    workingCameraRotations[i] = workingCameraRotations[i].VerticalClampEuler(settingsForCamera.verticalClamp.x, settingsForCamera.verticalClamp.y);
+                }
+                workingControllerRotation *= Quaternion.Euler(0, val.x * CameraLookSensitivity, 0);
+            }
+
+            workingRotationForm();
+        }
+
+        /// <summary>
+        /// Method for rotating the controller with smoothing
+        /// </summary>
+        private void RotateWithSmoothing()
+        {
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, workingControllerRotation, CameraSmoothingSpeed * Time.deltaTime);
+            for (int i = 0; i < workingCameraRotations.Length; i++)
+                settingsForCamera.cameraRotationJoints[i].transform.localRotation = Quaternion.Slerp(
+                    settingsForCamera.cameraRotationJoints[i].transform.localRotation,
+                    workingCameraRotations[i],
+                    CameraSmoothingSpeed * Time.deltaTime);
+        }
+
+        /// <summary>
+        /// Method for rotating the controller without smoothing
+        /// </summary>
+        private void RotateWithoutSmoothing()
+        {
+            transform.localRotation = workingControllerRotation;
+            for (int i = 0; i < workingCameraRotations.Length; i++)
+                settingsForCamera.cameraRotationJoints[i].transform.localRotation = workingCameraRotations[i];
         }
     }
 }

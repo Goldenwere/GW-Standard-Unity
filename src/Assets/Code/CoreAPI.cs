@@ -261,4 +261,15 @@ namespace Goldenwere.Unity
             return parent;
         }
     }
+
+    /// <summary>
+    /// Structure for defining min/max values of something
+    /// </summary>
+    /// <typeparam name="T">IEquatable value</typeparam>
+    [System.Serializable]
+    public struct ValueClamp<T> where T : System.IEquatable<T>
+    {
+        public T min;
+        public T max;
+    }
 }

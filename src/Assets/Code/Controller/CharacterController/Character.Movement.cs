@@ -9,6 +9,14 @@ namespace Goldenwere.Unity.Controller
         [System.Serializable]
         protected struct MovementSettings
         {
+            public bool allowWalk;
+            public bool allowRun;
+            public bool allowCrouch;
+            public bool allowCrawl;
+        }
+
+        private void Fixed_Update()
+        {
             
         }
     }

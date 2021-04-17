@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Goldenwere.Unity.Demos
 {
@@ -12,7 +10,7 @@ namespace Goldenwere.Unity.Demos
 
         private void Awake()
         {
-            controller.Initialize();
+            controller.Initialize(new Controller.CharacterPhysicsRigidbodyBased());
         }
 
         private void OnGUI()

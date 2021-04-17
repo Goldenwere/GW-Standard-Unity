@@ -12,6 +12,7 @@ namespace Goldenwere.Unity.Controller
         [Tooltip                                            ("(Default: true) Automatically initializes the controller on Start; can be disabled for manually calling Initialize")]
         [SerializeField] private bool                       initializeOnStart = true;
         [SerializeField] private InputSettings              settingsForInput;
+        [SerializeField] private PhysicSettings             settingsForPhysics;
         [SerializeField] private CameraSettings             settingsForCamera;
 #pragma warning restore
         /**************/ private bool                       initialized;
@@ -20,7 +21,7 @@ namespace Goldenwere.Unity.Controller
         /// <summary>
         /// Handles initialization of the controller's various modules
         /// </summary>
-        public void Initialize()
+        public void Initialize(ICharacterPhysics physicSystem)
         {
             if (!initialized)
             { 
@@ -40,7 +41,7 @@ namespace Goldenwere.Unity.Controller
         private void Start()
         {
             if (initializeOnStart)
-                Initialize();
+                Initialize(new CharacterPhysicsRigidbodyBased());
         }
 
         private void Update()

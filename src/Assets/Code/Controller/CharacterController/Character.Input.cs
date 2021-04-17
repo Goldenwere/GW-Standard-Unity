@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Goldenwere.Unity.Controller
 {
-    public delegate void inputActive(bool val);
+    public delegate void InputActive(bool val);
 
     public partial class CharacterController : MonoBehaviour
     {
@@ -81,7 +81,8 @@ namespace Goldenwere.Unity.Controller
             public CharacterController  parent;
             public bool                 isActive;
             public bool                 isModifier;
-            public event inputActive    Updated;
+            public event InputActive    Updated;
+            // TODO: add a reference to another InputContainer as a way to prioritze one over the other (e.g. crawl over crouch)
 
             /// <summary>
             /// Calls action.ReadValue
@@ -136,16 +137,16 @@ namespace Goldenwere.Unity.Controller
         private ControllerInputs        inputs;
 
         #region State events for custom systems to optionally subscribe to without having to read values every frame
-        public event inputActive            Movement;
-        public event inputActive            Rotation;
-        public event inputActive            Jump;
-        public event inputActive            Crouch;
-        public event inputActive            Crawl;
-        public event inputActive            Walk;
-        public event inputActive            Run;
-        public event inputActive            Gravity;
-        public event inputActive            Lean;
-        public event inputActive            Interact;
+        public event InputActive            Movement;
+        public event InputActive            Rotation;
+        public event InputActive            Jump;
+        public event InputActive            Crouch;
+        public event InputActive            Crawl;
+        public event InputActive            Walk;
+        public event InputActive            Run;
+        public event InputActive            Gravity;
+        public event InputActive            Lean;
+        public event InputActive            Interact;
         #endregion
 
         #region Properties of current input values

@@ -21,8 +21,8 @@ namespace Goldenwere.Unity.Controller
             if (!initialized)
             { 
                 if (settingsForInput.playerInput == null)
-                    throw new System.NullReferenceException("[gw-std-unity] Controller's PlayerInput is null; " +
-                        "this must be assigned in order for the controller to work properly. Either assign one in inspector or do so in code before the first frame.");
+                    Debug.LogException(new System.NullReferenceException("[gw-std-unity] Controller's PlayerInput is null; " +
+                        "this must be assigned in order for the controller to work properly. Either assign one in inspector or do so in code before the first frame."));
                 else
                     InitializeInput();
                 

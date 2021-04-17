@@ -108,8 +108,8 @@ namespace Goldenwere.Unity.Controller
                 action = input.actions.FindAction(name);
                 
                 if (action == null)
-                    throw new System.NullReferenceException("[gw-std-unity] Controller encountered null when searching for " + name + " on the provided PlayerInput. " +
-                    "If the action is unused, this can be disregarded; otherwise, this input will not function properly");
+                    Debug.LogException(new System.NullReferenceException("[gw-std-unity] Controller encountered null when searching for " + name + " on the provided PlayerInput. " +
+                    "If the action is unused, this can be disregarded; otherwise, this input will not function properly"));
 
                 else
                 {

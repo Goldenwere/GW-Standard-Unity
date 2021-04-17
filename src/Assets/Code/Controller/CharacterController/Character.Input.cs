@@ -123,7 +123,7 @@ namespace Goldenwere.Unity.Controller
                     };
                     action.canceled += ctx =>
                     {
-                        if (!isModifier)
+                        if (!isModifier || !parent.settingsForInput.modifiersAreToggled)
                         { 
                             isActive = false;
                             Updated?.Invoke(isActive);

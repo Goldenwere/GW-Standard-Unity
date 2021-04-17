@@ -5,7 +5,9 @@ namespace Goldenwere.Unity.Controller
     public partial class CharacterController
     {
         private ICharacterPhysics   system;
+#pragma warning disable CS0108
         private CapsuleCollider     collider;
+#pragma warning restore CS0108
 
         public ICharacterPhysics    System => system;
 
@@ -29,7 +31,10 @@ namespace Goldenwere.Unity.Controller
             collider.center = new Vector3(0, collider.height / 2, 0);
         }
 
-        private void Update_Physics()
+        /// <summary>
+        /// [Performed Under: FixedUpdate()] Updates the controller's physics
+        /// </summary>
+        private void FixedUpdate_Physics()
         {
             // TODO: implement way of sleeping to prevent calling this every frame; ideally, if not asleep and there's no forces applied and no inputs/is grounded, sleep
             // AddForce automatically unsleeps (dont check for force while asleep)
@@ -67,6 +72,9 @@ namespace Goldenwere.Unity.Controller
     /// </summary>
     public interface ICharacterPhysics
     {
+        Vector3 Velocity { get; }
+        float Mass { get; }
+
         /// <summary>
         /// Initializes the physics system
         /// </summary>
@@ -91,6 +99,8 @@ namespace Goldenwere.Unity.Controller
         private Rigidbody rigidbody;
 
         public Rigidbody Rigidbody => rigidbody;
+        public Vector3 Velocity => rigidbody.velocity;
+        public float Mass => rigidbody.mass;
 
         public void Initialize(Transform t, PhysicSettings settings)
         {
@@ -101,6 +111,7 @@ namespace Goldenwere.Unity.Controller
             rigidbody.mass = settings.mass;
             rigidbody.drag = settings.drag;
             rigidbody.angularDrag = settings.angularDrag;
+            rigidbody.freezeRotation = true;
         }
 
         public void AddForce(Vector3 force, ForceMode mode) => rigidbody.AddForce(force, mode);
@@ -112,6 +123,9 @@ namespace Goldenwere.Unity.Controller
     public class CharacterPhysicsShiftableGravity : ICharacterPhysics
     {
         private Transform transform;
+
+        public Vector3 Velocity => throw new System.NotImplementedException();
+        public float Mass => throw new System.NotImplementedException();
 
         public void Initialize(Transform t, PhysicSettings settings)
         {

@@ -5899,8 +5899,8 @@ MonoBehaviour:
     actionNameLean: Lean
     actionNameInteract: Interact
   settingsForPhysics:
-    mass: 1
-    drag: 0.01
+    mass: 65
+    drag: 10
     angularDrag: 0.01
     shellOffset: 0.05
     groundDistance: 0.1
@@ -5913,6 +5913,11 @@ MonoBehaviour:
     allowCrouch: 1
     allowCrawl: 1
     allowAirMovement: 1
+    speedNormal: 6
+    speedMultiplierWalk: 0.5
+    speedMultiplierRun: 1.5
+    speedMultiplierCrouch: 0.5
+    speedMultiplierCrawl: 0.25
   settingsForCamera:
     cameras:
     - {fileID: 624975866}

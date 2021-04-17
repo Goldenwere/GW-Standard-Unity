@@ -22,6 +22,7 @@ namespace Goldenwere.Unity.Controller
         /// <summary>
         /// Handles initialization of the controller's various modules
         /// </summary>
+        /// <param name="physicSystem">The character physics system to use</param>
         public void Initialize(ICharacterPhysics physicSystem)
         {
             if (!initialized)
@@ -33,6 +34,8 @@ namespace Goldenwere.Unity.Controller
                     InitializeInput();
 
                 InitializeCamera();
+                InitializePhysics(physicSystem);
+                InitializeMovement();
                 
                 initialized = true;
                 controllerLoaded?.Invoke(this);
@@ -52,8 +55,8 @@ namespace Goldenwere.Unity.Controller
 
         private void FixedUpdate()
         {
-            Update_Movement();
-            Update_Physics();
+            FixedUpdate_Movement();
+            FixedUpdate_Physics();
         }
     }
 }

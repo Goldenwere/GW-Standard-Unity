@@ -14,7 +14,6 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] private InputSettings              settingsForInput;
 #pragma warning restore
         /**************/ private bool                       initialized;
-        /**************/ private ControllerInputs           inputs;
         /**************/ public ControllerLoadedDelegate    controllerLoaded;
         
         public void Initialize()

@@ -56,9 +56,7 @@ namespace Goldenwere.Unity.Controller
                     force = Vector3.ProjectOnPlane(force, GroundContactNormal);
 
                     // 3. get horizontal velocity and add force if vel.mag < speed
-                    Vector3 currHorizontal = system.Velocity;
-                    currHorizontal.y = 0;
-                    if (currHorizontal.sqrMagnitude < Mathf.Pow(speed, 2))
+                    if (system.HorizontalVelocity.sqrMagnitude < Mathf.Pow(speed, 2))
                         system.AddForce(force, ForceMode.VelocityChange);
                 }
             }

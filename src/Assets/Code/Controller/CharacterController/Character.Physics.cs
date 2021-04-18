@@ -39,14 +39,38 @@ namespace Goldenwere.Unity.Controller
             // TODO: implement way of sleeping to prevent calling this every frame; ideally, if not asleep and there's no forces applied and no inputs/is grounded, sleep
             // AddForce automatically unsleeps (dont check for force while asleep)
             // the check nesting would be if !Sleep -> !Input && Grounded -> if velocity.sqrMag < sqrEpsilon -> sleep()
-            Grounded = Physics.SphereCast(transform.position,
+            Grounded = Physics.SphereCast(transform.position - Vector3.down * settingsForPhysics.shellOffset,
                 collider.radius * (1.0f - settingsForPhysics.shellOffset),
                 Vector3.down,
                 out RaycastHit hit,
                 settingsForPhysics.groundDistance,
                 Physics.AllLayers, QueryTriggerInteraction.Ignore);
             GroundContactNormal = hit.normal;
+
+            if (Grounded)
+            { 
+                system.AddForce(Vector3.down * settingsForPhysics.forceStickToGround, ForceMode.Impulse);
+                system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionGround, ForceMode.Force);
+            }
+            else 
+            {
+                system.AddForce(Physics.gravity * settingsForPhysics.forceGravity, ForceMode.Acceleration);
+                system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionAir, ForceMode.Force);
+            }
         }
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            VisualizeGround();
+        }
+
+        private void VisualizeGround()
+        {
+            Gizmos.DrawSphere(transform.position - Vector3.down * settingsForPhysics.shellOffset, collider.radius * (1.0f - settingsForPhysics.shellOffset));
+            Gizmos.DrawSphere(transform.position + Vector3.down * settingsForPhysics.groundDistance, collider.radius * (1.0f - settingsForPhysics.shellOffset));
+            Gizmos.DrawLine(transform.position - Vector3.down * settingsForPhysics.shellOffset, transform.position + Vector3.down * settingsForPhysics.groundDistance);
+        }
+#endif
     }
 
     /// <summary>
@@ -58,6 +82,8 @@ namespace Goldenwere.Unity.Controller
         public float mass;
         public float drag;
         public float angularDrag;
+        public float frictionGround;
+        public float frictionAir;
 
         public float shellOffset;
         public float groundDistance;
@@ -65,6 +91,9 @@ namespace Goldenwere.Unity.Controller
         public float heightNormal;
         public float heightCrouch;
         public float heightCrawl;
+
+        public float forceStickToGround;
+        public float forceGravity;
     }
 
     /// <summary>
@@ -73,6 +102,7 @@ namespace Goldenwere.Unity.Controller
     public interface ICharacterPhysics
     {
         Vector3 Velocity { get; }
+        Vector3 HorizontalVelocity { get; }
         float Mass { get; }
 
         /// <summary>
@@ -101,6 +131,7 @@ namespace Goldenwere.Unity.Controller
         public Rigidbody Rigidbody => rigidbody;
         public Vector3 Velocity => rigidbody.velocity;
         public float Mass => rigidbody.mass;
+        public Vector3 HorizontalVelocity => new Vector3(Velocity.x, 0, Velocity.z);
 
         public void Initialize(Transform t, PhysicSettings settings)
         {
@@ -112,6 +143,7 @@ namespace Goldenwere.Unity.Controller
             rigidbody.drag = settings.drag;
             rigidbody.angularDrag = settings.angularDrag;
             rigidbody.freezeRotation = true;
+            rigidbody.useGravity = false;
         }
 
         public void AddForce(Vector3 force, ForceMode mode) => rigidbody.AddForce(force, mode);
@@ -126,6 +158,7 @@ namespace Goldenwere.Unity.Controller
 
         public Vector3 Velocity => throw new System.NotImplementedException();
         public float Mass => throw new System.NotImplementedException();
+        public Vector3 HorizontalVelocity => new Vector3(Velocity.x, 0, Velocity.z);
 
         public void Initialize(Transform t, PhysicSettings settings)
         {

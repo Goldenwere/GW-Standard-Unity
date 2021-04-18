@@ -5900,13 +5900,17 @@ MonoBehaviour:
     actionNameInteract: Interact
   settingsForPhysics:
     mass: 65
-    drag: 10
+    drag: 0.5
     angularDrag: 0.01
-    shellOffset: 0.05
-    groundDistance: 0.1
+    frictionGround: 0
+    frictionAir: 0
+    shellOffset: 0.35
+    groundDistance: 0.35
     heightNormal: 2
     heightCrouch: 1
     heightCrawl: 0.5
+    forceStickToGround: 100
+    forceGravity: 2
   settingsForMovement:
     allowWalk: 1
     allowRun: 1

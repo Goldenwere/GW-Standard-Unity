@@ -61,10 +61,10 @@ namespace Goldenwere.Unity.Controller
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            VisualizeGround();
+            VisualizeGravity();
         }
 
-        private void VisualizeGround()
+        private void VisualizeGravity()
         {
             Gizmos.DrawSphere(transform.position - Vector3.down * settingsForPhysics.shellOffset, collider.radius * (1.0f - settingsForPhysics.shellOffset));
             Gizmos.DrawSphere(transform.position + Vector3.down * settingsForPhysics.groundDistance, collider.radius * (1.0f - settingsForPhysics.shellOffset));

@@ -5902,14 +5902,14 @@ MonoBehaviour:
     mass: 65
     drag: 0.5
     angularDrag: 0.01
-    frictionGround: 0
-    frictionAir: 0
+    frictionGround: 20
+    frictionAir: 20
     shellOffset: 0.35
     groundDistance: 0.35
     heightNormal: 2
     heightCrouch: 1
     heightCrawl: 0.5
-    forceStickToGround: 100
+    forceStickToGround: 20
     forceGravity: 2
   settingsForMovement:
     allowWalk: 1

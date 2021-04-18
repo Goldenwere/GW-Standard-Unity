@@ -50,7 +50,9 @@ namespace Goldenwere.Unity.Controller
             if (Grounded)
             { 
                 system.AddForce(Vector3.down * settingsForPhysics.forceStickToGround, ForceMode.Impulse);
-                system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionGround, ForceMode.Force);
+                system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionGround, ForceMode.Impulse);
+                if (Mathf.Abs(Vector3.Angle(GroundContactNormal, Vector3.up)) < 90f)
+                    system.Velocity = Vector3.ProjectOnPlane(system.Velocity, GroundContactNormal);
             }
             else 
             {
@@ -101,7 +103,7 @@ namespace Goldenwere.Unity.Controller
     /// </summary>
     public interface ICharacterPhysics
     {
-        Vector3 Velocity { get; }
+        Vector3 Velocity { get; set; }
         Vector3 HorizontalVelocity { get; }
         float Mass { get; }
 
@@ -129,7 +131,11 @@ namespace Goldenwere.Unity.Controller
         private Rigidbody rigidbody;
 
         public Rigidbody Rigidbody => rigidbody;
-        public Vector3 Velocity => rigidbody.velocity;
+        public Vector3 Velocity
+        {
+            get => rigidbody.velocity;
+            set => rigidbody.velocity = value;
+        }
         public float Mass => rigidbody.mass;
         public Vector3 HorizontalVelocity => new Vector3(Velocity.x, 0, Velocity.z);
 
@@ -155,8 +161,12 @@ namespace Goldenwere.Unity.Controller
     public class CharacterPhysicsShiftableGravity : ICharacterPhysics
     {
         private Transform transform;
-
-        public Vector3 Velocity => throw new System.NotImplementedException();
+        
+        public Vector3 Velocity
+        {
+            get => throw new System.NotImplementedException();
+            set => throw new System.NotImplementedException();
+        }
         public float Mass => throw new System.NotImplementedException();
         public Vector3 HorizontalVelocity => new Vector3(Velocity.x, 0, Velocity.z);
 

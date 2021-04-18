@@ -13,6 +13,7 @@ namespace Goldenwere.Unity.Controller
 
         public bool                 Grounded                { get; private set; }
         public Vector3              GroundContactNormal     { get; private set; }
+        public float                SlopeAngle              { get; private set; }
 
         /// <summary>
         /// Initializes the physics module
@@ -46,12 +47,14 @@ namespace Goldenwere.Unity.Controller
                 settingsForPhysics.groundDistance,
                 Physics.AllLayers, QueryTriggerInteraction.Ignore);
             GroundContactNormal = hit.normal;
+            if (hit.collider != null)
+                SlopeAngle = Vector3.Angle(GroundContactNormal, IntendedDirection) - 90;
 
             if (Grounded)
             { 
-                system.AddForce(Vector3.down * settingsForPhysics.forceStickToGround, ForceMode.Impulse);
+                system.AddForce(Vector3.down * (settingsForPhysics.forceStickToGround + system.HorizontalVelocity.sqrMagnitude), ForceMode.Impulse);
                 system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionGround, ForceMode.Impulse);
-                if (Mathf.Abs(Vector3.Angle(GroundContactNormal, Vector3.up)) < 90f)
+                if (Mathf.Abs(SlopeAngle) < 90f)
                     system.Velocity = Vector3.ProjectOnPlane(system.Velocity, GroundContactNormal);
             }
             else 

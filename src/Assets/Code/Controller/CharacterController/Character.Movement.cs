@@ -20,13 +20,17 @@ namespace Goldenwere.Unity.Controller
             public float            speedMultiplierRun;
             public float            speedMultiplierCrouch;
             public float            speedMultiplierCrawl;
+
+            public AnimationCurve   speedSlopeModifier;
         }
 
         /// <summary>
         /// Exposed "final" multiplier to apply to the controller
         /// </summary>
         /// <remarks>E.G.: a status effect is affecting the player</remarks>
-        public float                SpeedMultiplier { get; set; }
+        public float                SpeedMultiplier     { get; set; }
+
+        public Vector3              IntendedDirection   { get; private set; }
 
         /// <summary>
         /// Initializes the movement module
@@ -48,11 +52,11 @@ namespace Goldenwere.Unity.Controller
                 {
                     // 1. get movement values
                     Vector3 val = InputValueMovement;
-                    Vector3 dir = transform.forward * val.y + transform.right * val.x;
+                    IntendedDirection = transform.forward * val.y + transform.right * val.x;
                     float speed = GetSpeed();
 
                     // 2. create force, project it on the current surface normal
-                    Vector3 force = dir * speed;
+                    Vector3 force = IntendedDirection * speed;
                     force = Vector3.ProjectOnPlane(force, GroundContactNormal);
 
                     // 3. get horizontal velocity and add force if vel.mag < speed
@@ -82,7 +86,7 @@ namespace Goldenwere.Unity.Controller
             else if (InputValueCrouch && settingsForMovement.allowCrouch)
                 f *= settingsForMovement.speedMultiplierCrouch;
 
-            return f * SpeedMultiplier;
+            return f * SpeedMultiplier * settingsForMovement.speedSlopeModifier.Evaluate(SlopeAngle);
         }
     }
 }

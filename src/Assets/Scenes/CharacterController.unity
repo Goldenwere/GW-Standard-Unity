@@ -5909,7 +5909,7 @@ MonoBehaviour:
     heightNormal: 2
     heightCrouch: 1
     heightCrawl: 0.5
-    forceStickToGround: 20
+    forceStickToGround: 40
     forceGravity: 2
   settingsForMovement:
     allowWalk: 1
@@ -5922,6 +5922,57 @@ MonoBehaviour:
     speedMultiplierRun: 1.5
     speedMultiplierCrouch: 0.5
     speedMultiplierCrawl: 0.25
+    speedSlopeModifier:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -90
+        value: 1.1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 15
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 80
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 90
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   settingsForCamera:
     cameras:
     - {fileID: 624975866}

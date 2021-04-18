@@ -10,6 +10,7 @@ namespace Goldenwere.Unity.Demos
 #pragma warning restore 0649
         /**************/ private Vector3                        velocity;
         /**************/ private float                          velMag;
+        /**************/ private float                          slope;
 
         private void Awake()
         {
@@ -21,7 +22,9 @@ namespace Goldenwere.Unity.Demos
         {
             GUI.Label(
                 new Rect(20, 20, Screen.width - 20, Screen.height - 20),
-                string.Format("Movement: {0}- {1}\nRotation: {2}- {3}\nJump + Crouch + Crawl: {4} + {5} + {6}\nWalk + Run: {7} + {8}\nLean: {9}- {10}\nInteract: {11}\nGravity: {12}\nGrounded?: {13}- {14}\nVelocity: {15} ({16:0.00}m/s)",
+                string.Format("Movement: {0}- {1}\nRotation: {2}- {3}\nJump + Crouch + Crawl: {4} + {5} + {6}\n" +
+                "Walk + Run: {7} + {8}\nLean: {9}- {10}\nInteract: {11}\nGravity: {12}\nGrounded?: {13}- {14}\n" +
+                "Velocity: {15} ({16:0.00}m/s)\nSlope Angle: {17:#00.00}",
                 controller.InputActiveMovement,
                 controller.InputValueMovement,
                 controller.InputActiveRotation,
@@ -38,7 +41,8 @@ namespace Goldenwere.Unity.Demos
                 controller.Grounded,
                 controller.GroundContactNormal,
                 velocity,
-                velMag)
+                velMag,
+                slope)
             );
         }
 
@@ -49,6 +53,7 @@ namespace Goldenwere.Unity.Demos
                 yield return new WaitForSeconds(0.25f);
                 velocity = controller.System.Velocity;
                 velMag = velocity.magnitude;
+                slope = controller.SlopeAngle;
             }
         }
     }

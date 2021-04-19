@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 namespace Goldenwere.Unity.Demos
@@ -7,6 +8,7 @@ namespace Goldenwere.Unity.Demos
     {
 #pragma warning disable 0649
         [SerializeField] private Controller.CharacterController controller;
+        [SerializeField] private Toggle                         toggleFOV;
 #pragma warning restore 0649
         /**************/ private Vector3                        velocity;
         /**************/ private float                          velMag;
@@ -16,6 +18,7 @@ namespace Goldenwere.Unity.Demos
         {
             controller.Initialize(new Controller.CharacterPhysicsRigidbodyBased());
             StartCoroutine(UpdateValuesSlowly());
+            toggleFOV.onValueChanged.AddListener((val) => controller.FOVShiftingEnabled = val);
         }
 
         private void OnGUI()

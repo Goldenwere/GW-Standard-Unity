@@ -91,6 +91,7 @@ namespace Goldenwere.Unity.Controller
         
         private SpeedState                      currentSpeed;
         private Dictionary<SpeedState, float>   speedsToValues;                 // for storing speeds to values without having to do conditionals
+        private PrioritizedOptionalModule       fovModule;
         private Quaternion[]                    workingCameraRotations;         // for working with camera rotations before applying them to the cameras
         private Quaternion                      workingControllerRotation;      // for working with controller rotation before applying them to the controller
         private RotationForm                    workingRotationForm;            // for storing which form of rotation should be performed without checking the setting every frame
@@ -107,6 +108,10 @@ namespace Goldenwere.Unity.Controller
             set 
             {
                 settingsForCamera.settingsFOV.useFOV = value;
+                if (!value)
+                    modulesUnderUpdate.Remove(fovModule);
+                else if (!modulesUnderUpdate.Contains(fovModule))
+                    modulesUnderUpdate.Add(fovModule);
                 foreach(Camera c in settingsForCamera.cameras)
                     c.fieldOfView = FOV;
             }
@@ -216,6 +221,10 @@ namespace Goldenwere.Unity.Controller
                 { SpeedState.walk,      settingsForCamera.settingsFOV.fovMultiplierWalk * FOV },
                 { SpeedState.run,       settingsForCamera.settingsFOV.fovMultiplierRun * FOV },
             };
+
+            fovModule = new PrioritizedOptionalModule(99, UpdateFOV);
+            if (FOVShiftingEnabled)
+                AddModuleToUpdate(fovModule);
         }
 
         /// <summary>
@@ -240,22 +249,6 @@ namespace Goldenwere.Unity.Controller
             }
 
             workingRotationForm();
-
-            if (FOVShiftingEnabled)
-            {
-                if (InputActiveMovement)
-                {
-                    if (InputValueRun)
-                        currentSpeed = SpeedState.run;
-                    else if (InputValueWalk)
-                        currentSpeed = SpeedState.walk;
-                    else
-                        currentSpeed = SpeedState.normal;
-                }
-                else
-                    currentSpeed = SpeedState.idle;
-                InterpolateFOV(!Grounded ? SpeedState.air : currentSpeed);
-            }
         }
 
         /// <summary>
@@ -279,6 +272,25 @@ namespace Goldenwere.Unity.Controller
             transform.localRotation = workingControllerRotation;
             for (int i = 0; i < workingCameraRotations.Length; i++)
                 settingsForCamera.cameraRotationJoints[i].transform.localRotation = workingCameraRotations[i];
+        }
+
+        /// <summary>
+        /// Method which contains the FOV shifting module
+        /// </summary>
+        private void UpdateFOV()
+        {
+            if (InputActiveMovement)
+            {
+                if (InputValueRun)
+                    currentSpeed = SpeedState.run;
+                else if (InputValueWalk)
+                    currentSpeed = SpeedState.walk;
+                else
+                    currentSpeed = SpeedState.normal;
+            }
+            else
+                currentSpeed = SpeedState.idle;
+            InterpolateFOV(!Grounded ? SpeedState.air : currentSpeed);
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ namespace Goldenwere.Unity.Controller
     public delegate void ControllerLoadedDelegate(CharacterController loaded);
     public delegate void ControllerModuleDelegate();
 
-    public struct PrioritizedOptionalModule
+    public class PrioritizedOptionalModule
     {
         public readonly int                         priority;
         public readonly ControllerModuleDelegate    method;
@@ -41,7 +41,10 @@ namespace Goldenwere.Unity.Controller
         public void Initialize(ICharacterPhysics physicSystem)
         {
             if (!initialized)
-            { 
+            {
+                modulesUnderFixedUpdate = new List<PrioritizedOptionalModule>(8);
+                modulesUnderUpdate = new List<PrioritizedOptionalModule>(8);
+
                 if (settingsForInput.playerInput == null)
                     Debug.LogException(new System.NullReferenceException("[gw-std-unity] Controller's PlayerInput is null; " +
                         "this must be assigned in order for the controller to work properly. Either assign one in inspector or do so in code before the first frame."));
@@ -51,9 +54,6 @@ namespace Goldenwere.Unity.Controller
                 InitializeCamera();
                 InitializePhysics(physicSystem);
                 InitializeMovement();
-
-                modulesUnderFixedUpdate = new List<PrioritizedOptionalModule>(8);
-                modulesUnderUpdate = new List<PrioritizedOptionalModule>(8);
                 
                 initialized = true;
                 ControllerLoaded?.Invoke(this);

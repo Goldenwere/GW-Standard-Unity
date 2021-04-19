@@ -81,7 +81,7 @@ namespace Goldenwere.Unity.Controller
                 module.method();
         }
 
-        private void AddModuleToUpdate(PrioritizedOptionalModule module)
+        public void AddModuleToUpdate(PrioritizedOptionalModule module)
         {
             modulesUnderUpdate.Add(module);
             modulesUnderUpdate.Sort((x, y) => {
@@ -91,7 +91,7 @@ namespace Goldenwere.Unity.Controller
             });
         }
 
-        private void AddModuleToFixedUpdate(PrioritizedOptionalModule module)
+        public void AddModuleToFixedUpdate(PrioritizedOptionalModule module)
         {
             modulesUnderFixedUpdate.Add(module);
             modulesUnderFixedUpdate.Sort((x, y) => {
@@ -99,6 +99,16 @@ namespace Goldenwere.Unity.Controller
                 if (x.priority > y.priority) return -1;
                 return -x.method.ToString().CompareTo(y.method.ToString());
             });
+        }
+
+        public void RemoveModuleFromUpdate(PrioritizedOptionalModule module)
+        {
+            modulesUnderUpdate.Remove(module);
+        }
+
+        public void RemoveModuleFromFixedUpdate(PrioritizedOptionalModule module)
+        {
+            modulesUnderFixedUpdate.Remove(module);
         }
     }
 }

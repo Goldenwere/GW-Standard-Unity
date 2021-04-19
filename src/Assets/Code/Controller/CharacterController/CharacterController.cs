@@ -85,9 +85,9 @@ namespace Goldenwere.Unity.Controller
         {
             modulesUnderUpdate.Add(module);
             modulesUnderUpdate.Sort((x, y) => {
-                if (x.priority > y.priority) return 1;
-                if (x.priority < y.priority) return -1;
-                return x.method.ToString().CompareTo(y.method.ToString());
+                if (x.priority < y.priority) return 1;
+                if (x.priority > y.priority) return -1;
+                return -x.method.ToString().CompareTo(y.method.ToString());
             });
         }
 
@@ -95,9 +95,9 @@ namespace Goldenwere.Unity.Controller
         {
             modulesUnderFixedUpdate.Add(module);
             modulesUnderFixedUpdate.Sort((x, y) => {
-                if (x.priority > y.priority) return 1;
-                if (x.priority < y.priority) return -1;
-                return x.method.ToString().CompareTo(y.method.ToString());
+                if (x.priority < y.priority) return 1;
+                if (x.priority > y.priority) return -1;
+                return -x.method.ToString().CompareTo(y.method.ToString());
             });
         }
     }

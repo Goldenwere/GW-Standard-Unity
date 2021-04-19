@@ -15,11 +15,14 @@ namespace Goldenwere.Unity.Controller
     /// </remarks>
     public class ControllerHeight : MonoBehaviour
     {
+        /// <summary>
+        /// Define the states the controller can have from inputs and assign numerical values to them for calculations
+        /// </summary>
         protected enum HeightState : int
         {
-            stand = 0,
-            crouch = 1,
-            crawl = 2
+            stand   = 0,
+            crouch  = 1,
+            crawl   = 2
         }
 
 #pragma warning disable 0649
@@ -33,6 +36,9 @@ namespace Goldenwere.Unity.Controller
         /**************/ private Dictionary<HeightState, float> heightStateToValue;
         /**************/ private float                          heightToRadiusFactor;
 
+        /// <summary>
+        /// Get controller and listen to its loaded event, initialize height values
+        /// </summary>
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
@@ -52,18 +58,28 @@ namespace Goldenwere.Unity.Controller
             heightToRadiusFactor = radiusNormal / heightStand;
         }
 
+        /// <summary>
+        /// Event subscribe on enable
+        /// </summary>
         private void OnEnable()
         {
             controller.Crawl += OnCrawl;
             controller.Crouch += OnCrouch;
         }
         
+        /// <summary>
+        /// Event unsubscribe on disable
+        /// </summary>
         private void OnDisable()
         {
             controller.Crawl -= OnCrawl;
             controller.Crouch -= OnCrouch;
         }
-
+        
+        /// <summary>
+        /// Handle Crouch active change event
+        /// </summary>
+        /// <param name="val">The active value of the input</param>
         private void OnCrouch(bool val)
         {
             // prioritize crawl over crouch
@@ -77,7 +93,11 @@ namespace Goldenwere.Unity.Controller
                     SetHeight(HeightState.crouch);
             }
         }
-
+        
+        /// <summary>
+        /// Handle Crawl active change event
+        /// </summary>
+        /// <param name="val">The active value of the input</param>
         private void OnCrawl(bool val)
         {
             // if disabling crawl...
@@ -95,6 +115,10 @@ namespace Goldenwere.Unity.Controller
                 SetHeight(HeightState.crawl);
         }
 
+        /// <summary>
+        /// Set height of the controller based on the state of inputs
+        /// </summary>
+        /// <param name="state">The state to set the controller to</param>
         private void SetHeight(HeightState state)
         {
             float oldHeight = controller.Collider.height;

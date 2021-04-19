@@ -63,17 +63,16 @@ namespace Goldenwere.Unity.Controller
                 system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionAir, ForceMode.Force);
             }
         }
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            VisualizeGravity();
-        }
-
-        private void VisualizeGravity()
-        {
-            Gizmos.DrawSphere(transform.position - Vector3.down * settingsForPhysics.shellOffset, collider.radius * (1.0f - settingsForPhysics.shellOffset));
-            Gizmos.DrawSphere(transform.position + Vector3.down * settingsForPhysics.groundDistance, collider.radius * (1.0f - settingsForPhysics.shellOffset));
-            Gizmos.DrawLine(transform.position - Vector3.down * settingsForPhysics.shellOffset, transform.position + Vector3.down * settingsForPhysics.groundDistance);
+            if (UnityEditor.EditorApplication.isPlaying)
+            {
+                Gizmos.DrawSphere(transform.position - Vector3.down * settingsForPhysics.shellOffset, collider.radius * (1.0f - settingsForPhysics.shellOffset));
+                Gizmos.DrawSphere(transform.position + Vector3.down * settingsForPhysics.groundDistance, collider.radius * (1.0f - settingsForPhysics.shellOffset));
+                Gizmos.DrawLine(transform.position - Vector3.down * settingsForPhysics.shellOffset, transform.position + Vector3.down * settingsForPhysics.groundDistance);
+            }
         }
 #endif
     }

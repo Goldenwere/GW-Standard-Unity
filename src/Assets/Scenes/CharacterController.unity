@@ -5850,6 +5850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065039867}
   - component: {fileID: 1065039869}
+  - component: {fileID: 1065039868}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -5872,6 +5873,23 @@ Transform:
   m_Father: {fileID: 1106780689}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1065039868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065039866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e81fe8b982552e40b2ccd5a4bd8ef9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraHeightJoint: {fileID: 1575194849}
+  heightStand: 2
+  heightCrouch: 1
+  heightCrawl: 0.5
+  radiusNormal: 0.5
 --- !u!114 &1065039869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,9 +5924,6 @@ MonoBehaviour:
     frictionAir: 20
     shellOffset: 0.35
     groundDistance: 0.35
-    heightNormal: 2
-    heightCrouch: 1
-    heightCrawl: 0.5
     forceStickToGround: 40
     forceGravity: 2
   settingsForMovement:

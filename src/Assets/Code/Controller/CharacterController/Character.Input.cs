@@ -82,7 +82,6 @@ namespace Goldenwere.Unity.Controller
             public bool                 isActive;
             public bool                 isModifier;
             public event InputActive    Updated;
-            // TODO: add a reference to another InputContainer as a way to prioritze one over the other (e.g. crawl over crouch)
 
             /// <summary>
             /// Calls action.ReadValue

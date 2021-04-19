@@ -9,7 +9,8 @@ namespace Goldenwere.Unity.Controller
         private CapsuleCollider     collider;
 #pragma warning restore CS0108
 
-        public ICharacterPhysics    System => system;
+        public ICharacterPhysics    System                  => system;
+        public CapsuleCollider      Collider                => collider;
 
         public bool                 Grounded                { get; private set; }
         public Vector3              GroundContactNormal     { get; private set; }
@@ -26,10 +27,6 @@ namespace Goldenwere.Unity.Controller
 
             if (!transform.TryGetComponent(out collider))
                 collider = gameObject.AddComponent<CapsuleCollider>();
-
-            // we will set center as height / 2 to make grounding math simpler by making ground = the actual bottom of the controller
-            collider.height = settingsForPhysics.heightNormal;
-            collider.center = new Vector3(0, collider.height / 2, 0);
         }
 
         /// <summary>
@@ -91,10 +88,6 @@ namespace Goldenwere.Unity.Controller
 
         public float shellOffset;
         public float groundDistance;
-
-        public float heightNormal;
-        public float heightCrouch;
-        public float heightCrawl;
 
         public float forceStickToGround;
         public float forceGravity;

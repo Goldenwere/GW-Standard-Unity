@@ -30,7 +30,7 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] private CameraSettings                     settingsForCamera;
 #pragma warning restore
         /**************/ private bool                               initialized;
-        /**************/ public ControllerLoadedDelegate            controllerLoaded;
+        /**************/ public ControllerLoadedDelegate            ControllerLoaded;
         /**************/ private List<PrioritizedOptionalModule>    modulesUnderFixedUpdate;
         /**************/ private List<PrioritizedOptionalModule>    modulesUnderUpdate;
         
@@ -56,7 +56,7 @@ namespace Goldenwere.Unity.Controller
                 modulesUnderUpdate = new List<PrioritizedOptionalModule>(8);
                 
                 initialized = true;
-                controllerLoaded?.Invoke(this);
+                ControllerLoaded?.Invoke(this);
             }
         }
 

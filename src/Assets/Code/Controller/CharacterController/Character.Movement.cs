@@ -29,6 +29,12 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         /// <remarks>E.G.: a status effect is affecting the player</remarks>
         public float                SpeedMultiplier     { get; set; }
+        
+        public bool                 AllowWalk           => settingsForMovement.allowWalk;
+        public bool                 AllowRun            => settingsForMovement.allowRun;
+        public bool                 AllowCrouch         => settingsForMovement.allowCrouch;
+        public bool                 AllowCrawl          => settingsForMovement.allowCrawl;
+        public bool                 AllowAirMovement    => settingsForMovement.allowAirMovement;
 
         public Vector3              IntendedDirection   { get; private set; }
 

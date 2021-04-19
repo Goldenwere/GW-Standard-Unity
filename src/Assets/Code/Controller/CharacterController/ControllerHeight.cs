@@ -22,7 +22,7 @@ namespace Goldenwere.Unity.Controller
         {
             stand   = 0,
             crouch  = 1,
-            crawl   = 2
+            crawl   = 2,
         }
 
 #pragma warning disable 0649

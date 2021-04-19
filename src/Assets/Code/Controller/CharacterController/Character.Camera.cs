@@ -9,6 +9,18 @@ namespace Goldenwere.Unity.Controller
         protected delegate void RotationForm();
 
         /// <summary>
+        /// Define the states the controller can have from inputs and assign numerical values to them for calculations
+        /// </summary>
+        protected enum SpeedState
+        {
+            idle    = 0,
+            normal  = 1,
+            walk    = 2,
+            run     = 3,
+            air     = 4,
+        }
+
+        /// <summary>
         /// Structure for defining field of view settings
         /// </summary>
         [System.Serializable]
@@ -32,11 +44,8 @@ namespace Goldenwere.Unity.Controller
             [Tooltip                    ("FOV multiplier when in the air (jumping or falling)")]
             public float                fovMultiplierAir;
 
-            [Tooltip                    ("Speed (in seconds) which FOV transitions last")]
-            public float                fovDuration;
-
-            [Tooltip                    ("Curve on which FOV transitions are performed")]
-            public AnimationCurve       fovCurve;
+            [Tooltip                    ("Speed factor which affects how long FOV transitions last (higher = faster)")]
+            public float                fovSpeed;
         }
 
         /// <summary>
@@ -79,10 +88,12 @@ namespace Goldenwere.Unity.Controller
             // Have bool for if third person distance setting is supported (this determines if the input is listened to) and a state bool (outside CameraSettings) for first versus third
             // Have setting whether to swap left or right (this essentially multiplies the x of the joint by -1 when changed) and clamp setting for shoulder factor, both also properties
         }
-
-        private Quaternion[]            workingCameraRotations;         // for working with camera rotations before applying them to the cameras
-        private Quaternion              workingControllerRotation;      // for working with controller rotation before applying them to the controller
-        private RotationForm            workingRotationForm;            // for storing which form of rotation should be performed without checking the setting every frame
+        
+        private SpeedState                      currentSpeed;
+        private Dictionary<SpeedState, float>   speedsToValues;                 // for storing speeds to values without having to do conditionals
+        private Quaternion[]                    workingCameraRotations;         // for working with camera rotations before applying them to the cameras
+        private Quaternion                      workingControllerRotation;      // for working with controller rotation before applying them to the controller
+        private RotationForm                    workingRotationForm;            // for storing which form of rotation should be performed without checking the setting every frame
         // TODO: potentially wrap controller in another transform for separating y-axis rotation from potential gravity-rotation module
 
         #region UX exposed properties
@@ -90,17 +101,22 @@ namespace Goldenwere.Unity.Controller
         /// Sets whether FOV shifting is enabled or not
         /// </summary>
         /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
-        public bool FOVShiftingEnabled
+        public bool     FOVShiftingEnabled
         {
             get => settingsForCamera.settingsFOV.useFOV;
-            set => settingsForCamera.settingsFOV.useFOV = value;
+            set 
+            {
+                settingsForCamera.settingsFOV.useFOV = value;
+                foreach(Camera c in settingsForCamera.cameras)
+                    c.fieldOfView = FOV;
+            }
         }
 
         /// <summary>
         /// Sets the camera's base FOV
         /// </summary>
         /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
-        public float FOV
+        public float    FOV
         {
             get => settingsForCamera.settingsFOV.fovBase;
             set => settingsForCamera.settingsFOV.fovBase = value;
@@ -110,7 +126,7 @@ namespace Goldenwere.Unity.Controller
         /// Sets whether camera smoothing is enabled or not
         /// </summary>
         /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
-        public bool CameraSmoothingEnabled
+        public bool     CameraSmoothingEnabled
         {
             get => settingsForCamera.settingsMotion.useMouseSmoothing;
             set
@@ -124,7 +140,7 @@ namespace Goldenwere.Unity.Controller
         /// Sets the camera's smoothing speed
         /// </summary>
         /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
-        public float CameraSmoothingSpeed
+        public float    CameraSmoothingSpeed
         {
             get => settingsForCamera.settingsMotion.mouseSmoothSpeed;
             set => settingsForCamera.settingsMotion.mouseSmoothSpeed = value;
@@ -134,7 +150,7 @@ namespace Goldenwere.Unity.Controller
         /// Sets the camera's look sensitivity
         /// </summary>
         /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
-        public float CameraLookSensitivity
+        public float    CameraLookSensitivity
         {
             get => settingsForCamera.settingsMotion.lookSensitivity;
             set => settingsForCamera.settingsMotion.lookSensitivity = value;
@@ -144,7 +160,7 @@ namespace Goldenwere.Unity.Controller
         /// Sets the camera's horizontal inversion setting
         /// </summary>
         /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
-        public bool CameraInvertHorizontal
+        public bool     CameraInvertHorizontal
         {
             get => settingsForCamera.settingsMotion.invertHorizontal;
             set => settingsForCamera.settingsMotion.invertHorizontal = value;
@@ -154,7 +170,7 @@ namespace Goldenwere.Unity.Controller
         /// Sets the camera's vertical inversion setting
         /// </summary>
         /// <remarks>Intended for use with a game's UX/UI e.g. a settings menu</remarks>
-        public bool CameraInvertVertical
+        public bool     CameraInvertVertical
         {
             get => settingsForCamera.settingsMotion.invertVertical;
             set => settingsForCamera.settingsMotion.invertVertical = value;
@@ -172,6 +188,8 @@ namespace Goldenwere.Unity.Controller
                 foreach(Camera c in settingsForCamera.cameras)
                     if (c == null)
                         Debug.LogException(new System.Exception("[gw-std-unity] Controller has a null camera assigned. Ensure all slots of settingsForCamera.cameras are assigned"));
+                    else
+                        c.fieldOfView = FOV;
 
             if (settingsForCamera.cameraRotationJoints.Length < 1)
                 Debug.LogException(new System.Exception("[gw-std-unity] Controller has no rotation joints assigned. Assign them under settingsForCamera"));
@@ -190,6 +208,14 @@ namespace Goldenwere.Unity.Controller
                     }
 
             workingRotationForm = CameraSmoothingEnabled ? (RotationForm)RotateWithSmoothing : (RotationForm)RotateWithoutSmoothing;
+            speedsToValues = new Dictionary<SpeedState, float>()
+            {
+                { SpeedState.idle,      FOV },
+                { SpeedState.normal,    settingsForCamera.settingsFOV.fovMultiplierNorm * FOV },
+                { SpeedState.air,       settingsForCamera.settingsFOV.fovMultiplierAir * FOV },
+                { SpeedState.walk,      settingsForCamera.settingsFOV.fovMultiplierWalk * FOV },
+                { SpeedState.run,       settingsForCamera.settingsFOV.fovMultiplierRun * FOV },
+            };
         }
 
         /// <summary>
@@ -214,6 +240,22 @@ namespace Goldenwere.Unity.Controller
             }
 
             workingRotationForm();
+
+            if (FOVShiftingEnabled)
+            {
+                if (InputActiveMovement)
+                {
+                    if (InputValueRun)
+                        currentSpeed = SpeedState.run;
+                    else if (InputValueWalk)
+                        currentSpeed = SpeedState.walk;
+                    else
+                        currentSpeed = SpeedState.normal;
+                }
+                else
+                    currentSpeed = SpeedState.idle;
+                InterpolateFOV(!Grounded ? SpeedState.air : currentSpeed);
+            }
         }
 
         /// <summary>
@@ -237,6 +279,16 @@ namespace Goldenwere.Unity.Controller
             transform.localRotation = workingControllerRotation;
             for (int i = 0; i < workingCameraRotations.Length; i++)
                 settingsForCamera.cameraRotationJoints[i].transform.localRotation = workingCameraRotations[i];
+        }
+
+        /// <summary>
+        /// Method for interpolating FOV
+        /// </summary>
+        /// <param name="state">The speed state to read speed value from</param>
+        private void InterpolateFOV(SpeedState state)
+        {
+            foreach(Camera c in settingsForCamera.cameras)
+                c.fieldOfView = Mathf.Lerp(c.fieldOfView, speedsToValues[state], Time.deltaTime * settingsForCamera.settingsFOV.fovSpeed);
         }
     }
 }

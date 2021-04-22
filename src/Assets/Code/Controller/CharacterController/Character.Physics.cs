@@ -26,6 +26,7 @@ namespace Goldenwere.Unity.Controller
             }
         }
         public Vector3              GroundContactNormal     { get; private set; }
+        public Collider             GroundCollider          { get; private set; }
         public float                SlopeAngle              { get; private set; }
 
         public event InputActive    GroundStateChanged;
@@ -58,6 +59,7 @@ namespace Goldenwere.Unity.Controller
                 settingsForPhysics.groundDistance,
                 Physics.AllLayers, QueryTriggerInteraction.Ignore);
             GroundContactNormal = hit.normal;
+            GroundCollider = hit.collider;
             if (hit.collider != null)
                 SlopeAngle = Vector3.Angle(GroundContactNormal, IntendedDirection) - 90;
 

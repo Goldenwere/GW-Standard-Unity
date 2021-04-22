@@ -4,17 +4,31 @@ namespace Goldenwere.Unity.Controller
 {
     public partial class CharacterController
     {
-        private ICharacterPhysics   system;
 #pragma warning disable CS0108
         private CapsuleCollider     collider;
 #pragma warning restore CS0108
+        private bool                grounded;
+        private ICharacterPhysics   system;
 
         public ICharacterPhysics    System                  => system;
         public CapsuleCollider      Collider                => collider;
 
-        public bool                 Grounded                { get; private set; }
+        public bool                 Grounded
+        {
+            get { return grounded; }
+            set
+            {
+                if (value != grounded)
+                {
+                    grounded = value;
+                    GroundStateChanged?.Invoke(value);
+                }
+            }
+        }
         public Vector3              GroundContactNormal     { get; private set; }
         public float                SlopeAngle              { get; private set; }
+
+        public event InputActive    GroundStateChanged;
 
         /// <summary>
         /// Initializes the physics module

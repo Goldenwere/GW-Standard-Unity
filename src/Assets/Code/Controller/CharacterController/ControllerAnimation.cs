@@ -19,9 +19,9 @@ namespace Goldenwere.Unity.Controller
 #pragma warning restore 0649
 
         /// <summary>
-        /// Set up animation module on start
+        /// Set up animation module on awake
         /// </summary>
-        private void Start()
+        private void Awake()
         {
             // log exceptions if any relevant
             if (controller == null)
@@ -50,6 +50,7 @@ namespace Goldenwere.Unity.Controller
                     controller.Rotation += (val) => SetAnimatorState("rotation", val);
                     controller.Run += (val) => SetAnimatorState("run", val);
                     controller.Walk += (val) => SetAnimatorState("walk", val);
+                    controller.GroundStateChanged += (val) => SetAnimatorState("grounded", val);
                 };
             }
         }

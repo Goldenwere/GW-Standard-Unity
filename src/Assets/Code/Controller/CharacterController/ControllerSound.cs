@@ -164,39 +164,42 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void PlayAudio()
         {
-            if (controller.GroundCollider is TerrainCollider)
+            if (controller.GroundCollider != null)
             {
-                Terrain t = controller.GroundCollider.gameObject.GetComponent<Terrain>();
-                float[] currentLayerValues = ConvertPositionToTerrain(transform.position, t);
-                for (int i = 0; i < currentLayerValues.Length; i++)
+                if (controller.GroundCollider is TerrainCollider)
                 {
-                    if (currentLayerValues[i] > 0 && i < clipsTerrain.Length)
+                    Terrain t = controller.GroundCollider.gameObject.GetComponent<Terrain>();
+                    float[] currentLayerValues = ConvertPositionToTerrain(transform.position, t);
+                    for (int i = 0; i < currentLayerValues.Length; i++)
                     {
-                        float textureVol = source.volume * currentLayerValues[i];
-                        source.PlayOneShot(clipsTerrain[i], textureVol);
-                    }
-                }
-            }
-
-            else
-            {
-                MeshRenderer mr = controller.GroundCollider.gameObject.GetComponent<MeshRenderer>();
-                if (mr != null)
-                {
-                    Material mat = mr.material;
-                    if (mat != null)
-                    {
-                        string sanitizedName = mat.name.Replace(" (Instance)", "");
-                        if (workingMaterials.ContainsKey(sanitizedName))
-                            source.PlayOneShot(workingMaterials[sanitizedName]);
-
-                        else
-                            source.PlayOneShot(clipDefaultMovement);
+                        if (currentLayerValues[i] > 0 && i < clipsTerrain.Length)
+                        {
+                            float textureVol = source.volume * currentLayerValues[i];
+                            source.PlayOneShot(clipsTerrain[i], textureVol);
+                        }
                     }
                 }
 
                 else
-                    source.PlayOneShot(clipDefaultMovement);
+                {
+                    MeshRenderer mr = controller.GroundCollider.gameObject.GetComponent<MeshRenderer>();
+                    if (mr != null)
+                    {
+                        Material mat = mr.material;
+                        if (mat != null)
+                        {
+                            string sanitizedName = mat.name.Replace(" (Instance)", "");
+                            if (workingMaterials.ContainsKey(sanitizedName))
+                                source.PlayOneShot(workingMaterials[sanitizedName]);
+
+                            else
+                                source.PlayOneShot(clipDefaultMovement);
+                        }
+                    }
+
+                    else
+                        source.PlayOneShot(clipDefaultMovement);
+                }
             }
         }
         #endregion

@@ -6463,7 +6463,7 @@ MonoBehaviour:
     delayBetweenJumps: 0.25
     tapJumpForce: 500
     heldJumpForce: 10
-    shellJumpOffset: 0.175
+    shellJumpOffset: 0.35
 --- !u!1 &1077710517
 GameObject:
   m_ObjectHideFlags: 0

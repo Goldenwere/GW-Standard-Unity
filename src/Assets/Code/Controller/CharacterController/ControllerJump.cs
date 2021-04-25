@@ -30,6 +30,7 @@ namespace Goldenwere.Unity.Controller
             j_tap                   = 1,
             j_held                  = 2,
             j_tapThenHold           = 3,
+            // TODO: j_tapThenBoostOrHold = 4
         }
 
         /// <summary>
@@ -44,6 +45,10 @@ namespace Goldenwere.Unity.Controller
             [Tooltip                        ("[mode: tap] How many jumps can be performed")]
             public int                      jumpCount;
 
+            [Tooltip                        ("[mode: tap] Whether to reset vertical velocity before applying jump" +
+                                            "This is useful in a multi-tap setup in preventing bugs.")]
+            public bool                     resetVerticalForTap;
+
             [Tooltip                        ("[mode: tap or tapThenHold] The delay between jumps")]
             public float                    delayBetweenJumps;
 
@@ -52,13 +57,17 @@ namespace Goldenwere.Unity.Controller
 
             [Tooltip                        ("[mode: held or tapThenHold] The hold force of a jump")]
             public float                    heldJumpForce;
+
+            [Tooltip                        ("[mode: any] Useful for bypassing potential bugginess caused by grounding")]
+            public float                    shellJumpOffset;
         }
         
 #pragma warning disable 0649
         [SerializeField] private JumpSettings               jumpSettings;
 #pragma warning restore 0649
         /**************/ private CharacterController        controller;
-        /**************/ private bool                       grounded;
+        /**************/ private bool                       controllerGrounded;
+        /**************/ private bool                       controllerJump;
         /**************/ private JumpForm                   jumpForm;
         /**************/ private PrioritizedOptionalModule  jumpModule;
         /**************/ private int                        jumpsLeft;                  // only applies for j_multiTap
@@ -68,7 +77,7 @@ namespace Goldenwere.Unity.Controller
         
         public float    TapJumpForceMultiplier  { get; set; }
 
-        public float    HoldJumpForceMultiplier { get; set; }
+        public float    HeldJumpForceMultiplier { get; set; }
 
         public float    DelayBetweenJumps
         {
@@ -119,6 +128,8 @@ namespace Goldenwere.Unity.Controller
 
             // assign working variables
             ResetWorkingVariables();
+            TapJumpForceMultiplier = 1;
+            HeldJumpForceMultiplier = 1;
 
             // add module when controller is loaded
             controller.ControllerLoaded += (c) =>
@@ -148,10 +159,13 @@ namespace Goldenwere.Unity.Controller
             // listen to groundstate and reset working variables
             controller.GroundStateChanged += (val) =>
             {
-                grounded = val;
+                controllerGrounded = val;
                 if (val)
                     ResetWorkingVariables();
             };
+
+            // listen to jumpstate
+            controller.Jump += (val) => controllerJump = val;
         }
 
         /// <summary>
@@ -188,7 +202,23 @@ namespace Goldenwere.Unity.Controller
 
         private void JumpModeTap()
         {
-            
+            jumpTimer += Time.deltaTime;
+            if (controllerJump && jumpTimer >= DelayBetweenJumps && jumpsLeft > 0)
+            {
+                if (controllerGrounded)
+                {
+                    jumpsLeft = JumpCount;
+                    transform.position += transform.up * jumpSettings.shellJumpOffset;
+                }
+                if (jumpSettings.resetVerticalForTap)
+                {
+                    Vector3 vel = controller.System.HorizontalVelocity;
+                    controller.System.Velocity = vel;
+                }
+                controller.System.AddForce(transform.up * jumpSettings.tapJumpForce * TapJumpForceMultiplier, ForceMode.Impulse);
+                jumpTimer = 0;
+                jumpsLeft--;
+            }
         }
 
         private void JumpModeHeld()
@@ -198,7 +228,7 @@ namespace Goldenwere.Unity.Controller
 
         private void JumpModeTapThenHeld()
         {
-            
+            jumpTimer += Time.deltaTime;
         }
 
         /// <summary>

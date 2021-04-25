@@ -6457,11 +6457,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSettings:
-    mode: 0
-    jumpCount: 1
+    mode: 1
+    jumpCount: 2
+    resetVerticalForTap: 1
     delayBetweenJumps: 0.25
-    tapJumpForce: 50
+    tapJumpForce: 500
     heldJumpForce: 10
+    shellJumpOffset: 0.175
 --- !u!1 &1077710517
 GameObject:
   m_ObjectHideFlags: 0

@@ -83,7 +83,7 @@ namespace Goldenwere.Unity.Controller
 
         public void AddModuleToUpdate(PrioritizedOptionalModule module)
         {
-            if(!modulesUnderUpdate.Contains(module))
+            if (!modulesUnderUpdate.Contains(module))
             {
                 modulesUnderUpdate.Add(module);
                 modulesUnderUpdate.Sort((x, y) => {

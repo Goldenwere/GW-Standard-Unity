@@ -13,6 +13,7 @@ namespace Goldenwere.Unity.Controller
     /// For example, one may want to use an Animator in order to make
     /// the camera move forward a bit before entering crawl
     /// </remarks>
+    [RequireComponent(typeof(CharacterController))]
     public class ControllerHeight : MonoBehaviour
     {
         /// <summary>

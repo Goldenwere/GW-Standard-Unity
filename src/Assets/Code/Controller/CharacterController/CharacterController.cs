@@ -83,22 +83,28 @@ namespace Goldenwere.Unity.Controller
 
         public void AddModuleToUpdate(PrioritizedOptionalModule module)
         {
-            modulesUnderUpdate.Add(module);
-            modulesUnderUpdate.Sort((x, y) => {
-                if (x.priority < y.priority) return 1;
-                if (x.priority > y.priority) return -1;
-                return -x.method.ToString().CompareTo(y.method.ToString());
-            });
+            if(!modulesUnderUpdate.Contains(module))
+            {
+                modulesUnderUpdate.Add(module);
+                modulesUnderUpdate.Sort((x, y) => {
+                    if (x.priority < y.priority) return 1;
+                    if (x.priority > y.priority) return -1;
+                    return -x.method.ToString().CompareTo(y.method.ToString());
+                });
+            }
         }
 
         public void AddModuleToFixedUpdate(PrioritizedOptionalModule module)
         {
-            modulesUnderFixedUpdate.Add(module);
-            modulesUnderFixedUpdate.Sort((x, y) => {
-                if (x.priority < y.priority) return 1;
-                if (x.priority > y.priority) return -1;
-                return -x.method.ToString().CompareTo(y.method.ToString());
-            });
+            if (!modulesUnderFixedUpdate.Contains(module))
+            {
+                modulesUnderFixedUpdate.Add(module);
+                modulesUnderFixedUpdate.Sort((x, y) => {
+                    if (x.priority < y.priority) return 1;
+                    if (x.priority > y.priority) return -1;
+                    return -x.method.ToString().CompareTo(y.method.ToString());
+                });
+            }
         }
 
         public void RemoveModuleFromUpdate(PrioritizedOptionalModule module)

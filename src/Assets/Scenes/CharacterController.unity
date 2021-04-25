@@ -6139,6 +6139,7 @@ GameObject:
   - component: {fileID: 1065039867}
   - component: {fileID: 1065039869}
   - component: {fileID: 1065039868}
+  - component: {fileID: 1065039873}
   - component: {fileID: 1065039870}
   - component: {fileID: 1065039871}
   - component: {fileID: 1065039872}
@@ -6443,6 +6444,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1065039873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065039866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f213a74efe8776b469557e757e52b83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSettings:
+    mode: 0
+    jumpCount: 1
+    delayBetweenJumps: 0.25
+    tapJumpForce: 50
+    heldJumpForce: 10
 --- !u!1 &1077710517
 GameObject:
   m_ObjectHideFlags: 0

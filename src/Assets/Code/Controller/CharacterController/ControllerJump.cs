@@ -68,6 +68,7 @@ namespace Goldenwere.Unity.Controller
         /**************/ private CharacterController        controller;
         /**************/ private bool                       controllerGrounded;
         /**************/ private bool                       controllerJump;
+        /**************/ private bool                       controllerJumpReleased;
         /**************/ private JumpForm                   jumpForm;
         /**************/ private PrioritizedOptionalModule  jumpModule;
         /**************/ private int                        jumpsLeft;                  // only applies for j_multiTap
@@ -165,7 +166,12 @@ namespace Goldenwere.Unity.Controller
             };
 
             // listen to jumpstate
-            controller.Jump += (val) => controllerJump = val;
+            controller.Jump += (val) => 
+            {
+                controllerJump = val;
+                if (!val && !controllerGrounded && !controllerJumpReleased)
+                    controllerJumpReleased = true;
+            };
         }
 
         /// <summary>
@@ -233,7 +239,18 @@ namespace Goldenwere.Unity.Controller
 
         private void JumpModeTapThenHeld()
         {
-            jumpTimer += Time.deltaTime;
+            if (!controllerGrounded)
+                jumpTimer += Time.deltaTime;
+            if (controllerJump)
+            {
+                if (controllerGrounded)
+                {
+                    transform.position += transform.up * jumpSettings.shellJumpOffset;
+                    controller.System.AddForce(transform.up * jumpSettings.tapJumpForce * TapJumpForceMultiplier, ForceMode.Impulse);
+                }
+                else if (jumpTimer >= DelayBetweenJumps && controllerJumpReleased)
+                    controller.System.AddForce(transform.up * jumpSettings.heldJumpForce * HeldJumpForceMultiplier, ForceMode.Force);
+            }
         }
 
         /// <summary>
@@ -243,6 +260,7 @@ namespace Goldenwere.Unity.Controller
         {
             jumpsLeft = jumpSettings.jumpCount;
             jumpTimer = jumpSettings.delayBetweenJumps;
+            controllerJumpReleased = false;
         }
     }
 }

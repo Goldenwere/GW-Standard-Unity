@@ -6457,7 +6457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSettings:
-    mode: 2
+    mode: 3
     jumpCount: 2
     resetVerticalForTap: 1
     delayBetweenJumps: 0.25

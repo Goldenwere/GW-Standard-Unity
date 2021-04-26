@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 {
-/// <summary>
+    /// <summary>
     /// Optional module to handle the controller's jumping,
     /// with the ability to perform tap-based, held-based, or tap-then-held-based jumps,
     /// which is separated from the controller
@@ -45,7 +45,7 @@ namespace Goldenwere.Unity.Controller
             [Tooltip                        ("[mode: tap] How many jumps can be performed")]
             public int                      jumpCount;
 
-            [Tooltip                        ("[mode: tap] Whether to reset vertical velocity before applying jump" +
+            [Tooltip                        ("[mode: tap] Whether to reset vertical velocity before applying jump\n" +
                                             "This is useful in a multi-tap setup in preventing bugs.")]
             public bool                     resetVerticalForTap;
 
@@ -65,43 +65,73 @@ namespace Goldenwere.Unity.Controller
 #pragma warning disable 0649
         [SerializeField] private JumpSettings               jumpSettings;
 #pragma warning restore 0649
-        /**************/ private CharacterController        controller;
-        /**************/ private bool                       controllerGrounded;
-        /**************/ private bool                       controllerJump;
-        /**************/ private bool                       controllerJumpReleased;
-        /**************/ private JumpForm                   jumpForm;
-        /**************/ private PrioritizedOptionalModule  jumpModule;
-        /**************/ private int                        jumpsLeft;                  // only applies for j_multiTap
-        /**************/ private float                      jumpTimer;
-        /**************/ private bool                       preventHold;
+        /**************/ private CharacterController        controller;                 // the controller of which this module is attached
+
+        /**************/ private bool                       controllerGrounded;         // listen to when the controller groundstate changes
+        /**************/ private bool                       controllerJump;             // listen to when the jump input is called
+        // TODO: apply to tap
+        // TODO: UX/accessibility property to determine whether this should be respected
+        /**************/ private bool                       controllerJumpReleased;     // only applies for tapThenHeld: track when jump is released
+
+        /**************/ private JumpForm                   jumpForm;                   // which jump function to run under FixedUpdate
+        /**************/ private PrioritizedOptionalModule  jumpModule;                 // the instance of this jump module, sent to the controller to call under its update
+
+        /**************/ private int                        jumpsLeft;                  // only applies for tap: how many jumps are left before the controller must fall
+        /**************/ private float                      jumpTimer;                  // only applies for tap or tapThenHeld: how long since a jump was called
+
+        // these are private fields so that one must use the properties in order to optimize the controller with an active/inactive state
+        // TODO: implement these fields
+        /**************/ private bool                       preventHeld;
         /**************/ private bool                       preventTap;
         
+        /// <summary>
+        /// Multiplier to be applied to the tap force
+        /// </summary>
+        /// <remarks>Rather than setting this to 0, for optimization sake, instead set PreventTap to false</remarks>
         public float    TapJumpForceMultiplier  { get; set; }
 
+        /// <summary>
+        /// Multiplier to be applied to the held force
+        /// </summary>
+        /// <remarks>Rather than setting this to 0, for optimization sake, instead set PreventHeld to false</remarks>
         public float    HeldJumpForceMultiplier { get; set; }
 
+        /// <summary>
+        /// The delay [for tap] between tap jumps, or [for tapThenHeld] between the tap jump and held jump
+        /// </summary>
         public float    DelayBetweenJumps
         {
             get => jumpSettings.delayBetweenJumps;
             set => jumpSettings.delayBetweenJumps = value;
         }
 
+        /// <summary>
+        /// The amount [for tap] of jumps the controller has
+        /// </summary>
         public int      JumpCount
         {
             get => jumpSettings.jumpCount;
             set => jumpSettings.jumpCount = value;
         }
 
-        public bool     PreventHold
+        /// <summary>
+        /// Whether to block held inputs or not
+        /// </summary>
+        /// <remarks>(useful for temporary effects or temporarily disabling the module if applicable)</remarks>
+        public bool     PreventHeld
         {
-            get { return preventHold; }
+            get { return preventHeld; }
             set
             {
-                preventHold = value;
+                preventHeld = value;
                 UpdateModuleState();
             }
         }
 
+        /// <summary>
+        /// Whether to block tap inputs or not
+        /// </summary>
+        /// /// <remarks>(useful for temporary effects or temporarily disabling the module if applicable)</remarks>
         public bool     PreventTap
         {
             get { return preventTap; }
@@ -119,7 +149,7 @@ namespace Goldenwere.Unity.Controller
         {
             // setup main variables
             controller = GetComponent<CharacterController>();
-            jumpModule = new PrioritizedOptionalModule(1, Update_Jump);
+            jumpModule = new PrioritizedOptionalModule(1, FixedUpdate_Jump);
 
             // ensure settings from inspector are valid
             if (jumpSettings.jumpCount < 1)
@@ -138,20 +168,20 @@ namespace Goldenwere.Unity.Controller
                 switch (jumpSettings.mode)
                 {
                     case JumpMode.j_tapThenHold:
-                        controller.AddModuleToUpdate(jumpModule);
+                        controller.AddModuleToFixedUpdate(jumpModule);
                         jumpForm = JumpModeTapThenHeld;
                         break;
                     case JumpMode.j_held:
-                        controller.AddModuleToUpdate(jumpModule);
+                        controller.AddModuleToFixedUpdate(jumpModule);
                         jumpForm = JumpModeHeld;
                         break;
                     case JumpMode.j_tap:
-                        controller.AddModuleToUpdate(jumpModule);
+                        controller.AddModuleToFixedUpdate(jumpModule);
                         jumpForm = JumpModeTap;
                         break;
                     case JumpMode.none:
                     default:
-                        controller.RemoveModuleFromUpdate(jumpModule);
+                        controller.RemoveModuleFromFixedUpdate(jumpModule);
                         jumpForm = JumpModeTap;
                         break;
                 }
@@ -175,9 +205,9 @@ namespace Goldenwere.Unity.Controller
         }
 
         /// <summary>
-        /// [Performed Under: Update()] Updates the jump module
+        /// [Performed Under: FixedUpdate()] Updates the jump module
         /// </summary>
-        private void Update_Jump()
+        private void FixedUpdate_Jump()
         {
             jumpForm();
         }
@@ -191,64 +221,98 @@ namespace Goldenwere.Unity.Controller
             // 1. both tap and hold are prevented, regardless of mode
             // 2. if mode is held and held is prevented
             // 3. if mode is tap and tap is prevented
-            if (preventTap && preventHold ||
-                preventHold && jumpSettings.mode == JumpMode.j_held ||
+            if (preventTap && preventHeld ||
+                preventHeld && jumpSettings.mode == JumpMode.j_held ||
                 preventTap && jumpSettings.mode == JumpMode.j_tap)
-                controller.RemoveModuleFromUpdate(jumpModule);
+                controller.RemoveModuleFromFixedUpdate(jumpModule);
 
             // module should be added under the following conditions:
             // 1. both tap and hold are not prevented and mode isn't none
             // 2. if mode is held and held isn't prevented
             // 3. if mode is tap and tap isn't prevented
-            else if (!preventTap && !preventHold ||
-                !preventHold && jumpSettings.mode == JumpMode.j_held ||
+            else if (!preventTap && !preventHeld ||
+                !preventHeld && jumpSettings.mode == JumpMode.j_held ||
                 !preventTap && jumpSettings.mode == JumpMode.j_tap)
-                controller.AddModuleToUpdate(jumpModule);
+                controller.AddModuleToFixedUpdate(jumpModule);
         }
 
+        /// <summary>
+        /// Function which runs under FixedUpdate_Jump when mode = tap
+        /// </summary>
         private void JumpModeTap()
         {
-            jumpTimer += Time.deltaTime;
+            // 1. increment timer each fixed frame
+            jumpTimer += Time.fixedDeltaTime;
+
+            // 2. perform jump if: input active, timer is higher than delay, and there's jumps left
             if (controllerJump && jumpTimer >= DelayBetweenJumps && jumpsLeft > 0)
             {
+                // A. fix the controller getting stuck from grounding force/checker
                 if (controllerGrounded)
                 {
+                    // i. jumpsLeft needs reset
                     jumpsLeft = JumpCount;
+
+                    // ii. add a physics-less ungrounding assist using shellJumpOffset
                     transform.position += transform.up * jumpSettings.shellJumpOffset;
                 }
+
+                // B. reset vertical velocity if set to do so before the next tap
                 if (jumpSettings.resetVerticalForTap)
                 {
                     Vector3 vel = controller.System.HorizontalVelocity;
                     controller.System.Velocity = vel;
                 }
+
+                // C. add impulse force (using transform's up times tap forces), reset timer, and decrement jump counter
                 controller.System.AddForce(transform.up * jumpSettings.tapJumpForce * TapJumpForceMultiplier, ForceMode.Impulse);
                 jumpTimer = 0;
                 jumpsLeft--;
             }
         }
 
+        /// <summary>
+        /// Function which runs under FixedUpdate_Jump when mode = held
+        /// </summary>
         private void JumpModeHeld()
         {
+            // 1. perform jump if: input active
+            // TODO: jumpTimer <= HeldJumpLimit
             if (controllerJump)
             {
+                // A. fix the controller getting stuck from grounding force/checker
                 if(controllerGrounded)
-                    transform.position += transform.up * jumpSettings.shellJumpOffset * Time.deltaTime;
+                    transform.position += transform.up * jumpSettings.shellJumpOffset * Time.fixedDeltaTime;
+                // B. add regular force (using transform's up times held forces)
                 controller.System.AddForce(transform.up * jumpSettings.heldJumpForce * HeldJumpForceMultiplier, ForceMode.Force);
             }
         }
 
+        /// <summary>
+        /// Function which runs under FixedUpdate_Jump when mode = tapThenHeld
+        /// </summary>
         private void JumpModeTapThenHeld()
         {
+            // 1. start incrementing timer when not grounded
             if (!controllerGrounded)
-                jumpTimer += Time.deltaTime;
+                jumpTimer += Time.fixedDeltaTime;
+            // 2. perform jump if: input active
             if (controllerJump)
             {
+                // A. perform tap force if: grounded
                 if (controllerGrounded)
                 {
+                    // i. add a physics-less ungrounding assist using shellJumpOffset
                     transform.position += transform.up * jumpSettings.shellJumpOffset;
+                    // ii. add impulse force (using transform's up times tap forces)
                     controller.System.AddForce(transform.up * jumpSettings.tapJumpForce * TapJumpForceMultiplier, ForceMode.Impulse);
+                    // iii. reset jump timer
+                    jumpTimer = 0;
                 }
-                else if (jumpTimer >= DelayBetweenJumps && controllerJumpReleased)
+
+                // B. perform held force if: jump was initially released and timer >= delay
+                // TODO: jumpTimer <= HeldJumpLimit
+                else if (controllerJumpReleased && jumpTimer >= DelayBetweenJumps)
                     controller.System.AddForce(transform.up * jumpSettings.heldJumpForce * HeldJumpForceMultiplier, ForceMode.Force);
             }
         }

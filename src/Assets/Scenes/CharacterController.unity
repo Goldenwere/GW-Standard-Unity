@@ -6215,7 +6215,7 @@ MonoBehaviour:
     frictionGround: 20
     frictionAir: 20
     shellOffset: 0.35
-    groundDistance: 0.35
+    groundDistance: 0.25
     forceStickToGround: 40
     forceGravity: 2
   settingsForMovement:
@@ -6457,12 +6457,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSettings:
-    mode: 1
+    mode: 2
     jumpCount: 2
     resetVerticalForTap: 1
     delayBetweenJumps: 0.25
     tapJumpForce: 500
-    heldJumpForce: 10
+    heldJumpForce: 2400
     shellJumpOffset: 0.35
 --- !u!1 &1077710517
 GameObject:

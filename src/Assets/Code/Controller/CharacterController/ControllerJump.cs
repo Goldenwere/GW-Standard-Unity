@@ -223,7 +223,12 @@ namespace Goldenwere.Unity.Controller
 
         private void JumpModeHeld()
         {
-            
+            if (controllerJump)
+            {
+                if(controllerGrounded)
+                    transform.position += transform.up * jumpSettings.shellJumpOffset * Time.deltaTime;
+                controller.System.AddForce(transform.up * jumpSettings.heldJumpForce * HeldJumpForceMultiplier, ForceMode.Force);
+            }
         }
 
         private void JumpModeTapThenHeld()

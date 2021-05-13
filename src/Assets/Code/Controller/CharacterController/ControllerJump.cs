@@ -13,7 +13,7 @@ namespace Goldenwere.Unity.Controller
     /// this is separate to follow the optional modules pattern
     /// </remarks>
     [RequireComponent(typeof(CharacterController))]
-    public partial class ControllerJump : MonoBehaviour
+    public class ControllerJump : MonoBehaviour
     {
         protected delegate void JumpForm();
 

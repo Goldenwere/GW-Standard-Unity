@@ -34,6 +34,7 @@ namespace Goldenwere.Unity.Controller
         /**************/ private List<PrioritizedOptionalModule>    modulesUnderUpdate;
 
         /**************/ public ControllerLoadedDelegate            ControllerLoaded;
+        /**************/ public bool                                IsHeightBlocked             { get; set; }
         /**************/ public bool                                IsMovementBlocked           { get; set; }
         
         /// <summary>

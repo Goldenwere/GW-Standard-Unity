@@ -90,7 +90,7 @@ namespace Goldenwere.Unity.Controller
                 if (!val)
                     SetHeight(HeightState.stand);
                 // crouch if allowed
-                else if (controller.AllowCrouch)
+                else if (controller.AllowCrouch && !controller.IsHeightBlocked)
                     SetHeight(HeightState.crouch);
             }
         }
@@ -112,7 +112,7 @@ namespace Goldenwere.Unity.Controller
                     SetHeight(HeightState.stand);
             }
             // crawl if allowed
-            else if (controller.AllowCrawl)
+            else if (controller.AllowCrawl && !controller.IsHeightBlocked)
                 SetHeight(HeightState.crawl);
         }
 

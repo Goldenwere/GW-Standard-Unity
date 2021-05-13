@@ -6,15 +6,15 @@
     public interface ISwimmable
     {
         /// <summary>
-        /// When a BodyOfWater's OnTriggerEnter is called, it will find ISwimmable and send itself with this method
+        /// When a BodyOfFluid's OnTriggerEnter is called, it will find ISwimmable and send itself with this method
         /// </summary>
-        /// <param name="water">The body of water that the ISwimmable has entered</param>
-        void OnWaterEnter(BodyOfWater water);
+        /// <param name="fluid">The body of fluid that the ISwimmable has entered</param>
+        void OnFluidEnter(BodyOfFluid fluid);
 
         /// <summary>
-        /// When a BodyOfWater's OnTriggerExit is called, it will find ISwimmable and send itself with this method
+        /// When a BodyOfFluid's OnTriggerExit is called, it will find ISwimmable and send itself with this method
         /// </summary>
-        /// <param name="water">The body of water that the ISwimmable has entered</param>
-        void OnWaterExit(BodyOfWater water);
+        /// <param name="fluid">The body of fluid that the ISwimmable has entered</param>
+        void OnFluidExit(BodyOfFluid fluid);
     }
 }

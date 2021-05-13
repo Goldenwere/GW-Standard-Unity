@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 {
@@ -29,6 +30,9 @@ namespace Goldenwere.Unity.Controller
         public Collider             GroundCollider          { get; private set; }
         public float                SlopeAngle              { get; private set; }
 
+        public float                GravityModifier         { get; set; }
+        public float                StickToGroundModifier   { get; set; }
+
         public event InputActive    GroundStateChanged;
 
         /// <summary>
@@ -39,6 +43,8 @@ namespace Goldenwere.Unity.Controller
         {
             system = _system;
             system.Initialize(transform, settingsForPhysics);
+            GravityModifier = 1;
+            StickToGroundModifier = 1;
 
             if (!transform.TryGetComponent(out collider))
                 collider = gameObject.AddComponent<CapsuleCollider>();
@@ -64,15 +70,15 @@ namespace Goldenwere.Unity.Controller
                 SlopeAngle = Vector3.Angle(GroundContactNormal, IntendedDirection) - 90;
 
             if (Grounded)
-            { 
-                system.AddForce(Vector3.down * (settingsForPhysics.forceStickToGround + system.HorizontalVelocity.sqrMagnitude), ForceMode.Impulse);
+            {
+                system.AddForce(Vector3.down * StickToGroundModifier * (settingsForPhysics.forceStickToGround + system.HorizontalVelocity.sqrMagnitude), ForceMode.Impulse);
                 system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionGround, ForceMode.Impulse);
                 if (Mathf.Abs(SlopeAngle) < 90f)
                     system.Velocity = Vector3.ProjectOnPlane(system.Velocity, GroundContactNormal);
             }
             else 
             {
-                system.AddForce(Physics.gravity * settingsForPhysics.forceGravity, ForceMode.Acceleration);
+                system.AddForce(Physics.gravity * settingsForPhysics.forceGravity * GravityModifier, ForceMode.Acceleration);
                 system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionAir, ForceMode.Force);
             }
         }
@@ -116,6 +122,7 @@ namespace Goldenwere.Unity.Controller
     {
         Vector3 Velocity { get; set; }
         Vector3 HorizontalVelocity { get; }
+        Vector3 VerticalVelocity { get; }
         float Mass { get; }
 
         /// <summary>
@@ -149,6 +156,7 @@ namespace Goldenwere.Unity.Controller
         }
         public float Mass => rigidbody.mass;
         public Vector3 HorizontalVelocity => new Vector3(Velocity.x, 0, Velocity.z);
+        public Vector3 VerticalVelocity => new Vector3(0, Velocity.y, 0);
 
         public void Initialize(Transform t, PhysicSettings settings)
         {
@@ -180,6 +188,7 @@ namespace Goldenwere.Unity.Controller
         }
         public float Mass => throw new System.NotImplementedException();
         public Vector3 HorizontalVelocity => new Vector3(Velocity.x, 0, Velocity.z);
+        public Vector3 VerticalVelocity => new Vector3(0, Velocity.y, 0);
 
         public void Initialize(Transform t, PhysicSettings settings)
         {

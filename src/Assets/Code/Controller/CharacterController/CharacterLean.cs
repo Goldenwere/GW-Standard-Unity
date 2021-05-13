@@ -13,10 +13,10 @@ namespace Goldenwere.Unity.Controller
         [System.Serializable]
         protected struct LeanSettings
         {
-            [Tooltip                                        ("TODO")]
-            public bool                                     preventMovement;
             [Tooltip                                        ("The maximum angle the character can lean")]
             public float                                    angleMaxLean;
+            [Tooltip                                        ("TODO")]
+            public bool                                     preventMovement;
             [Tooltip                                        ("The speed at which the character leans/unleans")]
             public float                                    speedLean;
         }
@@ -53,30 +53,24 @@ namespace Goldenwere.Unity.Controller
         {
             leanJoint.localRotation = Quaternion.Slerp(
                 leanJoint.localRotation,
-                Quaternion.Euler(new Vector3(0, 0, leanSettings.angleMaxLean * controller.InputValueLean)),
-                Time.deltaTime / leanSettings.speedLean);
+                Quaternion.Euler(new Vector3(0, 0, leanSettings.angleMaxLean * -controller.InputValueLean)),
+                Time.deltaTime * leanSettings.speedLean);
         }
 
         private IEnumerator UnsetLean()
         {
-            AnimationCurve curve = new AnimationCurve(new Keyframe[] {
-                new Keyframe(0, 1, 0.50f, 0.25f),
-                new Keyframe(1, 0, 0.50f, 0.50f)
-            });
             float currAngle;
-            float startAngle = leanJoint.localRotation.eulerAngles.z;
-            Vector3 currEulers;
-            float t = 0;
-            float endTime = 1.0f / leanSettings.speedLean;
 
-            while (t <= endTime)
+            do
             {
-                currAngle = Mathf.Lerp(startAngle, 0, curve.Evaluate(t / endTime));
-                currEulers = new Vector3(0, 0, currAngle);
-                leanJoint.localRotation = Quaternion.Euler(currEulers);
-                t += Time.deltaTime;
+                leanJoint.localRotation = Quaternion.Slerp(
+                    leanJoint.localRotation,
+                    Quaternion.identity,
+                    Time.deltaTime * leanSettings.speedLean);
+                currAngle = leanJoint.localRotation.eulerAngles.z;
                 yield return null;
             }
+            while (currAngle > 0.01f || currAngle < -0.01f);
         }
     }
 }

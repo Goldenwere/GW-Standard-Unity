@@ -6140,6 +6140,7 @@ GameObject:
   - component: {fileID: 1065039869}
   - component: {fileID: 1065039868}
   - component: {fileID: 1065039873}
+  - component: {fileID: 1065039874}
   - component: {fileID: 1065039870}
   - component: {fileID: 1065039871}
   - component: {fileID: 1065039872}
@@ -6464,6 +6465,23 @@ MonoBehaviour:
     tapJumpForce: 500
     heldJumpForce: 2400
     shellJumpOffset: 0.35
+--- !u!114 &1065039874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065039866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099d5ccc2c28292479c81e043230299d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leanJoint: {fileID: 296430481}
+  leanSettings:
+    angleMaxLean: 45
+    preventMovement: 0
+    speedLean: 10
 --- !u!1 &1077710517
 GameObject:
   m_ObjectHideFlags: 0

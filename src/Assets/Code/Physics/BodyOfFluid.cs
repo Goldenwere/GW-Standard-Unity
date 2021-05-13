@@ -8,16 +8,9 @@ namespace Goldenwere.Unity.PhysicsUtil
     public class BodyOfFluid : MonoBehaviour
     {
 #pragma warning disable 0649
-        [Tooltip                            ("The magnitude in which this BodyOfFluid dampens an ISwimmable's velocity")]
-        [SerializeField] private float      velocityDampening;
         [Tooltip                            ("The friction of the fluid")]
         [SerializeField] private float      friction;
 #pragma warning restore 0649
-
-        /// <summary>
-        /// The magnitude in which this BodyOfFluid dampens an ISwimmable's velocity
-        /// </summary>
-        public float                        VelocityDampening => velocityDampening;
 
         /// <summary>
         /// The friction of the fluid

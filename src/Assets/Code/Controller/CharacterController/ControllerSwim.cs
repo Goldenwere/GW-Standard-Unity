@@ -23,9 +23,16 @@ namespace Goldenwere.Unity.Controller
             public float                                    moveSpeedModifier;
             [Tooltip                                        ("The amount in which sink speed is modified (gravity is handled a bit differently from regular movement speed)")]
             public float                                    sinkSpeedModifier;
+
+            public float                                    speedSwimUp;
+            public float                                    speedSwimDown;
+            public float                                    speedSwimMovement;
         }
 
 #pragma warning disable 0649
+        [Tooltip                                            ("(Optional) If provided, the controller will move in the direction of the camera's forward " +
+                                                            "rather than the transform's forward (which doesn't rotate)")]
+        [SerializeField] private Transform                  cameraForForward;
         [SerializeField] private SwimSettings               swimSettings;
         [SerializeField] private PrioritizedOptionalModule  swimModule;
 #pragma warning restore 0649
@@ -47,7 +54,7 @@ namespace Goldenwere.Unity.Controller
             if (!swimSettings.controllerSinks)
             {
                 controller.GravityModifier = 0;
-                controller.StickToGroundModifier = 0.1f;
+                controller.StickToGroundModifier = 0;
             }
         }
 
@@ -65,8 +72,21 @@ namespace Goldenwere.Unity.Controller
         private void FixedUpdate_Swim()
         {
             controller.IsMovementBlocked = true;
+
+            if (controller.InputValueJump)
+                controller.System.AddForce(transform.up * swimSettings.speedSwimUp, ForceMode.VelocityChange);
+            else if (controller.InputValueCrouch || controller.InputValueCrawl)
+                controller.System.AddForce(-transform.up * swimSettings.speedSwimDown, ForceMode.VelocityChange);
+            if (controller.InputActiveMovement)
+            {
+                Vector3 intendedDirection = cameraForForward != null ?
+                    cameraForForward.forward * controller.InputValueMovement.y + cameraForForward.right * controller.InputValueMovement.x :
+                    transform.forward * controller.InputValueMovement.y + transform.right * controller.InputValueMovement.x;
+                controller.System.AddForce(intendedDirection * swimSettings.speedSwimMovement, ForceMode.VelocityChange);
+            }
+
             if (swimSettings.controllerSinks)
-                controller.System.AddForce(-controller.System.VerticalVelocity * trackedFluid.VelocityDampening * swimSettings.sinkSpeedModifier, ForceMode.Impulse);
+                controller.System.AddForce(Physics.gravity * swimSettings.sinkSpeedModifier, ForceMode.Acceleration);
             controller.System.AddForce(-controller.System.Velocity * trackedFluid.Friction, ForceMode.Force);
         }
     }

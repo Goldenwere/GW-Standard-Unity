@@ -6495,11 +6495,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50697887a010c574d8d25eb21eb93880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraForForward: {fileID: 1469170379}
   swimSettings:
     controllerSinks: 0
     heightAboveWater: 0.5
     moveSpeedModifier: 1.5
     sinkSpeedModifier: 16.25
+    speedSwimUp: 0.6
+    speedSwimDown: 0.45
+    speedSwimMovement: 0.5
 --- !u!1 &1077710517
 GameObject:
   m_ObjectHideFlags: 0
@@ -11191,7 +11195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e1a031287a14341a45e9094de452ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityDampening: 0.9
   friction: 50
 --- !u!1 &1905301561
 GameObject:

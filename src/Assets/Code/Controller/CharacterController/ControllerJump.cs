@@ -196,11 +196,14 @@ namespace Goldenwere.Unity.Controller
             };
 
             // listen to jumpstate
-            controller.Jump += (val) => 
+            controller.Jump += (val) =>
             {
-                controllerJump = val;
-                if (!val && !controllerGrounded && !controllerJumpReleased)
-                    controllerJumpReleased = true;
+                if (!val || !controller.IsMovementBlocked)
+                {
+                    controllerJump = val;
+                    if (!val && !controllerGrounded && !controllerJumpReleased)
+                        controllerJumpReleased = true;
+                }
             };
         }
 

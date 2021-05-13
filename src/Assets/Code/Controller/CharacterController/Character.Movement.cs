@@ -52,7 +52,7 @@ namespace Goldenwere.Unity.Controller
         /// <remarks>TODO: Jumping is a separate module</remarks>
         private void FixedUpdate_Movement()
         {
-            if (InputActiveMovement)
+            if (InputActiveMovement && !IsMovementBlocked)
             {
                 if (settingsForMovement.allowAirMovement || Grounded)
                 {

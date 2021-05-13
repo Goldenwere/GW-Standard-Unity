@@ -86,6 +86,7 @@ namespace Goldenwere.Unity.Controller
                 controller.Run += (_) => SetSettings();
                 controller.Walk += (_) => SetSettings();
                 controller.Movement += (_) => SetState();
+                controller.Lean += (val) => SetState();
             };
         }
 
@@ -138,7 +139,7 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void SetState()
         {
-            isPlaying = controller.Grounded && controller.InputActiveMovement;
+            isPlaying = controller.Grounded && controller.InputActiveMovement && !controller.IsMovementBlocked;
         }
 
         /// <summary>

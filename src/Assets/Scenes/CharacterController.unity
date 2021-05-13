@@ -6480,7 +6480,7 @@ MonoBehaviour:
   leanJoint: {fileID: 296430481}
   leanSettings:
     angleMaxLean: 45
-    preventMovement: 0
+    preventMovement: 1
     speedLean: 10
 --- !u!1 &1077710517
 GameObject:

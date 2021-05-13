@@ -279,7 +279,7 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void UpdateFOV()
         {
-            if (InputActiveMovement)
+            if (InputActiveMovement && !IsMovementBlocked)
             {
                 if (InputValueRun)
                     currentSpeed = SpeedState.run;

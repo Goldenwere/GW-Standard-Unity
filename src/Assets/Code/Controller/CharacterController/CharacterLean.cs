@@ -15,7 +15,7 @@ namespace Goldenwere.Unity.Controller
         {
             [Tooltip                                        ("The maximum angle the character can lean")]
             public float                                    angleMaxLean;
-            [Tooltip                                        ("TODO")]
+            [Tooltip                                        ("Whether to block the ability for the controller to move")]
             public bool                                     preventMovement;
             [Tooltip                                        ("The speed at which the character leans/unleans")]
             public float                                    speedLean;
@@ -39,11 +39,16 @@ namespace Goldenwere.Unity.Controller
                     StopCoroutine(unsetInstance);
 
                 if (val)
+                {
                     controller.AddModuleToUpdate(leanModule);
+                    if (leanSettings.preventMovement)
+                        controller.IsMovementBlocked = true;
+                }
                 else
                 {
                     unsetInstance = UnsetLean();
                     StartCoroutine(unsetInstance);
+                    controller.IsMovementBlocked = false;
                     controller.RemoveModuleFromUpdate(leanModule);
                 }
             };

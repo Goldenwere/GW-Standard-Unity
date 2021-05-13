@@ -23,16 +23,18 @@ namespace Goldenwere.Unity.Controller
     {
 #pragma warning disable 0649
         [Tooltip                                                    ("(Default: true) Automatically initializes the controller on Start; can be disabled for manually calling Initialize")]
-        [SerializeField] private bool                               initializeOnStart = true;
+        [SerializeField] private bool                               initializeOnStart           = true;
         [SerializeField] private InputSettings                      settingsForInput;
         [SerializeField] private PhysicSettings                     settingsForPhysics;
         [SerializeField] private MovementSettings                   settingsForMovement;
         [SerializeField] private CameraSettings                     settingsForCamera;
 #pragma warning restore
         /**************/ private bool                               initialized;
-        /**************/ public ControllerLoadedDelegate            ControllerLoaded;
         /**************/ private List<PrioritizedOptionalModule>    modulesUnderFixedUpdate;
         /**************/ private List<PrioritizedOptionalModule>    modulesUnderUpdate;
+
+        /**************/ public ControllerLoadedDelegate            ControllerLoaded;
+        /**************/ public bool                                IsMovementBlocked           { get; set; }
         
         /// <summary>
         /// Handles initialization of the controller's various modules

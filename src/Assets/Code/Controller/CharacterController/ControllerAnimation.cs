@@ -51,14 +51,22 @@ namespace Goldenwere.Unity.Controller
                     controller.Run += (val) => SetAnimatorState("run", val);
                     controller.Walk += (val) => SetAnimatorState("walk", val);
                     controller.GroundStateChanged += (val) => SetAnimatorState("grounded", val);
+                    controller.Lean += (val) =>
+                    {
+                        if (val && controller.IsMovementBlocked)
+                            SetAnimatorState("movement", false);
+                        else
+                            SetAnimatorState("movement", controller.InputActiveMovement, true);
+                    };
                 };
             }
         }
 
-        private void SetAnimatorState(string id, bool value)
+        private void SetAnimatorState(string id, bool value, bool force = false)
         {
-            foreach(Animator a in animators)
-                a.SetBool(id, value);
+            if (!value || !controller.IsMovementBlocked || force)
+                foreach(Animator a in animators)
+                    a.SetBool(id, value);
         }
     }
 }

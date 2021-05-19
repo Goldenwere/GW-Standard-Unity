@@ -9,6 +9,7 @@ namespace Goldenwere.Unity.Controller
     /// Optional module to handle the controller's swimming,
     /// which is separated from the controller
     /// </summary>
+    /// <remarks>This module assumes gravity or down is always (0,-1,0) in direction</remarks>
     [RequireComponent(typeof(CharacterController))]
     public class ControllerSwim : MonoBehaviour, ISwimmable
     {
@@ -19,8 +20,6 @@ namespace Goldenwere.Unity.Controller
             public bool                                     controllerSinks;
             [Tooltip                                        ("The point above water in which the controller can no longer swim up")]
             public float                                    heightAboveWater;
-            [Tooltip                                        ("The amount in which mmovement speed is modified (movement is handled a bit differently from gravity)")]
-            public float                                    moveSpeedModifier;
             [Tooltip                                        ("The amount in which sink speed is modified (gravity is handled a bit differently from regular movement speed)")]
             public float                                    sinkSpeedModifier;
 
@@ -84,6 +83,14 @@ namespace Goldenwere.Unity.Controller
             if (swimSettings.controllerSinks)
                 controller.System.AddForce(Physics.gravity * swimSettings.sinkSpeedModifier, ForceMode.Acceleration);
             controller.System.AddForce(-controller.System.Velocity * trackedFluid.Friction, ForceMode.Force);
+
+            if (IsOutOfWater() && !controller.Grounded)
+                controller.System.AddForce(-transform.up * swimSettings.sinkSpeedModifier, ForceMode.Acceleration);
+        }
+
+        private bool IsOutOfWater()
+        {
+            return transform.position.y + controller.Height - trackedFluid.SurfaceLevel > swimSettings.heightAboveWater;
         }
     }
 }

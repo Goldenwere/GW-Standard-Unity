@@ -6499,11 +6499,10 @@ MonoBehaviour:
   swimSettings:
     controllerSinks: 0
     heightAboveWater: 0.5
-    moveSpeedModifier: 1.5
-    sinkSpeedModifier: 16.25
-    speedSwimUp: 0.6
-    speedSwimDown: 0.45
-    speedSwimMovement: 0.5
+    sinkSpeedModifier: 32.5
+    speedSwimUp: 0.3
+    speedSwimDown: 0.25
+    speedSwimMovement: 0.2
 --- !u!1 &1077710517
 GameObject:
   m_ObjectHideFlags: 0
@@ -11195,7 +11194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e1a031287a14341a45e9094de452ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 50
+  friction: 80
+  surfaceLevel: 2.39
 --- !u!1 &1905301561
 GameObject:
   m_ObjectHideFlags: 0

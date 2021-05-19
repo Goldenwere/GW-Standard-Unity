@@ -10,12 +10,19 @@ namespace Goldenwere.Unity.PhysicsUtil
 #pragma warning disable 0649
         [Tooltip                            ("The friction of the fluid")]
         [SerializeField] private float      friction;
+        [Tooltip                            ("The y-position at which the fluid's surface is")]
+        [SerializeField] private float      surfaceLevel;
 #pragma warning restore 0649
 
         /// <summary>
         /// The friction of the fluid
         /// </summary>
-        public float                        Friction => friction;
+        public float                        Friction        => friction;
+
+        /// <summary>
+        /// The surface level of the fluid in global space
+        /// </summary>
+        public float                        SurfaceLevel    => surfaceLevel;
 
         /// <summary>
         /// On TriggerEnter, if collider `other` is ISwimmable, send this BodyOfFluid

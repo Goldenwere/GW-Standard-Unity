@@ -29,6 +29,7 @@ namespace Goldenwere.Unity.Controller
         public Vector3              GroundContactNormal     { get; private set; }
         public Collider             GroundCollider          { get; private set; }
         public float                SlopeAngle              { get; private set; }
+        public float                Height                  => collider.height;
 
         public event InputActive    GroundStateChanged;
 

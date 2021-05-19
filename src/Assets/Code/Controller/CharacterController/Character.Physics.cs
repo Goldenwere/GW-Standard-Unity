@@ -58,7 +58,7 @@ namespace Goldenwere.Unity.Controller
             // TODO: implement way of sleeping to prevent calling this every frame; ideally, if not asleep and there's no forces applied and no inputs/is grounded, sleep
             // AddForce automatically unsleeps (dont check for force while asleep)
             // the check nesting would be if !Sleep -> !Input && Grounded -> if velocity.sqrMag < sqrEpsilon -> sleep()
-            Grounded = Physics.SphereCast(transform.position - Vector3.down * settingsForPhysics.shellOffset,
+            Grounded = Physics.SphereCast(transform.position + transform.up * settingsForPhysics.shellOffset,
                 collider.radius * (1.0f - settingsForPhysics.shellOffset),
                 Vector3.down,
                 out RaycastHit hit,
@@ -71,7 +71,7 @@ namespace Goldenwere.Unity.Controller
 
             if (Grounded)
             {
-                system.AddForce(Vector3.down * StickToGroundModifier * (settingsForPhysics.forceStickToGround + system.HorizontalVelocity.sqrMagnitude), ForceMode.Impulse);
+                system.AddForce(-transform.up * StickToGroundModifier * (settingsForPhysics.forceStickToGround + system.HorizontalVelocity.sqrMagnitude), ForceMode.Impulse);
                 system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionGround, ForceMode.Impulse);
                 if (Mathf.Abs(SlopeAngle) < 90f)
                     system.Velocity = Vector3.ProjectOnPlane(system.Velocity, GroundContactNormal);
@@ -88,9 +88,9 @@ namespace Goldenwere.Unity.Controller
         {
             if (UnityEditor.EditorApplication.isPlaying)
             {
-                Gizmos.DrawSphere(transform.position - Vector3.down * settingsForPhysics.shellOffset, collider.radius * (1.0f - settingsForPhysics.shellOffset));
-                Gizmos.DrawSphere(transform.position + Vector3.down * settingsForPhysics.groundDistance, collider.radius * (1.0f - settingsForPhysics.shellOffset));
-                Gizmos.DrawLine(transform.position - Vector3.down * settingsForPhysics.shellOffset, transform.position + Vector3.down * settingsForPhysics.groundDistance);
+                Gizmos.DrawSphere(transform.position + transform.up * settingsForPhysics.shellOffset, collider.radius * (1.0f - settingsForPhysics.shellOffset));
+                Gizmos.DrawSphere(transform.position - transform.up * settingsForPhysics.groundDistance, collider.radius * (1.0f - settingsForPhysics.shellOffset));
+                Gizmos.DrawLine(transform.position + transform.up * settingsForPhysics.shellOffset, transform.position + Vector3.down * settingsForPhysics.groundDistance);
             }
         }
 #endif

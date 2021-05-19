@@ -38,12 +38,19 @@ namespace Goldenwere.Unity.Controller
         /**************/ private CharacterController        controller;
         /**************/ private BodyOfFluid                trackedFluid;
 
+        /// <summary>
+        /// Sets up the module on Unity Awake
+        /// </summary>
         private void Awake()
         {
             swimModule = new PrioritizedOptionalModule(10, FixedUpdate_Swim);
             controller = GetComponent<CharacterController>();
         }
 
+        /// <summary>
+        /// Handles activating the module when entering a fluid
+        /// </summary>
+        /// <param name="fluid">The fluid that was entered</param>
         public void OnFluidEnter(BodyOfFluid fluid)
         {
             controller.AddModuleToFixedUpdate(swimModule);
@@ -54,6 +61,10 @@ namespace Goldenwere.Unity.Controller
                 controller.IsPhysicsBlocked = true;
         }
 
+        /// <summary>
+        /// Handles sleeping the module when leaving a fluid
+        /// </summary>
+        /// <param name="fluid">The fluid that was left</param>
         public void OnFluidExit(BodyOfFluid fluid)
         {
             controller.RemoveModuleFromFixedUpdate(swimModule);
@@ -64,6 +75,9 @@ namespace Goldenwere.Unity.Controller
             controller.IsHeightBlocked = false;
         }
 
+        /// <summary>
+        /// The FixedUpdate loop for swimming
+        /// </summary>
         private void FixedUpdate_Swim()
         {
             controller.IsMovementBlocked = true;
@@ -88,6 +102,10 @@ namespace Goldenwere.Unity.Controller
                 controller.System.AddForce(-transform.up * swimSettings.sinkSpeedModifier, ForceMode.Acceleration);
         }
 
+        /// <summary>
+        /// Determines whether the controller is out of water or not
+        /// </summary>
+        /// <returns>position + height - fluid SurfaceLevel > settings heightAboveWater</returns>
         private bool IsOutOfWater()
         {
             return transform.position.y + controller.Height - trackedFluid.SurfaceLevel > swimSettings.heightAboveWater;

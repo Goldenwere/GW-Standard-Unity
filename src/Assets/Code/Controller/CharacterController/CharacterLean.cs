@@ -28,6 +28,9 @@ namespace Goldenwere.Unity.Controller
         /**************/ private PrioritizedOptionalModule  leanModule;
         /**************/ private IEnumerator                unsetInstance;
 
+        /// <summary>
+        /// Sets up the lean module on Unity Awake
+        /// </summary>
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
@@ -54,6 +57,9 @@ namespace Goldenwere.Unity.Controller
             };
         }
 
+        /// <summary>
+        /// The Update loop for the Lean module
+        /// </summary>
         private void Update_Lean()
         {
             leanJoint.localRotation = Quaternion.Slerp(
@@ -62,6 +68,10 @@ namespace Goldenwere.Unity.Controller
                 Time.deltaTime * leanSettings.speedLean);
         }
 
+        /// <summary>
+        /// Coroutine for unsetting lean; runs when the module's update loop is deactivated
+        /// to reset the controller's angle outside the loop
+        /// </summary>
         private IEnumerator UnsetLean()
         {
             float currAngle;

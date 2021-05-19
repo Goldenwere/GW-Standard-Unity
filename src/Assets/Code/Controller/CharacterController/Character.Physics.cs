@@ -30,9 +30,6 @@ namespace Goldenwere.Unity.Controller
         public Collider             GroundCollider          { get; private set; }
         public float                SlopeAngle              { get; private set; }
 
-        public float                GravityModifier         { get; set; }
-        public float                StickToGroundModifier   { get; set; }
-
         public event InputActive    GroundStateChanged;
 
         /// <summary>
@@ -43,8 +40,6 @@ namespace Goldenwere.Unity.Controller
         {
             system = _system;
             system.Initialize(transform, settingsForPhysics);
-            GravityModifier = 1;
-            StickToGroundModifier = 1;
 
             if (!transform.TryGetComponent(out collider))
                 collider = gameObject.AddComponent<CapsuleCollider>();
@@ -69,17 +64,20 @@ namespace Goldenwere.Unity.Controller
             if (hit.collider != null)
                 SlopeAngle = Vector3.Angle(GroundContactNormal, IntendedDirection) - 90;
 
-            if (Grounded)
+            if (!IsPhysicsBlocked)
             {
-                system.AddForce(-transform.up * StickToGroundModifier * (settingsForPhysics.forceStickToGround + system.HorizontalVelocity.sqrMagnitude), ForceMode.Impulse);
-                system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionGround, ForceMode.Impulse);
-                if (Mathf.Abs(SlopeAngle) < 90f)
-                    system.Velocity = Vector3.ProjectOnPlane(system.Velocity, GroundContactNormal);
-            }
-            else 
-            {
-                system.AddForce(Physics.gravity * settingsForPhysics.forceGravity * GravityModifier, ForceMode.Acceleration);
-                system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionAir, ForceMode.Force);
+                if (Grounded)
+                {
+                    system.AddForce(-transform.up * (settingsForPhysics.forceStickToGround + system.HorizontalVelocity.sqrMagnitude), ForceMode.Impulse);
+                    system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionGround, ForceMode.Impulse);
+                    if (Mathf.Abs(SlopeAngle) < 90f)
+                        system.Velocity = Vector3.ProjectOnPlane(system.Velocity, GroundContactNormal);
+                }
+                else 
+                {
+                    system.AddForce(Physics.gravity * settingsForPhysics.forceGravity, ForceMode.Acceleration);
+                    system.AddForce(-system.HorizontalVelocity * settingsForPhysics.frictionAir, ForceMode.Force);
+                }
             }
         }
 

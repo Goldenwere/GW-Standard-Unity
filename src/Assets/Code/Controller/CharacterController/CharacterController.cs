@@ -36,6 +36,7 @@ namespace Goldenwere.Unity.Controller
         /**************/ public ControllerLoadedDelegate            ControllerLoaded;
         /**************/ public bool                                IsHeightBlocked             { get; set; }
         /**************/ public bool                                IsMovementBlocked           { get; set; }
+        /**************/ public bool                                IsPhysicsBlocked            { get; set; }
         
         /// <summary>
         /// Handles initialization of the controller's various modules

@@ -52,18 +52,14 @@ namespace Goldenwere.Unity.Controller
             controller.IsMovementBlocked = true;
             controller.IsHeightBlocked = true;
             if (!swimSettings.controllerSinks)
-            {
-                controller.GravityModifier = 0;
-                controller.StickToGroundModifier = 0;
-            }
+                controller.IsPhysicsBlocked = true;
         }
 
         public void OnFluidExit(BodyOfFluid fluid)
         {
             controller.RemoveModuleFromFixedUpdate(swimModule);
             trackedFluid = null;
-            controller.GravityModifier = 1;
-            controller.StickToGroundModifier = 1;
+            controller.IsPhysicsBlocked = false;
             if (!controller.InputActiveLean)
                 controller.IsMovementBlocked = false;
             controller.IsHeightBlocked = false;

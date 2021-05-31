@@ -1,4 +1,16 @@
-﻿using System.Collections.Generic;
+﻿/**
+*** Copyright (C) 2020 Goldenwere
+*** Part of the Goldenwere Standard Unity repository
+*** The Goldenwere Standard Unity Repository is licensed under the MIT license
+***
+*** File Info:
+***     Description - Contains the main declaration of the CharacterController
+***     Pkg Name    - CharacterController
+***     Pkg Ver     - 2.0.0
+***     Pkg Req     - CoreAPI
+**/
+
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Goldenwere.Unity.Controller

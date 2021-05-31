@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 { 
     public partial class CharacterController : MonoBehaviour
     {
+        /// <summary>
+        /// Structure for defining controller movement settings
+        /// </summary>
         [System.Serializable]
         protected struct MovementSettings
         {
@@ -27,7 +28,7 @@ namespace Goldenwere.Unity.Controller
         /// <summary>
         /// Exposed "final" multiplier to apply to the controller
         /// </summary>
-        /// <remarks>E.G.: a status effect is affecting the player</remarks>
+        /// <remarks>Practical example: a status effect is affecting the speed of the player</remarks>
         public float                SpeedMultiplier     { get; set; }
         
         public bool                 AllowWalk           => settingsForMovement.allowWalk;

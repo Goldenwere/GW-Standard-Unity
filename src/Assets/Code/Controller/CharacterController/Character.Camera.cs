@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
@@ -187,6 +186,7 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void InitializeCamera()
         {
+            #region Verification Code
             if (settingsForCamera.cameras.Length < 1)
                 Debug.LogException(new System.Exception("[gw-std-unity] Controller has no cameras assigned. Assign them under settingsForCamera"));
             else
@@ -211,8 +211,11 @@ namespace Goldenwere.Unity.Controller
                             workingCameraRotations[i] = settingsForCamera.cameraRotationJoints[i].localRotation;
                         workingControllerRotation = transform.localRotation;
                     }
+            #endregion
 
+            // set what method to use for camera smoothing based on settings
             workingRotationForm = CameraSmoothingEnabled ? (RotationForm)RotateWithSmoothing : (RotationForm)RotateWithoutSmoothing;
+            // and assign fov settings to their corresponding speed states for clean reading
             speedsToValues = new Dictionary<SpeedState, float>()
             {
                 { SpeedState.idle,      FOV },
@@ -222,6 +225,7 @@ namespace Goldenwere.Unity.Controller
                 { SpeedState.run,       settingsForCamera.settingsFOV.fovMultiplierRun * FOV },
             };
 
+            // create and assign the module
             fovModule = new PrioritizedControllerModule(99, UpdateFOV);
             if (FOVShiftingEnabled)
                 AddModuleToUpdate(fovModule);
@@ -234,12 +238,14 @@ namespace Goldenwere.Unity.Controller
         {
             if (InputActiveRotation)
             {
+                // 1. get input and invert if set in UX
                 Vector2 val = InputValueRotation;
                 if (CameraInvertHorizontal)
                     val.x *= -1;
                 if (CameraInvertVertical)
                     val.y *= -1;
 
+                // 2. set camera rotations
                 for (int i = 0; i < workingCameraRotations.Length; i++)
                 {
                     workingCameraRotations[i] *= Quaternion.Euler(-val.y * CameraLookSensitivity, 0, 0);
@@ -248,6 +254,7 @@ namespace Goldenwere.Unity.Controller
                 workingControllerRotation *= Quaternion.Euler(0, val.x * CameraLookSensitivity, 0);
             }
 
+            // 3. perform camera rotation
             workingRotationForm();
         }
 
@@ -279,6 +286,7 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void UpdateFOV()
         {
+            // if controller moving, set currentSpeed based on other inputs
             if (InputActiveMovement && !IsMovementBlocked)
             {
                 if (InputValueRun)
@@ -288,8 +296,11 @@ namespace Goldenwere.Unity.Controller
                 else
                     currentSpeed = SpeedState.normal;
             }
+            // otherwise, set as idle
             else
                 currentSpeed = SpeedState.idle;
+
+            // Lerp fov based on current state, or set as air if controller isn't grounded
             InterpolateFOV(!Grounded ? SpeedState.air : currentSpeed);
         }
 

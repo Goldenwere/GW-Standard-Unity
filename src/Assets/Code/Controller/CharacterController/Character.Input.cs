@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Goldenwere.Unity.Controller
@@ -107,22 +104,29 @@ namespace Goldenwere.Unity.Controller
                 parent = _parent;
                 action = input.actions.FindAction(name);
                 
+                // warn if action was null
                 if (action == null)
                     Debug.LogException(new System.NullReferenceException("[gw-std-unity] Controller encountered null when searching for " + name + " on the provided PlayerInput. " +
                     "If the action is unused, this can be disregarded; otherwise, this input will not function properly"));
 
+                // otherwise assign performed/canceled on the action
                 else
                 {
+                    // when the action is "down" (think sort of like OnKeyDown)
                     action.performed += ctx =>
                     {
+                        // toggle if action is modifier and modifiers are toggled
                         if (isModifier && parent.settingsForInput.modifiersAreToggled)
                             isActive = !isActive;
+                        // otherwise set as true on first frame action is held, and canceled will then set to false
                         else
                             isActive = true;
                         Updated?.Invoke(isActive);
                     };
+                    // when the action is "up" (think sort of like OnKeyUp)
                     action.canceled += ctx =>
                     {
+                        // canceled is relevant if not a modifier or if modifiers are held
                         if (!isModifier || !parent.settingsForInput.modifiersAreToggled)
                         { 
                             isActive = false;
@@ -148,6 +152,9 @@ namespace Goldenwere.Unity.Controller
         public event InputActive            Interact;
         #endregion
 
+        // Properties for inputs;
+        // "value" = the value of the input
+        // "active" = whether or not the input is active, only applies to inputs whose values aren't already whether active or not
         #region Properties of current input values
         public Vector2                      InputValueMovement      { get => inputs.movement.GetValue<Vector2>(); }
         public bool                         InputActiveMovement     { get => inputs.movement.isActive; }

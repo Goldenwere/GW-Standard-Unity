@@ -7,11 +7,19 @@ namespace Goldenwere.Unity.Controller
     public delegate void ControllerLoadedDelegate(CharacterController loaded);
     public delegate void ControllerModuleDelegate();
 
+    /// <summary>
+    /// Container for referencing a module's Update/FixedUpdate method and assigning it a priority
+    /// </summary>
     public class PrioritizedOptionalModule
     {
         public readonly int                         priority;
         public readonly ControllerModuleDelegate    method;
 
+        /// <summary>
+        /// Creates an instance of PrioritizedOptionalModule with priority and method to assign
+        /// </summary>
+        /// <param name="_priority">The priority of the method when adding it to a module collection; the lower the number, the higher its priority (think of it as Unity script execution order)</param>
+        /// <param name="_method"></param>
         public PrioritizedOptionalModule(int _priority, ControllerModuleDelegate _method)
         {
             method = _method;
@@ -19,6 +27,12 @@ namespace Goldenwere.Unity.Controller
         }
     }
 
+    /// <summary>
+    /// The Goldenwere CharacterController is a highly generalized rigidbody-based character controller based on a system of modules.<br/>
+    /// Certain modules on the controller are required in order for the controller to function correctly (i.e. physics, input, movement, and camera).<br/>
+    /// Its camera runs under MonoBehaviour.Update and its physics and movement run under MonoBehaviour.FixedUpdate.<br/>
+    /// Its input is event-based through the use of UnityEngine.InputSystem.
+    /// </summary>
     public partial class CharacterController : MonoBehaviour
     {
 #pragma warning disable 0649
@@ -64,12 +78,18 @@ namespace Goldenwere.Unity.Controller
             }
         }
 
+        /// <summary>
+        /// Initializes the controller if initializeOnStart is set to true
+        /// </summary>
         private void Start()
         {
             if (initializeOnStart)
                 Initialize(new CharacterPhysicsRigidbodyBased());
         }
 
+        /// <summary>
+        /// On Unity Update, update camera (required) and any additional modules (modulesUnderUpdate)
+        /// </summary>
         private void Update()
         {
             Update_Camera();
@@ -77,6 +97,9 @@ namespace Goldenwere.Unity.Controller
                 module.method();
         }
 
+        /// <summary>
+        /// On Unity FixedUpdate, update physics and movement (required) and any additional modules (modulesUnderFixedUpdate)
+        /// </summary>
         private void FixedUpdate()
         {
             FixedUpdate_Movement();
@@ -85,6 +108,10 @@ namespace Goldenwere.Unity.Controller
                 module.method();
         }
 
+        /// <summary>
+        /// Adds a module (if not already added) to the modulesUnderUpdate collection
+        /// </summary>
+        /// <param name="module">The PrioritizedOptionalModule to add</param>
         public void AddModuleToUpdate(PrioritizedOptionalModule module)
         {
             if (!modulesUnderUpdate.Contains(module))
@@ -98,6 +125,10 @@ namespace Goldenwere.Unity.Controller
             }
         }
 
+        /// <summary>
+        /// Adds a module (if not already added) to the modulesUnderFixedUpdate collection
+        /// </summary>
+        /// <param name="module">The PrioritizedOptionalModule to add</param>
         public void AddModuleToFixedUpdate(PrioritizedOptionalModule module)
         {
             if (!modulesUnderFixedUpdate.Contains(module))
@@ -111,11 +142,19 @@ namespace Goldenwere.Unity.Controller
             }
         }
 
+        /// <summary>
+        /// Removes a module from the modulesUnderUpdate collection
+        /// </summary>
+        /// <param name="module">The PrioritizedOptionalModule to remove</param>
         public void RemoveModuleFromUpdate(PrioritizedOptionalModule module)
         {
             modulesUnderUpdate.Remove(module);
         }
 
+        /// <summary>
+        /// Removes a module from the modulesUnderFixedUpdate collection
+        /// </summary>
+        /// <param name="module">The PrioritizedOptionalModule to remove</param>
         public void RemoveModuleFromFixedUpdate(PrioritizedOptionalModule module)
         {
             modulesUnderFixedUpdate.Remove(module);

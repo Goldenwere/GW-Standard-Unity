@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 {
@@ -62,6 +61,12 @@ namespace Goldenwere.Unity.Controller
             }
         }
 
+        /// <summary>
+        /// Sets an animator state to the provided values
+        /// </summary>
+        /// <param name="id">The id of the animator state to set</param>
+        /// <param name="value">The value (t/f) of the provided state</param>
+        /// <param name="force">Whether to brute force the assignment</param>
         private void SetAnimatorState(string id, bool value, bool force = false)
         {
             if (!value || !controller.IsMovementBlocked || force)

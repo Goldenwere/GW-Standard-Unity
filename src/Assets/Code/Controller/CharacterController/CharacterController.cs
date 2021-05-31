@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
@@ -63,6 +62,7 @@ namespace Goldenwere.Unity.Controller
                 modulesUnderFixedUpdate = new List<PrioritizedControllerModule>(8);
                 modulesUnderUpdate = new List<PrioritizedControllerModule>(8);
 
+                // ensure input can be initialized
                 if (settingsForInput.playerInput == null)
                     Debug.LogException(new System.NullReferenceException("[gw-std-unity] Controller's PlayerInput is null; " +
                         "this must be assigned in order for the controller to work properly. Either assign one in inspector or do so in code before the first frame."));

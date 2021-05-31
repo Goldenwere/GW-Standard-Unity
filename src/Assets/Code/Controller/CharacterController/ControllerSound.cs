@@ -91,7 +91,7 @@ namespace Goldenwere.Unity.Controller
         }
 
         /// <summary>
-        /// Handles checking groundstate and playing audio at specific intervals on Monobehaviour.Update()
+        /// Handles updating audio and timer if playing
         /// </summary>
         private void Update()
         {
@@ -111,6 +111,7 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void SetSettings()
         {
+            // set pitch/volume and step time if crouched
             if (controller.InputValueCrouch || controller.InputValueCrawl)
             {
                 source.pitch = settings.pitchWhileCrouched;
@@ -120,9 +121,11 @@ namespace Goldenwere.Unity.Controller
 
             else
             {
+                // reset pitch/volume to not-crouched if not crouched
                 source.pitch = settings.pitchWhileNotCrouched;
                 source.volume = settings.volumeWhileNotCrouched;
 
+                // set step time based on movement speedstate
                 if (controller.InputValueRun)
                     workingCurrentStepTime = settings.timeBetweenStepsRun;
 
@@ -150,13 +153,21 @@ namespace Goldenwere.Unity.Controller
         /// <returns>The strength values of each texture at the world position provided</returns>
         private float[] ConvertPositionToTerrain(Vector3 worldPos, Terrain t)
         {
+            // get the position on the terrain
             Vector3 terrainPos = worldPos - t.transform.position;
+
+            // convert it to a position useful for the terrain's alphamaps
             Vector3 mapPos = new Vector3(terrainPos.x / t.terrainData.size.x, 0, terrainPos.z / t.terrainData.size.z);
             Vector3 scaledPos = new Vector3(mapPos.x * t.terrainData.alphamapWidth, 0, mapPos.z * t.terrainData.alphamapHeight);
+
+            // create a float array that represents the strength of each texture at a specific coordinate
             float[] layers = new float[t.terrainData.alphamapLayers];
+
+            // get the terrain's alphamaps and use it for retrieving the texture strength of each texture
             float[,,] aMap = t.terrainData.GetAlphamaps((int)scaledPos.x, (int)scaledPos.z, 1, 1);
             for (int i = 0; i < layers.Length; i++)
                 layers[i] = aMap[0, 0, i];
+
             return layers;
         }
 
@@ -165,12 +176,17 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void PlayAudio()
         {
+            // only play audio if there is a collider that the controller is aware of for grounding
             if (controller.GroundCollider != null)
             {
+                // perform terrain-based audio playing ...
                 if (controller.GroundCollider is TerrainCollider)
                 {
+                    // ... by using the terrain to get texture strength as volumes
                     Terrain t = controller.GroundCollider.gameObject.GetComponent<Terrain>();
                     float[] currentLayerValues = ConvertPositionToTerrain(transform.position, t);
+
+                    // set each texture volume and play
                     for (int i = 0; i < currentLayerValues.Length; i++)
                     {
                         if (currentLayerValues[i] > 0 && i < clipsTerrain.Length)
@@ -181,11 +197,15 @@ namespace Goldenwere.Unity.Controller
                     }
                 }
 
+                // perform mesh-based audio playing ...
                 else
                 {
+                    // ... by getting the mesh renderer ...
                     MeshRenderer mr = controller.GroundCollider.gameObject.GetComponent<MeshRenderer>();
+                    // ... and if it's not null ...
                     if (mr != null)
                     {
+                        // ... get its material, and determine whether there is a clip associated with its material assigned to the sound module ...
                         Material mat = mr.material;
                         if (mat != null)
                         {
@@ -193,11 +213,13 @@ namespace Goldenwere.Unity.Controller
                             if (workingMaterials.ContainsKey(sanitizedName))
                                 source.PlayOneShot(workingMaterials[sanitizedName]);
 
+                            // ... or to just play the default sound
                             else
                                 source.PlayOneShot(clipDefaultMovement);
                         }
                     }
 
+                    // ... otherwise play the default clip if no valid collider
                     else
                         source.PlayOneShot(clipDefaultMovement);
                 }

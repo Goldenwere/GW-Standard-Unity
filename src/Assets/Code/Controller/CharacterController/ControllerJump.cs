@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Goldenwere.Unity.Controller
 {
@@ -30,7 +29,7 @@ namespace Goldenwere.Unity.Controller
             j_tap                   = 1,
             j_held                  = 2,
             j_tapThenHold           = 3,
-            // TODO: j_tapThenBoostOrHold = 4
+            // TODO: j_tapThenHover = 4
         }
 
         /// <summary>

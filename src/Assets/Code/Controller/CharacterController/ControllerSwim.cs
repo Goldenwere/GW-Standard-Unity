@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Goldenwere.Unity.PhysicsUtil;
 
 namespace Goldenwere.Unity.Controller
@@ -13,6 +11,9 @@ namespace Goldenwere.Unity.Controller
     [RequireComponent(typeof(CharacterController))]
     public class ControllerSwim : MonoBehaviour, ISwimmable
     {
+        /// <summary>
+        /// Structure for defining swim settings
+        /// </summary>
         [System.Serializable]
         protected struct SwimSettings
         {
@@ -80,12 +81,18 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void FixedUpdate_Swim()
         {
+            // ensure regular movement is completely blocked
             controller.IsMovementBlocked = true;
 
+            // determine vertical movement
+            // (note that vertical is the controller's up/down)
             if (controller.InputValueJump)
                 controller.System.AddForce(transform.up * swimSettings.speedSwimUp, ForceMode.VelocityChange);
             else if (controller.InputValueCrouch || controller.InputValueCrawl)
                 controller.System.AddForce(-transform.up * swimSettings.speedSwimDown, ForceMode.VelocityChange);
+
+            // determine horizontal movement
+            // (note that directional movement is based off of the camera's/controller's (if no camera) forward/right
             if (controller.InputActiveMovement)
             {
                 Vector3 intendedDirection = cameraForForward != null ?
@@ -94,10 +101,13 @@ namespace Goldenwere.Unity.Controller
                 controller.System.AddForce(intendedDirection * swimSettings.speedSwimMovement, ForceMode.VelocityChange);
             }
 
+            // handle if the controller should sink or not
             if (swimSettings.controllerSinks)
                 controller.System.AddForce(Physics.gravity * swimSettings.sinkSpeedModifier, ForceMode.Acceleration);
             controller.System.AddForce(-controller.System.Velocity * trackedFluid.Friction, ForceMode.Force);
 
+            // handle "sinking" the controller if its out of water and not grounded
+            // to make it so the controller can't exit the water when there's no ground to stand on
             if (IsOutOfWater() && !controller.Grounded)
                 controller.System.AddForce(-transform.up * swimSettings.sinkSpeedModifier, ForceMode.Acceleration);
         }

@@ -13,20 +13,20 @@ namespace Goldenwere.Unity.Controller
         [System.Serializable]
         protected struct LeanSettings
         {
-            [Tooltip                                        ("The maximum angle the character can lean")]
-            public float                                    angleMaxLean;
-            [Tooltip                                        ("Whether to block the ability for the controller to move")]
-            public bool                                     preventMovement;
-            [Tooltip                                        ("The speed at which the character leans/unleans")]
-            public float                                    speedLean;
+            [Tooltip                                            ("The maximum angle the character can lean")]
+            public float                                        angleMaxLean;
+            [Tooltip                                            ("Whether to block the ability for the controller to move")]
+            public bool                                         preventMovement;
+            [Tooltip                                            ("The speed at which the character leans/unleans")]
+            public float                                        speedLean;
         }
 #pragma warning disable 0649
-        [SerializeField] private Transform                  leanJoint;
-        [SerializeField] private LeanSettings               leanSettings;
+        [SerializeField] private Transform                      leanJoint;
+        [SerializeField] private LeanSettings                   leanSettings;
 #pragma warning restore 0649
-        /**************/ private CharacterController        controller;
-        /**************/ private PrioritizedOptionalModule  leanModule;
-        /**************/ private IEnumerator                unsetInstance;
+        /**************/ private CharacterController            controller;
+        /**************/ private PrioritizedControllerModule    leanModule;
+        /**************/ private IEnumerator                    unsetInstance;
 
         /// <summary>
         /// Sets up the lean module on Unity Awake
@@ -34,7 +34,7 @@ namespace Goldenwere.Unity.Controller
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
-            leanModule = new PrioritizedOptionalModule(0, Update_Lean);
+            leanModule = new PrioritizedControllerModule(0, Update_Lean);
 
             controller.Lean += (val) =>
             {

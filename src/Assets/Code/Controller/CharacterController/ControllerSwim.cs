@@ -16,34 +16,34 @@ namespace Goldenwere.Unity.Controller
         [System.Serializable]
         protected struct SwimSettings
         {
-            [Tooltip                                        ("Whether the controller sinks or not")]
-            public bool                                     controllerSinks;
-            [Tooltip                                        ("The point above water in which the controller can no longer swim up")]
-            public float                                    heightAboveWater;
-            [Tooltip                                        ("The amount in which sink speed is modified (gravity is handled a bit differently from regular movement speed)")]
-            public float                                    sinkSpeedModifier;
+            [Tooltip                                            ("Whether the controller sinks or not")]
+            public bool                                         controllerSinks;
+            [Tooltip                                            ("The point above water in which the controller can no longer swim up")]
+            public float                                        heightAboveWater;
+            [Tooltip                                            ("The amount in which sink speed is modified (gravity is handled a bit differently from regular movement speed)")]
+            public float                                        sinkSpeedModifier;
 
-            public float                                    speedSwimUp;
-            public float                                    speedSwimDown;
-            public float                                    speedSwimMovement;
+            public float                                        speedSwimUp;
+            public float                                        speedSwimDown;
+            public float                                        speedSwimMovement;
         }
 
 #pragma warning disable 0649
-        [Tooltip                                            ("(Optional) If provided, the controller will move in the direction of the camera's forward " +
-                                                            "rather than the transform's forward (which doesn't rotate)")]
-        [SerializeField] private Transform                  cameraForForward;
-        [SerializeField] private SwimSettings               swimSettings;
-        [SerializeField] private PrioritizedOptionalModule  swimModule;
+        [Tooltip                                                ("(Optional) If provided, the controller will move in the direction of the camera's forward " +
+                                                                "rather than the transform's forward (which doesn't rotate)")]
+        [SerializeField] private Transform                      cameraForForward;
+        [SerializeField] private SwimSettings                   swimSettings;
+        [SerializeField] private PrioritizedControllerModule    swimModule;
 #pragma warning restore 0649
-        /**************/ private CharacterController        controller;
-        /**************/ private BodyOfFluid                trackedFluid;
+        /**************/ private CharacterController            controller;
+        /**************/ private BodyOfFluid                    trackedFluid;
 
         /// <summary>
         /// Sets up the module on Unity Awake
         /// </summary>
         private void Awake()
         {
-            swimModule = new PrioritizedOptionalModule(10, FixedUpdate_Swim);
+            swimModule = new PrioritizedControllerModule(10, FixedUpdate_Swim);
             controller = GetComponent<CharacterController>();
         }
 

@@ -10,17 +10,17 @@ namespace Goldenwere.Unity.Controller
     /// <summary>
     /// Container for referencing a module's Update/FixedUpdate method and assigning it a priority
     /// </summary>
-    public class PrioritizedOptionalModule
+    public class PrioritizedControllerModule
     {
         public readonly int                         priority;
         public readonly ControllerModuleDelegate    method;
 
         /// <summary>
-        /// Creates an instance of PrioritizedOptionalModule with priority and method to assign
+        /// Creates an instance of PrioritizedControllerModule with priority and method to assign
         /// </summary>
         /// <param name="_priority">The priority of the method when adding it to a module collection; the lower the number, the higher its priority (think of it as Unity script execution order)</param>
         /// <param name="_method"></param>
-        public PrioritizedOptionalModule(int _priority, ControllerModuleDelegate _method)
+        public PrioritizedControllerModule(int _priority, ControllerModuleDelegate _method)
         {
             method = _method;
             priority = _priority;
@@ -44,8 +44,8 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] private CameraSettings                     settingsForCamera;
 #pragma warning restore
         /**************/ private bool                               initialized;
-        /**************/ private List<PrioritizedOptionalModule>    modulesUnderFixedUpdate;
-        /**************/ private List<PrioritizedOptionalModule>    modulesUnderUpdate;
+        /**************/ private List<PrioritizedControllerModule>  modulesUnderFixedUpdate;
+        /**************/ private List<PrioritizedControllerModule>  modulesUnderUpdate;
 
         /**************/ public ControllerLoadedDelegate            ControllerLoaded;
         /**************/ public bool                                IsHeightBlocked             { get; set; }
@@ -60,8 +60,8 @@ namespace Goldenwere.Unity.Controller
         {
             if (!initialized)
             {
-                modulesUnderFixedUpdate = new List<PrioritizedOptionalModule>(8);
-                modulesUnderUpdate = new List<PrioritizedOptionalModule>(8);
+                modulesUnderFixedUpdate = new List<PrioritizedControllerModule>(8);
+                modulesUnderUpdate = new List<PrioritizedControllerModule>(8);
 
                 if (settingsForInput.playerInput == null)
                     Debug.LogException(new System.NullReferenceException("[gw-std-unity] Controller's PlayerInput is null; " +
@@ -93,7 +93,7 @@ namespace Goldenwere.Unity.Controller
         private void Update()
         {
             Update_Camera();
-            foreach(PrioritizedOptionalModule module in modulesUnderUpdate)
+            foreach(PrioritizedControllerModule module in modulesUnderUpdate)
                 module.method();
         }
 
@@ -104,15 +104,15 @@ namespace Goldenwere.Unity.Controller
         {
             FixedUpdate_Movement();
             FixedUpdate_Physics();
-            foreach(PrioritizedOptionalModule module in modulesUnderFixedUpdate)
+            foreach(PrioritizedControllerModule module in modulesUnderFixedUpdate)
                 module.method();
         }
 
         /// <summary>
         /// Adds a module (if not already added) to the modulesUnderUpdate collection
         /// </summary>
-        /// <param name="module">The PrioritizedOptionalModule to add</param>
-        public void AddModuleToUpdate(PrioritizedOptionalModule module)
+        /// <param name="module">The PrioritizedControllerModule to add</param>
+        public void AddModuleToUpdate(PrioritizedControllerModule module)
         {
             if (!modulesUnderUpdate.Contains(module))
             {
@@ -128,8 +128,8 @@ namespace Goldenwere.Unity.Controller
         /// <summary>
         /// Adds a module (if not already added) to the modulesUnderFixedUpdate collection
         /// </summary>
-        /// <param name="module">The PrioritizedOptionalModule to add</param>
-        public void AddModuleToFixedUpdate(PrioritizedOptionalModule module)
+        /// <param name="module">The PrioritizedControllerModule to add</param>
+        public void AddModuleToFixedUpdate(PrioritizedControllerModule module)
         {
             if (!modulesUnderFixedUpdate.Contains(module))
             {
@@ -145,8 +145,8 @@ namespace Goldenwere.Unity.Controller
         /// <summary>
         /// Removes a module from the modulesUnderUpdate collection
         /// </summary>
-        /// <param name="module">The PrioritizedOptionalModule to remove</param>
-        public void RemoveModuleFromUpdate(PrioritizedOptionalModule module)
+        /// <param name="module">The PrioritizedControllerModule to remove</param>
+        public void RemoveModuleFromUpdate(PrioritizedControllerModule module)
         {
             modulesUnderUpdate.Remove(module);
         }
@@ -154,8 +154,8 @@ namespace Goldenwere.Unity.Controller
         /// <summary>
         /// Removes a module from the modulesUnderFixedUpdate collection
         /// </summary>
-        /// <param name="module">The PrioritizedOptionalModule to remove</param>
-        public void RemoveModuleFromFixedUpdate(PrioritizedOptionalModule module)
+        /// <param name="module">The PrioritizedControllerModule to remove</param>
+        public void RemoveModuleFromFixedUpdate(PrioritizedControllerModule module)
         {
             modulesUnderFixedUpdate.Remove(module);
         }

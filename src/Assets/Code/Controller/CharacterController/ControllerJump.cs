@@ -63,26 +63,26 @@ namespace Goldenwere.Unity.Controller
         }
         
 #pragma warning disable 0649
-        [SerializeField] private JumpSettings               jumpSettings;
+        [SerializeField] private JumpSettings                   jumpSettings;
 #pragma warning restore 0649
-        /**************/ private CharacterController        controller;                 // the controller of which this module is attached
+        /**************/ private CharacterController            controller;                 // the controller of which this module is attached
 
-        /**************/ private bool                       controllerGrounded;         // listen to when the controller groundstate changes
-        /**************/ private bool                       controllerJump;             // listen to when the jump input is called
+        /**************/ private bool                           controllerGrounded;         // listen to when the controller groundstate changes
+        /**************/ private bool                           controllerJump;             // listen to when the jump input is called
         // TODO: apply to tap
         // TODO: UX/accessibility property to determine whether this should be respected
-        /**************/ private bool                       controllerJumpReleased;     // only applies for tapThenHeld: track when jump is released
+        /**************/ private bool                           controllerJumpReleased;     // only applies for tapThenHeld: track when jump is released
 
-        /**************/ private JumpForm                   jumpForm;                   // which jump function to run under FixedUpdate
-        /**************/ private PrioritizedOptionalModule  jumpModule;                 // the instance of this jump module, sent to the controller to call under its update
+        /**************/ private JumpForm                       jumpForm;                   // which jump function to run under FixedUpdate
+        /**************/ private PrioritizedControllerModule    jumpModule;                 // the instance of this jump module, sent to the controller to call under its update
 
-        /**************/ private int                        jumpsLeft;                  // only applies for tap: how many jumps are left before the controller must fall
-        /**************/ private float                      jumpTimer;                  // only applies for tap or tapThenHeld: how long since a jump was called
+        /**************/ private int                            jumpsLeft;                  // only applies for tap: how many jumps are left before the controller must fall
+        /**************/ private float                          jumpTimer;                  // only applies for tap or tapThenHeld: how long since a jump was called
 
         // these are private fields so that one must use the properties in order to optimize the controller with an active/inactive state
         // TODO: implement these fields
-        /**************/ private bool                       preventHeld;
-        /**************/ private bool                       preventTap;
+        /**************/ private bool                           preventHeld;
+        /**************/ private bool                           preventTap;
         
         /// <summary>
         /// Multiplier to be applied to the tap force
@@ -149,7 +149,7 @@ namespace Goldenwere.Unity.Controller
         {
             // setup main variables
             controller = GetComponent<CharacterController>();
-            jumpModule = new PrioritizedOptionalModule(1, FixedUpdate_Jump);
+            jumpModule = new PrioritizedControllerModule(1, FixedUpdate_Jump);
 
             // ensure settings from inspector are valid
             if (jumpSettings.jumpCount < 1)

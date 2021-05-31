@@ -91,7 +91,7 @@ namespace Goldenwere.Unity.Controller
         
         private SpeedState                      currentSpeed;
         private Dictionary<SpeedState, float>   speedsToValues;                 // for storing speeds to values without having to do conditionals
-        private PrioritizedOptionalModule       fovModule;
+        private PrioritizedControllerModule     fovModule;
         private Quaternion[]                    workingCameraRotations;         // for working with camera rotations before applying them to the cameras
         private Quaternion                      workingControllerRotation;      // for working with controller rotation before applying them to the controller
         private RotationForm                    workingRotationForm;            // for storing which form of rotation should be performed without checking the setting every frame
@@ -222,7 +222,7 @@ namespace Goldenwere.Unity.Controller
                 { SpeedState.run,       settingsForCamera.settingsFOV.fovMultiplierRun * FOV },
             };
 
-            fovModule = new PrioritizedOptionalModule(99, UpdateFOV);
+            fovModule = new PrioritizedControllerModule(99, UpdateFOV);
             if (FOVShiftingEnabled)
                 AddModuleToUpdate(fovModule);
         }

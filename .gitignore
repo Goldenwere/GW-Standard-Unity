@@ -6,3 +6,7 @@
 .vs
 *.sln
 *.csproj
+
+# trick to ignore folder metas: ignore all metas, but include all metas except folders
+*.meta
+!*.*.meta

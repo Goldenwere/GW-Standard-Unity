@@ -70,6 +70,11 @@ namespace Goldenwere.Unity.Controller
             public bool                 useMouseSmoothing;
             public float                mouseSmoothSpeed;
             public float                lookSensitivity;
+
+            public float                turnMultiplierWalk;
+            public float                turnMultiplierNorm;
+            public float                turnMultiplierRun;
+            public float                turnMultiplierAir;
         }
 
         /// <summary>
@@ -101,7 +106,8 @@ namespace Goldenwere.Unity.Controller
         }
         
         private SpeedState                      currentSpeed;
-        private Dictionary<SpeedState, float>   speedsToValues;                 // for storing speeds to values without having to do conditionals
+        private Dictionary<SpeedState, float>   fovSpeedsToValues;              // for storing speeds to values without having to do conditionals
+        private Dictionary<SpeedState, float>   turnMultipliersToValues;    // for storing speeds to values without having to do conditionals
         private PrioritizedControllerModule     fovModule;
         private Quaternion[]                    workingCameraRotations;         // for working with camera rotations before applying them to the cameras
         private Quaternion                      workingControllerRotation;      // for working with controller rotation before applying them to the controller
@@ -228,13 +234,21 @@ namespace Goldenwere.Unity.Controller
             // set what method to use for camera smoothing based on settings
             workingRotationForm = CameraSmoothingEnabled ? (RotationForm)RotateWithSmoothing : (RotationForm)RotateWithoutSmoothing;
             // and assign fov settings to their corresponding speed states for clean reading
-            speedsToValues = new Dictionary<SpeedState, float>()
+            fovSpeedsToValues = new Dictionary<SpeedState, float>()
             {
                 { SpeedState.idle,      FOV },
                 { SpeedState.normal,    settingsForCamera.settingsFOV.fovMultiplierNorm * FOV },
                 { SpeedState.air,       settingsForCamera.settingsFOV.fovMultiplierAir * FOV },
                 { SpeedState.walk,      settingsForCamera.settingsFOV.fovMultiplierWalk * FOV },
                 { SpeedState.run,       settingsForCamera.settingsFOV.fovMultiplierRun * FOV },
+            };
+            turnMultipliersToValues = new Dictionary<SpeedState, float>()
+            {
+                { SpeedState.idle,      1 },
+                { SpeedState.normal,    settingsForCamera.settingsMotion.turnMultiplierNorm },
+                { SpeedState.air,       settingsForCamera.settingsMotion.turnMultiplierAir },
+                { SpeedState.walk,      settingsForCamera.settingsMotion.turnMultiplierWalk },
+                { SpeedState.run,       settingsForCamera.settingsMotion.turnMultiplierRun },
             };
 
             // create and assign the module
@@ -248,6 +262,9 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void Update_Camera()
         {
+            // 0. ensure speed is updated
+            UpdateSpeed();
+
             if (InputActiveRotation)
             {
                 // 1. get input and invert if set in UX
@@ -263,7 +280,7 @@ namespace Goldenwere.Unity.Controller
                     workingCameraRotations[i] *= Quaternion.Euler(-val.y * CameraLookSensitivity, 0, 0);
                     workingCameraRotations[i] = workingCameraRotations[i].VerticalClampEuler(settingsForCamera.verticalClamp.x, settingsForCamera.verticalClamp.y);
                 }
-                workingControllerRotation *= Quaternion.Euler(0, val.x * CameraLookSensitivity, 0);
+                workingControllerRotation *= Quaternion.Euler(0, val.x * CameraLookSensitivity * turnMultipliersToValues[currentSpeed], 0);
             }
 
             // 3. perform camera rotation
@@ -294,9 +311,10 @@ namespace Goldenwere.Unity.Controller
         }
 
         /// <summary>
-        /// Method which contains the FOV shifting module
+        /// Method which updates the current speed state
         /// </summary>
-        private void UpdateFOV()
+        /// TODO: optimize to be input-based and move into different module (likely movement)
+        private void UpdateSpeed()
         {
             // if controller moving, set currentSpeed based on other inputs
             if (InputActiveMovement && !IsMovementBlocked)
@@ -308,12 +326,21 @@ namespace Goldenwere.Unity.Controller
                 else
                     currentSpeed = SpeedState.normal;
             }
-            // otherwise, set as idle
+            // otherwise, set as idle/air where appropriate
             else
-                currentSpeed = SpeedState.idle;
+                if (!Grounded)
+                    currentSpeed = SpeedState.air;
+                else
+                    currentSpeed = SpeedState.idle;
+        }
 
-            // Lerp fov based on current state, or set as air if controller isn't grounded
-            InterpolateFOV(!Grounded ? SpeedState.air : currentSpeed);
+        /// <summary>
+        /// Method which contains the FOV shifting module
+        /// </summary>
+        private void UpdateFOV()
+        {
+            // Lerp fov based on current state
+            InterpolateFOV(currentSpeed);
         }
 
         /// <summary>
@@ -323,7 +350,7 @@ namespace Goldenwere.Unity.Controller
         private void InterpolateFOV(SpeedState state)
         {
             foreach(Camera c in settingsForCamera.cameras)
-                c.fieldOfView = Mathf.Lerp(c.fieldOfView, speedsToValues[state], Time.deltaTime * settingsForCamera.settingsFOV.fovSpeed);
+                c.fieldOfView = Mathf.Lerp(c.fieldOfView, fovSpeedsToValues[state], Time.deltaTime * settingsForCamera.settingsFOV.fovSpeed);
         }
     }
 }

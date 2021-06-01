@@ -6486,6 +6486,10 @@ MonoBehaviour:
       useMouseSmoothing: 1
       mouseSmoothSpeed: 20
       lookSensitivity: 0.4
+      turnMultiplierWalk: 1
+      turnMultiplierNorm: 1
+      turnMultiplierRun: 0.2
+      turnMultiplierAir: 0.1
 --- !u!114 &1065039870
 MonoBehaviour:
   m_ObjectHideFlags: 0

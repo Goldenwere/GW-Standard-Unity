@@ -6399,7 +6399,7 @@ MonoBehaviour:
     drag: 0.5
     angularDrag: 0.01
     frictionGround: 20
-    frictionAir: 20
+    frictionAir: 2000
     shellOffset: 0.35
     groundDistance: 0.25
     forceStickToGround: 40

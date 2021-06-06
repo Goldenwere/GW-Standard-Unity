@@ -1,7 +1,8 @@
 {
-    "name": "Goldenwere.Unity.Demos.ManagementCamera",
+    "name": "Goldenwere.Unity.Controller.SimuCam",
     "references": [
-        "GUID:006bb610af812d244aaa39b6514d31ad"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:6c5cc148189749c41a22382e236770e3"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -13,9 +13,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
-    public delegate void ControllerLoadedDelegate(CharacterController loaded);
+    public delegate void ControllerLoadedDelegate(GWCharacterController loaded);
     public delegate void ControllerModuleDelegate();
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace Goldenwere.Unity.Controller
     /// Its camera runs under MonoBehaviour.Update and its physics and movement run under MonoBehaviour.FixedUpdate.<br/>
     /// Its input is event-based through the use of UnityEngine.InputSystem.
     /// </summary>
-    public partial class CharacterController : MonoBehaviour
+    public partial class GWCharacterController : MonoBehaviour
     {
 #pragma warning disable 0649
         [Tooltip                                                    ("(Default: true) Automatically initializes the controller on Start; can be disabled for manually calling Initialize")]

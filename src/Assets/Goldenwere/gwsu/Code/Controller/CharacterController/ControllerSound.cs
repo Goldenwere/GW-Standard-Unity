@@ -13,7 +13,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
     /// <summary>
     /// Optional module to handle sounds for the controller
@@ -55,7 +55,7 @@ namespace Goldenwere.Unity.Controller
 
         #region Fields
 #pragma warning disable 0649
-        [SerializeField] private CharacterController            controller;
+        [SerializeField] private GWCharacterController          controller;
         [SerializeField] private AudioSource                    source;
         [SerializeField] private AudioSourceSettings            settings;
 

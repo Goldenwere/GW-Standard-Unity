@@ -13,11 +13,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
     public delegate void InputActive(bool val);
 
-    public partial class CharacterController : MonoBehaviour
+    public partial class GWCharacterController : MonoBehaviour
     {
         /// <summary>
         /// Structure for defining input-related settings in inspector
@@ -46,7 +46,7 @@ namespace Goldenwere.Unity.Controller
             /// </summary>
             /// <param name="parent">The parent CharacterController, needed for modifier-based input containers to read if modifiers are toggled</param>
             /// <returns>The initialized ControllerInputs from InputContainers' action names</returns>
-            public ControllerInputs InitializeInputsFromSettings(CharacterController parent)
+            public ControllerInputs InitializeInputsFromSettings(GWCharacterController parent)
             {
                 return new ControllerInputs()
                 {
@@ -87,7 +87,7 @@ namespace Goldenwere.Unity.Controller
         protected class InputContainer
         {
             public InputAction          action;
-            public CharacterController  parent;
+            public GWCharacterController  parent;
             public bool                 isActive;
             public bool                 isModifier;
             public event InputActive    Updated;
@@ -109,7 +109,7 @@ namespace Goldenwere.Unity.Controller
             /// <param name="input">The PlayerInput the InputAction is under</param>
             /// <param name="_parent">The controller, in order to read whether modifiers are toggled or not</param>
             /// <param name="_isModifier">Whether the input is a modifier or not (which can either be toggled or held)</param>
-            public InputContainer(string name, PlayerInput input, CharacterController _parent, bool _isModifier = false)
+            public InputContainer(string name, PlayerInput input, GWCharacterController _parent, bool _isModifier = false)
             {
                 isActive = false;
                 isModifier = _isModifier;

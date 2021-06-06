@@ -12,7 +12,7 @@
 
 using UnityEngine;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
     /// <summary>
     /// Optional module to handle animations for the controller
@@ -26,7 +26,7 @@ namespace Goldenwere.Unity.Controller
     {
 #pragma warning disable 0649
         [SerializeField] private Animator[]             animators;
-        [SerializeField] private CharacterController    controller;
+        [SerializeField] private GWCharacterController  controller;
 #pragma warning restore 0649
 
         /// <summary>

@@ -12,9 +12,9 @@
 
 using UnityEngine;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
-    public partial class CharacterController
+    public partial class GWCharacterController
     {
 #pragma warning disable CS0108
         private CapsuleCollider     collider;

@@ -13,13 +13,13 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
     /// <summary>
     /// Optional module to handle the controller's leaning,
     /// which is separated from the controller
     /// </summary>
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(GWCharacterController))]
     public class CharacterLean : MonoBehaviour
     {
         [System.Serializable]
@@ -36,7 +36,7 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] private Transform                      leanJoint;
         [SerializeField] private LeanSettings                   leanSettings;
 #pragma warning restore 0649
-        /**************/ private CharacterController            controller;
+        /**************/ private GWCharacterController          controller;
         /**************/ private PrioritizedControllerModule    leanModule;
         /**************/ private IEnumerator                    unsetInstance;
 
@@ -45,7 +45,7 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void Awake()
         {
-            controller = GetComponent<CharacterController>();
+            controller = GetComponent<GWCharacterController>();
             leanModule = new PrioritizedControllerModule(0, Update_Lean);
 
             controller.Lean += (val) =>

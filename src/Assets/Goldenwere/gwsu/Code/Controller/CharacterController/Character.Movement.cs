@@ -12,9 +12,9 @@
 
 using UnityEngine;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 { 
-    public partial class CharacterController : MonoBehaviour
+    public partial class GWCharacterController : MonoBehaviour
     {
         /// <summary>
         /// Structure for defining controller movement settings

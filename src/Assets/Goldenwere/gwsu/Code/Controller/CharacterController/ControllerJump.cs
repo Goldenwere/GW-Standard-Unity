@@ -12,7 +12,7 @@
 
 using UnityEngine;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
     /// <summary>
     /// Optional module to handle the controller's jumping,
@@ -23,7 +23,7 @@ namespace Goldenwere.Unity.Controller
     /// While this is a very generic module with multiple modes of jumping,
     /// this is separate to follow the optional modules pattern
     /// </remarks>
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(GWCharacterController))]
     public class ControllerJump : MonoBehaviour
     {
         protected delegate void JumpForm();
@@ -76,7 +76,7 @@ namespace Goldenwere.Unity.Controller
 #pragma warning disable 0649
         [SerializeField] private JumpSettings                   jumpSettings;
 #pragma warning restore 0649
-        /**************/ private CharacterController            controller;                 // the controller of which this module is attached
+        /**************/ private GWCharacterController          controller;                 // the controller of which this module is attached
 
         /**************/ private bool                           controllerGrounded;         // listen to when the controller groundstate changes
         /**************/ private bool                           controllerJump;             // listen to when the jump input is called
@@ -159,7 +159,7 @@ namespace Goldenwere.Unity.Controller
         private void Awake()
         {
             // setup main variables
-            controller = GetComponent<CharacterController>();
+            controller = GetComponent<GWCharacterController>();
             jumpModule = new PrioritizedControllerModule(1, FixedUpdate_Jump);
 
             // ensure settings from inspector are valid

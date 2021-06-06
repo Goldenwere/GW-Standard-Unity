@@ -13,14 +13,14 @@
 using UnityEngine;
 using Goldenwere.Unity.PhysicsUtil;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
     /// <summary>
     /// Optional module to handle the controller's swimming,
     /// which is separated from the controller
     /// </summary>
     /// <remarks>This module assumes gravity or down is always (0,-1,0) in direction</remarks>
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(GWCharacterController))]
     public class ControllerSwim : MonoBehaviour, ISwimmable
     {
         /// <summary>
@@ -48,7 +48,7 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] private SwimSettings                   swimSettings;
         [SerializeField] private PrioritizedControllerModule    swimModule;
 #pragma warning restore 0649
-        /**************/ private CharacterController            controller;
+        /**************/ private GWCharacterController          controller;
         /**************/ private BodyOfFluid                    trackedFluid;
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Goldenwere.Unity.Controller
         private void Awake()
         {
             swimModule = new PrioritizedControllerModule(10, FixedUpdate_Swim);
-            controller = GetComponent<CharacterController>();
+            controller = GetComponent<GWCharacterController>();
         }
 
         /// <summary>

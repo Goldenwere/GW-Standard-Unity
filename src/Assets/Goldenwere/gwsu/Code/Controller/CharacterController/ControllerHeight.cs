@@ -13,7 +13,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Goldenwere.Unity.Controller
+namespace Goldenwere.Unity.Controllers.CharacterController
 {
     /// <summary>
     /// Optional module to handle the controller's height (stand/crouch/crawl)
@@ -24,7 +24,7 @@ namespace Goldenwere.Unity.Controller
     /// For example, one may want to use an Animator in order to make
     /// the camera move forward a bit before entering crawl
     /// </remarks>
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(GWCharacterController))]
     public class ControllerHeight : MonoBehaviour
     {
         /// <summary>
@@ -44,7 +44,7 @@ namespace Goldenwere.Unity.Controller
         [SerializeField] private float                          heightCrawl;
         [SerializeField] private float                          radiusNormal;
 #pragma warning restore 0649
-        /**************/ private CharacterController            controller;
+        /**************/ private GWCharacterController          controller;
         /**************/ private Dictionary<HeightState, float> heightStateToValue;
         /**************/ private float                          heightToRadiusFactor;
 
@@ -53,7 +53,7 @@ namespace Goldenwere.Unity.Controller
         /// </summary>
         private void Awake()
         {
-            controller = GetComponent<CharacterController>();
+            controller = GetComponent<GWCharacterController>();
             controller.ControllerLoaded += (c) =>
             {
                 // we will set center as height / 2 to make grounding math simpler by making ground = the actual bottom of the controller

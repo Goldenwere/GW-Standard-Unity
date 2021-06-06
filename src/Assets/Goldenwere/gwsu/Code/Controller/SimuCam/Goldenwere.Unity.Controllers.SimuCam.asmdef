@@ -1,5 +1,5 @@
 {
-    "name": "Goldenwere.Unity.Controller.SimuCam",
+    "name": "Goldenwere.Unity.Controllers.SimuCam",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:6c5cc148189749c41a22382e236770e3"

@@ -1,20 +1,17 @@
 # Goldenwere Standard Assets for the Unity Engine
 
-## About
+TBA
 
-The Goldenwere Standard Assets for the Unity Engine repository (gw-std-unity) is a collection of free-and-open-source (FOSS) assets for use in developing within the Unity engine. gw-std-unity is licensed under the [MIT license](LICENSE.md) (note: demo packages may include third party assets not licensed under MIT; their respective licenses will be included in both the repo and in asset packages).
+This repo is currently being restructured, and several packages deprecated.
 
-## Purpose
+Packages Deprecated:
+- Slider extensions and other UI extensions: deprecated in favor of a better unified package
+- DeveloperCamera aka FreeFlyCamera: deprecated for its simplicity, will simply be an isolated asset for copy-pasting into a package
+- Demos: now are Samples/Demo per package rather than their own individual packages
 
-gw-std-unity was created in order to make independent, re-usable cross-project assets for use in game development with the Unity engine. As such, most assets contain a variety of features to allow for greatest usage.
+Packages Changed:
+- FirstPersonController 1.x -> CharacterController 2.x
+- ManagementCam 1.x -> SimuCam 2.x
 
-## Resources
-
-- [Goldenwere Page](https://goldenwere.surge.sh/projects/gw-std-unity)
-- [Released Packages](https://github.com/Goldenwere/gw-std-unity/releases)
-- [Wiki](https://github.com/Goldenwere/gw-std-unity/wiki)
-
-## Repo
-
-The repository contains a Unity engine project, [src](src). See [ProjectVersion.txt](src/ProjectSettings/ProjectVersion.txt) to determine which version of the Unity engine to open with.  
-If you simply want the asset packages for importing into your own project, see [Released Packages under Resources](#resources).
+Packages Unchanged:
+- Tooltips

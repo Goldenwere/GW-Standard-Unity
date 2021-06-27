@@ -1,0 +1,15 @@
+{
+    "name": "Goldenwere.Unity.Demos.ManagementCamera",
+    "references": [
+        "GUID:006bb610af812d244aaa39b6514d31ad"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

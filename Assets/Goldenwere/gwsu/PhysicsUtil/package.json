@@ -1,0 +1,21 @@
+{
+    "name": "goldenwere.unity.physicsutil",
+    "version": "1.0.0",
+    "displayName": "Goldenwere GWSU Physics Utilities",
+    "description": "Physics utilities for the gw-std-unity repository",
+    "unity": "2019.4",
+    "dependencies": {
+        
+    },
+    "samples": [
+        
+    ],
+    "author": {
+        "name": "Goldenwere",
+        "email": "contactgoldenwere@gmail.com",
+        "url": "https://goldenwere.surge.sh/",
+    },
+    "changelogUrl": "https://github.com/Goldenwere/gw-std-unity.git?path=/Assets/Goldenwere/gwsu/PhysicsUtil/CHANGELOG.md",
+    "license": "MIT",
+    "licenseUrl": "https://github.com/Goldenwere/gw-std-unity.git?path=LICENSE.md"
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Goldenwere.Unity.Controllers.CharacterController",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:6c5cc148189749c41a22382e236770e3",
+        "GUID:d4174b7cba51d6d4b94061c45de30199"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

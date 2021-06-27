@@ -1,0 +1,27 @@
+{
+    "name": "goldenwere.unity.controllers.charactercontroller",
+    "version": "2.0.0",
+    "displayName": "Goldenwere Character Controller",
+    "description": "Highly generalized, modular, InputSystem-based, rigidbody-based character controller for Unity",
+    "unity": "2019.4",
+    "dependencies": {
+        "goldenwere.unity.core": "https://github.com/Goldenwere/gw-std-unity.git?path=/Assets/Goldenwere/gwsu/Core",
+        "goldenwere.unity.physicsutil": "https://github.com/Goldenwere/gw-std-unity.git?path=/Assets/Goldenwere/gwsu/PhysicsUtil",
+        "com.unity.inputsystem": "1.0.0"
+    },
+    "samples": [
+        {
+            "displayName": "Demo",
+            "description": "A demo containing a sample character controller and a scene to test various modules with",
+            "path": "Samples/Demo"
+        }
+    ],
+    "author": {
+        "name": "Goldenwere",
+        "email": "contactgoldenwere@gmail.com",
+        "url": "https://goldenwere.surge.sh/",
+    },
+    "changelogUrl": "https://github.com/Goldenwere/gw-std-unity.git?path=/Assets/Goldenwere/gwsu/Controllers/CharacterController/CHANGELOG.md",
+    "license": "MIT",
+    "licenseUrl": "https://github.com/Goldenwere/gw-std-unity.git?path=LICENSE.md"
+}

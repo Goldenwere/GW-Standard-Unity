@@ -1,0 +1,21 @@
+{
+    "name": "goldenwere.unity.core",
+    "version": "1.1.0",
+    "displayName": "Goldenwere GWSU CoreAPI",
+    "description": "Core API for the gw-std-unity repository",
+    "unity": "2019.4",
+    "dependencies": {
+        
+    },
+    "samples": [
+        
+    ],
+    "author": {
+        "name": "Goldenwere",
+        "email": "contactgoldenwere@gmail.com",
+        "url": "https://goldenwere.surge.sh/",
+    },
+    "changelogUrl": "https://github.com/Goldenwere/gw-std-unity.git?path=/Assets/Goldenwere/gwsu/Core/CHANGELOG.md",
+    "license": "MIT",
+    "licenseUrl": "https://github.com/Goldenwere/gw-std-unity.git?path=LICENSE.md"
+}
